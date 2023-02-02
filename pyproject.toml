@@ -1,0 +1,41 @@
+[tool.poetry]
+name = "spond-classes"
+version = "0.1.0"
+description = "Experimental Python class abstraction layer for `spond` package."
+authors = ["elliot-100 <3186037+elliot-100@users.noreply.github.com>"]
+readme = "README.md"
+homepage = "https://https://github.com/elliot-100/Spond-classes"
+repository = "https://https://github.com/elliot-100/Spond-classes"
+packages = [{include = "spond_classes"}]
+license = "GPL 3.0"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+python-dateutil = "^2.8.2"
+spond = "^0.9.0"
+
+[tool.poetry.group.dev.dependencies]
+black = "^22.12.0"
+mypy = "^0.991"
+isort = "^5.11.4"
+types-python-dateutil = "^2.8.19.6"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.2.1"
+
+[tool.black]
+line-length = 88
+target-version = ['py37']
+
+[tool.isort]
+profile = "black"
+
+[tool.mypy]
+warn_unused_configs = true
+strict = true
+disallow_any_generics = false
+disallow_untyped_defs = false
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
