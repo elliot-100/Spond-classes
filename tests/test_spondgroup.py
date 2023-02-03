@@ -6,7 +6,7 @@ Note: To generate a representative 32-character hex string ID:
 
 import pytest
 
-from spond_classes import DuplicateKeyError, SpondGroup
+from spond_classes import DuplicateKeyError, SpondGroup, SpondMember
 
 
 def test_create():
@@ -66,7 +66,19 @@ def group_dict():
 
     return {
         "id": "20EA715745389FCDED2C280A8ACB74A6",
-        "members": [],
+        "members": [
+            {
+                "createdTime": "2022-03-24T16:36:29Z",
+                "email": "bg@example.com",
+                "firstName": "Brendan",
+                "id": "6F63AF02CE05328153ABA477C76E6189",
+                "lastName": "Gleason",
+                "phoneNumber": "+000000000000",
+                "subGroups": [
+                    "BB6B3C3592C5FC71DBDD5258D45EF6D4",
+                ],
+            },
+        ],
         "name": "Group A",
         "subGroups": [],
     }
@@ -80,6 +92,7 @@ def test_from_dict(group_dict):
     Verify values of all attributes.
     """
     SpondGroup.instances = {}
+    SpondMember.instances = {}
     my_sg = SpondGroup.from_dict(group_dict)
     valid_properties = [
         "uid",
@@ -92,5 +105,5 @@ def test_from_dict(group_dict):
 
     assert my_sg.uid == "20EA715745389FCDED2C280A8ACB74A6"
     assert my_sg.name == "Group A"
-    assert my_sg.members == []
+    assert my_sg.members[0].uid == "6F63AF02CE05328153ABA477C76E6189"
     assert my_sg.subgroups == []

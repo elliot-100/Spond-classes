@@ -3,7 +3,7 @@ Custom classes for Spond data, and methods to create them from dicts returned by
 `spond` package.
 
 """
-
+from __future__ import annotations
 
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -73,7 +73,7 @@ class SpondGroup:
     uid: str  # from API 'id'
     name: str  # from API 'name'
     members: List[SpondMember] = field(default_factory=list)
-    # derived # from API, but uses object refs instead of uid. Populated separately
+    # derived from API, but uses object refs instead of uid.
     subgroups: List["SpondSubgroup"] = field(default_factory=list)
     # derived # from API, but uses object refs instead of uid. Populated separately
 
@@ -91,7 +91,8 @@ class SpondGroup:
         assert isinstance(group, dict)
         uid = group["id"]
         name = group["name"]
-        return SpondGroup(uid, name)
+        members = [SpondMember.from_dict(member) for member in group.get("members", [])]
+        return SpondGroup(uid, name, members)
 
     @classmethod
     def by_id(cls, group_uid: str) -> "SpondGroup":
@@ -136,7 +137,10 @@ class SpondSubgroup:
         assert isinstance(subgroup, dict)
         uid = subgroup["id"]
         name = subgroup["name"]
-        return SpondSubgroup(uid, name, parent_group)
+        members = [
+            SpondMember.from_dict(member) for member in subgroup.get("members", [])
+        ]
+        return SpondSubgroup(uid, name, parent_group, members)
 
     def __str__(self):
         return f"[SpondSubgroup '{self.name}']"
