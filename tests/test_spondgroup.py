@@ -20,6 +20,7 @@ def test_create():
         "uid",
         "name",
         "members",
+        "subgroups",
     ]
     actual_properties = list(my_sg.__dict__.keys())
     assert sorted(actual_properties) == sorted(valid_properties)
@@ -27,10 +28,68 @@ def test_create():
     assert my_sg.uid == "001"
     assert my_sg.name == "My group"
     assert my_sg.members == []
+    assert my_sg.subgroups == []
 
 
 @pytest.fixture
-def group_dict():
+def simple_group_dict():
+    """Partial fragment from the 'groups' (root) node.
+    Represents the simplest possible Group."""
+
+    return {
+        "id": "20EA715745389FCDED2C280A8ACB74A6",
+        "name": "Group A",
+    }
+
+
+def test_core_from_dict_simple(simple_group_dict):
+    """
+    Test that a minimal SpondGroup is created from the simplest possible dict representation.
+
+    Verify that only expected attributes exist.
+    Verify values of all attributes.
+    """
+    my_sg = SpondGroup.core_from_dict(simple_group_dict)
+    valid_properties = [
+        "uid",
+        "name",
+        "members",
+        "subgroups",
+    ]
+    actual_properties = list(my_sg.__dict__.keys())
+    assert sorted(actual_properties) == sorted(valid_properties)
+
+    assert my_sg.uid == "20EA715745389FCDED2C280A8ACB74A6"
+    assert my_sg.name == "Group A"
+    assert my_sg.members == []
+    assert my_sg.subgroups == []
+
+
+def test_from_dict_simple(simple_group_dict):
+    """
+    Test that a SpondGroup is created from the simplest possible dict representation.
+
+    Verify that only expected attributes exist.
+    Verify values of all attributes.
+    """
+    my_sg = SpondGroup.core_from_dict(simple_group_dict)
+    valid_properties = [
+        "uid",
+        "name",
+        "members",
+        "subgroups",
+    ]
+    actual_properties = list(my_sg.__dict__.keys())
+    assert sorted(actual_properties) == sorted(valid_properties)
+
+    assert my_sg.uid == "20EA715745389FCDED2C280A8ACB74A6"
+    assert my_sg.name == "Group A"
+    assert my_sg.members == []
+    assert my_sg.subgroups == []
+
+
+@pytest.fixture
+def complex_group_dict():
     """Partial fragment from the 'groups' (root) node.
     Represents a single Group."""
 
@@ -39,33 +98,37 @@ def group_dict():
         "members": [
             {
                 "createdTime": "2022-03-24T16:36:29Z",
-                "email": "bg@example.com",
                 "firstName": "Brendan",
                 "id": "6F63AF02CE05328153ABA477C76E6189",
                 "lastName": "Gleason",
-                "phoneNumber": "+000000000000",
                 "subGroups": [
                     "BB6B3C3592C5FC71DBDD5258D45EF6D4",
                 ],
             },
         ],
         "name": "Group A",
-        "subGroups": [],
+        "subGroups": [
+            {
+                "id": "BB6B3C3592C5FC71DBDD5258D45EF6D4",
+                "name": "Subgroup A1",
+            }
+        ],
     }
 
 
-def test_from_dict(group_dict):
+def test_from_dict_complex(complex_group_dict):
     """
     Test that SpondGroup is created from dict.
 
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-    my_sg = SpondGroup.from_dict(group_dict)
+    my_sg = SpondGroup.from_dict(complex_group_dict)
     valid_properties = [
         "uid",
         "name",
         "members",
+        "subgroups",
     ]
     actual_properties = list(my_sg.__dict__.keys())
     assert sorted(actual_properties) == sorted(valid_properties)
@@ -73,3 +136,4 @@ def test_from_dict(group_dict):
     assert my_sg.uid == "20EA715745389FCDED2C280A8ACB74A6"
     assert my_sg.name == "Group A"
     assert my_sg.members[0].uid == "6F63AF02CE05328153ABA477C76E6189"
+    assert my_sg.subgroups[0].uid == "BB6B3C3592C5FC71DBDD5258D45EF6D4"

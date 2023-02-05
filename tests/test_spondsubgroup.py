@@ -15,8 +15,7 @@ def test_create():
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-    dummy_sg = SpondGroup("001", "Dummy group")
-    my_ssg = SpondSubgroup("001", "My subgroup", dummy_sg)
+    my_ssg = SpondSubgroup("001", "My subgroup")
     valid_properties = [
         "uid",
         "name",
@@ -27,7 +26,7 @@ def test_create():
 
     assert my_ssg.uid == "001"
     assert my_ssg.name == "My subgroup"
-    assert my_ssg.parent_group is dummy_sg
+    assert my_ssg.parent_group is None
 
 
 @pytest.fixture
@@ -43,13 +42,12 @@ def subgroup_dict():
 
 def test_from_dict(subgroup_dict):
     """
-    Test that SpondGroup is created from dict.
+    Test that SpondSubgroup is created from dict.
 
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-    dummy_sg = SpondGroup("001", "Dummy group")
-    my_ssg = SpondSubgroup.from_dict(subgroup_dict, dummy_sg)
+    my_ssg = SpondSubgroup.from_dict(subgroup_dict)
     valid_properties = [
         "uid",
         "name",
@@ -60,4 +58,3 @@ def test_from_dict(subgroup_dict):
 
     assert my_ssg.uid == "8CC576609CF3DCBC44469A799E76B22B"
     assert my_ssg.name == "Subgroup A1"
-    assert my_ssg.parent_group is dummy_sg
