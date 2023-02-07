@@ -25,14 +25,20 @@ class SpondMember:
     created_time: datetime  # from API 'createdTime'
     first_name: str  # from API 'firstName'
     last_name: str  # from API 'lastName'
-    name: str = field(init=False)  # derived
     roles: List[str] = field(default_factory=list)  # from API 'roles'
-
-    def __post_init__(self):
-        self.name = f"{self.first_name} {self.last_name}"
+    name: str = field(init=False)  # derived
+    _name: str = field(init=False, repr=False)
 
     def __str__(self):
         return f"[SpondMember '{self.first_name} {self.last_name} {self.uid}']"
+
+    @property
+    def name(self) -> str:
+        return f"{self.first_name} {self.last_name}"
+
+    @name.setter
+    def name(self, name: str) -> None:
+        self._name = name
 
     @staticmethod
     def from_dict(member: dict) -> SpondMember:
@@ -121,8 +127,6 @@ class SpondEvent:
 
     uid: str  # from API 'id'
     heading: str  # from API 'heading'
-    name: str = field(init=False)  # derived; aliases `heading` for consistency
-    # with other objects
     start_time: datetime  # from API 'startTimestamp'
 
     accepted_uids: list = field(default_factory=list)
@@ -130,9 +134,17 @@ class SpondEvent:
     unanswered_uids: list = field(default_factory=list)
     waiting_list_uids: list = field(default_factory=list)
     unconfirmed_uids: list = field(default_factory=list)
+    name: str = field(init=False)  # derived; aliases `heading` for consistency
+    # with other objects
+    _name: str = field(init=False, repr=False)
 
-    def __post_init__(self):
-        self.name = self.heading
+    @property
+    def name(self) -> str:
+        return self.heading
+
+    @name.setter
+    def name(self, name: str) -> None:
+        self._name = name
 
     @staticmethod
     def from_dict(event: dict) -> SpondEvent:
