@@ -7,7 +7,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import ClassVar, Dict, List, Union
+from typing import ClassVar, Dict, List
 
 from dateutil import parser
 
