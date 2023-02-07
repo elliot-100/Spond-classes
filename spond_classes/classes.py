@@ -7,7 +7,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import ClassVar, Dict, List
+from typing import ClassVar, Dict, List, Union
 
 from dateutil import parser
 
@@ -16,17 +16,6 @@ class DuplicateKeyError(ValueError):
     """ """
 
     pass
-
-
-def add_to_instances_if_unique(self):
-    """ """
-    this_class = self.__class__
-    if self.uid not in this_class.instances:
-        this_class.instances[self.uid] = self
-    else:
-        raise DuplicateKeyError(
-            f"{this_class} instance with uid='{self.uid}' already exists."
-        )
 
 
 @dataclass
@@ -45,11 +34,16 @@ class SpondMember:
     name: str = field(init=False)  # derived
     roles: List[str] = field(default_factory=list)  # from API 'roles'
 
-    instances: ClassVar[Dict[str, "SpondMember"]] = {}
+    instances: ClassVar[Dict[str, SpondMember]] = {}
 
     def __post_init__(self):
         self.name = f"{self.first_name} {self.last_name}"
-        add_to_instances_if_unique(self)
+        if self.uid not in self.__class__.instances:
+            self.__class__.instances[self.uid] = self
+        else:
+            raise DuplicateKeyError(
+                f"{self.__class__} instance with uid='{self.uid}' already exists."
+            )
 
     def __str__(self):
         return f"[SpondMember '{self.first_name} {self.last_name} {self.uid}']"
@@ -80,7 +74,12 @@ class SpondGroup:
     instances: ClassVar[Dict[str, "SpondGroup"]] = {}
 
     def __post_init__(self):
-        add_to_instances_if_unique(self)
+        if self.uid not in self.__class__.instances:
+            self.__class__.instances[self.uid] = self
+        else:
+            raise DuplicateKeyError(
+                f"{self.__class__} instance with uid='{self.uid}' already exists."
+            )
 
     def __str__(self):
         return f"[SpondGroup '{self.name}']"
@@ -129,7 +128,12 @@ class SpondSubgroup:
     instances: ClassVar[Dict[str, "SpondSubgroup"]] = {}
 
     def __post_init__(self):
-        add_to_instances_if_unique(self)
+        if self.uid not in self.__class__.instances:
+            self.__class__.instances[self.uid] = self
+        else:
+            raise DuplicateKeyError(
+                f"{self.__class__} instance with uid='{self.uid}' already exists."
+            )
 
     @staticmethod
     def from_dict(subgroup: dict, parent_group: SpondGroup) -> "SpondSubgroup":
@@ -181,7 +185,13 @@ class SpondEvent:
     instances: ClassVar[Dict[str, "SpondEvent"]] = {}
 
     def __post_init__(self):
-        add_to_instances_if_unique(self)
+        if self.uid not in self.__class__.instances:
+            self.__class__.instances[self.uid] = self
+        else:
+            raise DuplicateKeyError(
+                f"{self.__class__} instance with uid='{self.uid}' already exists."
+            )
+
         self.name = self.heading
 
     @staticmethod
