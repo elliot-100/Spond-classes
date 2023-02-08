@@ -15,8 +15,6 @@ from dateutil import parser
 class DuplicateKeyError(ValueError):
     """ """
 
-    pass
-
 
 @dataclass
 class SpondMember:
