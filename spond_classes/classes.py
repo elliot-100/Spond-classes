@@ -58,12 +58,14 @@ class SpondGroup:
     name: str  # from API 'name'
     members: List[SpondMember] = field(default_factory=list)
     # derived from API 'members', but uses object refs instead of uid.
+    subgroups: List[SpondSubgroup] = field(default_factory=list)
+    # derived from API 'subgroups'
 
     def __str__(self):
         return f"[SpondGroup '{self.name}']"
 
     @staticmethod
-    def from_dict(group: dict) -> SpondGroup:
+    def core_from_dict(group: dict) -> SpondGroup:
         """
         Create a SpondGroup object from relevant dict.
         """
@@ -71,7 +73,15 @@ class SpondGroup:
         uid = group["id"]
         name = group["name"]
         members = [SpondMember.from_dict(member) for member in group.get("members", [])]
-        return SpondGroup(uid, name, members)
+        return SpondGroup(uid, name, members, [])
+
+    @staticmethod
+    def from_dict(group: dict) -> SpondGroup:
+        spondgroup = SpondGroup.core_from_dict(group)
+        spondgroup.subgroups = [
+            SpondSubgroup.from_dict(subgroup) for subgroup in group.get("subGroups", [])
+        ]
+        return spondgroup
 
 
 @dataclass()
@@ -84,17 +94,20 @@ class SpondSubgroup:
 
     uid: str  # from API 'id'
     name: str  # from API 'name'
-    parent_group: SpondGroup  # derived
+    parent_group: None | SpondGroup = field(init=False)  # derived
+
+    def __post_init__(self):
+        self.parent_group = None
 
     @staticmethod
-    def from_dict(subgroup: dict, parent_group: SpondGroup) -> SpondSubgroup:
+    def from_dict(subgroup: dict) -> SpondSubgroup:
         """
         Create a SpondSubgroup object from relevant dict.
         """
         assert isinstance(subgroup, dict)
         uid = subgroup["id"]
         name = subgroup["name"]
-        return SpondSubgroup(uid, name, parent_group)
+        return SpondSubgroup(uid, name)
 
     def __str__(self):
         return f"[SpondSubgroup '{self.name}']"
