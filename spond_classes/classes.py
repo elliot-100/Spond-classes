@@ -87,7 +87,6 @@ class SpondSubgroup:
     uid: str  # from API 'id'
     name: str  # from API 'name'
     parent_group: SpondGroup  # derived
-    members: List[SpondMember] = field(default_factory=list)  # derived
 
     @staticmethod
     def from_dict(subgroup: dict, parent_group: SpondGroup) -> SpondSubgroup:
@@ -97,10 +96,7 @@ class SpondSubgroup:
         assert isinstance(subgroup, dict)
         uid = subgroup["id"]
         name = subgroup["name"]
-        members = [
-            SpondMember.from_dict(member) for member in subgroup.get("members", [])
-        ]
-        return SpondSubgroup(uid, name, parent_group, members)
+        return SpondSubgroup(uid, name, parent_group)
 
     def __str__(self):
         return f"[SpondSubgroup '{self.name}']"

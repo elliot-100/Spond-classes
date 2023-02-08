@@ -1,4 +1,4 @@
-""" Tests for SpondGroup class.
+""" Tests for SpondSubgroup class.
 
 Note: To generate a representative 32-character hex string ID:
     secrets.token_hex(16).upper()
@@ -20,7 +20,6 @@ def test_create():
     valid_properties = [
         "uid",
         "name",
-        "members",
         "parent_group",
     ]
     actual_properties = list(my_ssg.__dict__.keys())
@@ -28,7 +27,6 @@ def test_create():
 
     assert my_ssg.uid == "001"
     assert my_ssg.name == "My subgroup"
-    assert my_ssg.members == []
     assert my_ssg.parent_group is dummy_sg
 
 
@@ -39,19 +37,6 @@ def subgroup_dict():
 
     return {
         "id": "8CC576609CF3DCBC44469A799E76B22B",
-        "members": [
-            {
-                "createdTime": "2022-03-24T16:36:29Z",
-                "email": "bg@example.com",
-                "firstName": "Brendan",
-                "id": "6F63AF02CE05328153ABA477C76E6189",
-                "lastName": "Gleason",
-                "phoneNumber": "+000000000000",
-                "subGroups": [
-                    "BB6B3C3592C5FC71DBDD5258D45EF6D4",
-                ],
-            },
-        ],
         "name": "Subgroup A1",
     }
 
@@ -68,7 +53,6 @@ def test_from_dict(subgroup_dict):
     valid_properties = [
         "uid",
         "name",
-        "members",
         "parent_group",
     ]
     actual_properties = list(my_ssg.__dict__.keys())
@@ -76,5 +60,4 @@ def test_from_dict(subgroup_dict):
 
     assert my_ssg.uid == "8CC576609CF3DCBC44469A799E76B22B"
     assert my_ssg.name == "Subgroup A1"
-    assert my_ssg.members[0].uid == "6F63AF02CE05328153ABA477C76E6189"
     assert my_ssg.parent_group is dummy_sg
