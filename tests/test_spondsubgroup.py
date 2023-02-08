@@ -6,7 +6,7 @@ Note: To generate a representative 32-character hex string ID:
 
 import pytest
 
-from spond_classes import DuplicateKeyError, SpondGroup, SpondMember, SpondSubgroup
+from spond_classes import SpondGroup, SpondSubgroup
 
 
 def test_create():
@@ -15,8 +15,6 @@ def test_create():
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-    SpondGroup.instances = {}
-    SpondSubgroup.instances = {}
     dummy_sg = SpondGroup("001", "Dummy group")
     my_ssg = SpondSubgroup("001", "My subgroup", dummy_sg)
     valid_properties = [
@@ -32,39 +30,6 @@ def test_create():
     assert my_ssg.name == "My subgroup"
     assert my_ssg.members == []
     assert my_ssg.parent_group is dummy_sg
-
-
-def test_create_with_existing_uid():
-    """
-    Test that SpondSubgroup is not created, and error is raised if a SpondSubgroup exists with
-    the same uid
-    """
-    SpondGroup.instances = {}
-    SpondSubgroup.instances = {}
-    dummy_group = SpondGroup("001", "Dummy group")
-    SpondSubgroup("001", "My subgroup", dummy_group)
-    with pytest.raises(DuplicateKeyError):
-        SpondSubgroup("001", "Another subgroup", dummy_group)
-    assert len(SpondSubgroup.instances) == 1
-
-
-def test_by_id():
-    """Test that SpondSubgroup is returned if id exists."""
-    SpondGroup.instances = {}
-    SpondSubgroup.instances = {}
-    dummy_sg = SpondGroup("001", "Dummy group")
-    my_ssg = SpondSubgroup("001", "My subgroup", dummy_sg)
-    assert SpondSubgroup.by_id("001") == my_ssg
-
-
-def test_by_id__negative():
-    """Test that error is raised if id doesn't exist."""
-    SpondGroup.instances = {}
-    SpondSubgroup.instances = {}
-    dummy_sg = SpondGroup("001", "Dummy group")
-    SpondSubgroup("001", "My subgroup", dummy_sg)
-    with pytest.raises(KeyError):
-        SpondSubgroup.by_id("002")
 
 
 @pytest.fixture
@@ -98,9 +63,6 @@ def test_from_dict(subgroup_dict):
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-    SpondGroup.instances = {}
-    SpondSubgroup.instances = {}
-    SpondMember.instances = {}
     dummy_sg = SpondGroup("001", "Dummy group")
     my_ssg = SpondSubgroup.from_dict(subgroup_dict, dummy_sg)
     valid_properties = [

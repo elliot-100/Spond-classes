@@ -7,13 +7,9 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import ClassVar, Dict, List
+from typing import List
 
 from dateutil import parser
-
-
-class DuplicateKeyError(ValueError):
-    """ """
 
 
 @dataclass
@@ -32,16 +28,8 @@ class SpondMember:
     name: str = field(init=False)  # derived
     roles: List[str] = field(default_factory=list)  # from API 'roles'
 
-    instances: ClassVar[Dict[str, SpondMember]] = {}
-
     def __post_init__(self):
         self.name = f"{self.first_name} {self.last_name}"
-        if self.uid not in self.__class__.instances:
-            self.__class__.instances[self.uid] = self
-        else:
-            raise DuplicateKeyError(
-                f"{self.__class__} instance with uid='{self.uid}' already exists."
-            )
 
     def __str__(self):
         return f"[SpondMember '{self.first_name} {self.last_name} {self.uid}']"
@@ -73,16 +61,6 @@ class SpondGroup:
     subgroups: List[SpondSubgroup] = field(default_factory=list)
     # not yet implemented
 
-    instances: ClassVar[Dict[str, SpondGroup]] = {}
-
-    def __post_init__(self):
-        if self.uid not in self.__class__.instances:
-            self.__class__.instances[self.uid] = self
-        else:
-            raise DuplicateKeyError(
-                f"{self.__class__} instance with uid='{self.uid}' already exists."
-            )
-
     def __str__(self):
         return f"[SpondGroup '{self.name}']"
 
@@ -97,22 +75,6 @@ class SpondGroup:
         members = [SpondMember.from_dict(member) for member in group.get("members", [])]
         return SpondGroup(uid, name, members)
 
-    @classmethod
-    def by_id(cls, group_uid: str) -> SpondGroup:
-        """
-        Return the SpondGroup matching the uid, or an error.
-
-        Parameters
-        ----------
-        group_uid : str
-
-        Returns
-        -------
-        SpondGroup
-
-        """
-        return SpondGroup.instances[group_uid]
-
 
 @dataclass()
 class SpondSubgroup:
@@ -126,16 +88,6 @@ class SpondSubgroup:
     name: str  # from API 'name'
     parent_group: SpondGroup  # derived
     members: List[SpondMember] = field(default_factory=list)  # derived
-
-    instances: ClassVar[Dict[str, SpondSubgroup]] = {}
-
-    def __post_init__(self):
-        if self.uid not in self.__class__.instances:
-            self.__class__.instances[self.uid] = self
-        else:
-            raise DuplicateKeyError(
-                f"{self.__class__} instance with uid='{self.uid}' already exists."
-            )
 
     @staticmethod
     def from_dict(subgroup: dict, parent_group: SpondGroup) -> SpondSubgroup:
@@ -152,22 +104,6 @@ class SpondSubgroup:
 
     def __str__(self):
         return f"[SpondSubgroup '{self.name}']"
-
-    @classmethod
-    def by_id(cls, subgroup_uid: str) -> SpondSubgroup:
-        """
-        Return the SpondSubgroup matching the uid, or an error.
-
-        Parameters
-        ----------
-        subgroup_uid : str
-
-        Returns
-        -------
-        SpondSubgroup
-
-        """
-        return SpondSubgroup.instances[subgroup_uid]
 
 
 @dataclass
@@ -188,16 +124,7 @@ class SpondEvent:
     waiting_list_uids: list = field(default_factory=list)
     unconfirmed_uids: list = field(default_factory=list)
 
-    instances: ClassVar[Dict[str, SpondEvent]] = {}
-
     def __post_init__(self):
-        if self.uid not in self.__class__.instances:
-            self.__class__.instances[self.uid] = self
-        else:
-            raise DuplicateKeyError(
-                f"{self.__class__} instance with uid='{self.uid}' already exists."
-            )
-
         self.name = self.heading
 
     @staticmethod

@@ -6,7 +6,7 @@ Note: To generate a representative 32-character hex string ID:
 
 import pytest
 
-from spond_classes import DuplicateKeyError, SpondGroup, SpondMember
+from spond_classes import SpondGroup
 
 
 def test_create():
@@ -15,7 +15,6 @@ def test_create():
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-    SpondGroup.instances = {}
     my_sg = SpondGroup("001", "My group")
     valid_properties = [
         "uid",
@@ -30,33 +29,6 @@ def test_create():
     assert my_sg.name == "My group"
     assert my_sg.members == []
     assert my_sg.subgroups == []
-
-
-def test_create_with_existing_uid():
-    """
-    Test that SpondGroup is not created, and error is raised if a SpondGroup exists with
-    the same uid
-    """
-    SpondGroup.instances = {}
-    SpondGroup("001", "My group")
-    with pytest.raises(DuplicateKeyError):
-        SpondGroup("001", "Another group")
-    assert len(SpondGroup.instances) == 1
-
-
-def test_by_id():
-    """Test that SpondGroup is returned if id exists."""
-    SpondGroup.instances = {}
-    my_sg = SpondGroup("001", "my_sg")
-    assert SpondGroup.by_id("001") == my_sg
-
-
-def test_by_id__negative():
-    """Test that error is raised if id doesn't exist."""
-    SpondGroup.instances = {}
-    SpondGroup("001", "my_sg")
-    with pytest.raises(KeyError):
-        SpondGroup.by_id("002")
 
 
 @pytest.fixture
@@ -91,8 +63,6 @@ def test_from_dict(group_dict):
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-    SpondGroup.instances = {}
-    SpondMember.instances = {}
     my_sg = SpondGroup.from_dict(group_dict)
     valid_properties = [
         "uid",
