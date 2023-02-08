@@ -48,7 +48,9 @@ class SpondMember:
 
     @staticmethod
     def from_dict(member: dict) -> SpondMember:
-        """Create a SpondMember object from relevant dict"""
+        """
+        Create a SpondMember object from relevant dict.
+        """
         assert isinstance(member, dict)
         uid = member["id"]
         created_time = parser.isoparse(member["createdTime"])
@@ -60,14 +62,16 @@ class SpondMember:
 
 @dataclass
 class SpondGroup:
-    """Spond group."""
+    """
+    Spond group.
+    """
 
     uid: str  # from API 'id'
     name: str  # from API 'name'
     members: List[SpondMember] = field(default_factory=list)
-    # derived from API, but uses object refs instead of uid.
+    # derived from API 'members', but uses object refs instead of uid.
     subgroups: List[SpondSubgroup] = field(default_factory=list)
-    # derived # from API, but uses object refs instead of uid. Populated separately
+    # not yet implemented
 
     instances: ClassVar[Dict[str, SpondGroup]] = {}
 
@@ -84,7 +88,9 @@ class SpondGroup:
 
     @staticmethod
     def from_dict(group: dict) -> SpondGroup:
-        """Create a SpondGroup object from relevant dict"""
+        """
+        Create a SpondGroup object from relevant dict.
+        """
         assert isinstance(group, dict)
         uid = group["id"]
         name = group["name"]
@@ -119,9 +125,7 @@ class SpondSubgroup:
     uid: str  # from API 'id'
     name: str  # from API 'name'
     parent_group: SpondGroup  # derived
-    members: List[SpondMember] = field(
-        default_factory=list
-    )  # derived. Populated separately
+    members: List[SpondMember] = field(default_factory=list)  # derived
 
     instances: ClassVar[Dict[str, SpondSubgroup]] = {}
 
@@ -135,7 +139,9 @@ class SpondSubgroup:
 
     @staticmethod
     def from_dict(subgroup: dict, parent_group: SpondGroup) -> SpondSubgroup:
-        """Create a SpondSubgroup object from relevant dict"""
+        """
+        Create a SpondSubgroup object from relevant dict.
+        """
         assert isinstance(subgroup, dict)
         uid = subgroup["id"]
         name = subgroup["name"]
@@ -166,13 +172,15 @@ class SpondSubgroup:
 
 @dataclass
 class SpondEvent:
-    """Spond event."""
+    """
+    Spond event.
+    """
 
     uid: str  # from API 'id'
-    heading: str  # from API 'startTimestamp'
-    name: str = field(init=False)  # not from API; aliases `heading` for consistency
+    heading: str  # from API 'heading'
+    name: str = field(init=False)  # derived; aliases `heading` for consistency
     # with other objects
-    start_time: datetime  # from API 'heading'
+    start_time: datetime  # from API 'startTimestamp'
 
     accepted_uids: list = field(default_factory=list)
     declined_uids: list = field(default_factory=list)
@@ -194,7 +202,9 @@ class SpondEvent:
 
     @staticmethod
     def from_dict(event: dict) -> SpondEvent:
-        """Create a SpondEvent object from relevant dict"""
+        """
+        Create a SpondEvent object from relevant dict.
+        """
         assert isinstance(event, dict)
         uid = event["id"]
         heading = event["heading"]
