@@ -20,7 +20,6 @@ def test_create():
         "uid",
         "name",
         "members",
-        "subgroups",
     ]
     actual_properties = list(my_sg.__dict__.keys())
     assert sorted(actual_properties) == sorted(valid_properties)
@@ -28,7 +27,6 @@ def test_create():
     assert my_sg.uid == "001"
     assert my_sg.name == "My group"
     assert my_sg.members == []
-    assert my_sg.subgroups == []
 
 
 @pytest.fixture
@@ -68,7 +66,6 @@ def test_from_dict(group_dict):
         "uid",
         "name",
         "members",
-        "subgroups",
     ]
     actual_properties = list(my_sg.__dict__.keys())
     assert sorted(actual_properties) == sorted(valid_properties)
@@ -76,4 +73,3 @@ def test_from_dict(group_dict):
     assert my_sg.uid == "20EA715745389FCDED2C280A8ACB74A6"
     assert my_sg.name == "Group A"
     assert my_sg.members[0].uid == "6F63AF02CE05328153ABA477C76E6189"
-    assert my_sg.subgroups == []

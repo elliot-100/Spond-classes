@@ -58,8 +58,6 @@ class SpondGroup:
     name: str  # from API 'name'
     members: List[SpondMember] = field(default_factory=list)
     # derived from API 'members', but uses object refs instead of uid.
-    subgroups: List[SpondSubgroup] = field(default_factory=list)
-    # not yet implemented
 
     def __str__(self):
         return f"[SpondGroup '{self.name}']"
