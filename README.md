@@ -38,9 +38,8 @@ Each of these creates a class instance from the dict returned by the correspondi
 method:
 
 ```
-spond_classes.SpondEvent.from_dict()
 spond_classes.SpondGroup.from_dict()
-spond_classes.SpondMember.from_dict()
+spond_classes.SpondEvent.from_dict()
 ```
 
 ## Example code
