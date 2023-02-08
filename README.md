@@ -40,7 +40,6 @@ method:
 ```
 spond_classes.SpondEvent.from_dict()
 spond_classes.SpondGroup.from_dict()
-spond_classes.SpondSubgroup.from_dict()
 spond_classes.SpondMember.from_dict()
 ```
 
@@ -52,24 +51,21 @@ Adapting the example code in `spond` README:
 import asyncio
 from spond import spond
 
-from spond_classes import SpondGroup
-
 username = 'my@mail.invalid'
 password = 'Pa55worD'
+group_id = 'C9DC791FFE63D7914D6952BE10D97B46'  # fake 
 
 async def main():
     s = spond.Spond(username=username, password=password)
-    groups = await s.get_groups()
-    for group in groups:
-
-        ###
-        sg = SpondGroup.from_dict(group)
-        print(sg.name)
-        ###
-
+    group = await s.get_group(group_id)
+    
+    # convert to class instance
+    sg = SpondGroup.from_dict(group)
+    
+    # use class properties instead of dict keys
+    print(sg.name)
+    
     await s.clientsession.close()
 
-loop = asyncio.new_event_loop()
-asyncio.set_event_loop(loop)
 asyncio.run(main())
 ```
