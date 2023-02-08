@@ -9,7 +9,7 @@ from datetime import datetime
 import pytest
 from dateutil import parser
 
-from spond_classes import DuplicateKeyError, SpondEvent
+from spond_classes import SpondEvent
 
 
 def test_create():
@@ -18,7 +18,6 @@ def test_create():
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-    SpondEvent.instances = {}
 
     my_se = SpondEvent("001", "My event", datetime(2022, 9, 15, 8, 30))
     valid_properties = [
@@ -44,19 +43,6 @@ def test_create():
     assert my_se.unanswered_uids == []
     assert my_se.waiting_list_uids == []
     assert my_se.unconfirmed_uids == []
-
-
-def test_create_with_existing_uid():
-    """
-    Test that SpondEvent is not created, and error is raised if a SpondEvent exists with
-    the same uid
-    """
-    SpondEvent.instances = {}
-
-    SpondEvent("001", "My event", datetime(2022, 9, 15, 8, 30))
-    with pytest.raises(DuplicateKeyError):
-        SpondEvent("001", "Another event", datetime(2022, 9, 15, 8, 30))
-    assert len(SpondEvent.instances) == 1
 
 
 @pytest.fixture
@@ -100,7 +86,6 @@ def test_from_dict(event_dict):
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-    SpondEvent.instances = {}
     my_se = SpondEvent.from_dict(event_dict)
     valid_properties = [
         "uid",

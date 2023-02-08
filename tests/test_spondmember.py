@@ -9,7 +9,7 @@ from datetime import datetime
 import pytest
 from dateutil import parser
 
-from spond_classes import DuplicateKeyError, SpondMember
+from spond_classes import SpondMember
 
 
 def test_create():
@@ -18,7 +18,6 @@ def test_create():
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-    SpondMember.instances = {}
     my_sm = SpondMember("001", datetime(2018, 2, 1, 17, 39), "Colin", "Farrell")
     valid_properties = [
         "uid",
@@ -37,18 +36,6 @@ def test_create():
     assert my_sm.last_name == "Farrell"
     assert my_sm.name == "Colin Farrell"
     assert my_sm.roles == []
-
-
-def test_create_with_existing_uid():
-    """
-    Test that SpondMember is not created, and error is raised if a SpondMember exists
-    with the same uid
-    """
-    SpondMember.instances = {}
-    SpondMember("001", datetime(2018, 2, 1, 17, 39), "Colin", "Farrell")
-    with pytest.raises(DuplicateKeyError):
-        SpondMember("001", datetime(2016, 10, 18, 18, 00), "Cate", "Blanchett")
-    assert len(SpondMember.instances) == 1
 
 
 @pytest.fixture
