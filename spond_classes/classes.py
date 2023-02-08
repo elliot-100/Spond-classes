@@ -7,15 +7,13 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import ClassVar, Dict, List, Union
+from typing import ClassVar, Dict, List
 
 from dateutil import parser
 
 
 class DuplicateKeyError(ValueError):
     """ """
-
-    pass
 
 
 @dataclass
@@ -49,8 +47,10 @@ class SpondMember:
         return f"[SpondMember '{self.first_name} {self.last_name} {self.uid}']"
 
     @staticmethod
-    def from_dict(member: dict) -> "SpondMember":
-        """Create a SpondMember object from relevant dict"""
+    def from_dict(member: dict) -> SpondMember:
+        """
+        Create a SpondMember object from relevant dict.
+        """
         assert isinstance(member, dict)
         uid = member["id"]
         created_time = parser.isoparse(member["createdTime"])
@@ -62,16 +62,18 @@ class SpondMember:
 
 @dataclass
 class SpondGroup:
-    """Spond group."""
+    """
+    Spond group.
+    """
 
     uid: str  # from API 'id'
     name: str  # from API 'name'
     members: List[SpondMember] = field(default_factory=list)
-    # derived from API, but uses object refs instead of uid.
-    subgroups: List["SpondSubgroup"] = field(default_factory=list)
-    # derived # from API, but uses object refs instead of uid. Populated separately
+    # derived from API 'members', but uses object refs instead of uid.
+    subgroups: List[SpondSubgroup] = field(default_factory=list)
+    # not yet implemented
 
-    instances: ClassVar[Dict[str, "SpondGroup"]] = {}
+    instances: ClassVar[Dict[str, SpondGroup]] = {}
 
     def __post_init__(self):
         if self.uid not in self.__class__.instances:
@@ -85,8 +87,10 @@ class SpondGroup:
         return f"[SpondGroup '{self.name}']"
 
     @staticmethod
-    def from_dict(group: dict) -> "SpondGroup":
-        """Create a SpondGroup object from relevant dict"""
+    def from_dict(group: dict) -> SpondGroup:
+        """
+        Create a SpondGroup object from relevant dict.
+        """
         assert isinstance(group, dict)
         uid = group["id"]
         name = group["name"]
@@ -94,7 +98,7 @@ class SpondGroup:
         return SpondGroup(uid, name, members)
 
     @classmethod
-    def by_id(cls, group_uid: str) -> "SpondGroup":
+    def by_id(cls, group_uid: str) -> SpondGroup:
         """
         Return the SpondGroup matching the uid, or an error.
 
@@ -121,11 +125,9 @@ class SpondSubgroup:
     uid: str  # from API 'id'
     name: str  # from API 'name'
     parent_group: SpondGroup  # derived
-    members: List[SpondMember] = field(
-        default_factory=list
-    )  # derived. Populated separately
+    members: List[SpondMember] = field(default_factory=list)  # derived
 
-    instances: ClassVar[Dict[str, "SpondSubgroup"]] = {}
+    instances: ClassVar[Dict[str, SpondSubgroup]] = {}
 
     def __post_init__(self):
         if self.uid not in self.__class__.instances:
@@ -136,8 +138,10 @@ class SpondSubgroup:
             )
 
     @staticmethod
-    def from_dict(subgroup: dict, parent_group: SpondGroup) -> "SpondSubgroup":
-        """Create a SpondSubgroup object from relevant dict"""
+    def from_dict(subgroup: dict, parent_group: SpondGroup) -> SpondSubgroup:
+        """
+        Create a SpondSubgroup object from relevant dict.
+        """
         assert isinstance(subgroup, dict)
         uid = subgroup["id"]
         name = subgroup["name"]
@@ -150,7 +154,7 @@ class SpondSubgroup:
         return f"[SpondSubgroup '{self.name}']"
 
     @classmethod
-    def by_id(cls, subgroup_uid: str) -> "SpondSubgroup":
+    def by_id(cls, subgroup_uid: str) -> SpondSubgroup:
         """
         Return the SpondSubgroup matching the uid, or an error.
 
@@ -168,13 +172,15 @@ class SpondSubgroup:
 
 @dataclass
 class SpondEvent:
-    """Spond event."""
+    """
+    Spond event.
+    """
 
     uid: str  # from API 'id'
-    heading: str  # from API 'startTimestamp'
-    name: str = field(init=False)  # not from API; aliases `heading` for consistency
+    heading: str  # from API 'heading'
+    name: str = field(init=False)  # derived; aliases `heading` for consistency
     # with other objects
-    start_time: datetime  # from API 'heading'
+    start_time: datetime  # from API 'startTimestamp'
 
     accepted_uids: list = field(default_factory=list)
     declined_uids: list = field(default_factory=list)
@@ -182,7 +188,7 @@ class SpondEvent:
     waiting_list_uids: list = field(default_factory=list)
     unconfirmed_uids: list = field(default_factory=list)
 
-    instances: ClassVar[Dict[str, "SpondEvent"]] = {}
+    instances: ClassVar[Dict[str, SpondEvent]] = {}
 
     def __post_init__(self):
         if self.uid not in self.__class__.instances:
@@ -195,8 +201,10 @@ class SpondEvent:
         self.name = self.heading
 
     @staticmethod
-    def from_dict(event: dict) -> "SpondEvent":
-        """Create a SpondEvent object from relevant dict"""
+    def from_dict(event: dict) -> SpondEvent:
+        """
+        Create a SpondEvent object from relevant dict.
+        """
         assert isinstance(event, dict)
         uid = event["id"]
         heading = event["heading"]
