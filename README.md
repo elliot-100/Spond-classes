@@ -2,9 +2,15 @@
 
 ## About
 
-Python class abstraction layer for [`spond`](https://github.com/Olen/Spond/) library package.
+The unofficial [`Spond` library package](https://github.com/Olen/Spond/) gets data from
+the Spond  API and returns `dict` objects.
+
+This unofficial `Spond-classes` package parses those `dict` objects and turns them into class instances,
+i.e. provides an object abstraction layer.
 
 Experimental, very partial, read-only implementation.
+
+Written in Python.
 
 ## Install
 
@@ -32,9 +38,9 @@ or for a specific version:
 poetry add git+https://github.com/elliot-100/spond-classes.git#0.1.0
 `
 
-## Key methods
+## Key features
 
-Each of these creates a class instance from the dict returned by the corresponding `spond`
+* Create `SpondGroup` and `SpondEvent` class instances from the dict returned by the corresponding `spond`
 method:
 
 ```
@@ -42,6 +48,34 @@ spond_classes.SpondGroup.from_dict()
 spond_classes.SpondEvent.from_dict()
 ```
 
+* Access typed properties:
+
+```
+SpondEvent.uid: str
+SpondEvent.heading: str
+SpondEvent.name: str
+SpondEvent.start_time: datetime
+SpondEvent.accepted_uids: list
+SpondEvent.declined_uids: list
+SpondEvent.unanswered_uids: list
+SpondEvent.waiting_list_uids: list
+SpondEvent.unconfirmed_uids: list
+
+SpondGroup.uid: str
+SpondGroup.name: str
+SpondGroup.members: List[SpondMember]
+SpondGroup.subgroups: List[SpondSubgroup]
+
+SpondMember.uid: str
+SpondMember.created_time: datetime
+SpondMember.first_name: str
+SpondMember.last_name: str
+SpondMember.name: str
+SpondMember.roles: List[str]
+
+SpondSubgroup.uid: str
+SpondSubgroup.name: str
+```
 ## Example code
 
 Adapting the example code in `spond` README:
@@ -63,6 +97,8 @@ async def main():
     
     # use class properties instead of dict keys
     print(sg.name)
+    
+    #
     
     await s.clientsession.close()
 
