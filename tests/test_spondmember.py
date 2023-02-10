@@ -14,7 +14,7 @@ from spond_classes import SpondMember
 
 def test_create():
     """
-    Test that SpondMember is created from required fields.
+    Test that SpondMember is created from required fields only.
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
@@ -39,19 +39,15 @@ def test_create():
 
 
 @pytest.fixture
-def simple_member_dict():
-    """No roles or profile data"""
+def simplest_member_dict():
+    """
+    Represents the simplest possible member node.
+    """
     return {
         "createdTime": "2022-03-24T16:36:29Z",
-        "email": "bg@example.com",
         "firstName": "Brendan",
         "id": "6F63AF02CE05328153ABA477C76E6189",
         "lastName": "Gleason",
-        "phoneNumber": "+000000000000",
-        "subGroups": [
-            "BB6B3C3592C5FC71DBDD5258D45EF6D4",
-            "C99299D5F21152D3E3563B4BA9DDFD66",
-        ],
     }
 
 
@@ -84,14 +80,14 @@ def complex_member_dict():
     }
 
 
-def test_from_dict_simple(simple_member_dict):
+def test_from_dict(simplest_member_dict):
     """
     Test that SpondMember is created from dict.
 
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-    my_sm = SpondMember.from_dict(simple_member_dict)
+    my_sm = SpondMember.from_dict(simplest_member_dict)
     valid_properties = [
         "uid",
         "created_time",
@@ -111,7 +107,7 @@ def test_from_dict_simple(simple_member_dict):
     assert my_sm.roles == []
 
 
-def test_from_dict_complex(complex_member_dict):
+def test_from_dict(complex_member_dict):
     """
     Test that SpondMember is created from JSON.
 

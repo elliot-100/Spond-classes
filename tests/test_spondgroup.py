@@ -11,7 +11,7 @@ from spond_classes import SpondGroup
 
 def test_create():
     """
-    Test that SpondGroup is created from required fields.
+    Test that SpondGroup is created from required fields only.
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
@@ -32,7 +32,7 @@ def test_create():
 
 
 @pytest.fixture
-def simple_group_dict():
+def simplest_group_dict():
     """Partial fragment from the 'groups' (root) node.
     Represents the simplest possible Group."""
 
@@ -42,14 +42,15 @@ def simple_group_dict():
     }
 
 
-def test_core_from_dict_simple(simple_group_dict):
+def test_core_from_dict(simplest_group_dict):
     """
-    Test that a minimal SpondGroup is created from the simplest possible dict representation.
+    Test that a minimal SpondGroup is created from the simplest possible dict
+    representation.
 
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-    my_sg = SpondGroup.core_from_dict(simple_group_dict)
+    my_sg = SpondGroup.core_from_dict(simplest_group_dict)
     valid_properties = [
         "uid",
         "name",
@@ -65,14 +66,17 @@ def test_core_from_dict_simple(simple_group_dict):
     assert my_sg.subgroups == []
 
 
-def test_from_dict_simple(simple_group_dict):
+def test_from_dict(simplest_group_dict):
     """
-    Test that a SpondGroup is created from the simplest possible dict representation.
+    Test that a minimal SpondGroup is created from the simplest possible dict representation.
 
     Verify that only expected attributes exist.
     Verify values of all attributes.
+
+    NB: this should produce exactly the same output as test_core_from_dict_simple(simplest_group_dict)
+
     """
-    my_sg = SpondGroup.core_from_dict(simple_group_dict)
+    my_sg = SpondGroup.core_from_dict(simplest_group_dict)
     valid_properties = [
         "uid",
         "name",
@@ -90,8 +94,11 @@ def test_from_dict_simple(simple_group_dict):
 
 @pytest.fixture
 def complex_group_dict():
-    """Partial fragment from the 'groups' (root) node.
-    Represents a single Group."""
+    """
+    Partial fragment from the 'groups' (root) node.
+    Represents a single Group with a single Member and a single Subgroup. The Member is
+    also in the Subgroup.
+    """
 
     return {
         "id": "20EA715745389FCDED2C280A8ACB74A6",
@@ -116,7 +123,7 @@ def complex_group_dict():
     }
 
 
-def test_from_dict_complex(complex_group_dict):
+def test_from_dict(complex_group_dict):
     """
     Test that SpondGroup is created from dict.
 
