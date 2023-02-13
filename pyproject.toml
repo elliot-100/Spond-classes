@@ -12,7 +12,7 @@ license = "GPL 3.0"
 [tool.poetry.dependencies]
 python = ">=3.7.2,<4.0"
 python-dateutil = "^2.8.2"
-spond = "^0.9.0"
+spond = "^0.10.1"
 
 [tool.poetry.group.dev.dependencies]
 black = "^22.12.0"
