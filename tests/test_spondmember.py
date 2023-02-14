@@ -1,7 +1,5 @@
-""" Tests for SpondMember class.
-
-Note: To generate a representative 32-character hex string ID:
-    secrets.token_hex(16).upper()
+"""
+Tests for SpondMember class.
 """
 
 from datetime import datetime
@@ -27,6 +25,7 @@ def test_create():
         "last_name",
         "name",
         "roles",
+        "subgroups",
     ]
 
     assert sets_equal(public_attributes(my_sm), valid_attributes)
@@ -37,12 +36,14 @@ def test_create():
     assert my_sm.last_name == "Farrell"
     assert my_sm.name == "Colin Farrell"
     assert my_sm.roles == []
+    assert my_sm.subgroups == []
 
 
 @pytest.fixture
 def simplest_member_dict():
     """
-    Represents the simplest possible member node.
+    Partial fragment from the 'groups -> group -> members' node.
+    Represents the simplest possible Member.
     """
     return {
         "createdTime": "2022-03-24T16:36:29Z",
@@ -67,6 +68,7 @@ def test_from_dict_simplest(simplest_member_dict):
         "last_name",
         "name",
         "roles",
+        "subgroups",
     ]
     assert sets_equal(public_attributes(my_sm), valid_attributes)
 
@@ -76,3 +78,4 @@ def test_from_dict_simplest(simplest_member_dict):
     assert my_sm.last_name == "Gleason"
     assert my_sm.name == "Brendan Gleason"
     assert my_sm.roles == []
+    assert my_sm.subgroups == []

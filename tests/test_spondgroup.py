@@ -149,6 +149,11 @@ def test_from_dict_complex(complex_group_dict):
     # Assertions for SpondGroup.members -> SpondMember by attribute
     assert my_sg.members[0].uid == "6F63AF02CE05328153ABA477C76E6189"
     assert my_sg.members[0].roles[0] == "29A7724B47ABEE7B3C9DC347E13A50B4"
+    assert my_sg.members[0].subgroups[0].uid == "BB6B3C3592C5FC71DBDD5258D45EF6D4"
 
     # Assertions for SpondGroup.subgroups -> SpondSubgroup by attribute
     assert my_sg.subgroups[0].uid == "BB6B3C3592C5FC71DBDD5258D45EF6D4"
+
+    # Assertions by identity
+    assert my_sg.members[0] in my_sg.members
+    assert my_sg.members[0].subgroups[0] in my_sg.subgroups

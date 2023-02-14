@@ -59,6 +59,7 @@ SpondMember.first_name: str
 SpondMember.last_name: str
 SpondMember.name: str
 SpondMember.roles: List[str]
+SpondMember.subgroups: List[str]
 
 SpondSubgroup.uid: str
 SpondSubgroup.name: str
