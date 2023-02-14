@@ -6,12 +6,12 @@ Note: To generate a representative 32-character hex string ID:
 
 import pytest
 
-from spond_classes import SpondGroup, SpondSubgroup
+from spond_classes import SpondSubgroup
 
 
 def test_create():
     """
-    Test that SpondSubgroup is created from required fields.
+    Test that SpondSubgroup is created from required fields only.
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
@@ -30,9 +30,9 @@ def test_create():
 
 
 @pytest.fixture
-def subgroup_dict():
+def simplest_subgroup_dict():
     """Partial fragment from the 'groups' (root) -> 'group' -> 'subGroups' node.
-    Represents a single subGroup."""
+    Represents the simplest possible subGroup."""
 
     return {
         "id": "8CC576609CF3DCBC44469A799E76B22B",
@@ -40,14 +40,14 @@ def subgroup_dict():
     }
 
 
-def test_from_dict(subgroup_dict):
+def test_from_dict_simplest(simplest_subgroup_dict):
     """
-    Test that SpondSubgroup is created from dict.
+    Test that a minimal SpondSubgroup is created from the simplest possible dict representation.
 
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-    my_ssg = SpondSubgroup.from_dict(subgroup_dict)
+    my_ssg = SpondSubgroup.from_dict(simplest_subgroup_dict)
     valid_properties = [
         "uid",
         "name",

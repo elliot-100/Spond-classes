@@ -14,7 +14,7 @@ from spond_classes import SpondEvent
 
 def test_create():
     """
-    Test that SpondEvent is created from required fields.
+    Test that SpondEvent is created from required fields only.
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
