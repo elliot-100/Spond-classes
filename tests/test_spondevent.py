@@ -10,6 +10,7 @@ import pytest
 from dateutil import parser
 
 from spond_classes import SpondEvent
+from tests.utils import public_attributes, sets_equal
 
 
 def test_create():
@@ -20,7 +21,7 @@ def test_create():
     """
 
     my_se = SpondEvent("001", "My event", datetime(2022, 9, 15, 8, 30))
-    valid_properties = [
+    valid_attributes = [
         "uid",
         "heading",
         "name",
@@ -31,8 +32,7 @@ def test_create():
         "waiting_list_uids",
         "unconfirmed_uids",
     ]
-    actual_properties = list(my_se.__dict__.keys())
-    assert sorted(actual_properties) == sorted(valid_properties)
+    assert sets_equal(public_attributes(my_se), valid_attributes)
 
     assert my_se.uid == "001"
     assert my_se.heading == "My event"
@@ -87,7 +87,7 @@ def test_from_dict(event_dict):
     Verify values of all attributes.
     """
     my_se = SpondEvent.from_dict(event_dict)
-    valid_properties = [
+    valid_attributes = [
         "uid",
         "heading",
         "name",
@@ -98,8 +98,7 @@ def test_from_dict(event_dict):
         "waiting_list_uids",
         "unconfirmed_uids",
     ]
-    actual_properties = list(my_se.__dict__.keys())
-    assert sorted(actual_properties) == sorted(valid_properties)
+    assert sets_equal(public_attributes(my_se), valid_attributes)
 
     assert my_se.uid == "A390CE5396D2F5C3015F53E171EC59D5"
     assert my_se.heading == "Event 1"
