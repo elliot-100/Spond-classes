@@ -98,12 +98,16 @@ class SpondGroup:
             SpondSubgroup.from_dict(subgroup)
             for subgroup in group_data.get("subGroups", [])
         ]
-        # populate child SpondMembers' subgroup attributes
         for member in group_data.get("members", []):
             member_id = member.get("id")
             for subgroup_id in member.get("subGroups", []):
+                # populate child SpondMembers' subgroup attributes
                 spondgroup.member_by_id(member_id).subgroups.append(
                     spondgroup.subgroup_by_id(subgroup_id)
+                )
+                # populate child SpondSubgroups' members attribute
+                spondgroup.subgroup_by_id(subgroup_id).members.append(
+                    spondgroup.member_by_id(member_id)
                 )
 
         return spondgroup
@@ -132,9 +136,13 @@ class SpondSubgroup:
     uid: str  # from API 'id'
     name: str  # from API 'name'
     parent_group: None | SpondGroup = field(init=False)  # derived
+    members: List[SpondMember] = field(default_factory=list)  # derived
 
     def __post_init__(self):
         self.parent_group = None
+
+    def __str__(self):
+        return f"[SpondSubgroup '{self.name}']"
 
     @staticmethod
     def from_dict(subgroup: dict) -> SpondSubgroup:
@@ -145,9 +153,6 @@ class SpondSubgroup:
         uid = subgroup["id"]
         name = subgroup["name"]
         return SpondSubgroup(uid, name)
-
-    def __str__(self):
-        return f"[SpondSubgroup '{self.name}']"
 
 
 @dataclass

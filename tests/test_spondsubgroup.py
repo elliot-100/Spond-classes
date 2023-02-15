@@ -19,12 +19,14 @@ def test_create():
         "uid",
         "name",
         "parent_group",
+        "members",
     ]
     assert sets_equal(public_attributes(my_ssg), valid_attributes)
 
     assert my_ssg.uid == "001"
     assert my_ssg.name == "My subgroup"
     assert my_ssg.parent_group is None
+    assert my_ssg.members == []
 
 
 @pytest.fixture
@@ -38,7 +40,7 @@ def simplest_subgroup_dict():
     }
 
 
-def test_from_dict_simplest(simplest_subgroup_dict):
+def test_from_dict(simplest_subgroup_dict):
     """
     Test that a minimal SpondSubgroup is created from the simplest possible dict
     representation.
@@ -51,8 +53,11 @@ def test_from_dict_simplest(simplest_subgroup_dict):
         "uid",
         "name",
         "parent_group",
+        "members",
     ]
     assert sets_equal(public_attributes(my_ssg), valid_attributes)
 
     assert my_ssg.uid == "8CC576609CF3DCBC44469A799E76B22B"
     assert my_ssg.name == "Subgroup A1"
+    assert my_ssg.parent_group is None
+    assert my_ssg.members == []
