@@ -7,6 +7,7 @@ Note: To generate a representative 32-character hex string ID:
 import pytest
 
 from spond_classes import SpondGroup
+from tests.utils import public_attributes, sets_equal
 
 
 def test_create():
@@ -16,14 +17,13 @@ def test_create():
     Verify values of all attributes.
     """
     my_sg = SpondGroup("001", "My group")
-    valid_properties = [
+    valid_attributes = [
         "uid",
         "name",
         "members",
         "subgroups",
     ]
-    actual_properties = list(my_sg.__dict__.keys())
-    assert sorted(actual_properties) == sorted(valid_properties)
+    assert sets_equal(public_attributes(my_sg), valid_attributes)
 
     assert my_sg.uid == "001"
     assert my_sg.name == "My group"
@@ -51,14 +51,13 @@ def test_core_from_dict_simplest(simplest_group_dict):
     Verify values of all attributes.
     """
     my_sg = SpondGroup.core_from_dict(simplest_group_dict)
-    valid_properties = [
+    valid_attributes = [
         "uid",
         "name",
         "members",
         "subgroups",
     ]
-    actual_properties = list(my_sg.__dict__.keys())
-    assert sorted(actual_properties) == sorted(valid_properties)
+    assert sets_equal(public_attributes(my_sg), valid_attributes)
 
     assert my_sg.uid == "20EA715745389FCDED2C280A8ACB74A6"
     assert my_sg.name == "Group A"
@@ -68,23 +67,24 @@ def test_core_from_dict_simplest(simplest_group_dict):
 
 def test_from_dict_simplest(simplest_group_dict):
     """
-    Test that a minimal SpondGroup is created from the simplest possible dict representation.
+    Test that a minimal SpondGroup is created from the simplest possible dict
+    representation.
 
     Verify that only expected attributes exist.
     Verify values of all attributes.
 
-    NB: this should produce exactly the same output as test_core_from_dict_simple(simplest_group_dict)
+    NB: this should produce exactly the same output as
+    `test_core_from_dict_simple(simplest_group_dict)`
 
     """
     my_sg = SpondGroup.core_from_dict(simplest_group_dict)
-    valid_properties = [
+    valid_attributes = [
         "uid",
         "name",
         "members",
         "subgroups",
     ]
-    actual_properties = list(my_sg.__dict__.keys())
-    assert sorted(actual_properties) == sorted(valid_properties)
+    assert sets_equal(public_attributes(my_sg), valid_attributes)
 
     assert my_sg.uid == "20EA715745389FCDED2C280A8ACB74A6"
     assert my_sg.name == "Group A"
@@ -131,14 +131,13 @@ def test_from_dict_complex(complex_group_dict):
     Verify values of all attributes.
     """
     my_sg = SpondGroup.from_dict(complex_group_dict)
-    valid_properties = [
+    valid_attributes = [
         "uid",
         "name",
         "members",
         "subgroups",
     ]
-    actual_properties = list(my_sg.__dict__.keys())
-    assert sorted(actual_properties) == sorted(valid_properties)
+    assert sets_equal(public_attributes(my_sg), valid_attributes)
 
     assert my_sg.uid == "20EA715745389FCDED2C280A8ACB74A6"
     assert my_sg.name == "Group A"
