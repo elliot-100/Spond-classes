@@ -1,5 +1,9 @@
 """
-Utilities for testing
+Utilities for testing.
+
+Note: To generate a representative 32-character hex string ID:
+    import secrets
+    secrets.token_hex(16).upper()
 """
 
 
@@ -8,6 +12,9 @@ from types import FunctionType
 
 
 def public_attributes(obj: object) -> list:
+    """
+    Return the public attributes of an object.
+    """
     members = getmembers(type(obj))
     methods = {name for name, value in members if isinstance(value, FunctionType)}
     return [
@@ -18,4 +25,7 @@ def public_attributes(obj: object) -> list:
 
 
 def sets_equal(obj1: list, obj2: list) -> bool:
+    """
+    Compare two lists, ignoring order
+    """
     return set(obj1) == set(obj2)
