@@ -73,17 +73,23 @@ class SpondGroup:
     @staticmethod
     def core_from_dict(group: dict) -> SpondGroup:
         """
-        Create a SpondGroup object from relevant dict.
+        Create a minimal SpondGroup object from the simplest possible dict
+        representation.
         """
         assert isinstance(group, dict)
         uid = group["id"]
         name = group["name"]
-        members = [SpondMember.from_dict(member) for member in group.get("members", [])]
-        return SpondGroup(uid, name, members, [])
+        return SpondGroup(uid, name)
 
     @staticmethod
     def from_dict(group: dict) -> SpondGroup:
+        """
+        Create a full-feature SpondGroup object from dict representation.
+        """
         spondgroup = SpondGroup.core_from_dict(group)
+        spondgroup.members = [
+            SpondMember.from_dict(member) for member in group.get("members", [])
+        ]
         spondgroup.subgroups = [
             SpondSubgroup.from_dict(subgroup) for subgroup in group.get("subGroups", [])
         ]
