@@ -7,7 +7,7 @@ from inspect import getmembers
 from types import FunctionType
 
 
-def public_attributes(obj) -> list:
+def public_attributes(obj: object) -> list:
     members = getmembers(type(obj))
     methods = {
         name for name, value in members if isinstance(value, FunctionType)
