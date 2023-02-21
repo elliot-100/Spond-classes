@@ -2,15 +2,13 @@
 
 ## About
 
-The unofficial [`Spond` library package](https://github.com/Olen/Spond/) gets data from
-the Spond  API and returns `dict` objects.
+The unofficial Python [`Spond` library package](https://github.com/Olen/Spond/) gets
+data from the Spond  API and returns `dict` objects.
 
-This unofficial `Spond-classes` package parses those `dict` objects and turns them into class instances,
-i.e. provides an object abstraction layer.
+This unofficial Python `Spond-classes` package parses those `dict` objects to create
+class instances, i.e. provides an object abstraction layer.
 
 Experimental, very partial, read-only implementation.
-
-Written in Python.
 
 ## Install
 
@@ -40,27 +38,16 @@ poetry add git+https://github.com/elliot-100/spond-classes.git#0.1.0
 
 ## Key features
 
-* Create `SpondGroup` and `SpondEvent` class instances from the dict returned by the corresponding `spond`
+* Create `SpondGroup` class instance from the dict returned by the corresponding `Spond`
 method:
 
 ```
 spond_classes.SpondGroup.from_dict()
-spond_classes.SpondEvent.from_dict()
 ```
 
-* Access typed properties:
+* Then access attributes:
 
 ```
-SpondEvent.uid: str
-SpondEvent.heading: str
-SpondEvent.name: str
-SpondEvent.start_time: datetime
-SpondEvent.accepted_uids: list
-SpondEvent.declined_uids: list
-SpondEvent.unanswered_uids: list
-SpondEvent.waiting_list_uids: list
-SpondEvent.unconfirmed_uids: list
-
 SpondGroup.uid: str
 SpondGroup.name: str
 SpondGroup.members: List[SpondMember]
@@ -76,9 +63,29 @@ SpondMember.roles: List[str]
 SpondSubgroup.uid: str
 SpondSubgroup.name: str
 ```
+* Create `SpondEvent` class instance from the dict returned by the corresponding `Spond`
+method:
+
+```
+spond_classes.SpondEvent.from_dict()
+```
+
+* Then access attributes:
+
+```
+SpondEvent.uid: str
+SpondEvent.heading: str
+SpondEvent.name: str
+SpondEvent.start_time: datetime
+SpondEvent.accepted_uids: list
+SpondEvent.declined_uids: list
+SpondEvent.unanswered_uids: list
+SpondEvent.waiting_list_uids: list
+SpondEvent.unconfirmed_uids: list
+```
 ## Example code
 
-Adapting the example code in `spond` README:
+Adapting the example code in [`Spond`](https://github.com/Olen/Spond/) README:
 
 ```
 import asyncio
@@ -92,13 +99,11 @@ async def main():
     s = spond.Spond(username=username, password=password)
     group = await s.get_group(group_id)
     
-    # convert to class instance
+    # create class instance
     sg = SpondGroup.from_dict(group)
     
     # use class properties instead of dict keys
     print(sg.name)
-    
-    #
     
     await s.clientsession.close()
 
