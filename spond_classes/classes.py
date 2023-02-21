@@ -32,7 +32,7 @@ class SpondMember:
     def __str__(self):
         return f"[SpondMember '{self.first_name} {self.last_name} {self.uid}']"
 
-    @property
+    @property  # type: ignore[no-redef]
     def name(self) -> str:
         return f"{self.first_name} {self.last_name}"
 
@@ -138,7 +138,7 @@ class SpondEvent:
     # with other objects
     _name: str = field(init=False, repr=False)
 
-    @property
+    @property  # type: ignore[no-redef]
     def name(self) -> str:
         return self.heading
 
