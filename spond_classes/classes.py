@@ -26,6 +26,7 @@ class SpondMember:
     first_name: str  # from API 'firstName'
     last_name: str  # from API 'lastName'
     roles: List[str] = field(default_factory=list)  # from API 'roles'
+    subgroups: List[SpondSubgroup] = field(default_factory=list)  # from API 'subGroups'
     name: str = field(init=False)  # derived
     _name: str = field(init=False, repr=False)
 
@@ -82,18 +83,42 @@ class SpondGroup:
         return SpondGroup(uid, name)
 
     @staticmethod
-    def from_dict(group: dict) -> SpondGroup:
+    def from_dict(group_data: dict) -> SpondGroup:
         """
         Create a full-feature SpondGroup object from dict representation.
         """
-        spondgroup = SpondGroup.core_from_dict(group)
+        spondgroup = SpondGroup.core_from_dict(group_data)
+
+        # create child SpondMembers
         spondgroup.members = [
-            SpondMember.from_dict(member) for member in group.get("members", [])
+            SpondMember.from_dict(member) for member in group_data.get("members", [])
         ]
+        # create child SpondSubGroups
         spondgroup.subgroups = [
-            SpondSubgroup.from_dict(subgroup) for subgroup in group.get("subGroups", [])
+            SpondSubgroup.from_dict(subgroup)
+            for subgroup in group_data.get("subGroups", [])
         ]
+        # populate child SpondMembers' subgroup attributes
+        for member in group_data.get("members", []):
+            member_id = member.get("id")
+            for subgroup_id in member.get("subGroups", []):
+                spondgroup.member_by_id(member_id).subgroups.append(
+                    spondgroup.subgroup_by_id(subgroup_id)
+                )
+
         return spondgroup
+
+    def subgroup_by_id(self, subgroup_uid: str) -> SpondSubgroup:
+        for subgroup in self.subgroups:
+            if subgroup.uid == subgroup_uid:
+                return subgroup
+        raise IndexError
+
+    def member_by_id(self, member_uid: str) -> SpondMember:
+        for member in self.members:
+            if member.uid == member_uid:
+                return member
+        raise IndexError
 
 
 @dataclass()
