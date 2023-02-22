@@ -45,13 +45,15 @@ method:
 spond_classes.SpondGroup.from_dict()
 ```
 
-* Then access attributes:
+* Then access instance (and child instance) attributes and methods: 
 
 ```
 SpondGroup.uid: str
 SpondGroup.name: str
 SpondGroup.members: List[SpondMember]
+SpondGroup.member_by_id() -> SpondMember
 SpondGroup.subgroups: List[SpondSubgroup]
+SpondGroup.subgroup_by_id() -> SpondSubgroup
 
 SpondMember.uid: str
 SpondMember.created_time: datetime
@@ -59,7 +61,7 @@ SpondMember.first_name: str
 SpondMember.last_name: str
 SpondMember.name: str
 SpondMember.roles: List[str]
-SpondMember.subgroups: List[str]
+SpondMember.subgroups: List[SpondSubgroup]
 
 SpondSubgroup.uid: str
 SpondSubgroup.name: str
