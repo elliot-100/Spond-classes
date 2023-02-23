@@ -35,6 +35,9 @@ class SpondMember:
 
     @property  # type: ignore[no-redef]
     def name(self) -> str:
+        """
+        Return the member's full name
+        """
         return f"{self.first_name} {self.last_name}"
 
     @name.setter
@@ -113,12 +116,18 @@ class SpondGroup:
         return spondgroup
 
     def subgroup_by_id(self, subgroup_uid: str) -> SpondSubgroup:
+        """
+        Return the child subgroup with matching id, or an error
+        """
         for subgroup in self.subgroups:
             if subgroup.uid == subgroup_uid:
                 return subgroup
         raise IndexError
 
     def member_by_id(self, member_uid: str) -> SpondMember:
+        """
+        Return the child member with matching id, or an error
+        """
         for member in self.members:
             if member.uid == member_uid:
                 return member
@@ -176,6 +185,9 @@ class SpondEvent:
 
     @property  # type: ignore[no-redef]
     def name(self) -> str:
+        """
+        Alias `heading` for convenience/consistency with other objects
+        """
         return self.heading
 
     @name.setter
