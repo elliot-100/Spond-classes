@@ -142,16 +142,17 @@ def test_from_dict_complex(complex_group_dict):
     ]
     assert sets_equal(public_attributes(my_sg), valid_attributes)
 
-    # Assertions for SpondGroup attributes
+    # SpondGroup attributes
     assert my_sg.uid == "20EA715745389FCDED2C280A8ACB74A6"
     assert my_sg.name == "Group A"
 
-    # Assertions for SpondGroup.members -> SpondMember by attribute
+    # SpondGroup.members -> SpondMember
     assert my_sg.members[0].uid == "6F63AF02CE05328153ABA477C76E6189"
+    # Test attributes not handled by simple SpondMember tests
     assert my_sg.members[0].roles[0] == "29A7724B47ABEE7B3C9DC347E13A50B4"
     assert my_sg.members[0].subgroups[0].uid == "BB6B3C3592C5FC71DBDD5258D45EF6D4"
 
-    # Assertions for SpondGroup.subgroups -> SpondSubgroup by attribute
+    # SpondGroup.subgroups -> SpondSubgroup
     assert my_sg.subgroups[0].uid == "BB6B3C3592C5FC71DBDD5258D45EF6D4"
     # Test attributes not handled by simple SpondMember tests
     assert my_sg.subgroups[0].members[0].uid == "6F63AF02CE05328153ABA477C76E6189"
@@ -160,4 +161,3 @@ def test_from_dict_complex(complex_group_dict):
     assert my_sg.members[0] in my_sg.members
     assert my_sg.members[0].subgroups[0] in my_sg.subgroups
     assert my_sg.members[0] in my_sg.subgroups[0].members
-
