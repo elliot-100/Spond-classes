@@ -64,6 +64,7 @@ SpondMember.roles: List[str]
 SpondMember.subgroups: List[SpondSubgroup]
 
 SpondSubgroup.uid: str
+SpondSubgroup.members: List[SpondMember]
 SpondSubgroup.name: str
 ```
 * Create `SpondEvent` class instance from the dict returned by the corresponding `Spond`
