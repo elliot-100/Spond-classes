@@ -7,7 +7,6 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import List
 
 from dateutil import parser
 
@@ -25,8 +24,8 @@ class SpondMember:
     created_time: datetime  # from API 'createdTime'
     first_name: str  # from API 'firstName'
     last_name: str  # from API 'lastName'
-    roles: List[str] = field(default_factory=list)  # from API 'roles'
-    subgroups: List[SpondSubgroup] = field(default_factory=list)  # from API 'subGroups'
+    roles: list[str] = field(default_factory=list)  # from API 'roles'
+    subgroups: list[SpondSubgroup] = field(default_factory=list)  # from API 'subGroups'
     name: str = field(init=False)  # derived
     _name: str = field(init=False, repr=False)
 
@@ -66,9 +65,9 @@ class SpondGroup:
 
     uid: str  # from API 'id'
     name: str  # from API 'name'
-    members: List[SpondMember] = field(default_factory=list)
+    members: list[SpondMember] = field(default_factory=list)
     # derived from API 'members', but uses object refs instead of uid.
-    subgroups: List[SpondSubgroup] = field(default_factory=list)
+    subgroups: list[SpondSubgroup] = field(default_factory=list)
     # derived from API 'subgroups'
 
     def __str__(self):
@@ -145,7 +144,7 @@ class SpondSubgroup:
     uid: str  # from API 'id'
     name: str  # from API 'name'
     parent_group: None | SpondGroup = field(init=False)  # derived
-    members: List[SpondMember] = field(default_factory=list)  # derived
+    members: list[SpondMember] = field(default_factory=list)  # derived
 
     def __post_init__(self):
         self.parent_group = None
