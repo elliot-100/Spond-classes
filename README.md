@@ -12,16 +12,16 @@ Experimental, very partial, read-only implementation.
 
 ## Install
 
-Not yet available at PyPI. Install from GitHub, e.g:
+Not yet available at PyPI. Install from GitHub:
 
 `
-pip install git+https://github.com/elliot-100/spond-classes.git#egg=spond-classes
+pip install "Spond-classes @ git+https://github.com/elliot-100/spond-classes"
 `
 
-or for a specific version:
+or for a specific version e.g:
 
 `
-pip install git+https://github.com/elliot-100/spond-classes.git@v0.1.0#egg=spond-classes
+pip install "Spond-classes @ git+https://github.com/elliot-100/spond-classes@v0.4.0"
 `
 
 If you're using Poetry:
@@ -33,7 +33,7 @@ poetry add git+https://github.com/elliot-100/spond-classes.git
 or for a specific version:
 
 `
-poetry add git+https://github.com/elliot-100/spond-classes.git#0.1.0
+poetry add git+https://github.com/elliot-100/spond-classes.git@v0.4.0
 `
 
 ## Key features
