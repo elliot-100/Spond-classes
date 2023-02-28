@@ -18,14 +18,12 @@ def test_create():
     valid_attributes = [
         "uid",
         "name",
-        "parent_group",
         "members",
     ]
     assert sets_equal(public_attributes(my_ssg), valid_attributes)
 
     assert my_ssg.uid == "001"
     assert my_ssg.name == "My subgroup"
-    assert my_ssg.parent_group is None
     assert my_ssg.members == []
 
 
@@ -52,12 +50,10 @@ def test_from_dict(simplest_subgroup_dict):
     valid_attributes = [
         "uid",
         "name",
-        "parent_group",
         "members",
     ]
     assert sets_equal(public_attributes(my_ssg), valid_attributes)
 
     assert my_ssg.uid == "8CC576609CF3DCBC44469A799E76B22B"
     assert my_ssg.name == "Subgroup A1"
-    assert my_ssg.parent_group is None
     assert my_ssg.members == []

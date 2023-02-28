@@ -143,11 +143,7 @@ class SpondSubgroup:
 
     uid: str  # from API 'id'
     name: str  # from API 'name'
-    parent_group: None | SpondGroup = field(init=False)  # derived
     members: list[SpondMember] = field(default_factory=list)  # derived
-
-    def __post_init__(self) -> None:
-        self.parent_group = None
 
     def __str__(self) -> str:
         return f"[SpondSubgroup '{self.name}']"
