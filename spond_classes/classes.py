@@ -221,4 +221,4 @@ class SpondEvent:
         )
 
     def __str__(self) -> str:
-        return f"<SpondEvent '{self.heading}' on {self.start_time.date()}>"
+        return f"[SpondEvent '{self.heading}' on {self.start_time.date()}]"
