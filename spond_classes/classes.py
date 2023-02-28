@@ -29,7 +29,7 @@ class SpondMember:
     name: str = field(init=False)  # derived
     _name: str = field(init=False, repr=False)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"[SpondMember '{self.first_name} {self.last_name} {self.uid}']"
 
     @property  # type: ignore[no-redef]
@@ -70,7 +70,7 @@ class SpondGroup:
     subgroups: list[SpondSubgroup] = field(default_factory=list)
     # derived from API 'subgroups'
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"[SpondGroup '{self.name}']"
 
     @staticmethod
@@ -146,10 +146,10 @@ class SpondSubgroup:
     parent_group: None | SpondGroup = field(init=False)  # derived
     members: list[SpondMember] = field(default_factory=list)  # derived
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         self.parent_group = None
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"[SpondSubgroup '{self.name}']"
 
     @staticmethod

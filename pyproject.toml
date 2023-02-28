@@ -16,13 +16,13 @@ spond = "^0.10.1"
 
 [tool.poetry.group.dev.dependencies]
 black = "^22.12.0"
-mypy = "^0.991"
 isort = "^5.11.4"
-types-python-dateutil = "^2.8.19.6"
 pylint = "^2.16.1"
 
 [tool.poetry.group.test.dependencies]
+mypy = "^0.991"
 pytest = "^7.2.1"
+types-python-dateutil = "^2.8.19.6"
 
 [tool.black]
 line-length = 88

@@ -34,3 +34,4 @@ jobs:
       run: |
         source $VENV
         pytest
+        mypy .
