@@ -18,12 +18,14 @@ def test_create() -> None:
         "name",
         "members",
         "subgroups",
+        "roles",
     ]
     assert sets_equal(public_attributes(my_sg), valid_attributes)
 
     assert my_sg.uid == "001"
-    assert my_sg.name == "My group"
     assert my_sg.members == []
+    assert my_sg.name == "My group"
+    assert my_sg.roles == []
     assert my_sg.subgroups == []
 
 
@@ -53,12 +55,14 @@ def test_core_from_dict_simplest(simplest_group_data: dict) -> None:
         "name",
         "members",
         "subgroups",
+        "roles",
     ]
     assert sets_equal(public_attributes(my_sg), valid_attributes)
 
     assert my_sg.uid == "20EA715745389FCDED2C280A8ACB74A6"
     assert my_sg.name == "Group A"
     assert my_sg.members == []
+    assert my_sg.roles == []
     assert my_sg.subgroups == []
 
 
@@ -79,20 +83,22 @@ def test_from_dict_simplest(simplest_group_data: dict) -> None:
         "name",
         "members",
         "subgroups",
+        "roles",
     ]
     assert sets_equal(public_attributes(my_sg), valid_attributes)
 
     assert my_sg.uid == "20EA715745389FCDED2C280A8ACB74A6"
     assert my_sg.name == "Group A"
     assert my_sg.members == []
+    assert my_sg.roles == []
     assert my_sg.subgroups == []
 
 
 @pytest.fixture()
 def complex_group_data() -> dict:
-    """Represent a single Group with a single Member and a single Subgroup.
+    """Represent a single Group with a single Member, single Subgroup, single Role.
 
-    The Member is also in the Subgroup.
+    The Member is in the Subgroup, and has the Role.
 
     Item from 'groups' (root).
     """
@@ -119,6 +125,12 @@ def complex_group_data() -> dict:
                 "name": "Subgroup A1",
             },
         ],
+        "roles": [
+            {
+                "id": "29A7724B47ABEE7B3C9DC347E13A50B4",
+                "name": "Role A2",
+            },
+        ],
     }
 
 
@@ -133,6 +145,7 @@ def test_from_dict_complex(complex_group_data: dict) -> None:
         "uid",
         "name",
         "members",
+        "roles",
         "subgroups",
     ]
     assert sets_equal(public_attributes(my_sg), valid_attributes)
@@ -144,7 +157,7 @@ def test_from_dict_complex(complex_group_data: dict) -> None:
     # SpondGroup.members -> SpondMember
     assert my_sg.members[0].uid == "6F63AF02CE05328153ABA477C76E6189"
     # Test attributes not handled by simple SpondMember tests
-    assert my_sg.members[0].roles[0] == "29A7724B47ABEE7B3C9DC347E13A50B4"
+    assert my_sg.members[0].roles[0].uid == "29A7724B47ABEE7B3C9DC347E13A50B4"
     assert my_sg.members[0].subgroups[0].uid == "BB6B3C3592C5FC71DBDD5258D45EF6D4"
 
     # SpondGroup.subgroups -> SpondSubgroup
@@ -152,7 +165,16 @@ def test_from_dict_complex(complex_group_data: dict) -> None:
     # Test attributes not handled by simple SpondMember tests
     assert my_sg.subgroups[0].members[0].uid == "6F63AF02CE05328153ABA477C76E6189"
 
+    # SpondGroup.subgroups -> SpondRole
+    assert my_sg.roles[0].uid == "29A7724B47ABEE7B3C9DC347E13A50B4"
+    # Test attributes not handled by simple SpondRole tests
+    assert my_sg.roles[0].members[0].uid == "6F63AF02CE05328153ABA477C76E6189"
+
     # Assertions by identity
     assert my_sg.members[0] in my_sg.members
     assert my_sg.members[0].subgroups[0] in my_sg.subgroups
     assert my_sg.members[0] in my_sg.subgroups[0].members
+
+    assert my_sg.roles[0] in my_sg.members[0].roles
+    assert my_sg.roles[0] in my_sg.subgroups[0].members[0].roles
+    assert my_sg.members[0].roles[0] in my_sg.roles
