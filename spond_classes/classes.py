@@ -44,16 +44,16 @@ class SpondMember:
         self._name = name
 
     @staticmethod
-    def from_dict(member: dict) -> SpondMember:
+    def from_dict(member_data: dict) -> SpondMember:
         """
         Create a SpondMember object from relevant dict.
         """
-        assert isinstance(member, dict)
-        uid = member["id"]
-        created_time = parser.isoparse(member["createdTime"])
-        first_name = member["firstName"]
-        last_name = member["lastName"]
-        roles = member.get("roles", [])
+        assert isinstance(member_data, dict)
+        uid = member_data["id"]
+        created_time = parser.isoparse(member_data["createdTime"])
+        first_name = member_data["firstName"]
+        last_name = member_data["lastName"]
+        roles = member_data.get("roles", [])
         return SpondMember(uid, created_time, first_name, last_name, roles)
 
 
@@ -74,14 +74,14 @@ class SpondGroup:
         return f"[SpondGroup '{self.name}']"
 
     @staticmethod
-    def core_from_dict(group: dict) -> SpondGroup:
+    def core_from_dict(group_data: dict) -> SpondGroup:
         """
         Create a minimal SpondGroup object from the simplest possible dict
         representation.
         """
-        assert isinstance(group, dict)
-        uid = group["id"]
-        name = group["name"]
+        assert isinstance(group_data, dict)
+        uid = group_data["id"]
+        name = group_data["name"]
         return SpondGroup(uid, name)
 
     @staticmethod
@@ -93,16 +93,17 @@ class SpondGroup:
 
         # create child SpondMembers
         spondgroup.members = [
-            SpondMember.from_dict(member) for member in group_data.get("members", [])
+            SpondMember.from_dict(member_data)
+            for member_data in group_data.get("members", [])
         ]
         # create child SpondSubGroups
         spondgroup.subgroups = [
-            SpondSubgroup.from_dict(subgroup)
-            for subgroup in group_data.get("subGroups", [])
+            SpondSubgroup.from_dict(subgroup_data)
+            for subgroup_data in group_data.get("subGroups", [])
         ]
-        for member in group_data.get("members", []):
-            member_id = member.get("id")
-            for subgroup_id in member.get("subGroups", []):
+        for member_data in group_data.get("members", []):
+            member_id = member_data.get("id")
+            for subgroup_id in member_data.get("subGroups", []):
                 # populate child SpondMembers' subgroup attributes
                 spondgroup.member_by_id(member_id).subgroups.append(
                     spondgroup.subgroup_by_id(subgroup_id)
@@ -149,13 +150,13 @@ class SpondSubgroup:
         return f"[SpondSubgroup '{self.name}']"
 
     @staticmethod
-    def from_dict(subgroup: dict) -> SpondSubgroup:
+    def from_dict(subgroup_data: dict) -> SpondSubgroup:
         """
         Create a SpondSubgroup object from relevant dict.
         """
-        assert isinstance(subgroup, dict)
-        uid = subgroup["id"]
-        name = subgroup["name"]
+        assert isinstance(subgroup_data, dict)
+        uid = subgroup_data["id"]
+        name = subgroup_data["name"]
         return SpondSubgroup(uid, name)
 
 
@@ -190,20 +191,20 @@ class SpondEvent:
         self._name = name
 
     @staticmethod
-    def from_dict(event: dict) -> SpondEvent:
+    def from_dict(event_data: dict) -> SpondEvent:
         """
         Create a SpondEvent object from relevant dict.
         """
-        assert isinstance(event, dict)
-        uid = event["id"]
-        heading = event["heading"]
-        start_time = parser.isoparse(event["startTimestamp"])
-        assert isinstance(event["responses"], dict)
-        accepted_uids = event["responses"].get("acceptedIds", [])
-        declined_uids = event["responses"].get("declinedIds", [])
-        unanswered_uids = event["responses"].get("unansweredIds", [])
-        waiting_list_uids = event["responses"].get("waitinglistIds", [])
-        unconfirmed_uids = event["responses"].get("unconfirmedIds", [])
+        assert isinstance(event_data, dict)
+        uid = event_data["id"]
+        heading = event_data["heading"]
+        start_time = parser.isoparse(event_data["startTimestamp"])
+        assert isinstance(event_data["responses"], dict)
+        accepted_uids = event_data["responses"].get("acceptedIds", [])
+        declined_uids = event_data["responses"].get("declinedIds", [])
+        unanswered_uids = event_data["responses"].get("unansweredIds", [])
+        waiting_list_uids = event_data["responses"].get("waitinglistIds", [])
+        unconfirmed_uids = event_data["responses"].get("unconfirmedIds", [])
 
         return SpondEvent(
             uid,
