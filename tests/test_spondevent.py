@@ -1,4 +1,4 @@
-""" Tests for SpondEvent class.
+"""Tests for SpondEvent class.
 
 Note: To generate a representative 32-character hex string ID:
     secrets.token_hex(16).upper()
@@ -14,12 +14,11 @@ from tests.utils import public_attributes, sets_equal
 
 
 def test_create():
-    """
-    Test that SpondEvent is created from required fields only.
+    """Test that SpondEvent is created from required fields only.
+
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-
     my_se = SpondEvent("001", "My event", datetime(2022, 9, 15, 8, 30))
     valid_attributes = [
         "uid",
@@ -47,9 +46,10 @@ def test_create():
 
 @pytest.fixture
 def event_dict():
-    """Partial item from the 'events' dict returned by Spond package
-    Represents a single Event."""
+    """Represent the simplest possible Event in this implementation.
 
+    Item from 'events' (root).
+    """
     return {
         "id": "A390CE5396D2F5C3015F53E171EC59D5",
         "heading": "Event 1",
@@ -80,8 +80,7 @@ def event_dict():
 
 
 def test_from_dict(event_dict):
-    """
-    Test that SpondEvent is created from dict.
+    """Test that SpondEvent is created from dict.
 
     Verify that only expected attributes exist.
     Verify values of all attributes.

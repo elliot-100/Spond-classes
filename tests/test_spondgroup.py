@@ -1,6 +1,4 @@
-"""
-Tests for SpondGroup class and child classes.
-"""
+"""Tests for SpondGroup class and child classes."""
 
 import pytest
 
@@ -9,8 +7,8 @@ from tests.utils import public_attributes, sets_equal
 
 
 def test_create():
-    """
-    Test that SpondGroup is created from required fields only.
+    """Test that SpondGroup is created from required fields only.
+
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
@@ -31,11 +29,11 @@ def test_create():
 
 @pytest.fixture
 def simplest_group_dict():
-    """
-    Partial fragment from the 'groups' (root) node.
-    Represents the simplest possible Group.
-    """
+    """Represent the simplest possible Group in this implementation.
 
+    Item from 'groups' (root).
+
+    """
     return {
         "id": "20EA715745389FCDED2C280A8ACB74A6",
         "name": "Group A",
@@ -43,8 +41,7 @@ def simplest_group_dict():
 
 
 def test_core_from_dict_simplest(simplest_group_dict):
-    """
-    Test that a minimal SpondGroup is created from the simplest possible dict
+    """Test that a SpondGroup is created from the simplest possible dict
     representation.
 
     Verify that only expected attributes exist.
@@ -66,8 +63,7 @@ def test_core_from_dict_simplest(simplest_group_dict):
 
 
 def test_from_dict_simplest(simplest_group_dict):
-    """
-    Test that a minimal SpondGroup is created from the simplest possible dict
+    """Test that a minimal SpondGroup is created from the simplest possible dict
     representation.
 
     Verify that only expected attributes exist.
@@ -94,12 +90,12 @@ def test_from_dict_simplest(simplest_group_dict):
 
 @pytest.fixture
 def complex_group_dict():
-    """
-    Partial fragment from the 'groups' (root) node.
-    Represents a single Group with a single Member and a single Subgroup. The Member is
-    also in the Subgroup.
-    """
+    """Represent a single Group with a single Member and a single Subgroup.
 
+    The Member is also in the Subgroup.
+
+    Item from 'groups' (root).
+    """
     return {
         "id": "20EA715745389FCDED2C280A8ACB74A6",
         "members": [
@@ -127,8 +123,7 @@ def complex_group_dict():
 
 
 def test_from_dict_complex(complex_group_dict):
-    """
-    Test that SpondGroup is created from dict.
+    """Test that SpondGroup is created from dict.
 
     Verify that only expected attributes exist.
     Verify values of all attributes.

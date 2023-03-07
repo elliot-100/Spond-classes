@@ -1,6 +1,4 @@
-"""
-Tests for SpondMember class.
-"""
+"""Tests for SpondMember class."""
 
 from datetime import datetime
 
@@ -12,8 +10,8 @@ from tests.utils import public_attributes, sets_equal
 
 
 def test_create():
-    """
-    Test that SpondMember is created from required fields only.
+    """Test that SpondMember is created from required fields only.
+
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
@@ -41,9 +39,10 @@ def test_create():
 
 @pytest.fixture
 def simplest_member_dict():
-    """
-    Partial fragment from the 'groups -> group -> members' node.
-    Represents the simplest possible Member.
+    """Represent the simplest possible Member in this implementation.
+
+    Item from 'groups' -> 'group' -> 'members'.
+
     """
     return {
         "createdTime": "2022-03-24T16:36:29Z",
@@ -54,8 +53,7 @@ def simplest_member_dict():
 
 
 def test_from_dict_simplest(simplest_member_dict):
-    """
-    Test that SpondMember is created from dict.
+    """Test that SpondMember is created from dict.
 
     Verify that only expected attributes exist.
     Verify values of all attributes.
