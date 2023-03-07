@@ -6,7 +6,7 @@ from spond_classes import SpondGroup
 from tests.utils import public_attributes, sets_equal
 
 
-def test_create():
+def test_create() -> None:
     """Test that SpondGroup is created from required fields only.
 
     Verify that only expected attributes exist.
@@ -27,8 +27,8 @@ def test_create():
     assert my_sg.subgroups == []
 
 
-@pytest.fixture
-def simplest_group_dict():
+@pytest.fixture()
+def simplest_group_data() -> dict:
     """Represent the simplest possible Group in this implementation.
 
     Item from 'groups' (root).
@@ -40,14 +40,14 @@ def simplest_group_dict():
     }
 
 
-def test_core_from_dict_simplest(simplest_group_dict):
+def test_core_from_dict_simplest(simplest_group_data: dict) -> None:
     """Test that a SpondGroup is created from the simplest possible dict
     representation.
 
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-    my_sg = SpondGroup.core_from_dict(simplest_group_dict)
+    my_sg = SpondGroup.core_from_dict(simplest_group_data)
     valid_attributes = [
         "uid",
         "name",
@@ -62,7 +62,7 @@ def test_core_from_dict_simplest(simplest_group_dict):
     assert my_sg.subgroups == []
 
 
-def test_from_dict_simplest(simplest_group_dict):
+def test_from_dict_simplest(simplest_group_data: dict) -> None:
     """Test that a minimal SpondGroup is created from the simplest possible dict
     representation.
 
@@ -73,7 +73,7 @@ def test_from_dict_simplest(simplest_group_dict):
     `test_core_from_dict_simple(simplest_group_dict)`
 
     """
-    my_sg = SpondGroup.core_from_dict(simplest_group_dict)
+    my_sg = SpondGroup.core_from_dict(simplest_group_data)
     valid_attributes = [
         "uid",
         "name",
@@ -88,8 +88,8 @@ def test_from_dict_simplest(simplest_group_dict):
     assert my_sg.subgroups == []
 
 
-@pytest.fixture
-def complex_group_dict():
+@pytest.fixture()
+def complex_group_data() -> dict:
     """Represent a single Group with a single Member and a single Subgroup.
 
     The Member is also in the Subgroup.
@@ -122,13 +122,13 @@ def complex_group_dict():
     }
 
 
-def test_from_dict_complex(complex_group_dict):
+def test_from_dict_complex(complex_group_data: dict) -> None:
     """Test that SpondGroup is created from dict.
 
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-    my_sg = SpondGroup.from_dict(complex_group_dict)
+    my_sg = SpondGroup.from_dict(complex_group_data)
     valid_attributes = [
         "uid",
         "name",

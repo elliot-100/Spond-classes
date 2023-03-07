@@ -9,7 +9,7 @@ from spond_classes import SpondMember
 from tests.utils import public_attributes, sets_equal
 
 
-def test_create():
+def test_create() -> None:
     """Test that SpondMember is created from required fields only.
 
     Verify that only expected attributes exist.
@@ -37,8 +37,8 @@ def test_create():
     assert my_sm.subgroups == []
 
 
-@pytest.fixture
-def simplest_member_dict():
+@pytest.fixture()
+def simplest_member_data() -> dict:
     """Represent the simplest possible Member in this implementation.
 
     Item from 'groups' -> 'group' -> 'members'.
@@ -52,13 +52,13 @@ def simplest_member_dict():
     }
 
 
-def test_from_dict_simplest(simplest_member_dict):
+def test_from_dict_simplest(simplest_member_data: dict) -> None:
     """Test that SpondMember is created from dict.
 
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-    my_sm = SpondMember.from_dict(simplest_member_dict)
+    my_sm = SpondMember.from_dict(simplest_member_data)
     valid_attributes = [
         "uid",
         "created_time",

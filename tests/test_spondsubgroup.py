@@ -6,7 +6,7 @@ from spond_classes import SpondSubgroup
 from tests.utils import public_attributes, sets_equal
 
 
-def test_create():
+def test_create() -> None:
     """Test that SpondSubgroup is created from required fields only.
 
     Verify that only expected attributes exist.
@@ -25,8 +25,8 @@ def test_create():
     assert my_ssg.members == []
 
 
-@pytest.fixture
-def simplest_subgroup_dict():
+@pytest.fixture()
+def simplest_subgroup_data() -> dict:
     """Represent the simplest possible Subgroup in this implementation.
 
     Item from 'groups' (root) -> 'group' -> 'subGroups'.
@@ -37,14 +37,14 @@ def simplest_subgroup_dict():
     }
 
 
-def test_from_dict(simplest_subgroup_dict):
+def test_from_dict(simplest_subgroup_data: dict) -> None:
     """Test that a minimal SpondSubgroup is created from the simplest possible dict
     representation.
 
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-    my_ssg = SpondSubgroup.from_dict(simplest_subgroup_dict)
+    my_ssg = SpondSubgroup.from_dict(simplest_subgroup_data)
     valid_attributes = [
         "uid",
         "name",

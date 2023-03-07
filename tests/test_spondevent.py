@@ -13,7 +13,7 @@ from spond_classes import SpondEvent
 from tests.utils import public_attributes, sets_equal
 
 
-def test_create():
+def test_create() -> None:
     """Test that SpondEvent is created from required fields only.
 
     Verify that only expected attributes exist.
@@ -44,8 +44,8 @@ def test_create():
     assert my_se.unconfirmed_uids == []
 
 
-@pytest.fixture
-def event_dict():
+@pytest.fixture()
+def event_data() -> dict:
     """Represent the simplest possible Event in this implementation.
 
     Item from 'events' (root).
@@ -79,13 +79,13 @@ def event_dict():
     }
 
 
-def test_from_dict(event_dict):
+def test_from_dict(event_data: dict) -> None:
     """Test that SpondEvent is created from dict.
 
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-    my_se = SpondEvent.from_dict(event_dict)
+    my_se = SpondEvent.from_dict(event_data)
     valid_attributes = [
         "uid",
         "heading",
