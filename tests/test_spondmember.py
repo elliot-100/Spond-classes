@@ -1,6 +1,6 @@
 """Tests for SpondMember class."""
 
-from datetime import datetime
+from datetime import datetime, timezone
 
 import pytest
 from dateutil import parser
@@ -15,7 +15,12 @@ def test_create() -> None:
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-    my_sm = SpondMember("001", datetime(2018, 2, 1, 17, 39), "Colin", "Farrell")
+    my_sm = SpondMember(
+        "001",
+        datetime(2018, 2, 1, 17, 39, tzinfo=timezone.utc),
+        "Colin",
+        "Farrell",
+    )
     valid_attributes = [
         "uid",
         "created_time",
@@ -29,7 +34,7 @@ def test_create() -> None:
     assert sets_equal(public_attributes(my_sm), valid_attributes)
 
     assert my_sm.uid == "001"
-    assert my_sm.created_time == datetime(2018, 2, 1, 17, 39)
+    assert my_sm.created_time == datetime(2018, 2, 1, 17, 39, tzinfo=timezone.utc)
     assert my_sm.first_name == "Colin"
     assert my_sm.last_name == "Farrell"
     assert my_sm.name == "Colin Farrell"

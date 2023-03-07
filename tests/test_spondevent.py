@@ -4,7 +4,7 @@ Note: To generate a representative 32-character hex string ID:
     secrets.token_hex(16).upper()
 """
 
-from datetime import datetime
+from datetime import datetime, timezone
 
 import pytest
 from dateutil import parser
@@ -19,7 +19,11 @@ def test_create() -> None:
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-    my_se = SpondEvent("001", "My event", datetime(2022, 9, 15, 8, 30))
+    my_se = SpondEvent(
+        "001",
+        "My event",
+        datetime(2022, 9, 15, 8, 30, tzinfo=timezone.utc),
+    )
     valid_attributes = [
         "uid",
         "heading",
@@ -36,7 +40,7 @@ def test_create() -> None:
     assert my_se.uid == "001"
     assert my_se.heading == "My event"
     assert my_se.name == "My event"
-    assert my_se.start_time == datetime(2022, 9, 15, 8, 30)
+    assert my_se.start_time == datetime(2022, 9, 15, 8, 30, tzinfo=timezone.utc)
     assert my_se.accepted_uids == []
     assert my_se.declined_uids == []
     assert my_se.unanswered_uids == []

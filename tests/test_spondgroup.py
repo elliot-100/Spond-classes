@@ -117,7 +117,7 @@ def complex_group_data() -> dict:
             {
                 "id": "BB6B3C3592C5FC71DBDD5258D45EF6D4",
                 "name": "Subgroup A1",
-            }
+            },
         ],
     }
 
