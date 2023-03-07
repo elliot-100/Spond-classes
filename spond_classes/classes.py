@@ -2,7 +2,10 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from datetime import datetime
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from datetime import datetime
 
 from dateutil import parser
 
@@ -99,11 +102,11 @@ class SpondGroup:
             for subgroup_id in member_data.get("subGroups", []):
                 # populate child SpondMembers' subgroup attributes
                 spondgroup.member_by_id(member_id).subgroups.append(
-                    spondgroup.subgroup_by_id(subgroup_id)
+                    spondgroup.subgroup_by_id(subgroup_id),
                 )
                 # populate child SpondSubgroups' members attribute
                 spondgroup.subgroup_by_id(subgroup_id).members.append(
-                    spondgroup.member_by_id(member_id)
+                    spondgroup.member_by_id(member_id),
                 )
 
         return spondgroup
