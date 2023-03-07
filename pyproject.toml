@@ -15,7 +15,7 @@ python-dateutil = "^2.8.2"
 spond = "^0.10.1"
 
 [tool.poetry.group.dev.dependencies]
-black = "^22.12.0"
+black = "^23.1.0"
 isort = "^5.11.4"
 pylint = "^2.16.1"
 
