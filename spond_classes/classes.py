@@ -25,7 +25,11 @@ class SpondMember:
     roles: list[SpondRole] = field(default_factory=list)  # from API 'roles'
     subgroups: list[SpondSubgroup] = field(default_factory=list)  # from API 'subGroups'
     name: str = field(init=False)  # derived
-    _name: str = field(init=False, repr=False)
+    _name: str = field(init=False)
+
+    def __repr__(self) -> str:
+        """Return string representation."""
+        return f"SpondMember(uid='{self.uid}', first_name='{self.first_name}', last_name='{self.last_name}')"
 
     def __str__(self) -> str:
         """Return human-readable description.
@@ -64,11 +68,11 @@ class SpondGroup:
 
     uid: str  # from API 'id'
     name: str  # from API 'name'
-    members: list[SpondMember] = field(default_factory=list)
+    members: list[SpondMember] = field(default_factory=list, repr=False)
     # derived from API 'members', but uses object refs instead of uid.
-    subgroups: list[SpondSubgroup] = field(default_factory=list)
+    subgroups: list[SpondSubgroup] = field(default_factory=list, repr=False)
     # derived from API 'subgroups'
-    roles: list[SpondRole] = field(default_factory=list)
+    roles: list[SpondRole] = field(default_factory=list, repr=False)
     # derived from API 'roles'
 
     def __str__(self) -> str:
@@ -151,7 +155,7 @@ class SpondGroup:
         raise IndexError
 
 
-@dataclass()
+@dataclass
 class SpondSubgroup:
     """Spond subgroup.
 
@@ -161,7 +165,7 @@ class SpondSubgroup:
 
     uid: str  # from API 'id'
     name: str  # from API 'name'
-    members: list[SpondMember] = field(default_factory=list)  # derived
+    members: list[SpondMember] = field(default_factory=list, repr=False)  # derived
 
     def __str__(self) -> str:
         """Return human-readable description."""
@@ -187,12 +191,14 @@ class SpondEvent:
     heading: str  # from API 'heading'
     start_time: datetime  # from API 'startTimestamp'
 
-    accepted_uids: list = field(default_factory=list)
-    declined_uids: list = field(default_factory=list)
-    unanswered_uids: list = field(default_factory=list)
-    waiting_list_uids: list = field(default_factory=list)
-    unconfirmed_uids: list = field(default_factory=list)
-    name: str = field(init=False)  # derived; aliases `heading` for consistency
+    accepted_uids: list = field(default_factory=list, repr=False)
+    declined_uids: list = field(default_factory=list, repr=False)
+    unanswered_uids: list = field(default_factory=list, repr=False)
+    waiting_list_uids: list = field(default_factory=list, repr=False)
+    unconfirmed_uids: list = field(default_factory=list, repr=False)
+    name: str = field(
+        init=False, repr=False
+    )  # derived; aliases `heading` for consistency
     # with other objects
     _name: str = field(init=False, repr=False)
 
@@ -248,7 +254,7 @@ class SpondRole:
 
     uid: str  # from API 'id'
     name: str  # from API 'name'
-    members: list[SpondMember] = field(default_factory=list)  # derived
+    members: list[SpondMember] = field(default_factory=list, repr=False)  # derived
 
     @staticmethod
     def from_dict(role: dict) -> SpondRole:
