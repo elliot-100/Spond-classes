@@ -100,6 +100,7 @@ Adapting the example code in [`Spond`](https://github.com/Olen/Spond/) README:
 ```
 import asyncio
 from spond import spond
+import spond-classes
 
 username = 'my@mail.invalid'
 password = 'Pa55worD'
@@ -107,15 +108,14 @@ group_id = 'C9DC791FFE63D7914D6952BE10D97B46'  # fake
 
 async def main():
     s = spond.Spond(username=username, password=password)
-    group = await s.get_group(group_id)
-    
-    # create class instance
-    sg = SpondGroup.from_dict(group)
-    
-    # use class properties instead of dict keys
-    print(sg.name)
-    
+    group_data = await s.get_group(group_id)
     await s.clientsession.close()
+
+    # create class instance
+    group = spond-classes.SpondGroup.from_dict(group)
+
+    # use class properties instead of dict keys
+    print(group.name)
 
 asyncio.run(main())
 ```
