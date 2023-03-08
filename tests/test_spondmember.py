@@ -40,6 +40,7 @@ def test_create() -> None:
     assert my_sm.name == "Colin Farrell"
     assert my_sm.roles == []
     assert my_sm.subgroups == []
+    assert str(my_sm) == "[SpondMember 'Colin Farrell 001']"
 
 
 @pytest.fixture()
@@ -82,3 +83,6 @@ def test_from_dict_simplest(simplest_member_data: dict) -> None:
     assert my_sm.name == "Brendan Gleason"
     assert my_sm.roles == []
     assert my_sm.subgroups == []
+    assert (
+        str(my_sm) == "[SpondMember 'Brendan Gleason 6F63AF02CE05328153ABA477C76E6189']"
+    )

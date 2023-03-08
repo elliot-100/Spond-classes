@@ -46,6 +46,7 @@ def test_create() -> None:
     assert my_se.unanswered_uids == []
     assert my_se.waiting_list_uids == []
     assert my_se.unconfirmed_uids == []
+    assert str(my_se) == "[SpondEvent 'My event' on 2022-09-15]"
 
 
 @pytest.fixture()

@@ -23,6 +23,7 @@ def test_create() -> None:
     assert my_ssg.uid == "001"
     assert my_ssg.name == "My subgroup"
     assert my_ssg.members == []
+    assert str(my_ssg) == "[SpondSubgroup 'My subgroup']"
 
 
 @pytest.fixture()
@@ -55,3 +56,4 @@ def test_from_dict(simplest_subgroup_data: dict) -> None:
     assert my_ssg.uid == "8CC576609CF3DCBC44469A799E76B22B"
     assert my_ssg.name == "Subgroup A1"
     assert my_ssg.members == []
+    assert str(my_ssg) == "[SpondSubgroup 'Subgroup A1']"
