@@ -36,4 +36,5 @@ jobs:
         pytest
     - name: Check typing with mypy
       run: |
+        source $VENV
         mypy .
