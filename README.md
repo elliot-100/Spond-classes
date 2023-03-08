@@ -52,6 +52,8 @@ SpondGroup.uid: str
 SpondGroup.name: str
 SpondGroup.members: List[SpondMember]
 SpondGroup.member_by_id() -> SpondMember
+SpondGroup.roles: List[SpondRoles]
+SpondGroup.role_by_id() -> SpondRole
 SpondGroup.subgroups: List[SpondSubgroup]
 SpondGroup.subgroup_by_id() -> SpondSubgroup
 
@@ -60,8 +62,12 @@ SpondMember.created_time: datetime
 SpondMember.first_name: str
 SpondMember.last_name: str
 SpondMember.name: str
-SpondMember.roles: List[str]
+SpondMember.roles: List[SpondRole]
 SpondMember.subgroups: List[SpondSubgroup]
+
+SpondRole.uid: str
+SpondRole.members: List[SpondMember]
+SpondRole.name: str
 
 SpondSubgroup.uid: str
 SpondSubgroup.members: List[SpondMember]
