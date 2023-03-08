@@ -170,11 +170,15 @@ def test_from_dict_complex(complex_group_data: dict) -> None:
     # Test attributes not handled by simple SpondRole tests
     assert my_sg.roles[0].members[0].uid == "6F63AF02CE05328153ABA477C76E6189"
 
-    # Assertions by identity
-    assert my_sg.members[0] in my_sg.members
-    assert my_sg.members[0].subgroups[0] in my_sg.subgroups
+    # Assertions by inclusion
+    assert my_sg.members[0] in my_sg.roles[0].members
     assert my_sg.members[0] in my_sg.subgroups[0].members
+    assert my_sg.subgroups[0].members[0] in my_sg.members
+    assert my_sg.roles[0].members[0] in my_sg.members
 
     assert my_sg.roles[0] in my_sg.members[0].roles
     assert my_sg.roles[0] in my_sg.subgroups[0].members[0].roles
     assert my_sg.members[0].roles[0] in my_sg.roles
+
+    assert my_sg.subgroups[0] in my_sg.members[0].subgroups
+    assert my_sg.members[0].subgroups[0] in my_sg.subgroups
