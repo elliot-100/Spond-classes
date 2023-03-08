@@ -35,7 +35,6 @@ profile = "black"
 warn_unused_configs = true
 strict = true
 disallow_any_generics = false
-disallow_untyped_defs = false
 
 [build-system]
 requires = ["poetry-core"]
