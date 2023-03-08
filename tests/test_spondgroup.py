@@ -166,7 +166,7 @@ def test_from_dict_complex(complex_group_data: dict) -> None:
 
     # SpondGroup.subgroups -> SpondSubgroup
     assert my_sg.subgroups[0].uid == "BB6B3C3592C5FC71DBDD5258D45EF6D4"
-    # Test attributes not handled by simple SpondMember tests
+    # Test attributes not handled by simple SpondSubgroup tests
     assert my_sg.subgroups[0].members[0].uid == "6F63AF02CE05328153ABA477C76E6189"
 
     # SpondGroup.subgroups -> SpondRole
