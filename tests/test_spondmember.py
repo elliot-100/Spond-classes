@@ -3,7 +3,6 @@
 from datetime import datetime, timezone
 
 import pytest
-from dateutil import parser
 
 from spond_classes import SpondMember
 from tests.utils import public_attributes, sets_equal

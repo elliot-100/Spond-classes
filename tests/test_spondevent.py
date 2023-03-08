@@ -7,7 +7,6 @@ Note: To generate a representative 32-character hex string ID:
 from datetime import datetime, timezone
 
 import pytest
-from dateutil import parser
 
 from spond_classes import SpondEvent
 from tests.utils import public_attributes, sets_equal
