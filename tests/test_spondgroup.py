@@ -27,6 +27,7 @@ def test_create() -> None:
     assert my_sg.name == "My group"
     assert my_sg.roles == []
     assert my_sg.subgroups == []
+    assert str(my_sg) == "[SpondGroup 'My group']"
 
 
 @pytest.fixture()
@@ -64,6 +65,7 @@ def test_core_from_dict_simplest(simplest_group_data: dict) -> None:
     assert my_sg.members == []
     assert my_sg.roles == []
     assert my_sg.subgroups == []
+    assert str(my_sg) == "[SpondGroup 'Group A']"
 
 
 def test_from_dict_simplest(simplest_group_data: dict) -> None:
@@ -92,6 +94,7 @@ def test_from_dict_simplest(simplest_group_data: dict) -> None:
     assert my_sg.members == []
     assert my_sg.roles == []
     assert my_sg.subgroups == []
+    assert str(my_sg) == "[SpondGroup 'Group A']"
 
 
 @pytest.fixture()
@@ -153,6 +156,7 @@ def test_from_dict_complex(complex_group_data: dict) -> None:
     # SpondGroup attributes
     assert my_sg.uid == "20EA715745389FCDED2C280A8ACB74A6"
     assert my_sg.name == "Group A"
+    assert str(my_sg) == "[SpondGroup 'Group A']"
 
     # SpondGroup.members -> SpondMember
     assert my_sg.members[0].uid == "6F63AF02CE05328153ABA477C76E6189"
@@ -170,11 +174,15 @@ def test_from_dict_complex(complex_group_data: dict) -> None:
     # Test attributes not handled by simple SpondRole tests
     assert my_sg.roles[0].members[0].uid == "6F63AF02CE05328153ABA477C76E6189"
 
-    # Assertions by identity
-    assert my_sg.members[0] in my_sg.members
-    assert my_sg.members[0].subgroups[0] in my_sg.subgroups
+    # Assertions by inclusion
+    assert my_sg.members[0] in my_sg.roles[0].members
     assert my_sg.members[0] in my_sg.subgroups[0].members
+    assert my_sg.subgroups[0].members[0] in my_sg.members
+    assert my_sg.roles[0].members[0] in my_sg.members
 
     assert my_sg.roles[0] in my_sg.members[0].roles
     assert my_sg.roles[0] in my_sg.subgroups[0].members[0].roles
     assert my_sg.members[0].roles[0] in my_sg.roles
+
+    assert my_sg.subgroups[0] in my_sg.members[0].subgroups
+    assert my_sg.members[0].subgroups[0] in my_sg.subgroups

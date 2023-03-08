@@ -46,6 +46,7 @@ def test_create() -> None:
     assert my_se.unanswered_uids == []
     assert my_se.waiting_list_uids == []
     assert my_se.unconfirmed_uids == []
+    assert str(my_se) == "[SpondEvent 'My event' on 2022-09-15]"
 
 
 @pytest.fixture()
@@ -106,7 +107,7 @@ def test_from_dict(event_data: dict) -> None:
     assert my_se.uid == "A390CE5396D2F5C3015F53E171EC59D5"
     assert my_se.heading == "Event 1"
     assert my_se.name == "Event 1"
-    assert my_se.start_time == parser.isoparse("2021-07-06T06:00:00Z")
+    assert my_se.start_time == datetime(2021, 7, 6, 6, 0, tzinfo=timezone.utc)
     assert my_se.accepted_uids == [
         "B24FA75A4CCBC63199A57361E88B0646",
         "C7BCC3B8A95DCF82DFFD27B2B30C8FA2",

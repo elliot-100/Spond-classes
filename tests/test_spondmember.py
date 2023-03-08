@@ -40,6 +40,7 @@ def test_create() -> None:
     assert my_sm.name == "Colin Farrell"
     assert my_sm.roles == []
     assert my_sm.subgroups == []
+    assert str(my_sm) == "[SpondMember 'Colin Farrell 001']"
 
 
 @pytest.fixture()
@@ -76,9 +77,12 @@ def test_from_dict_simplest(simplest_member_data: dict) -> None:
     assert sets_equal(public_attributes(my_sm), valid_attributes)
 
     assert my_sm.uid == "6F63AF02CE05328153ABA477C76E6189"
-    assert my_sm.created_time == parser.isoparse("2022-03-24T16:36:29Z")  # TODO: review
+    assert my_sm.created_time == datetime(2022, 3, 24, 16, 36, 29, tzinfo=timezone.utc)
     assert my_sm.first_name == "Brendan"
     assert my_sm.last_name == "Gleason"
     assert my_sm.name == "Brendan Gleason"
     assert my_sm.roles == []
     assert my_sm.subgroups == []
+    assert (
+        str(my_sm) == "[SpondMember 'Brendan Gleason 6F63AF02CE05328153ABA477C76E6189']"
+    )
