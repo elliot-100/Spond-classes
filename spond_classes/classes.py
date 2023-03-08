@@ -22,7 +22,7 @@ class SpondMember:
     created_time: datetime  # from API 'createdTime'
     first_name: str  # from API 'firstName'
     last_name: str  # from API 'lastName'
-    roles: list[str] = field(default_factory=list)  # from API 'roles'
+    roles: list[SpondRole] = field(default_factory=list)  # from API 'roles'
     subgroups: list[SpondSubgroup] = field(default_factory=list)  # from API 'subGroups'
     name: str = field(init=False)  # derived
     _name: str = field(init=False, repr=False)
@@ -51,8 +51,7 @@ class SpondMember:
         created_time = parser.isoparse(member_data["createdTime"])
         first_name = member_data["firstName"]
         last_name = member_data["lastName"]
-        roles = member_data.get("roles", [])
-        return SpondMember(uid, created_time, first_name, last_name, roles)
+        return SpondMember(uid, created_time, first_name, last_name)
 
 
 @dataclass
@@ -68,7 +67,9 @@ class SpondGroup:
     members: list[SpondMember] = field(default_factory=list)
     # derived from API 'members', but uses object refs instead of uid.
     subgroups: list[SpondSubgroup] = field(default_factory=list)
-    # derived from API 'subgroups'.
+    # derived from API 'subgroups'
+    roles: list[SpondRole] = field(default_factory=list)
+    # derived from API 'roles'
 
     def __str__(self) -> str:
         """Return human-readable description."""
@@ -97,8 +98,14 @@ class SpondGroup:
             SpondSubgroup.from_dict(subgroup_data)
             for subgroup_data in group_data.get("subGroups", [])
         ]
+        # create child SpondRoles
+        spondgroup.roles = [
+            SpondRole.from_dict(role) for role in group_data.get("roles", [])
+        ]
+
         for member_data in group_data.get("members", []):
             member_id = member_data.get("id")
+
             for subgroup_id in member_data.get("subGroups", []):
                 # populate child SpondMembers' subgroup attributes
                 spondgroup.member_by_id(member_id).subgroups.append(
@@ -106,6 +113,17 @@ class SpondGroup:
                 )
                 # populate child SpondSubgroups' members attribute
                 spondgroup.subgroup_by_id(subgroup_id).members.append(
+                    spondgroup.member_by_id(member_id),
+                )
+
+            for role_id in member_data.get("roles", []):
+                # populate child SpondMembers' roles attribute
+                spondgroup.member_by_id(member_id).roles.append(
+                    spondgroup.role_by_id(role_id),
+                )
+
+                # populate child SpondRoles' members attribute
+                spondgroup.role_by_id(role_id).members.append(
                     spondgroup.member_by_id(member_id),
                 )
 
@@ -123,6 +141,13 @@ class SpondGroup:
         for member in self.members:
             if member.uid == member_uid:
                 return member
+        raise IndexError
+
+    def role_by_id(self, role_uid: str) -> SpondRole:
+        """Return the child role with matching id, or an error."""
+        for role in self.roles:
+            if role.uid == role_uid:
+                return role
         raise IndexError
 
 
@@ -211,3 +236,32 @@ class SpondEvent:
         Date is included because heading is unliklely to be unique.
         """
         return f"[SpondEvent '{self.heading}' on {self.start_time.date()}]"
+
+
+@dataclass
+class SpondRole:
+    """Spond role.
+
+    Belongs to one SpondGroup.
+    A SpondMember may have zero, one or more SpondRoles.
+    """
+
+    uid: str  # from API 'id'
+    name: str  # from API 'name'
+    members: list[SpondMember] = field(default_factory=list)  # derived
+
+    @staticmethod
+    def from_dict(role: dict) -> SpondRole:
+        """Create a SpondRole object from relevant dict."""
+        assert isinstance(role, dict)
+        uid = role["id"]
+        name = role["name"]
+
+        return SpondRole(
+            uid,
+            name,
+        )
+
+    def __str__(self) -> str:
+        """Return human-readable description."""
+        return f"[SpondRole '{self.name}']"
