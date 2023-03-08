@@ -27,7 +27,7 @@ def test_create() -> None:
 
 
 @pytest.fixture()
-def role_dict():
+def role_data() -> dict:
     """Represent the simplest possible Role in this implementation.
 
     Item from 'groups' (root) -> 'roles'.
@@ -38,13 +38,13 @@ def role_dict():
     }
 
 
-def test_from_dict(role_dict):
+def test_from_dict(role_data: dict) -> None:
     """Test that SpondEvent is created from dict.
 
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-    my_role = SpondRole.from_dict(role_dict)
+    my_role = SpondRole.from_dict(role_data)
     valid_attributes = [
         "uid",
         "members",
