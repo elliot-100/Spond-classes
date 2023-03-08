@@ -12,7 +12,7 @@ def test_create() -> None:
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-    my_sg = SpondGroup("001", "My group")
+    my_group = SpondGroup("001", "My group")
     valid_attributes = [
         "uid",
         "name",
@@ -20,14 +20,14 @@ def test_create() -> None:
         "subgroups",
         "roles",
     ]
-    assert sets_equal(public_attributes(my_sg), valid_attributes)
+    assert sets_equal(public_attributes(my_group), valid_attributes)
 
-    assert my_sg.uid == "001"
-    assert my_sg.members == []
-    assert my_sg.name == "My group"
-    assert my_sg.roles == []
-    assert my_sg.subgroups == []
-    assert str(my_sg) == "[SpondGroup 'My group']"
+    assert my_group.uid == "001"
+    assert my_group.members == []
+    assert my_group.name == "My group"
+    assert my_group.roles == []
+    assert my_group.subgroups == []
+    assert str(my_group) == "[SpondGroup 'My group']"
 
 
 @pytest.fixture()
@@ -50,7 +50,7 @@ def test_core_from_dict_simplest(simplest_group_data: dict) -> None:
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-    my_sg = SpondGroup.core_from_dict(simplest_group_data)
+    my_group = SpondGroup.core_from_dict(simplest_group_data)
     valid_attributes = [
         "uid",
         "name",
@@ -58,14 +58,14 @@ def test_core_from_dict_simplest(simplest_group_data: dict) -> None:
         "subgroups",
         "roles",
     ]
-    assert sets_equal(public_attributes(my_sg), valid_attributes)
+    assert sets_equal(public_attributes(my_group), valid_attributes)
 
-    assert my_sg.uid == "20EA715745389FCDED2C280A8ACB74A6"
-    assert my_sg.name == "Group A"
-    assert my_sg.members == []
-    assert my_sg.roles == []
-    assert my_sg.subgroups == []
-    assert str(my_sg) == "[SpondGroup 'Group A']"
+    assert my_group.uid == "20EA715745389FCDED2C280A8ACB74A6"
+    assert my_group.name == "Group A"
+    assert my_group.members == []
+    assert my_group.roles == []
+    assert my_group.subgroups == []
+    assert str(my_group) == "[SpondGroup 'Group A']"
 
 
 def test_from_dict_simplest(simplest_group_data: dict) -> None:
@@ -79,7 +79,7 @@ def test_from_dict_simplest(simplest_group_data: dict) -> None:
     `test_core_from_dict_simple(simplest_group_dict)`
 
     """
-    my_sg = SpondGroup.core_from_dict(simplest_group_data)
+    my_group = SpondGroup.core_from_dict(simplest_group_data)
     valid_attributes = [
         "uid",
         "name",
@@ -87,14 +87,14 @@ def test_from_dict_simplest(simplest_group_data: dict) -> None:
         "subgroups",
         "roles",
     ]
-    assert sets_equal(public_attributes(my_sg), valid_attributes)
+    assert sets_equal(public_attributes(my_group), valid_attributes)
 
-    assert my_sg.uid == "20EA715745389FCDED2C280A8ACB74A6"
-    assert my_sg.name == "Group A"
-    assert my_sg.members == []
-    assert my_sg.roles == []
-    assert my_sg.subgroups == []
-    assert str(my_sg) == "[SpondGroup 'Group A']"
+    assert my_group.uid == "20EA715745389FCDED2C280A8ACB74A6"
+    assert my_group.name == "Group A"
+    assert my_group.members == []
+    assert my_group.roles == []
+    assert my_group.subgroups == []
+    assert str(my_group) == "[SpondGroup 'Group A']"
 
 
 @pytest.fixture()
@@ -143,7 +143,7 @@ def test_from_dict_complex(complex_group_data: dict) -> None:
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-    my_sg = SpondGroup.from_dict(complex_group_data)
+    my_group = SpondGroup.from_dict(complex_group_data)
     valid_attributes = [
         "uid",
         "name",
@@ -151,38 +151,38 @@ def test_from_dict_complex(complex_group_data: dict) -> None:
         "roles",
         "subgroups",
     ]
-    assert sets_equal(public_attributes(my_sg), valid_attributes)
+    assert sets_equal(public_attributes(my_group), valid_attributes)
 
-    # SpondGroup attributes
-    assert my_sg.uid == "20EA715745389FCDED2C280A8ACB74A6"
-    assert my_sg.name == "Group A"
-    assert str(my_sg) == "[SpondGroup 'Group A']"
+    # Group attributes
+    assert my_group.uid == "20EA715745389FCDED2C280A8ACB74A6"
+    assert my_group.name == "Group A"
+    assert str(my_group) == "[SpondGroup 'Group A']"
 
     # SpondGroup.members -> SpondMember
-    assert my_sg.members[0].uid == "6F63AF02CE05328153ABA477C76E6189"
+    assert my_group.members[0].uid == "6F63AF02CE05328153ABA477C76E6189"
     # Test attributes not handled by simple SpondMember tests
-    assert my_sg.members[0].roles[0].uid == "29A7724B47ABEE7B3C9DC347E13A50B4"
-    assert my_sg.members[0].subgroups[0].uid == "BB6B3C3592C5FC71DBDD5258D45EF6D4"
+    assert my_group.members[0].roles[0].uid == "29A7724B47ABEE7B3C9DC347E13A50B4"
+    assert my_group.members[0].subgroups[0].uid == "BB6B3C3592C5FC71DBDD5258D45EF6D4"
 
     # SpondGroup.subgroups -> SpondSubgroup
-    assert my_sg.subgroups[0].uid == "BB6B3C3592C5FC71DBDD5258D45EF6D4"
+    assert my_group.subgroups[0].uid == "BB6B3C3592C5FC71DBDD5258D45EF6D4"
     # Test attributes not handled by simple SpondSubgroup tests
-    assert my_sg.subgroups[0].members[0].uid == "6F63AF02CE05328153ABA477C76E6189"
+    assert my_group.subgroups[0].members[0].uid == "6F63AF02CE05328153ABA477C76E6189"
 
     # SpondGroup.subgroups -> SpondRole
-    assert my_sg.roles[0].uid == "29A7724B47ABEE7B3C9DC347E13A50B4"
+    assert my_group.roles[0].uid == "29A7724B47ABEE7B3C9DC347E13A50B4"
     # Test attributes not handled by simple SpondRole tests
-    assert my_sg.roles[0].members[0].uid == "6F63AF02CE05328153ABA477C76E6189"
+    assert my_group.roles[0].members[0].uid == "6F63AF02CE05328153ABA477C76E6189"
 
     # Assertions by inclusion
-    assert my_sg.members[0] in my_sg.roles[0].members
-    assert my_sg.members[0] in my_sg.subgroups[0].members
-    assert my_sg.subgroups[0].members[0] in my_sg.members
-    assert my_sg.roles[0].members[0] in my_sg.members
+    assert my_group.members[0] in my_group.roles[0].members
+    assert my_group.members[0] in my_group.subgroups[0].members
+    assert my_group.subgroups[0].members[0] in my_group.members
+    assert my_group.roles[0].members[0] in my_group.members
 
-    assert my_sg.roles[0] in my_sg.members[0].roles
-    assert my_sg.roles[0] in my_sg.subgroups[0].members[0].roles
-    assert my_sg.members[0].roles[0] in my_sg.roles
+    assert my_group.roles[0] in my_group.members[0].roles
+    assert my_group.roles[0] in my_group.subgroups[0].members[0].roles
+    assert my_group.members[0].roles[0] in my_group.roles
 
-    assert my_sg.subgroups[0] in my_sg.members[0].subgroups
-    assert my_sg.members[0].subgroups[0] in my_sg.subgroups
+    assert my_group.subgroups[0] in my_group.members[0].subgroups
+    assert my_group.members[0].subgroups[0] in my_group.subgroups

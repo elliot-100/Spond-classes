@@ -12,7 +12,7 @@ from dateutil import parser
 
 @dataclass
 class SpondMember:
-    """Spond member: an individual's record within a SpondGroup.
+    """SpondMember: an individual's record within a SpondGroup.
 
     Belongs to one SpondGroup.
     May belong to zero, one or more SpondSubgroups within a SpondGroup.
@@ -60,7 +60,7 @@ class SpondMember:
 
 @dataclass
 class SpondGroup:
-    """Spond group.
+    """SpondGroup.
 
     May contain zero, one or more SpondMembers.
     May contain zero, one or more SpondSubgroups.
@@ -90,65 +90,65 @@ class SpondGroup:
     @staticmethod
     def from_dict(group_data: dict) -> SpondGroup:
         """Create a full-feature SpondGroup object from dict representation."""
-        spondgroup = SpondGroup.core_from_dict(group_data)
+        group = SpondGroup.core_from_dict(group_data)
 
         # create child SpondMembers
-        spondgroup.members = [
+        group.members = [
             SpondMember.from_dict(member_data)
             for member_data in group_data.get("members", [])
         ]
-        # create child SpondSubGroups
-        spondgroup.subgroups = [
+        # create child SpondSubgroups
+        group.subgroups = [
             SpondSubgroup.from_dict(subgroup_data)
             for subgroup_data in group_data.get("subGroups", [])
         ]
         # create child SpondRoles
-        spondgroup.roles = [
+        group.roles = [
             SpondRole.from_dict(role) for role in group_data.get("roles", [])
         ]
 
         for member_data in group_data.get("members", []):
-            member_id = member_data.get("id")
+            member_data_id = member_data.get("id")
 
-            for subgroup_id in member_data.get("subGroups", []):
+            for subgroup_data_id in member_data.get("subGroups", []):
                 # populate child SpondMembers' subgroup attributes
-                spondgroup.member_by_id(member_id).subgroups.append(
-                    spondgroup.subgroup_by_id(subgroup_id),
+                group.member_by_id(member_data_id).subgroups.append(
+                    group.subgroup_by_id(subgroup_data_id),
                 )
                 # populate child SpondSubgroups' members attribute
-                spondgroup.subgroup_by_id(subgroup_id).members.append(
-                    spondgroup.member_by_id(member_id),
+                group.subgroup_by_id(subgroup_data_id).members.append(
+                    group.member_by_id(member_data_id),
                 )
 
-            for role_id in member_data.get("roles", []):
+            for role_data_id in member_data.get("roles", []):
                 # populate child SpondMembers' roles attribute
-                spondgroup.member_by_id(member_id).roles.append(
-                    spondgroup.role_by_id(role_id),
+                group.member_by_id(member_data_id).roles.append(
+                    group.role_by_id(role_data_id),
                 )
 
                 # populate child SpondRoles' members attribute
-                spondgroup.role_by_id(role_id).members.append(
-                    spondgroup.member_by_id(member_id),
+                group.role_by_id(role_data_id).members.append(
+                    group.member_by_id(member_data_id),
                 )
 
-        return spondgroup
+        return group
 
     def subgroup_by_id(self, subgroup_uid: str) -> SpondSubgroup:
-        """Return the child subgroup with matching id, or an error."""
+        """Return the child SpondSubgroup with matching id, or an error."""
         for subgroup in self.subgroups:
             if subgroup.uid == subgroup_uid:
                 return subgroup
         raise IndexError
 
     def member_by_id(self, member_uid: str) -> SpondMember:
-        """Return the child member with matching id, or an error."""
+        """Return the child SpondMember with matching id, or an error."""
         for member in self.members:
             if member.uid == member_uid:
                 return member
         raise IndexError
 
     def role_by_id(self, role_uid: str) -> SpondRole:
-        """Return the child role with matching id, or an error."""
+        """Return the child SpondRole with matching id, or an error."""
         for role in self.roles:
             if role.uid == role_uid:
                 return role
@@ -157,7 +157,7 @@ class SpondGroup:
 
 @dataclass
 class SpondSubgroup:
-    """Spond subgroup.
+    """SpondSubgroup.
 
     Belongs to one SpondGroup.
     May contain zero, one or more SpondMembers.
@@ -182,7 +182,7 @@ class SpondSubgroup:
 
 @dataclass
 class SpondEvent:
-    """Spond event.
+    """SpondEvent.
 
     Belongs to one SpondGroup.
     """

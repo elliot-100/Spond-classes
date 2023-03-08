@@ -14,7 +14,7 @@ def test_create() -> None:
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-    my_sm = SpondMember(
+    my_member = SpondMember(
         "001",
         datetime(2018, 2, 1, 17, 39, tzinfo=timezone.utc),
         "Colin",
@@ -30,16 +30,16 @@ def test_create() -> None:
         "subgroups",
     ]
 
-    assert sets_equal(public_attributes(my_sm), valid_attributes)
+    assert sets_equal(public_attributes(my_member), valid_attributes)
 
-    assert my_sm.uid == "001"
-    assert my_sm.created_time == datetime(2018, 2, 1, 17, 39, tzinfo=timezone.utc)
-    assert my_sm.first_name == "Colin"
-    assert my_sm.last_name == "Farrell"
-    assert my_sm.name == "Colin Farrell"
-    assert my_sm.roles == []
-    assert my_sm.subgroups == []
-    assert str(my_sm) == "[SpondMember 'Colin Farrell 001']"
+    assert my_member.uid == "001"
+    assert my_member.created_time == datetime(2018, 2, 1, 17, 39, tzinfo=timezone.utc)
+    assert my_member.first_name == "Colin"
+    assert my_member.last_name == "Farrell"
+    assert my_member.name == "Colin Farrell"
+    assert my_member.roles == []
+    assert my_member.subgroups == []
+    assert str(my_member) == "[SpondMember 'Colin Farrell 001']"
 
 
 @pytest.fixture()
@@ -63,7 +63,7 @@ def test_from_dict_simplest(simplest_member_data: dict) -> None:
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-    my_sm = SpondMember.from_dict(simplest_member_data)
+    my_member = SpondMember.from_dict(simplest_member_data)
     valid_attributes = [
         "uid",
         "created_time",
@@ -73,15 +73,18 @@ def test_from_dict_simplest(simplest_member_data: dict) -> None:
         "roles",
         "subgroups",
     ]
-    assert sets_equal(public_attributes(my_sm), valid_attributes)
+    assert sets_equal(public_attributes(my_member), valid_attributes)
 
-    assert my_sm.uid == "6F63AF02CE05328153ABA477C76E6189"
-    assert my_sm.created_time == datetime(2022, 3, 24, 16, 36, 29, tzinfo=timezone.utc)
-    assert my_sm.first_name == "Brendan"
-    assert my_sm.last_name == "Gleason"
-    assert my_sm.name == "Brendan Gleason"
-    assert my_sm.roles == []
-    assert my_sm.subgroups == []
+    assert my_member.uid == "6F63AF02CE05328153ABA477C76E6189"
+    assert my_member.created_time == datetime(
+        2022, 3, 24, 16, 36, 29, tzinfo=timezone.utc
+    )
+    assert my_member.first_name == "Brendan"
+    assert my_member.last_name == "Gleason"
+    assert my_member.name == "Brendan Gleason"
+    assert my_member.roles == []
+    assert my_member.subgroups == []
     assert (
-        str(my_sm) == "[SpondMember 'Brendan Gleason 6F63AF02CE05328153ABA477C76E6189']"
+        str(my_member)
+        == "[SpondMember 'Brendan Gleason 6F63AF02CE05328153ABA477C76E6189']"
     )

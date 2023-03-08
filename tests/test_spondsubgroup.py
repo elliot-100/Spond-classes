@@ -12,18 +12,18 @@ def test_create() -> None:
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-    my_ssg = SpondSubgroup("001", "My subgroup")
+    my_subgroup = SpondSubgroup("001", "My subgroup")
     valid_attributes = [
         "uid",
         "name",
         "members",
     ]
-    assert sets_equal(public_attributes(my_ssg), valid_attributes)
+    assert sets_equal(public_attributes(my_subgroup), valid_attributes)
 
-    assert my_ssg.uid == "001"
-    assert my_ssg.name == "My subgroup"
-    assert my_ssg.members == []
-    assert str(my_ssg) == "[SpondSubgroup 'My subgroup']"
+    assert my_subgroup.uid == "001"
+    assert my_subgroup.name == "My subgroup"
+    assert my_subgroup.members == []
+    assert str(my_subgroup) == "[SpondSubgroup 'My subgroup']"
 
 
 @pytest.fixture()
@@ -45,15 +45,15 @@ def test_from_dict(simplest_subgroup_data: dict) -> None:
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-    my_ssg = SpondSubgroup.from_dict(simplest_subgroup_data)
+    my_subgroup = SpondSubgroup.from_dict(simplest_subgroup_data)
     valid_attributes = [
         "uid",
         "name",
         "members",
     ]
-    assert sets_equal(public_attributes(my_ssg), valid_attributes)
+    assert sets_equal(public_attributes(my_subgroup), valid_attributes)
 
-    assert my_ssg.uid == "8CC576609CF3DCBC44469A799E76B22B"
-    assert my_ssg.name == "Subgroup A1"
-    assert my_ssg.members == []
-    assert str(my_ssg) == "[SpondSubgroup 'Subgroup A1']"
+    assert my_subgroup.uid == "8CC576609CF3DCBC44469A799E76B22B"
+    assert my_subgroup.name == "Subgroup A1"
+    assert my_subgroup.members == []
+    assert str(my_subgroup) == "[SpondSubgroup 'Subgroup A1']"
