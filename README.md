@@ -45,7 +45,7 @@ method:
 spond_classes.SpondGroup.from_dict()
 ```
 
-* Then access instance (and child instance) attributes and methods: 
+* Then access instance (and child instance) attributes and methods:
 
 ```
 SpondGroup.uid: str
@@ -104,7 +104,7 @@ import spond-classes
 
 username = 'my@mail.invalid'
 password = 'Pa55worD'
-group_id = 'C9DC791FFE63D7914D6952BE10D97B46'  # fake 
+group_id = 'C9DC791FFE63D7914D6952BE10D97B46'  # fake
 
 async def main():
     s = spond.Spond(username=username, password=password)
