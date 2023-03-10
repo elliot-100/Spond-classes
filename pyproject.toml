@@ -10,7 +10,7 @@ packages = [{include = "spond_classes"}]
 license = "GPL 3.0"
 
 [tool.poetry.dependencies]
-python = ">=3.7.2,<4.0"
+python = ">=3.8,<4.0"
 python-dateutil = "^2.8.2"
 spond = "^0.10.1"
 
@@ -26,7 +26,7 @@ types-python-dateutil = "^2.8.19.6"
 
 [tool.black]
 line-length = 88
-target-version = ['py37']
+target-version = ['py38']
 
 [tool.isort]
 profile = "black"
