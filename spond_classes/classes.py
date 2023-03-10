@@ -27,11 +27,11 @@ class SpondMember:
     name: str = field(init=False)  # derived
     _name: str = field(init=False)
 
-    def __repr__(self) -> str:
+    def __repr__(self: SpondMember) -> str:
         """Return string representation."""
         return f"SpondMember(uid='{self.uid}', first_name='{self.first_name}', last_name='{self.last_name}')"
 
-    def __str__(self) -> str:
+    def __str__(self: SpondMember) -> str:
         """Return simple human-readable description.
 
         Last few chars of uid are included because full name is unlikely to be unique.
@@ -42,12 +42,12 @@ class SpondMember:
         )
 
     @property  # type: ignore[no-redef]
-    def name(self) -> str:
+    def name(self: SpondMember) -> str:
         """Return the member's full name."""
         return f"{self.first_name} {self.last_name}"
 
     @name.setter
-    def name(self, name: str) -> None:
+    def name(self: SpondMember, name: str) -> None:
         self._name = name
 
     @staticmethod
@@ -78,7 +78,7 @@ class SpondGroup:
     roles: list[SpondRole] = field(default_factory=list, repr=False)
     # derived from API 'roles'
 
-    def __str__(self) -> str:
+    def __str__(self: SpondGroup) -> str:
         """Return simple human-readable description."""
         return f"SpondGroup '{self.name}'"
 
@@ -136,21 +136,21 @@ class SpondGroup:
 
         return group
 
-    def subgroup_by_id(self, subgroup_uid: str) -> SpondSubgroup:
+    def subgroup_by_id(self: SpondGroup, subgroup_uid: str) -> SpondSubgroup:
         """Return the child SpondSubgroup with matching id, or an error."""
         for subgroup in self.subgroups:
             if subgroup.uid == subgroup_uid:
                 return subgroup
         raise IndexError
 
-    def member_by_id(self, member_uid: str) -> SpondMember:
+    def member_by_id(self: SpondGroup, member_uid: str) -> SpondMember:
         """Return the child SpondMember with matching id, or an error."""
         for member in self.members:
             if member.uid == member_uid:
                 return member
         raise IndexError
 
-    def role_by_id(self, role_uid: str) -> SpondRole:
+    def role_by_id(self: SpondGroup, role_uid: str) -> SpondRole:
         """Return the child SpondRole with matching id, or an error."""
         for role in self.roles:
             if role.uid == role_uid:
@@ -170,7 +170,7 @@ class SpondSubgroup:
     name: str  # from API 'name'
     members: list[SpondMember] = field(default_factory=list, repr=False)  # derived
 
-    def __str__(self) -> str:
+    def __str__(self: SpondSubgroup) -> str:
         """Return simple human-readable description."""
         return f"SpondSubgroup '{self.name}'"
 
@@ -206,12 +206,12 @@ class SpondEvent:
     _name: str = field(init=False, repr=False)
 
     @property  # type: ignore[no-redef]
-    def name(self) -> str:
+    def name(self: SpondEvent) -> str:
         """Alias `heading` for convenience/consistency with other objects."""
         return self.heading
 
     @name.setter
-    def name(self, name: str) -> None:
+    def name(self: SpondEvent, name: str) -> None:
         self._name = name
 
     @staticmethod
@@ -239,7 +239,7 @@ class SpondEvent:
             unconfirmed_uids,
         )
 
-    def __str__(self) -> str:
+    def __str__(self: SpondEvent) -> str:
         """Return simple human-readable description.
 
         Date is included because heading is unliklely to be unique.
@@ -271,6 +271,6 @@ class SpondRole:
             name,
         )
 
-    def __str__(self) -> str:
+    def __str__(self: SpondRole) -> str:
         """Return simple human-readable description."""
         return f"SpondRole '{self.name}'"
