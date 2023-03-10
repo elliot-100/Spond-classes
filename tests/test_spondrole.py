@@ -23,7 +23,7 @@ def test_create() -> None:
     assert my_role.uid == "001"
     assert my_role.members == []
     assert my_role.name == "My role"
-    assert str(my_role) == "[SpondRole 'My role']"
+    assert str(my_role) == "SpondRole 'My role'"
 
 
 @pytest.fixture()
@@ -55,4 +55,4 @@ def test_from_dict(role_data: dict) -> None:
     assert my_role.uid == "001"
     assert my_role.members == []
     assert my_role.name == "My role"
-    assert str(my_role) == "[SpondRole 'My role']"
+    assert str(my_role) == "SpondRole 'My role'"
