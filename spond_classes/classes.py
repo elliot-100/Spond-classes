@@ -53,7 +53,8 @@ class SpondMember:
     @staticmethod
     def from_dict(member_data: dict) -> SpondMember:
         """Create a SpondMember object from relevant dict."""
-        assert isinstance(member_data, dict)
+        if not isinstance(member_data, dict):
+            raise TypeError
         uid = member_data["id"]
         created_time = parser.isoparse(member_data["createdTime"])
         first_name = member_data["firstName"]
@@ -85,7 +86,8 @@ class SpondGroup:
     @staticmethod
     def core_from_dict(group_data: dict) -> SpondGroup:
         """Create a SpondGroup object from the simplest possible dict representation."""
-        assert isinstance(group_data, dict)
+        if not isinstance(group_data, dict):
+            raise TypeError
         uid = group_data["id"]
         name = group_data["name"]
         return SpondGroup(uid, name)
@@ -177,7 +179,8 @@ class SpondSubgroup:
     @staticmethod
     def from_dict(subgroup_data: dict) -> SpondSubgroup:
         """Create a SpondSubgroup object from relevant dict."""
-        assert isinstance(subgroup_data, dict)
+        if not isinstance(subgroup_data, dict):
+            raise TypeError
         uid = subgroup_data["id"]
         name = subgroup_data["name"]
         return SpondSubgroup(uid, name)
@@ -217,11 +220,13 @@ class SpondEvent:
     @staticmethod
     def from_dict(event_data: dict) -> SpondEvent:
         """Create a SpondEvent object from relevant dict."""
-        assert isinstance(event_data, dict)
+        if not isinstance(event_data, dict):
+            raise TypeError
         uid = event_data["id"]
         heading = event_data["heading"]
         start_time = parser.isoparse(event_data["startTimestamp"])
-        assert isinstance(event_data["responses"], dict)
+        if not isinstance(event_data["responses"], dict):
+            raise TypeError
         accepted_uids = event_data["responses"].get("acceptedIds", [])
         declined_uids = event_data["responses"].get("declinedIds", [])
         unanswered_uids = event_data["responses"].get("unansweredIds", [])
@@ -262,7 +267,8 @@ class SpondRole:
     @staticmethod
     def from_dict(role: dict) -> SpondRole:
         """Create a SpondRole object from relevant dict."""
-        assert isinstance(role, dict)
+        if not isinstance(role, dict):
+            raise TypeError
         uid = role["id"]
         name = role["name"]
 
