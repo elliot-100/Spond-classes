@@ -32,11 +32,14 @@ class SpondMember:
         return f"SpondMember(uid='{self.uid}', first_name='{self.first_name}', last_name='{self.last_name}')"
 
     def __str__(self) -> str:
-        """Return human-readable description.
+        """Return simple human-readable description.
 
-        uid is included because full name is unlikely to be unique.
+        Last few chars of uid are included because full name is unlikely to be unique.
         """
-        return f"[SpondMember '{self.first_name} {self.last_name} {self.uid}']"
+        return (
+            f"SpondMember '{self.first_name} {self.last_name}' "
+            f"(uid ends '...{self.uid[-3:]}')"
+        )
 
     @property  # type: ignore[no-redef]
     def name(self) -> str:
@@ -76,8 +79,8 @@ class SpondGroup:
     # derived from API 'roles'
 
     def __str__(self) -> str:
-        """Return human-readable description."""
-        return f"[SpondGroup '{self.name}']"
+        """Return simple human-readable description."""
+        return f"SpondGroup '{self.name}'"
 
     @staticmethod
     def core_from_dict(group_data: dict) -> SpondGroup:
@@ -168,8 +171,8 @@ class SpondSubgroup:
     members: list[SpondMember] = field(default_factory=list, repr=False)  # derived
 
     def __str__(self) -> str:
-        """Return human-readable description."""
-        return f"[SpondSubgroup '{self.name}']"
+        """Return simple human-readable description."""
+        return f"SpondSubgroup '{self.name}'"
 
     @staticmethod
     def from_dict(subgroup_data: dict) -> SpondSubgroup:
@@ -237,11 +240,11 @@ class SpondEvent:
         )
 
     def __str__(self) -> str:
-        """Return human-readable description.
+        """Return simple human-readable description.
 
         Date is included because heading is unliklely to be unique.
         """
-        return f"[SpondEvent '{self.heading}' on {self.start_time.date()}]"
+        return f"SpondEvent '{self.heading}' on {self.start_time.date()}"
 
 
 @dataclass
@@ -269,5 +272,5 @@ class SpondRole:
         )
 
     def __str__(self) -> str:
-        """Return human-readable description."""
-        return f"[SpondRole '{self.name}']"
+        """Return simple human-readable description."""
+        return f"SpondRole '{self.name}'"

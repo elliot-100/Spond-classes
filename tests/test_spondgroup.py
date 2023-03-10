@@ -27,7 +27,7 @@ def test_create() -> None:
     assert my_group.name == "My group"
     assert my_group.roles == []
     assert my_group.subgroups == []
-    assert str(my_group) == "[SpondGroup 'My group']"
+    assert str(my_group) == "SpondGroup 'My group'"
 
 
 @pytest.fixture()
@@ -65,7 +65,7 @@ def test_core_from_dict_simplest(simplest_group_data: dict) -> None:
     assert my_group.members == []
     assert my_group.roles == []
     assert my_group.subgroups == []
-    assert str(my_group) == "[SpondGroup 'Group A']"
+    assert str(my_group) == "SpondGroup 'Group A'"
 
 
 def test_from_dict_simplest(simplest_group_data: dict) -> None:
@@ -94,7 +94,7 @@ def test_from_dict_simplest(simplest_group_data: dict) -> None:
     assert my_group.members == []
     assert my_group.roles == []
     assert my_group.subgroups == []
-    assert str(my_group) == "[SpondGroup 'Group A']"
+    assert str(my_group) == "SpondGroup 'Group A'"
 
 
 @pytest.fixture()
@@ -156,7 +156,7 @@ def test_from_dict_complex(complex_group_data: dict) -> None:
     # Group attributes
     assert my_group.uid == "20EA715745389FCDED2C280A8ACB74A6"
     assert my_group.name == "Group A"
-    assert str(my_group) == "[SpondGroup 'Group A']"
+    assert str(my_group) == "SpondGroup 'Group A'"
 
     # SpondGroup.members -> SpondMember
     assert my_group.members[0].uid == "6F63AF02CE05328153ABA477C76E6189"

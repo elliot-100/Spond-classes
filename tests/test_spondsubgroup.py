@@ -23,7 +23,7 @@ def test_create() -> None:
     assert my_subgroup.uid == "001"
     assert my_subgroup.name == "My subgroup"
     assert my_subgroup.members == []
-    assert str(my_subgroup) == "[SpondSubgroup 'My subgroup']"
+    assert str(my_subgroup) == "SpondSubgroup 'My subgroup'"
 
 
 @pytest.fixture()
@@ -56,4 +56,4 @@ def test_from_dict(simplest_subgroup_data: dict) -> None:
     assert my_subgroup.uid == "8CC576609CF3DCBC44469A799E76B22B"
     assert my_subgroup.name == "Subgroup A1"
     assert my_subgroup.members == []
-    assert str(my_subgroup) == "[SpondSubgroup 'Subgroup A1']"
+    assert str(my_subgroup) == "SpondSubgroup 'Subgroup A1'"

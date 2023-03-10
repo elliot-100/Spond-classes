@@ -45,7 +45,7 @@ def test_create() -> None:
     assert my_event.unanswered_uids == []
     assert my_event.waiting_list_uids == []
     assert my_event.unconfirmed_uids == []
-    assert str(my_event) == "[SpondEvent 'My event' on 2022-09-15]"
+    assert str(my_event) == "SpondEvent 'My event' on 2022-09-15"
 
 
 @pytest.fixture()
@@ -127,3 +127,4 @@ def test_from_dict(event_data: dict) -> None:
         "2D1BB37608F09511FD5F280D219DFD97",
         "49C2447E4ADE8005A9652B24F95E4F6F",
     ]
+    assert str(my_event) == "SpondEvent 'Event 1' on 2021-07-06"
