@@ -100,7 +100,7 @@ Adapting the example code in [`Spond`](https://github.com/Olen/Spond/) README:
 ```
 import asyncio
 from spond import spond
-import spond-classes
+import spond_classes
 
 username = 'my@mail.invalid'
 password = 'Pa55worD'
@@ -112,7 +112,7 @@ async def main():
     await s.clientsession.close()
 
     # create class instance
-    group = spond-classes.SpondGroup.from_dict(group)
+    group = spond_classes.SpondGroup.from_dict(group)
 
     # use class properties instead of dict keys
     print(group.name)
