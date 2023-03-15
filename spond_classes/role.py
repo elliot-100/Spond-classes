@@ -5,34 +5,34 @@ from dataclasses import dataclass, field
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from .spond_member import SpondMember
+    from .member import Member
 
 
 @dataclass
-class SpondRole:
+class Role:
     """Spond role.
 
-    Belongs to one SpondGroup.
-    A SpondMember may have zero, one or more SpondRoles.
+    Belongs to one Group.
+    A Member may have zero, one or more SpondRoles.
     """
 
     uid: str  # from API 'id'
     name: str  # from API 'name'
-    members: list[SpondMember] = field(default_factory=list, repr=False)  # derived
+    members: list[Member] = field(default_factory=list, repr=False)  # derived
 
     @staticmethod
-    def from_dict(role: dict) -> SpondRole:
-        """Create a SpondRole object from relevant dict."""
+    def from_dict(role: dict) -> Role:
+        """Create a Role object from relevant dict."""
         if not isinstance(role, dict):
             raise TypeError
         uid = role["id"]
         name = role["name"]
 
-        return SpondRole(
+        return Role(
             uid,
             name,
         )
 
-    def __str__(self: SpondRole) -> str:
+    def __str__(self: Role) -> str:
         """Return simple human-readable description."""
-        return f"SpondRole '{self.name}'"
+        return f"Role '{self.name}'"

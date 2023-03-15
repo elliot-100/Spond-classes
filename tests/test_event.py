@@ -1,4 +1,4 @@
-"""Tests for SpondEvent class.
+"""Tests for Event class.
 
 Note: To generate a representative 32-character hex string ID:
     secrets.token_hex(16).upper()
@@ -6,17 +6,17 @@ Note: To generate a representative 32-character hex string ID:
 
 from datetime import datetime, timezone
 
-from spond_classes import SpondEvent
+from spond_classes import Event
 from tests.utils import public_attributes, sets_equal
 
 
 def test_create() -> None:
-    """Test that SpondEvent is created from required fields only.
+    """Test that Event is created from required fields only.
 
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-    my_event = SpondEvent(
+    my_event = Event(
         "001",
         "My event",
         datetime(2022, 9, 15, 8, 30, tzinfo=timezone.utc),
@@ -43,16 +43,16 @@ def test_create() -> None:
     assert my_event.unanswered_uids == []
     assert my_event.waiting_list_uids == []
     assert my_event.unconfirmed_uids == []
-    assert str(my_event) == "SpondEvent 'My event' on 2022-09-15"
+    assert str(my_event) == "Event 'My event' on 2022-09-15"
 
 
 def test_from_dict(event_data: dict) -> None:
-    """Test that SpondEvent is created from dict.
+    """Test that Event is created from dict.
 
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-    my_event = SpondEvent.from_dict(event_data)
+    my_event = Event.from_dict(event_data)
     valid_attributes = [
         "uid",
         "heading",
@@ -90,4 +90,4 @@ def test_from_dict(event_data: dict) -> None:
         "2D1BB37608F09511FD5F280D219DFD97",
         "49C2447E4ADE8005A9652B24F95E4F6F",
     ]
-    assert str(my_event) == "SpondEvent 'Event 1' on 2021-07-06"
+    assert str(my_event) == "Event 'Event 1' on 2021-07-06"

@@ -3,8 +3,8 @@
 # pylint: disable=useless-import-alias
 # `import x as x` pattern used here for explicit re-export for Mypy
 
-from .spond_event import SpondEvent as SpondEvent
-from .spond_group import SpondGroup as SpondGroup
-from .spond_member import SpondMember as SpondMember
-from .spond_role import SpondRole as SpondRole
-from .spond_subgroup import SpondSubgroup as SpondSubgroup
+from .event import Event as Event
+from .group import Group as Group
+from .member import Member as Member
+from .role import Role as Role
+from .subgroup import Subgroup as Subgroup

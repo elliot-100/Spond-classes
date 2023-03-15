@@ -38,60 +38,60 @@ poetry add git+https://github.com/elliot-100/spond-classes.git@v0.4.0
 
 ## Key features
 
-* Create `SpondGroup` class instance from the dict returned by the corresponding `Spond`
+* Create `Group` class instance from the dict returned by the corresponding `Spond`
 method:
 
 ```
-spond_classes.SpondGroup.from_dict()
+spond_classes.Group.from_dict()
 ```
 
 * Then access instance (and child instance) attributes and methods:
 
 ```
-SpondGroup.uid: str
-SpondGroup.name: str
-SpondGroup.members: List[SpondMember]
-SpondGroup.member_by_id() -> SpondMember
-SpondGroup.roles: List[SpondRoles]
-SpondGroup.role_by_id() -> SpondRole
-SpondGroup.subgroups: List[SpondSubgroup]
-SpondGroup.subgroup_by_id() -> SpondSubgroup
+Group.uid: str
+Group.name: str
+Group.members: List[Member]
+Group.member_by_id() -> Member
+Group.roles: List[SpondRoles]
+Group.role_by_id() -> Role
+Group.subgroups: List[Subgroup]
+Group.subgroup_by_id() -> Subgroup
 
-SpondMember.uid: str
-SpondMember.created_time: datetime
-SpondMember.first_name: str
-SpondMember.last_name: str
-SpondMember.name: str
-SpondMember.roles: List[SpondRole]
-SpondMember.subgroups: List[SpondSubgroup]
+Member.uid: str
+Member.created_time: datetime
+Member.first_name: str
+Member.last_name: str
+Member.name: str
+Member.roles: List[Role]
+Member.subgroups: List[Subgroup]
 
-SpondRole.uid: str
-SpondRole.members: List[SpondMember]
-SpondRole.name: str
+Role.uid: str
+Role.members: List[Member]
+Role.name: str
 
-SpondSubgroup.uid: str
-SpondSubgroup.members: List[SpondMember]
-SpondSubgroup.name: str
+Subgroup.uid: str
+Subgroup.members: List[Member]
+Subgroup.name: str
 ```
-* Create `SpondEvent` class instance from the dict returned by the corresponding `Spond`
+* Create `Event` class instance from the dict returned by the corresponding `Spond`
 method:
 
 ```
-spond_classes.SpondEvent.from_dict()
+spond_classes.Event.from_dict()
 ```
 
 * Then access attributes:
 
 ```
-SpondEvent.uid: str
-SpondEvent.heading: str
-SpondEvent.name: str
-SpondEvent.start_time: datetime
-SpondEvent.accepted_uids: list
-SpondEvent.declined_uids: list
-SpondEvent.unanswered_uids: list
-SpondEvent.waiting_list_uids: list
-SpondEvent.unconfirmed_uids: list
+Event.uid: str
+Event.heading: str
+Event.name: str
+Event.start_time: datetime
+Event.accepted_uids: list
+Event.declined_uids: list
+Event.unanswered_uids: list
+Event.waiting_list_uids: list
+Event.unconfirmed_uids: list
 ```
 ## Example code
 
@@ -112,7 +112,7 @@ async def main():
     await s.clientsession.close()
 
     # create class instance
-    group = spond_classes.SpondGroup.from_dict(group)
+    group = spond_classes.Group.from_dict(group)
 
     # use class properties instead of dict keys
     print(group.name)

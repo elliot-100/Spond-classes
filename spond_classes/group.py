@@ -3,14 +3,14 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
-from .spond_member import SpondMember
-from .spond_role import SpondRole
-from .spond_subgroup import SpondSubgroup
+from .member import Member
+from .role import Role
+from .subgroup import Subgroup
 
 
 @dataclass
-class SpondGroup:
-    """SpondGroup.
+class Group:
+    """Group.
 
     May contain zero, one or more SpondMembers.
     May contain zero, one or more SpondSubgroups.
@@ -18,45 +18,43 @@ class SpondGroup:
 
     uid: str  # from API 'id'
     name: str  # from API 'name'
-    members: list[SpondMember] = field(default_factory=list, repr=False)
+    members: list[Member] = field(default_factory=list, repr=False)
     # derived from API 'members', but uses object refs instead of uid.
-    subgroups: list[SpondSubgroup] = field(default_factory=list, repr=False)
+    subgroups: list[Subgroup] = field(default_factory=list, repr=False)
     # derived from API 'subgroups'
-    roles: list[SpondRole] = field(default_factory=list, repr=False)
+    roles: list[Role] = field(default_factory=list, repr=False)
     # derived from API 'roles'
 
-    def __str__(self: SpondGroup) -> str:
+    def __str__(self: Group) -> str:
         """Return simple human-readable description."""
-        return f"SpondGroup '{self.name}'"
+        return f"Group '{self.name}'"
 
     @staticmethod
-    def core_from_dict(group_data: dict) -> SpondGroup:
-        """Create a SpondGroup object from the simplest possible dict representation."""
+    def core_from_dict(group_data: dict) -> Group:
+        """Create a Group object from the simplest possible dict representation."""
         if not isinstance(group_data, dict):
             raise TypeError
         uid = group_data["id"]
         name = group_data["name"]
-        return SpondGroup(uid, name)
+        return Group(uid, name)
 
     @staticmethod
-    def from_dict(group_data: dict) -> SpondGroup:
-        """Create a full-feature SpondGroup object from dict representation."""
-        group = SpondGroup.core_from_dict(group_data)
+    def from_dict(group_data: dict) -> Group:
+        """Create a full-feature Group object from dict representation."""
+        group = Group.core_from_dict(group_data)
 
         # create child SpondMembers
         group.members = [
-            SpondMember.from_dict(member_data)
+            Member.from_dict(member_data)
             for member_data in group_data.get("members", [])
         ]
         # create child SpondSubgroups
         group.subgroups = [
-            SpondSubgroup.from_dict(subgroup_data)
+            Subgroup.from_dict(subgroup_data)
             for subgroup_data in group_data.get("subGroups", [])
         ]
         # create child SpondRoles
-        group.roles = [
-            SpondRole.from_dict(role) for role in group_data.get("roles", [])
-        ]
+        group.roles = [Role.from_dict(role) for role in group_data.get("roles", [])]
 
         for member_data in group_data.get("members", []):
             member_data_id = member_data.get("id")
@@ -84,22 +82,22 @@ class SpondGroup:
 
         return group
 
-    def subgroup_by_id(self: SpondGroup, subgroup_uid: str) -> SpondSubgroup:
-        """Return the child SpondSubgroup with matching id, or an error."""
+    def subgroup_by_id(self: Group, subgroup_uid: str) -> Subgroup:
+        """Return the child Subgroup with matching id, or an error."""
         for subgroup in self.subgroups:
             if subgroup.uid == subgroup_uid:
                 return subgroup
         raise IndexError
 
-    def member_by_id(self: SpondGroup, member_uid: str) -> SpondMember:
-        """Return the child SpondMember with matching id, or an error."""
+    def member_by_id(self: Group, member_uid: str) -> Member:
+        """Return the child Member with matching id, or an error."""
         for member in self.members:
             if member.uid == member_uid:
                 return member
         raise IndexError
 
-    def role_by_id(self: SpondGroup, role_uid: str) -> SpondRole:
-        """Return the child SpondRole with matching id, or an error."""
+    def role_by_id(self: Group, role_uid: str) -> Role:
+        """Return the child Role with matching id, or an error."""
         for role in self.roles:
             if role.uid == role_uid:
                 return role
