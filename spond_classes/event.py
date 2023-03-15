@@ -11,10 +11,10 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class SpondEvent:
-    """SpondEvent.
+class Event:
+    """Event.
 
-    Belongs to one SpondGroup.
+    Belongs to one Group.
     """
 
     uid: str  # from API 'id'
@@ -33,17 +33,17 @@ class SpondEvent:
     _name: str = field(init=False, repr=False)
 
     @property  # type: ignore[no-redef]
-    def name(self: SpondEvent) -> str:
+    def name(self: Event) -> str:
         """Alias `heading` for convenience/consistency with other objects."""
         return self.heading
 
     @name.setter
-    def name(self: SpondEvent, name: str) -> None:
+    def name(self: Event, name: str) -> None:
         self._name = name
 
     @staticmethod
-    def from_dict(event_data: dict) -> SpondEvent:
-        """Create a SpondEvent object from relevant dict."""
+    def from_dict(event_data: dict) -> Event:
+        """Create a Event object from relevant dict."""
         if not isinstance(event_data, dict):
             raise TypeError
         uid = event_data["id"]
@@ -57,7 +57,7 @@ class SpondEvent:
         waiting_list_uids = event_data["responses"].get("waitinglistIds", [])
         unconfirmed_uids = event_data["responses"].get("unconfirmedIds", [])
 
-        return SpondEvent(
+        return Event(
             uid,
             heading,
             start_time,
@@ -68,9 +68,9 @@ class SpondEvent:
             unconfirmed_uids,
         )
 
-    def __str__(self: SpondEvent) -> str:
+    def __str__(self: Event) -> str:
         """Return simple human-readable description.
 
         Date is included because heading is unliklely to be unique.
         """
-        return f"SpondEvent '{self.heading}' on {self.start_time.date()}"
+        return f"Event '{self.heading}' on {self.start_time.date()}"

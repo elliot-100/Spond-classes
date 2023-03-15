@@ -1,17 +1,17 @@
-"""Tests for SpondRole class."""
+"""Tests for Role class."""
 
 
-from spond_classes import SpondRole
+from spond_classes import Role
 from tests.utils import public_attributes, sets_equal
 
 
 def test_create() -> None:
-    """Test that SpondRole is created from required fields only.
+    """Test that Role is created from required fields only.
 
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-    my_role = SpondRole("001", "My role")
+    my_role = Role("001", "My role")
     valid_attributes = [
         "uid",
         "members",
@@ -22,16 +22,16 @@ def test_create() -> None:
     assert my_role.uid == "001"
     assert my_role.members == []
     assert my_role.name == "My role"
-    assert str(my_role) == "SpondRole 'My role'"
+    assert str(my_role) == "Role 'My role'"
 
 
 def test_from_dict(role_data: dict) -> None:
-    """Test that SpondEvent is created from dict.
+    """Test that Event is created from dict.
 
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-    my_role = SpondRole.from_dict(role_data)
+    my_role = Role.from_dict(role_data)
     valid_attributes = [
         "uid",
         "members",
@@ -42,4 +42,4 @@ def test_from_dict(role_data: dict) -> None:
     assert my_role.uid == "001"
     assert my_role.members == []
     assert my_role.name == "My role"
-    assert str(my_role) == "SpondRole 'My role'"
+    assert str(my_role) == "Role 'My role'"
