@@ -1,6 +1,5 @@
 """Tests for SpondSubgroup class."""
 
-import pytest
 
 from spond_classes import SpondSubgroup
 from tests.utils import public_attributes, sets_equal
@@ -24,18 +23,6 @@ def test_create() -> None:
     assert my_subgroup.name == "My subgroup"
     assert my_subgroup.members == []
     assert str(my_subgroup) == "SpondSubgroup 'My subgroup'"
-
-
-@pytest.fixture()
-def simplest_subgroup_data() -> dict:
-    """Represent the simplest possible Subgroup in this implementation.
-
-    Item from 'groups' (root) -> 'group' -> 'subGroups'.
-    """
-    return {
-        "id": "8CC576609CF3DCBC44469A799E76B22B",
-        "name": "Subgroup A1",
-    }
 
 
 def test_from_dict(simplest_subgroup_data: dict) -> None:

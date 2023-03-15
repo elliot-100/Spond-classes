@@ -1,6 +1,5 @@
 """Tests for SpondGroup class and child classes."""
 
-import pytest
 
 from spond_classes import SpondGroup
 from tests.utils import public_attributes, sets_equal
@@ -28,19 +27,6 @@ def test_create() -> None:
     assert my_group.roles == []
     assert my_group.subgroups == []
     assert str(my_group) == "SpondGroup 'My group'"
-
-
-@pytest.fixture()
-def simplest_group_data() -> dict:
-    """Represent the simplest possible Group in this implementation.
-
-    Item from 'groups' (root).
-
-    """
-    return {
-        "id": "20EA715745389FCDED2C280A8ACB74A6",
-        "name": "Group A",
-    }
 
 
 def test_core_from_dict_simplest(simplest_group_data: dict) -> None:
@@ -95,46 +81,6 @@ def test_from_dict_simplest(simplest_group_data: dict) -> None:
     assert my_group.roles == []
     assert my_group.subgroups == []
     assert str(my_group) == "SpondGroup 'Group A'"
-
-
-@pytest.fixture()
-def complex_group_data() -> dict:
-    """Represent a single Group with a single Member, single Subgroup, single Role.
-
-    The Member is in the Subgroup, and has the Role.
-
-    Item from 'groups' (root).
-    """
-    return {
-        "id": "20EA715745389FCDED2C280A8ACB74A6",
-        "members": [
-            {
-                "createdTime": "2022-03-24T16:36:29Z",
-                "firstName": "Brendan",
-                "id": "6F63AF02CE05328153ABA477C76E6189",
-                "lastName": "Gleason",
-                "roles": [
-                    "29A7724B47ABEE7B3C9DC347E13A50B4",
-                ],
-                "subGroups": [
-                    "BB6B3C3592C5FC71DBDD5258D45EF6D4",
-                ],
-            },
-        ],
-        "name": "Group A",
-        "subGroups": [
-            {
-                "id": "BB6B3C3592C5FC71DBDD5258D45EF6D4",
-                "name": "Subgroup A1",
-            },
-        ],
-        "roles": [
-            {
-                "id": "29A7724B47ABEE7B3C9DC347E13A50B4",
-                "name": "Role A2",
-            },
-        ],
-    }
 
 
 def test_from_dict_complex(complex_group_data: dict) -> None:

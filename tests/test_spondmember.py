@@ -2,8 +2,6 @@
 
 from datetime import datetime, timezone
 
-import pytest
-
 from spond_classes import SpondMember
 from tests.utils import public_attributes, sets_equal
 
@@ -40,21 +38,6 @@ def test_create() -> None:
     assert my_member.roles == []
     assert my_member.subgroups == []
     assert str(my_member) == "SpondMember 'Colin Farrell' (uid ends '...001')"
-
-
-@pytest.fixture()
-def simplest_member_data() -> dict:
-    """Represent the simplest possible Member in this implementation.
-
-    Item from 'groups' -> 'group' -> 'members'.
-
-    """
-    return {
-        "createdTime": "2022-03-24T16:36:29Z",
-        "firstName": "Brendan",
-        "id": "6F63AF02CE05328153ABA477C76E6189",
-        "lastName": "Gleason",
-    }
 
 
 def test_from_dict_simplest(simplest_member_data: dict) -> None:

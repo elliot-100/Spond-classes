@@ -6,8 +6,6 @@ Note: To generate a representative 32-character hex string ID:
 
 from datetime import datetime, timezone
 
-import pytest
-
 from spond_classes import SpondEvent
 from tests.utils import public_attributes, sets_equal
 
@@ -46,41 +44,6 @@ def test_create() -> None:
     assert my_event.waiting_list_uids == []
     assert my_event.unconfirmed_uids == []
     assert str(my_event) == "SpondEvent 'My event' on 2022-09-15"
-
-
-@pytest.fixture()
-def event_data() -> dict:
-    """Represent the simplest possible Event in this implementation.
-
-    Item from 'events' (root).
-    """
-    return {
-        "id": "A390CE5396D2F5C3015F53E171EC59D5",
-        "heading": "Event 1",
-        "startTimestamp": "2021-07-06T06:00:00Z",
-        "responses": {
-            "acceptedIds": [
-                "B24FA75A4CCBC63199A57361E88B0646",
-                "C7BCC3B8A95DCF82DFFD27B2B30C8FA2",
-            ],
-            "declinedIds": [
-                "B4C5339E366FB5350310F2F8EA069F41",
-                "9520035580A968B6BE26BA2AC9EE5617",
-            ],
-            "unansweredIds": [
-                "3E546CDE2EAE242C1B8281C2042B5990",
-                "D1F1866D652FDBCC7433602B2CE0017F",
-            ],
-            "waitinglistIds": [
-                "0362B36507E156365471B64574EB6764",
-                "AA060BEE5ABB937BD00F4A16C560F267",
-            ],
-            "unconfirmedIds": [
-                "2D1BB37608F09511FD5F280D219DFD97",
-                "49C2447E4ADE8005A9652B24F95E4F6F",
-            ],
-        },
-    }
 
 
 def test_from_dict(event_data: dict) -> None:
