@@ -2,8 +2,10 @@
 
 ## About
 
+[Spond](https://spond.com/welcome) is a team/group-oriented events system.
+
 The unofficial Python [`Spond` library package](https://github.com/Olen/Spond/) gets
-data from the Spond  API and returns `dict` objects.
+data from the Spond API and returns `dict` objects.
 
 This unofficial Python `Spond-classes` package parses those `dict` objects to create
 class instances, i.e. provides an object abstraction layer.
@@ -21,7 +23,7 @@ pip install "Spond-classes @ git+https://github.com/elliot-100/spond-classes"
 or for a specific version e.g:
 
 `
-pip install "Spond-classes @ git+https://github.com/elliot-100/spond-classes@v0.4.0"
+pip install "Spond-classes @ git+https://github.com/elliot-100/spond-classes@v0.6.0"
 `
 
 If you're using Poetry:
@@ -33,7 +35,7 @@ poetry add git+https://github.com/elliot-100/spond-classes.git
 or for a specific version:
 
 `
-poetry add git+https://github.com/elliot-100/spond-classes.git@v0.4.0
+poetry add git+https://github.com/elliot-100/spond-classes.git@v0.6.0
 `
 
 ## Key features
@@ -45,7 +47,7 @@ method:
 spond_classes.Group.from_dict()
 ```
 
-* Then access instance (and child instance) attributes and methods:
+* Then access class instance attributes and methods:
 
 ```
 Group.uid: str
@@ -56,7 +58,11 @@ Group.roles: List[SpondRoles]
 Group.role_by_id() -> Role
 Group.subgroups: List[Subgroup]
 Group.subgroup_by_id() -> Subgroup
+```
 
+
+* Also provides access to child instances - `Group` members, roles and subgroups:
+```
 Member.uid: str
 Member.created_time: datetime
 Member.first_name: str
@@ -111,11 +117,15 @@ async def main():
     group_data = await s.get_group(group_id)
     await s.clientsession.close()
 
-    # create class instance
+    # create class instance:
     group = spond_classes.Group.from_dict(group)
 
-    # use class properties instead of dict keys
+    # use class properties instead of dict keys:
     print(group.name)
+
+    # access child instances and their properties:
+    for member in group.members:
+        print(member.name)
 
 asyncio.run(main())
 ```
