@@ -24,7 +24,6 @@ def test_create() -> None:
     valid_attributes = [
         "uid",
         "heading",
-        "name",
         "start_time",
         "accepted_uids",
         "declined_uids",
@@ -36,7 +35,6 @@ def test_create() -> None:
 
     assert my_event.uid == "001"
     assert my_event.heading == "My event"
-    assert my_event.name == "My event"
     assert my_event.start_time == datetime(2022, 9, 15, 8, 30, tzinfo=timezone.utc)
     assert my_event.accepted_uids == []
     assert my_event.declined_uids == []
@@ -56,7 +54,6 @@ def test_from_dict(event_data: dict) -> None:
     valid_attributes = [
         "uid",
         "heading",
-        "name",
         "start_time",
         "accepted_uids",
         "declined_uids",
@@ -68,7 +65,6 @@ def test_from_dict(event_data: dict) -> None:
 
     assert my_event.uid == "A390CE5396D2F5C3015F53E171EC59D5"
     assert my_event.heading == "Event 1"
-    assert my_event.name == "Event 1"
     assert my_event.start_time == datetime(2021, 7, 6, 6, 0, tzinfo=timezone.utc)
     assert my_event.accepted_uids == [
         "B24FA75A4CCBC63199A57361E88B0646",
