@@ -67,7 +67,7 @@ Member.uid: str
 Member.created_time: datetime
 Member.first_name: str
 Member.last_name: str
-Member.name: str
+Member.full_name: str
 Member.roles: List[Role]
 Member.subgroups: List[Subgroup]
 
@@ -124,7 +124,7 @@ async def main():
 
     # access child instances and their properties:
     for member in group.members:
-        print(member.name)
+        print(member.full_name)
 
 asyncio.run(main())
 ```

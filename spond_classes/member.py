@@ -43,7 +43,7 @@ class Member:
         )
 
     @property  # type: ignore[no-redef]
-    def name(self: Member) -> str:
+    def full_name(self: Member) -> str:
         """Return the member's full name."""
         return f"{self.first_name} {self.last_name}"
 
