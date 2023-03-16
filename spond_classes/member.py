@@ -15,18 +15,47 @@ if TYPE_CHECKING:
 
 @dataclass
 class Member:
-    """Member: an individual's record within a Group.
+    """Represents a member in the Spond system.
 
-    Belongs to one Group.
-    May belong to zero, one or more SpondSubgroups within a Group.
+    A Member is an individual's record within a Group.
+
+    A Member belongs to one Group.
+    A Member has zero, one or more Roles.
+    NB: relationship to Events isn't yet implemented.
+
+    Attributes
+    ----------
+    uid : str
+        id of the Member.
+        'id' in API, but 'id' is a reserved term and the `spond` package uses `uid`.
+    created_time : datetime
+        Derived from 'createdTime' in API, but returns a datetime instead of a string.
+    first_name : str
+        First name of the Member.
+        'firstName' in API.
+    last_name : str
+        Last name of the Member.
+        'lastName' in API.
+    roles : list[Role]
+        The Member's Roles.
+        'roles' in API.
+    subgroups : list[Subgroup]
+        The Member's Subgroups.
+        Derived from 'subGroups' in API.
+    full_name : str
+        The Member's full name.
+        Provided for convenience.
     """
 
-    uid: str  # from API 'id'
-    created_time: datetime  # from API 'createdTime'
-    first_name: str  # from API 'firstName'
-    last_name: str  # from API 'lastName'
-    roles: list[Role] = field(default_factory=list)  # from API 'roles'
-    subgroups: list[Subgroup] = field(default_factory=list)  # from API 'subGroups'
+    # Required params, populated by implicit Member.__init__().
+    uid: str
+    created_time: datetime
+    first_name: str
+    last_name: str
+
+    # Populated by `Group.from_dict()`, as they rely on full Group data:
+    roles: list[Role] = field(default_factory=list)
+    subgroups: list[Subgroup] = field(default_factory=list)
 
     def __repr__(self: Member) -> str:
         """Return string representation."""

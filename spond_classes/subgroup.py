@@ -14,11 +14,25 @@ class Subgroup:
 
     Belongs to one Group.
     May contain zero, one or more SpondMembers.
+
+    Attributes
+    ----------
+    uid : str
+        id of the Subgroup.
+        'id' in API, but 'id' is a reserved term and the `spond` package uses `uid`.
+    name : str
+        Name of the Subgroup.
+        'name' in API.
+    members : list[Member]
+        Members of the Subgroup.
     """
 
-    uid: str  # from API 'id'
-    name: str  # from API 'name'
-    members: list[Member] = field(default_factory=list, repr=False)  # derived
+    # Required params, populated by implicit Subgroup.__init__().
+    uid: str
+    name: str
+
+    # Populated by `Group.from_dict()`, as they rely on full Group data:
+    members: list[Member] = field(default_factory=list, repr=False)
 
     def __str__(self: Subgroup) -> str:
         """Return simple human-readable description."""
