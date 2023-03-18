@@ -26,20 +26,6 @@ class Event:
     unanswered_uids: list = field(default_factory=list, repr=False)
     waiting_list_uids: list = field(default_factory=list, repr=False)
     unconfirmed_uids: list = field(default_factory=list, repr=False)
-    name: str = field(
-        init=False, repr=False
-    )  # derived; aliases `heading` for consistency
-    # with other objects
-    _name: str = field(init=False, repr=False)
-
-    @property  # type: ignore[no-redef]
-    def name(self: Event) -> str:
-        """Alias `heading` for convenience/consistency with other objects."""
-        return self.heading
-
-    @name.setter
-    def name(self: Event, name: str) -> None:
-        self._name = name
 
     @staticmethod
     def from_dict(event_data: dict) -> Event:

@@ -91,7 +91,6 @@ spond_classes.Event.from_dict()
 ```
 Event.uid: str
 Event.heading: str
-Event.name: str
 Event.start_time: datetime
 Event.accepted_uids: list
 Event.declined_uids: list
