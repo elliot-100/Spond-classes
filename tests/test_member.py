@@ -23,7 +23,7 @@ def test_create() -> None:
         "created_time",
         "first_name",
         "last_name",
-        "name",
+        "full_name",
         "roles",
         "subgroups",
     ]
@@ -34,7 +34,7 @@ def test_create() -> None:
     assert my_member.created_time == datetime(2018, 2, 1, 17, 39, tzinfo=timezone.utc)
     assert my_member.first_name == "Colin"
     assert my_member.last_name == "Farrell"
-    assert my_member.name == "Colin Farrell"
+    assert my_member.full_name == "Colin Farrell"
     assert my_member.roles == []
     assert my_member.subgroups == []
     assert str(my_member) == "Member 'Colin Farrell' (uid ends '...001')"
@@ -52,7 +52,7 @@ def test_from_dict_simplest(simplest_member_data: dict) -> None:
         "created_time",
         "first_name",
         "last_name",
-        "name",
+        "full_name",
         "roles",
         "subgroups",
     ]
@@ -64,7 +64,7 @@ def test_from_dict_simplest(simplest_member_data: dict) -> None:
     )
     assert my_member.first_name == "Brendan"
     assert my_member.last_name == "Gleason"
-    assert my_member.name == "Brendan Gleason"
+    assert my_member.full_name == "Brendan Gleason"
     assert my_member.roles == []
     assert my_member.subgroups == []
     assert str(my_member) == "Member 'Brendan Gleason' (uid ends '...189')"
