@@ -42,7 +42,7 @@ class Member:
             f"(uid ends '...{self.uid[-3:]}')"
         )
 
-    @property  # type: ignore[no-redef]
+    @property
     def full_name(self: Member) -> str:
         """Return the member's full name."""
         return f"{self.first_name} {self.last_name}"
