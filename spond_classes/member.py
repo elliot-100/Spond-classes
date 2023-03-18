@@ -27,8 +27,6 @@ class Member:
     last_name: str  # from API 'lastName'
     roles: list[Role] = field(default_factory=list)  # from API 'roles'
     subgroups: list[Subgroup] = field(default_factory=list)  # from API 'subGroups'
-    name: str = field(init=False)  # derived
-    _name: str = field(init=False)
 
     def __repr__(self: Member) -> str:
         """Return string representation."""
@@ -48,10 +46,6 @@ class Member:
     def name(self: Member) -> str:
         """Return the member's full name."""
         return f"{self.first_name} {self.last_name}"
-
-    @name.setter
-    def name(self: Member, name: str) -> None:
-        self._name = name
 
     @staticmethod
     def from_dict(member_data: dict) -> Member:
