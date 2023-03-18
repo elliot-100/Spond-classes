@@ -10,20 +10,41 @@ from .subgroup import Subgroup
 
 @dataclass
 class Group:
-    """Group.
+    """Represents a group in the Spond system.
 
-    May contain zero, one or more SpondMembers.
-    May contain zero, one or more SpondSubgroups.
+    An individual may have access to mutiple Groups, but they are independent: Members,
+    Events and Roles are not shared across Groups.
+
+    A Group has zero, one or more Members.
+    A Group has zero, one or more Subgroups.
+
+    Attributes
+    ----------
+    uid : str
+        id of the Group.
+        'id' in API, but 'id' is a reserved term and the `spond` package uses `uid`.
+    members : list[Member]
+        Members belonging to the Group.
+        Derived from 'members' in API, but returns Member instances instead of dicts.
+    name : str
+        Name of the Group.
+        'name' in API.
+    roles : list[Role]
+        Roles belonging to the Group.
+        Derived from 'roles' in API, but returns Role instances instead of dicts.
+    subgroups : list[Subgroup]
+        The Subgroups belonging to the Group.
+        Derived from 'subgroups' in API, but returns Subgroup instances instead of dicts.
     """
 
-    uid: str  # from API 'id'
-    name: str  # from API 'name'
+    # Required params, populated by implicit Group.__init__().
+    uid: str
+    name: str
+
+    # Populated by `Group.from_dict()`, as they rely on full Group data:
     members: list[Member] = field(default_factory=list, repr=False)
-    # derived from API 'members', but uses object refs instead of uid.
-    subgroups: list[Subgroup] = field(default_factory=list, repr=False)
-    # derived from API 'subgroups'
     roles: list[Role] = field(default_factory=list, repr=False)
-    # derived from API 'roles'
+    subgroups: list[Subgroup] = field(default_factory=list, repr=False)
 
     def __str__(self: Group) -> str:
         """Return simple human-readable description."""

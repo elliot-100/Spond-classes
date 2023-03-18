@@ -10,15 +10,29 @@ if TYPE_CHECKING:
 
 @dataclass
 class Role:
-    """Spond role.
+    """Represents a role in the Spond system.
 
-    Belongs to one Group.
-    A Member may have zero, one or more SpondRoles.
+    A Role belongs to one Group.
+    A Member has zero, one or more Roles.
+
+    Attributes
+    ----------
+    uid : str
+        id of the Role.
+        'id' in API, but 'id' is a reserved term and the `spond` package uses `uid`.
+    name : str
+        Name of the Role.
+        'name' in API.
+    members : list[Member]
+        Members with the Role.
     """
 
-    uid: str  # from API 'id'
-    name: str  # from API 'name'
-    members: list[Member] = field(default_factory=list, repr=False)  # derived
+    # Required params, populated by implicit Role.__init__().
+    uid: str
+    name: str
+
+    # Populated by `Group.from_dict()`, as they rely on full Group data:
+    members: list[Member] = field(default_factory=list, repr=False)
 
     @staticmethod
     def from_dict(role: dict) -> Role:
