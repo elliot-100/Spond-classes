@@ -4,10 +4,10 @@
 
 [Spond](https://spond.com/welcome) is a team/group-oriented events system.
 
-The unofficial Python [`Spond` library package](https://github.com/Olen/Spond/) gets
+The unofficial Python [`spond` library package](https://github.com/Olen/Spond/) gets
 data from the Spond API and returns `dict` objects.
 
-This unofficial Python `Spond-classes` package parses those `dict` objects to create
+This unofficial Python `spond-classes` package parses those `dict` objects to create
 class instances, i.e. provides an object abstraction layer.
 
 Experimental, very partial, read-only implementation.
@@ -40,7 +40,7 @@ poetry add git+https://github.com/elliot-100/spond-classes.git@v0.6.0
 
 ## Key features
 
-* Create `Group` class instance from the dict returned by the corresponding `Spond`
+* Create `Group` class instance from the dict returned by the corresponding `spond`
 method:
 
 ```
