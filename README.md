@@ -78,9 +78,7 @@ Role.name: str
 Subgroup.uid: str
 Subgroup.members: List[Member]
 Subgroup.name: str
-
-It's also possible to create `Member.from_dict()`, `Role.from_dict()`,
-`Subgroup.from_dict()`.
+```
 
 * Create `Event` class instance from the dict returned by the corresponding `Spond`
 method:
@@ -101,6 +99,9 @@ Event.unanswered_uids: list
 Event.waiting_list_uids: list
 Event.unconfirmed_uids: list
 ```
+It's also possible to create `Member.from_dict()`, `Role.from_dict()`,
+`Subgroup.from_dict()`.
+
 ## Example code
 
 Adapting the example code in [`Spond`](https://github.com/Olen/Spond/) README:
