@@ -35,18 +35,18 @@ class Role:
     members: list[Member] = field(default_factory=list, repr=False)
 
     @staticmethod
-    def from_dict(role: dict) -> Role:
+    def from_dict(role_data: dict) -> Role:
         """Create a Role object from relevant dict.
 
         Parameters
         ----------
-        role
+        role_data
             Dict representing the role.
         """
-        if not isinstance(role, dict):
+        if not isinstance(role_data, dict):
             raise TypeError
-        uid = role["id"]
-        name = role["name"]
+        uid = role_data["id"]
+        name = role_data["name"]
 
         return Role(
             uid,
