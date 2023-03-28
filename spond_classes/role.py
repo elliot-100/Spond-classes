@@ -1,4 +1,4 @@
-"""Custom classes for Spond entities, and methods to create them."""
+"""Role class."""
 from __future__ import annotations
 
 from dataclasses import dataclass, field
@@ -36,7 +36,13 @@ class Role:
 
     @staticmethod
     def from_dict(role: dict) -> Role:
-        """Create a Role object from relevant dict."""
+        """Create a Role object from relevant dict.
+
+        Parameters
+        ----------
+        role
+            Dict representing the role.
+        """
         if not isinstance(role, dict):
             raise TypeError
         uid = role["id"]

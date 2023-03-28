@@ -1,4 +1,4 @@
-"""Custom classes for Spond entities, and methods to create them."""
+"""Event class."""
 from __future__ import annotations
 
 from dataclasses import dataclass, field
@@ -54,7 +54,13 @@ class Event:
 
     @staticmethod
     def from_dict(event_data: dict) -> Event:
-        """Create a Event object from relevant dict."""
+        """Create an Event object from relevant dict.
+
+        Parameters
+        ----------
+        event_data
+            Dict representing the event, as returned by `spond.get_event()'.
+        """
         if not isinstance(event_data, dict):
             raise TypeError
         uid = event_data["id"]

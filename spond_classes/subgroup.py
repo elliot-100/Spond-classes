@@ -1,4 +1,4 @@
-"""Custom classes for Spond entities, and methods to create them."""
+"""Subgroup class."""
 from __future__ import annotations
 
 from dataclasses import dataclass, field
@@ -40,7 +40,13 @@ class Subgroup:
 
     @staticmethod
     def from_dict(subgroup_data: dict) -> Subgroup:
-        """Create a Subgroup object from relevant dict."""
+        """Create a Subgroup object from relevant dict.
+
+        Parameters
+        ----------
+        subgroup_data
+            Dict representing the subgroup.
+        """
         if not isinstance(subgroup_data, dict):
             raise TypeError
         uid = subgroup_data["id"]

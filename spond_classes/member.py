@@ -1,4 +1,4 @@
-"""Custom classes for Spond entities, and methods to create them."""
+"""Member class."""
 from __future__ import annotations
 
 from dataclasses import dataclass, field
@@ -78,7 +78,13 @@ class Member:
 
     @staticmethod
     def from_dict(member_data: dict) -> Member:
-        """Create a Member object from relevant dict."""
+        """Create a Member object from relevant dict.
+
+        Parameters
+        ----------
+        member_data
+            Dict representing the member, as returned by `spond.get_person()'.
+        """
         if not isinstance(member_data, dict):
             raise TypeError
         uid = member_data["id"]

@@ -78,7 +78,10 @@ Role.name: str
 Subgroup.uid: str
 Subgroup.members: List[Member]
 Subgroup.name: str
-```
+
+It's also possible to create `Member.from_dict()`, `Role.from_dict()`,
+`Subgroup.from_dict()`.
+
 * Create `Event` class instance from the dict returned by the corresponding `Spond`
 method:
 

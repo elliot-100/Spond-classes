@@ -1,8 +1,4 @@
-"""Tests for Event class.
-
-Note: To generate a representative 32-character hex string ID:
-    secrets.token_hex(16).upper()
-"""
+"""Tests for Event class."""
 
 from datetime import datetime, timezone
 
