@@ -66,7 +66,7 @@ def simple_subgroup_data() -> dict:
 
 @pytest.fixture()
 def simple_event_data() -> dict:
-    """Represent a single Event.
+    """Represent the simplest possible Event in this implementation.
 
     For testing Event in isolation.
     Item from 'events' (root).
@@ -87,10 +87,12 @@ def simple_event_data() -> dict:
 
 @pytest.fixture()
 def complex_event_data() -> dict:
-    """Represent the simplest possible Event in this implementation.
+    """Represent a single Event.
 
-    All supported input fields are supplied.
     Item from 'events' (root).
+    All supported Event input fields are supplied.
+    `Ids` in responses contain `uid`s of members in `complex_group_data()`
+
     """
     return {
         "id": "A390CE5396D2F5C3015F53E171EC59D5",
@@ -98,24 +100,19 @@ def complex_event_data() -> dict:
         "startTimestamp": "2021-07-06T06:00:00Z",
         "responses": {
             "acceptedIds": [
-                "B24FA75A4CCBC63199A57361E88B0646",
-                "C7BCC3B8A95DCF82DFFD27B2B30C8FA2",
+                "6F63AF02CE05328153ABA477C76E6189",
             ],
             "declinedIds": [
                 "B4C5339E366FB5350310F2F8EA069F41",
-                "9520035580A968B6BE26BA2AC9EE5617",
             ],
             "unansweredIds": [
                 "3E546CDE2EAE242C1B8281C2042B5990",
-                "D1F1866D652FDBCC7433602B2CE0017F",
             ],
             "waitinglistIds": [
                 "0362B36507E156365471B64574EB6764",
-                "AA060BEE5ABB937BD00F4A16C560F267",
             ],
             "unconfirmedIds": [
                 "2D1BB37608F09511FD5F280D219DFD97",
-                "49C2447E4ADE8005A9652B24F95E4F6F",
             ],
         },
     }
@@ -136,20 +133,23 @@ def simple_group_data() -> dict:
 
 @pytest.fixture()
 def complex_group_data() -> dict:
-    """Represent a single Group with a single Member, single Subgroup, single Role.
+    """Represent a single Group with multiple Members, single Subgroup, single Role.
 
-    The Member is in the Subgroup, and has the Role.
-    All supported input fields are supplied.
     Item from 'groups' (root).
+    All supported Group input fields are supplied.
+
+    members[0] is in the Subgroup, and has the Role.
+    `uid`s of members are used in `complex_event_data()`
     """
     return {
         "id": "20EA715745389FCDED2C280A8ACB74A6",
+        "name": "Group A",
         "members": [
             {
                 "createdTime": "2022-03-24T16:36:29Z",
                 "email": "brendan@example.com",
                 "firstName": "Brendan",
-                "id": "6F63AF02CE05328153ABA477C76E6189",
+                "id": "6F63AF02CE05328153ABA477C76E6189",  # accepted
                 "lastName": "Gleason",
                 "phoneNumber": "+123456789",
                 "profile": {
@@ -162,8 +162,31 @@ def complex_group_data() -> dict:
                     "BB6B3C3592C5FC71DBDD5258D45EF6D4",
                 ],
             },
+            {
+                "createdTime": "2022-03-24T16:36:29Z",
+                "firstName": "",
+                "id": "0362B36507E156365471B64574EB6764",  # waiting list
+                "lastName": "",
+            },
+            {
+                "createdTime": "2022-03-24T16:36:29Z",
+                "firstName": "",
+                "id": "B4C5339E366FB5350310F2F8EA069F41",  # declined
+                "lastName": "",
+            },
+            {
+                "createdTime": "2022-03-24T16:36:29Z",
+                "firstName": "",
+                "id": "2D1BB37608F09511FD5F280D219DFD97",  # unconfirmed
+                "lastName": "",
+            },
+            {
+                "createdTime": "2022-03-24T16:36:29Z",
+                "firstName": "",
+                "id": "3E546CDE2EAE242C1B8281C2042B5990",  # unanswered
+                "lastName": "",
+            },
         ],
-        "name": "Group A",
         "subGroups": [
             {
                 "id": "BB6B3C3592C5FC71DBDD5258D45EF6D4",

@@ -2,12 +2,16 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from enum import Enum
 from typing import TYPE_CHECKING
 
 from dateutil import parser
 
 if TYPE_CHECKING:
     from datetime import datetime
+
+    from .group import Group
+    from .member import Member
 
 
 @dataclass
@@ -39,6 +43,9 @@ class Event:
         `responses` -> `unconfirmedIds` in API.
     waiting_list_uids : list[str]
         `responses` -> `waitinglistIds` in API.
+    accepted_members : list[]
+        Derived from `responses` -> `accepted_uids` in API.
+
     """
 
     # Required params, populated by implicit Event.__init__().
@@ -52,6 +59,25 @@ class Event:
     unanswered_uids: list = field(default_factory=list, repr=False)
     waiting_list_uids: list = field(default_factory=list, repr=False)
     unconfirmed_uids: list = field(default_factory=list, repr=False)
+
+    accepted_members: list = field(default_factory=list, repr=False)
+    declined_members: list = field(default_factory=list, repr=False)
+    unanswered_members: list = field(default_factory=list, repr=False)
+    waiting_list_members: list = field(default_factory=list, repr=False)
+    unconfirmed_members: list = field(default_factory=list, repr=False)
+
+    class ResponseCategory(Enum):
+        """Represents possible response categories.
+
+        Values are used to reference fields.
+
+        """
+
+        ACCEPTED = "accepted"
+        DECLINED = "declined"
+        UNANSWERED = "unanswered"
+        UNCONFIRMED = "unconfirmed"
+        WAITING_LIST = "waiting_list"
 
     def __str__(self) -> str:
         """Return simple human-readable description.
@@ -92,3 +118,21 @@ class Event:
             waiting_list_uids,
             unconfirmed_uids,
         )
+
+    def get_responses(
+        self, response_category: ResponseCategory, group: Group,
+    ) -> list[Member]:
+        """Get the Members from response category.
+
+        Parameters
+        ----------
+        response_category
+            ACCEPTED | DECLINED | UNANSWERED | UNCONFIRMED | WAITING_LIST
+        group
+
+        Returns
+        -------
+        List of Members in the response category.
+        """
+        uids = getattr(self, f"{response_category.value}_uids")
+        return [group.member_by_id(uid) for uid in uids]

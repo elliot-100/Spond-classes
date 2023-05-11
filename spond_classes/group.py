@@ -113,7 +113,8 @@ class Group:
         for subgroup in self.subgroups:
             if subgroup.uid == subgroup_uid:
                 return subgroup
-        raise IndexError
+        errmsg = f"No Subgroup with uid={subgroup_uid} in {self}"
+        raise IndexError(errmsg)
 
     def member_by_id(self, member_uid: str) -> Member:
         """Return the child Member with matching id, or an error.
@@ -126,7 +127,8 @@ class Group:
         for member in self.members:
             if member.uid == member_uid:
                 return member
-        raise IndexError
+        errmsg = f"No Member with uid={member_uid} in {self}"
+        raise IndexError(errmsg)
 
     def role_by_id(self, role_uid: str) -> Role:
         """Return the child Role with matching id, or an error.
@@ -139,7 +141,8 @@ class Group:
         for role in self.roles:
             if role.uid == role_uid:
                 return role
-        raise IndexError
+        errmsg = f"No Role with uid={role_uid} in {self}"
+        raise IndexError(errmsg)
 
     @staticmethod
     def _create_children(
