@@ -71,3 +71,32 @@ def test_from_dict_complex(complex_event_data: dict) -> None:
     ]
     assert my_event.start_time == datetime(2022, 11, 4, 6, 0, tzinfo=timezone.utc)
     assert str(my_event) == "Event 'Event 2' on 2022-11-04"
+
+
+def test_get_responses__accepted(
+    complex_event_data: dict,
+    complex_group_data: dict,
+) -> None:
+    """Test that 'accepted' Members  instances are returned."""
+    # arrange
+    my_group = Group.from_dict(complex_group_data)
+    my_event = Event.from_dict(complex_event_data)
+
+    # act
+    accepted_members = my_event.get_responses(Event.ResponseCategory.ACCEPTED, my_group)
+    declined_members = my_event.get_responses(Event.ResponseCategory.DECLINED, my_group)
+    unanswered_members = my_event.get_responses(
+        Event.ResponseCategory.UNANSWERED, my_group,
+    )
+    waiting_list_members = my_event.get_responses(
+        Event.ResponseCategory.WAITING_LIST, my_group,
+    )
+    unconfirmed_members = my_event.get_responses(
+        Event.ResponseCategory.UNCONFIRMED, my_group,
+    )
+
+    assert accepted_members[0].uid == "6F63AF02CE05328153ABA477C76E6189"
+    assert declined_members[0].uid == "B4C5339E366FB5350310F2F8EA069F41"
+    assert unanswered_members[0].uid == "3E546CDE2EAE242C1B8281C2042B5990"
+    assert waiting_list_members[0].uid == "0362B36507E156365471B64574EB6764"
+    assert unconfirmed_members[0].uid == "2D1BB37608F09511FD5F280D219DFD97"

@@ -3,6 +3,7 @@ Responses, Recipients, EventRecipientsGroup, EventRecipientsGroupMember.
 """
 
 from datetime import datetime
+from enum import Enum
 
 from pydantic import BaseModel, Field
 
@@ -146,6 +147,20 @@ class Responses(BaseModel):
     unconfirmed_uids: list[str] = Field(alias="unconfirmedIds")
 
 
+class ResponseCategory(Enum):
+    """Represents possible response categories.
+
+    Values are used to reference fields.
+
+    """
+
+    ACCEPTED = "accepted"
+    DECLINED = "declined"
+    UNANSWERED = "unanswered"
+    UNCONFIRMED = "unconfirmed"
+    WAITING_LIST = "waiting_list"
+
+
 class Event(BaseModel):
     """Represents an event in the Spond system.
 
@@ -178,3 +193,23 @@ class Event(BaseModel):
         Date is included because heading is unlikely to be unique.
         """
         return f"Event '{self.heading}' on {self.start_time.date()}"
+
+
+
+    def get_responses(
+        self, response_category: ResponseCategory, group: Group,
+    ) -> list[Member]:
+        """Get the Members from response category.
+
+        Parameters
+        ----------
+        response_category
+            ACCEPTED | DECLINED | UNANSWERED | UNCONFIRMED | WAITING_LIST
+        group
+
+        Returns
+        -------
+        List of Members in the response category.
+        """
+        uids = getattr(self, f"{response_category.value}_uids")
+        return [group.member_by_id(uid) for uid in uids]

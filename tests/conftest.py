@@ -106,11 +106,13 @@ def simple_group_data() -> dict:
 
 @pytest.fixture()
 def complex_group_data() -> dict:
-    """Represent a single Group with a single Member, single Subgroup, single Role.
+    """Represent a single Group with multiple Members, single Subgroup, single Role.
 
-    The Member is in the Subgroup, and has the Role.
-    All supported input fields are supplied.
     Item from 'groups' (root).
+    All supported Group input fields are supplied.
+    members[0] is in the Subgroup, and has the Role.
+    Other members are minimal.
+    `uid`s of members match those in `complex_event_data()`
     """
     return {
         "id": "20EA715745389FCDED2C280A8ACB74A6",
@@ -119,7 +121,7 @@ def complex_group_data() -> dict:
                 "createdTime": "2022-03-24T16:36:29Z",
                 "email": "brendan@example.com",
                 "firstName": "Brendan",
-                "id": "6F63AF02CE05328153ABA477C76E6189",
+                "id": "6F63AF02CE05328153ABA477C76E6189",  # member[0]: accepted
                 "lastName": "Gleason",
                 "phoneNumber": "+123456789",
                 "profile": {
@@ -131,6 +133,34 @@ def complex_group_data() -> dict:
                 "subGroups": [
                     "BB6B3C3592C5FC71DBDD5258D45EF6D4",
                 ],
+            },
+            {
+                "createdTime": "2022-03-24T16:36:29Z",
+                "firstName": "Zoë",
+                "id": "0362B36507E156365471B64574EB6764",  # member[1]: waiting list
+                "lastName": "Kravitz",
+                "subGroups": [],
+            },
+            {
+                "createdTime": "2022-03-24T16:36:29Z",
+                "firstName": "Robert",
+                "id": "B4C5339E366FB5350310F2F8EA069F41",  # member[2]: declined
+                "lastName": "Pattinson",
+                "subGroups": [],
+            },
+            {
+                "createdTime": "2022-03-24T16:36:29Z",
+                "firstName": "Hailee",
+                "id": "2D1BB37608F09511FD5F280D219DFD97",  # member[3]: unconfirmed
+                "lastName": "Steinfeld",
+                "subGroups": [],
+            },
+            {
+                "createdTime": "2022-03-24T16:36:29Z",
+                "firstName": "Lily",
+                "id": "3E546CDE2EAE242C1B8281C2042B5990",  # member[4]: unanswered
+                "lastName": "Tomlin",
+                "subGroups": [],
             },
         ],
         "name": "Group B",
@@ -184,6 +214,7 @@ def complex_event_data() -> dict:
     """Represent a single Event with Responses.
 
     All supported input fields are supplied.
+    `Ids` in responses contain `uid`s of members in `complex_group_data()`
     Item from 'events' (root).
     """
     return {
