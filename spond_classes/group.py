@@ -17,7 +17,7 @@ class Group:
 
     A Group has zero, one or more Members.
     A Group has zero, one or more Subgroups.
-    NB: relationship to Events isn't yet implemented.
+    NB: relationship to Event isn't yet implemented.
 
     Attributes
     ----------

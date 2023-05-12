@@ -14,8 +14,8 @@ if TYPE_CHECKING:
 class Event:
     """Represents an event in the Spond system.
 
-    An event belongs to one parent Group.
-    NB: relationship to Members (rather than just their ids) isn't yet implemented.
+    NB: relationship to Group isn't yet implemented.
+    NB: relationship to Member (rather than just their ids) isn't yet implemented.
 
     Attributes
     ----------
