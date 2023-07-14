@@ -120,13 +120,13 @@ async def main():
     group_data = await s.get_group(group_id)
     await s.clientsession.close()
 
-    # create class instance:
-    group = spond_classes.Group.from_dict(group)
+    # Now we can create a class instance ...
+    group = spond_classes.Group.from_dict(group_data)
 
-    # use class properties instead of dict keys:
+    # ... use class properties instead of dict keys ...
     print(group.name)
 
-    # access child instances and their properties:
+    # ... and access child instances and their properties
     for member in group.members:
         print(member.full_name)
 
