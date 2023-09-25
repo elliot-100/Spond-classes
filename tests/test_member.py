@@ -60,7 +60,13 @@ def test_from_dict_simplest(simplest_member_data: dict) -> None:
 
     assert my_member.uid == "6F63AF02CE05328153ABA477C76E6189"
     assert my_member.created_time == datetime(
-        2022, 3, 24, 16, 36, 29, tzinfo=timezone.utc
+        2022,
+        3,
+        24,
+        16,
+        36,
+        29,
+        tzinfo=timezone.utc,
     )
     assert my_member.first_name == "Brendan"
     assert my_member.last_name == "Gleason"

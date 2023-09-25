@@ -27,7 +27,8 @@ class Event:
         'heading' in API.
     start_time : datetime.
         Datetime at which the Event starts.
-        Derived from 'startTimestamp' in API, but returns a datetime instead of a string.
+        Derived from 'startTimestamp' in API, but returns a datetime instead of
+        a string.
     accepted_uids : list[str]
         `responses` -> `acceptedIds` in API.
     declined_uids : list[str]
@@ -37,7 +38,7 @@ class Event:
     unconfirmed_uids : list[str]
         `responses` -> `unconfirmedIds` in API.
     waiting_list_uids : list[str]
-        `responses` -> `waitinglistIds' in API.
+        `responses` -> `waitinglistIds` in API.
     """
 
     # Required params, populated by implicit Event.__init__().
@@ -59,7 +60,7 @@ class Event:
         Parameters
         ----------
         event_data
-            Dict representing the event, as returned by `spond.get_event()'.
+            Dict representing the event, as returned by `spond.get_event()`.
         """
         if not isinstance(event_data, dict):
             raise TypeError

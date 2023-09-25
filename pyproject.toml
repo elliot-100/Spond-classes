@@ -18,7 +18,6 @@ spond = "^0.99.1"
 black = "^23.1.0"
 isort = "^5.11.4"
 pre-commit = "^3.1.1"
-pylint = "^2.16.1"
 ruff = "^0.0.291"
 
 [tool.poetry.group.test.dependencies]
@@ -37,6 +36,20 @@ profile = "black"
 warn_unused_configs = true
 strict = true
 disallow_any_generics = false
+
+[tool.ruff]
+# Enable rulesets:
+# flake8-ANNotations, flake8-COMmas, pyDocstyle, pycodestylE, pyFlakes,
+# flake8-Future-Annotations, flake8-bandit (S)
+select = ["ANN", "COM", "D", "E", "F", "FA", "S"]
+
+# Ignore rules:
+#  Missing type annotation for `self` in method
+ignore = ["ANN101"]
+
+[tool.ruff.per-file-ignores]
+# Use of `assert` detected
+"**/{tests}/*" = ["S101"]
 
 [tool.ruff.pydocstyle]
 convention = "numpy"

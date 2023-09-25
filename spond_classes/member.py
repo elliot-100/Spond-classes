@@ -59,7 +59,10 @@ class Member:
 
     def __repr__(self: Member) -> str:
         """Return string representation."""
-        return f"Member(uid='{self.uid}', first_name='{self.first_name}', last_name='{self.last_name}')"
+        return (
+            f"Member(uid='{self.uid}', first_name='{self.first_name}', "
+            f"last_name='{self.last_name}')"
+        )
 
     def __str__(self: Member) -> str:
         """Return simple human-readable description.

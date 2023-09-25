@@ -35,7 +35,8 @@ class Group:
         Derived from 'roles' in API, but returns Role instances instead of dicts.
     subgroups : list[Subgroup]
         The Subgroups belonging to the Group.
-        Derived from 'subgroups' in API, but returns Subgroup instances instead of dicts.
+        Derived from 'subgroups' in API, but returns Subgroup instances instead
+        of dicts.
     """
 
     # Required params, populated by implicit Group.__init__().
