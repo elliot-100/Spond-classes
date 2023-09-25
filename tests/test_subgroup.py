@@ -1,6 +1,5 @@
 """Tests for Subgroup class."""
 
-
 from spond_classes import Subgroup
 from tests.utils import public_attributes, sets_equal
 
@@ -26,8 +25,7 @@ def test_create() -> None:
 
 
 def test_from_dict(simplest_subgroup_data: dict) -> None:
-    """Test that a minimal Subgroup is created from the simplest possible dict
-    representation.
+    """Test that a Subgroup is created from the simplest possible dict representation.
 
     Verify that only expected attributes exist.
     Verify values of all attributes.

@@ -1,6 +1,5 @@
 """Tests for Role class."""
 
-
 from spond_classes import Role
 from tests.utils import public_attributes, sets_equal
 

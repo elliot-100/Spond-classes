@@ -41,7 +41,7 @@ poetry add git+https://github.com/elliot-100/spond-classes.git@v0.6.0
 ## Key features
 
 * Create `Group` class instance from the dict returned by the corresponding `spond`
-method:
+  method:
 
 ```
 spond_classes.Group.from_dict()
@@ -60,8 +60,8 @@ Group.subgroups: List[Subgroup]
 Group.subgroup_by_id() -> Subgroup
 ```
 
-
 * Also provides access to child instances - `Group` members, roles and subgroups:
+
 ```
 Member.uid: str
 Member.created_time: datetime
@@ -81,7 +81,7 @@ Subgroup.name: str
 ```
 
 * Create `Event` class instance from the dict returned by the corresponding `Spond`
-method:
+  method:
 
 ```
 spond_classes.Event.from_dict()
@@ -99,6 +99,7 @@ Event.unanswered_uids: list
 Event.waiting_list_uids: list
 Event.unconfirmed_uids: list
 ```
+
 It's also possible to create `Member.from_dict()`, `Role.from_dict()`,
 `Subgroup.from_dict()`.
 

@@ -1,6 +1,5 @@
 """Utilities for testing."""
 
-
 from inspect import getmembers
 from types import FunctionType
 

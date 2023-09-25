@@ -1,6 +1,5 @@
 """Tests for Group class and child classes."""
 
-
 from spond_classes import Group
 from tests.utils import public_attributes, sets_equal
 
@@ -30,8 +29,7 @@ def test_create() -> None:
 
 
 def test_core_from_dict_simplest(simplest_group_data: dict) -> None:
-    """Test that a Group is created from the simplest possible dict
-    representation.
+    """Test that a Group is created from the simplest possible dict representation.
 
     Verify that only expected attributes exist.
     Verify values of all attributes.
@@ -55,8 +53,7 @@ def test_core_from_dict_simplest(simplest_group_data: dict) -> None:
 
 
 def test_from_dict_simplest(simplest_group_data: dict) -> None:
-    """Test that a minimal Group is created from the simplest possible dict
-    representation.
+    """Test that a Group is created from the simplest possible dict representation.
 
     Verify that only expected attributes exist.
     Verify values of all attributes.
