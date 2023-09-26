@@ -8,11 +8,23 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 Historic and pre-release versions aren't necessarily included.
 
 
+## [UNRELEASED] - TBC
+
+### Added
+
+### Changed
+
+- Documentation: Update README for install from PyPI instead of GitHub
+
+### Fixed
+
+### Removed
+
 ## [0.7.2] - 2023-09-26
 
 ### Added
 
-- This changelog
+- Documentation: This changelog
 
 - Enforce linting with isort, black and ruff in CI using GitHub Actions
 
@@ -20,5 +32,5 @@ Historic and pre-release versions aren't necessarily included.
 
 - Update dev/test dependencies: ruff
 
-
+[UNRELEASED]: https://github.com/elliot-100/Spond-classes/compare/v0.7.2...HEAD
 [0.7.2]: https://github.com/elliot-100/Spond-classes/compare/v0.7.1...v0.7.2
