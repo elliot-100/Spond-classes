@@ -86,7 +86,7 @@ class Member:
         Parameters
         ----------
         member_data
-            Dict representing the member, as returned by `spond.get_person()'.
+            Dict representing the member, as returned by `spond.get_person()`.
         """
         if not isinstance(member_data, dict):
             raise TypeError

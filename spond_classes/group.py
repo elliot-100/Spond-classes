@@ -59,7 +59,7 @@ class Group:
         Parameters
         ----------
         group_data
-            Dict representing the group, as returned by `spond.get_group()'.
+            Dict representing the group, as returned by `spond.get_group()`.
         """
         if not isinstance(group_data, dict):
             raise TypeError
@@ -74,7 +74,7 @@ class Group:
         Parameters
         ----------
         group_data
-            Dict representing the group, as returned by `spond.get_group()'.
+            Dict representing the group, as returned by `spond.get_group()`.
         """
         group = Group.core_from_dict(group_data)
 
