@@ -8,7 +8,7 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 Historic and pre-release versions aren't necessarily included.
 
 
-## [0.7.3] - TBC
+## [0.7.3] - 2023-09-27
 
 ### Added
 
