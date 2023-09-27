@@ -4,13 +4,14 @@ version = "0.7.2"
 description = "Experimental Python class abstraction layer for `spond` package."
 authors = ["elliot-100 <3186037+elliot-100@users.noreply.github.com>"]
 readme = "README.md"
-homepage = "https://https://github.com/elliot-100/Spond-classes"
-repository = "https://https://github.com/elliot-100/Spond-classes"
+homepage = "https://github.com/elliot-100/Spond-classes"
+repository = "https://github.com/elliot-100/Spond-classes"
 packages = [{include = "spond_classes"}]
+include = ["CHANGELOG.md"]
 license = "GPL 3.0"
 
 [tool.poetry.dependencies]
-python = ">=3.8,<4.0"
+python = "^3.8"
 python-dateutil = "^2.8.2"
 spond = "^0.99.1"
 
