@@ -53,6 +53,7 @@ Member.created_time: datetime
 Member.first_name: str
 Member.last_name: str
 Member.full_name: str
+Member.phone_number: str
 Member.roles: List[Role]
 Member.subgroups: List[Subgroup]
 

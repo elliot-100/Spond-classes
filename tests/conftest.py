@@ -18,6 +18,7 @@ def simple_member_data() -> dict:
         "firstName": "Brendan",
         "id": "6F63AF02CE05328153ABA477C76E6189",
         "lastName": "Gleason",
+        "phoneNumber": "+123456789",
     }
 
 
@@ -118,6 +119,7 @@ def complex_group_data() -> dict:
                 "firstName": "Brendan",
                 "id": "6F63AF02CE05328153ABA477C76E6189",
                 "lastName": "Gleason",
+                "phoneNumber": "+123456789",
                 "roles": [
                     "29A7724B47ABEE7B3C9DC347E13A50B4",
                 ],

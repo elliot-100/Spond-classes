@@ -20,6 +20,7 @@ def test_from_dict_simple(simple_member_data: dict) -> None:
         "first_name",
         "last_name",
         "full_name",
+        "phone_number",
         "roles",
         "subgroups",
     ]
@@ -39,6 +40,7 @@ def test_from_dict_simple(simple_member_data: dict) -> None:
     assert my_member.first_name == "Brendan"
     assert my_member.last_name == "Gleason"
     assert my_member.full_name == "Brendan Gleason"
+    assert my_member.phone_number == "+123456789"
     assert (
         my_member.roles == []
     )  # Tested as part of complex Group, as it relies on full Group data.

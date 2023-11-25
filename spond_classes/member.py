@@ -33,11 +33,11 @@ class Member:
     email : str
         'email' in API.
     first_name : str
-        First name of the Member.
         'firstName' in API.
     last_name : str
-        Last name of the Member.
         'lastName' in API.
+    phone_number : str
+        'phoneNumber' in API.
     roles : list[Role]
         The Member's Roles.
         'roles' in API.
@@ -55,6 +55,7 @@ class Member:
     email: str
     first_name: str
     last_name: str
+    phone_number: str
 
     # Populated by `Group.from_dict()`, as they rely on full Group data:
     roles: list[Role] = field(default_factory=list)
@@ -98,4 +99,5 @@ class Member:
         email = member_data["email"]
         first_name = member_data["firstName"]
         last_name = member_data["lastName"]
-        return Member(uid, created_time, email, first_name, last_name)
+        phone_number = member_data["phoneNumber"]
+        return Member(uid, created_time, email, first_name, last_name, phone_number)

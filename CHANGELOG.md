@@ -12,7 +12,7 @@ Historic and pre-release versions aren't necessarily included.
 
 ### Added
 
-- `Member.email` attribute
+- `Member.email`, `Member.phone_number` attributes
 
 ### Changed
 
