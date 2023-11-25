@@ -14,6 +14,7 @@ def simple_member_data() -> dict:
     """
     return {
         "createdTime": "2022-03-24T16:36:29Z",
+        "email": "brendan@example.com",
         "firstName": "Brendan",
         "id": "6F63AF02CE05328153ABA477C76E6189",
         "lastName": "Gleason",
@@ -113,6 +114,7 @@ def complex_group_data() -> dict:
         "members": [
             {
                 "createdTime": "2022-03-24T16:36:29Z",
+                "email": "brendan@example.com",
                 "firstName": "Brendan",
                 "id": "6F63AF02CE05328153ABA477C76E6189",
                 "lastName": "Gleason",
