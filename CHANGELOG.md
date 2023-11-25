@@ -16,9 +16,9 @@ Historic and pre-release versions aren't necessarily included.
 
 ### Changed
 
-- Simplify tests 
+- Simplify/rearrange tests 
 
-- Update dev/test dependencies: ruff
+- Update dev/test dependencies: black, mypy, pytest, ruff, types-python-dateutil
 
 
 ## [0.7.3] - 2023-09-27
