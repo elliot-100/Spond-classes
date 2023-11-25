@@ -26,6 +26,20 @@ def simple_member_data() -> dict:
 
 
 @pytest.fixture()
+def simple_member_data_missing() -> dict:
+    """Test that missing/restricted data is ignored."""
+    return {
+        "createdTime": "2022-03-24T16:36:29Z",
+        # "email": "brendan@example.com",
+        "firstName": "Brendan",
+        "id": "6F63AF02CE05328153ABA477C76E6189",
+        "lastName": "Gleason",
+        # "phoneNumber".
+        # "profile",
+    }
+
+
+@pytest.fixture()
 def simple_role_data() -> dict:
     """Represent the simplest possible Role in this implementation.
 

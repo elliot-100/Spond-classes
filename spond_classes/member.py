@@ -51,14 +51,14 @@ class Member:
         Provided for convenience.
     """
 
-    # Required params, populated by implicit Member.__init__().
+    # Populated by implicit Member.__init__().
     uid: str
     created_time: datetime
-    email: str
+    email: str | None
     first_name: str
     last_name: str
-    phone_number: str
-    profile_uid: str
+    phone_number: str | None
+    profile_uid: str | None
 
     # Populated by `Group.from_dict()`, as they rely on full Group data:
     roles: list[Role] = field(default_factory=list)
@@ -99,11 +99,24 @@ class Member:
             raise TypeError
         uid = member_data["id"]
         created_time = parser.isoparse(member_data["createdTime"])
-        email = member_data["email"]
         first_name = member_data["firstName"]
         last_name = member_data["lastName"]
-        phone_number = member_data["phoneNumber"]
-        profile_uid = member_data["profile"]["id"]
+
+        # Handle data that may be missing/private
+        email = member_data.get("email")
+        phone_number = member_data.get("phoneNumber")
+        profile = member_data.get("profile")
+        if profile:
+            profile_uid = profile["id"]
+        else:
+            profile_uid = None
+
         return Member(
-            uid, created_time, email, first_name, last_name, phone_number, profile_uid
+            uid,
+            created_time,
+            email,
+            first_name,
+            last_name,
+            phone_number,
+            profile_uid,
         )
