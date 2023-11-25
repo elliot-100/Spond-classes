@@ -18,6 +18,24 @@ def simple_member_data() -> dict:
         "firstName": "Brendan",
         "id": "6F63AF02CE05328153ABA477C76E6189",
         "lastName": "Gleason",
+        "phoneNumber": "+123456789",
+        "profile": {
+            "id": "364C188137AD92DC0F32E1A31A0E1731",
+        },
+    }
+
+
+@pytest.fixture()
+def simple_member_data_missing() -> dict:
+    """Test that missing/restricted data is ignored."""
+    return {
+        "createdTime": "2022-03-24T16:36:29Z",
+        # "email": "brendan@example.com",
+        "firstName": "Brendan",
+        "id": "6F63AF02CE05328153ABA477C76E6189",
+        "lastName": "Gleason",
+        # "phoneNumber".
+        # "profile",
     }
 
 
@@ -118,6 +136,10 @@ def complex_group_data() -> dict:
                 "firstName": "Brendan",
                 "id": "6F63AF02CE05328153ABA477C76E6189",
                 "lastName": "Gleason",
+                "phoneNumber": "+123456789",
+                "profile": {
+                    "id": "364C188137AD92DC0F32E1A31A0E1731",
+                },
                 "roles": [
                     "29A7724B47ABEE7B3C9DC347E13A50B4",
                 ],

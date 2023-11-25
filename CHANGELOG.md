@@ -8,11 +8,11 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 Historic and pre-release versions aren't necessarily included.
 
 
-## UNRELEASED - TBC
+## [0.8.0] UNRELEASED - TBC
 
 ### Added
 
-- `Member.email` attribute
+- `Member.email`, `.phone_number`, `.profile_uid` attributes
 
 ### Changed
 
@@ -44,5 +44,6 @@ Historic and pre-release versions aren't necessarily included.
 - Update dev/test dependencies: ruff
 
 
+[0.8.0]: https://github.com/elliot-100/Spond-classes/compare/v0.7.3...v0.8.0
 [0.7.3]: https://github.com/elliot-100/Spond-classes/compare/v0.7.2...v0.7.3
 [0.7.2]: https://github.com/elliot-100/Spond-classes/compare/v0.7.1...v0.7.2
