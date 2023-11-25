@@ -45,7 +45,7 @@ Group.subgroups: List[Subgroup]
 Group.subgroup_by_id() -> Subgroup
 ```
 
-* Also provides access to child instances - `Group` members, roles and subgroups:
+* Also provides access to child `Member`, `Role`, `Subgroup` instances:
 
 ```
 Member.uid: str
