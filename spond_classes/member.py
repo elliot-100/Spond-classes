@@ -30,6 +30,8 @@ class Member:
         'id' in API, but 'id' is a reserved term and the `spond` package uses `uid`.
     created_time : datetime
         Derived from 'createdTime' in API, but returns a datetime instead of a string.
+    email : str
+        'email' in API.
     first_name : str
         First name of the Member.
         'firstName' in API.
@@ -50,6 +52,7 @@ class Member:
     # Required params, populated by implicit Member.__init__().
     uid: str
     created_time: datetime
+    email: str
     first_name: str
     last_name: str
 
@@ -92,6 +95,7 @@ class Member:
             raise TypeError
         uid = member_data["id"]
         created_time = parser.isoparse(member_data["createdTime"])
+        email = member_data["email"]
         first_name = member_data["firstName"]
         last_name = member_data["lastName"]
-        return Member(uid, created_time, first_name, last_name)
+        return Member(uid, created_time, email, first_name, last_name)

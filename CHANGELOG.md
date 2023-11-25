@@ -10,6 +10,10 @@ Historic and pre-release versions aren't necessarily included.
 
 ## UNRELEASED - TBC
 
+### Added
+
+- `Member.email` attribute
+
 ### Changed
 
 - Simplify tests 

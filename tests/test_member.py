@@ -16,6 +16,7 @@ def test_from_dict_simple(simple_member_data: dict) -> None:
     valid_attributes = [
         "uid",
         "created_time",
+        "email",
         "first_name",
         "last_name",
         "full_name",
@@ -34,6 +35,7 @@ def test_from_dict_simple(simple_member_data: dict) -> None:
         29,
         tzinfo=timezone.utc,
     )
+    assert my_member.email == "brendan@example.com"
     assert my_member.first_name == "Brendan"
     assert my_member.last_name == "Gleason"
     assert my_member.full_name == "Brendan Gleason"
