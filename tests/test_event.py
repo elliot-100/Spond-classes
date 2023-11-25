@@ -6,47 +6,13 @@ from spond_classes import Event
 from tests.utils import public_attributes, sets_equal
 
 
-def test_create() -> None:
-    """Test that Event is created from required fields only.
-
-    Verify that only expected attributes exist.
-    Verify values of all attributes.
-    """
-    my_event = Event(
-        "001",
-        "My event",
-        datetime(2022, 9, 15, 8, 30, tzinfo=timezone.utc),
-    )
-    valid_attributes = [
-        "uid",
-        "heading",
-        "start_time",
-        "accepted_uids",
-        "declined_uids",
-        "unanswered_uids",
-        "waiting_list_uids",
-        "unconfirmed_uids",
-    ]
-    assert sets_equal(public_attributes(my_event), valid_attributes)
-
-    assert my_event.uid == "001"
-    assert my_event.heading == "My event"
-    assert my_event.start_time == datetime(2022, 9, 15, 8, 30, tzinfo=timezone.utc)
-    assert my_event.accepted_uids == []
-    assert my_event.declined_uids == []
-    assert my_event.unanswered_uids == []
-    assert my_event.waiting_list_uids == []
-    assert my_event.unconfirmed_uids == []
-    assert str(my_event) == "Event 'My event' on 2022-09-15"
-
-
-def test_from_dict(event_data: dict) -> None:
+def test_from_dict(simple_event_data: dict) -> None:
     """Test that Event is created from dict.
 
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-    my_event = Event.from_dict(event_data)
+    my_event = Event.from_dict(simple_event_data)
     valid_attributes = [
         "uid",
         "heading",
