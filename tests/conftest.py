@@ -4,8 +4,55 @@ import pytest
 
 
 @pytest.fixture()
-def event_data() -> dict:
+def simple_member_data() -> dict:
+    """Represent the simplest possible Member in this implementation.
+
+    For testing Member in isolation.
+
+    Item from 'groups' -> 'group' -> 'members'.
+
+    """
+    return {
+        "createdTime": "2022-03-24T16:36:29Z",
+        "firstName": "Brendan",
+        "id": "6F63AF02CE05328153ABA477C76E6189",
+        "lastName": "Gleason",
+    }
+
+
+@pytest.fixture()
+def simple_role_data() -> dict:
+    """Represent the simplest possible Role in this implementation.
+
+    For testing Role in isolation.
+
+    Item from 'groups' (root) -> 'roles'.
+    """
+    return {
+        "id": "001",
+        "name": "My role",
+    }
+
+
+@pytest.fixture()
+def simple_subgroup_data() -> dict:
+    """Represent the simplest possible Subgroup in this implementation.
+
+    For testing Subgroup in isolation.
+
+    Item from 'groups' (root) -> 'group' -> 'subGroups'.
+    """
+    return {
+        "id": "8CC576609CF3DCBC44469A799E76B22B",
+        "name": "Subgroup A1",
+    }
+
+
+@pytest.fixture()
+def simple_event_data() -> dict:
     """Represent the simplest possible Event in this implementation.
+
+    For testing Event in isolation.
 
     Item from 'events' (root).
     """
@@ -39,8 +86,10 @@ def event_data() -> dict:
 
 
 @pytest.fixture()
-def simplest_group_data() -> dict:
+def simple_group_data() -> dict:
     """Represent the simplest possible Group in this implementation.
+
+    For testing Event in isolation.
 
     Item from 'groups' (root).
 
@@ -88,43 +137,4 @@ def complex_group_data() -> dict:
                 "name": "Role A2",
             },
         ],
-    }
-
-
-@pytest.fixture()
-def simplest_member_data() -> dict:
-    """Represent the simplest possible Member in this implementation.
-
-    Item from 'groups' -> 'group' -> 'members'.
-
-    """
-    return {
-        "createdTime": "2022-03-24T16:36:29Z",
-        "firstName": "Brendan",
-        "id": "6F63AF02CE05328153ABA477C76E6189",
-        "lastName": "Gleason",
-    }
-
-
-@pytest.fixture()
-def role_data() -> dict:
-    """Represent the simplest possible Role in this implementation.
-
-    Item from 'groups' (root) -> 'roles'.
-    """
-    return {
-        "id": "001",
-        "name": "My role",
-    }
-
-
-@pytest.fixture()
-def simplest_subgroup_data() -> dict:
-    """Represent the simplest possible Subgroup in this implementation.
-
-    Item from 'groups' (root) -> 'group' -> 'subGroups'.
-    """
-    return {
-        "id": "8CC576609CF3DCBC44469A799E76B22B",
-        "name": "Subgroup A1",
     }
