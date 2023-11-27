@@ -78,18 +78,9 @@ class Group:
         """
         group = Group.core_from_dict(group_data)
 
-        # create child SpondMembers
-        group.members = [
-            Member.from_dict(member_data)
-            for member_data in group_data.get("members", [])
-        ]
-        # create child SpondSubgroups
-        group.subgroups = [
-            Subgroup.from_dict(subgroup_data)
-            for subgroup_data in group_data.get("subGroups", [])
-        ]
-        # create child SpondRoles
-        group.roles = [Role.from_dict(role) for role in group_data.get("roles", [])]
+        group.members = Group._create_children(group_data, "members", Member)
+        group.subgroups = Group._create_children(group_data, "subGroups", Subgroup)
+        group.roles = Group._create_children(group_data, "roles", Role)
 
         for member_data in group_data.get("members", []):
             member_data_id = member_data.get("id")
@@ -155,3 +146,12 @@ class Group:
             if role.uid == role_uid:
                 return role
         raise IndexError
+
+    @staticmethod
+    def _create_children(
+        group_data: dict,
+        key: str,
+        child_cls: type[Member | Role | Subgroup],
+    ) -> list:
+        """Create child objects."""
+        return [child_cls.from_dict(item) for item in group_data.get(key, [])]
