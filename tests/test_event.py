@@ -12,7 +12,6 @@ def test_from_dict(simple_event_data: dict) -> None:
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-    my_event = Event.from_dict(simple_event_data)
     valid_attributes = [
         "uid",
         "heading",
@@ -23,8 +22,10 @@ def test_from_dict(simple_event_data: dict) -> None:
         "waiting_list_uids",
         "unconfirmed_uids",
     ]
-    assert sets_equal(public_attributes(my_event), valid_attributes)
+    # act
+    my_event = Event.from_dict(simple_event_data)
 
+    assert sets_equal(public_attributes(my_event), valid_attributes)
     assert my_event.uid == "A390CE5396D2F5C3015F53E171EC59D5"
     assert my_event.heading == "Event 1"
     assert my_event.start_time == datetime(2021, 7, 6, 6, 0, tzinfo=timezone.utc)

@@ -86,7 +86,7 @@ class Event:
             unconfirmed_uids,
         )
 
-    def __str__(self: Event) -> str:
+    def __str__(self) -> str:
         """Return simple human-readable description.
 
         Date is included because heading is unlikely to be unique.

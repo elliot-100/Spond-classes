@@ -34,7 +34,7 @@ class Subgroup:
     # Populated by `Group.from_dict()`, as they rely on full Group data:
     members: list[Member] = field(default_factory=list, repr=False)
 
-    def __str__(self: Subgroup) -> str:
+    def __str__(self) -> str:
         """Return simple human-readable description."""
         return f"Subgroup '{self.name}'"
 

@@ -53,6 +53,6 @@ class Role:
             name,
         )
 
-    def __str__(self: Role) -> str:
+    def __str__(self) -> str:
         """Return simple human-readable description."""
         return f"Role '{self.name}'"
