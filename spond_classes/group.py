@@ -48,7 +48,7 @@ class Group:
     roles: list[Role] = field(default_factory=list, repr=False)
     subgroups: list[Subgroup] = field(default_factory=list, repr=False)
 
-    def __str__(self: Group) -> str:
+    def __str__(self) -> str:
         """Return simple human-readable description."""
         return f"Group '{self.name}'"
 
@@ -117,7 +117,7 @@ class Group:
 
         return group
 
-    def subgroup_by_id(self: Group, subgroup_uid: str) -> Subgroup:
+    def subgroup_by_id(self, subgroup_uid: str) -> Subgroup:
         """Return the child Subgroup with matching id, or an error.
 
         Parameters
@@ -130,7 +130,7 @@ class Group:
                 return subgroup
         raise IndexError
 
-    def member_by_id(self: Group, member_uid: str) -> Member:
+    def member_by_id(self, member_uid: str) -> Member:
         """Return the child Member with matching id, or an error.
 
         Parameters
@@ -143,7 +143,7 @@ class Group:
                 return member
         raise IndexError
 
-    def role_by_id(self: Group, role_uid: str) -> Role:
+    def role_by_id(self, role_uid: str) -> Role:
         """Return the child Role with matching id, or an error.
 
         Parameters

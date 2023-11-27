@@ -64,14 +64,14 @@ class Member:
     roles: list[Role] = field(default_factory=list)
     subgroups: list[Subgroup] = field(default_factory=list)
 
-    def __repr__(self: Member) -> str:
+    def __repr__(self) -> str:
         """Return string representation."""
         return (
             f"Member(uid='{self.uid}', first_name='{self.first_name}', "
             f"last_name='{self.last_name}')"
         )
 
-    def __str__(self: Member) -> str:
+    def __str__(self) -> str:
         """Return simple human-readable description.
 
         Last few chars of uid are included because full name is unlikely to be unique.
@@ -82,7 +82,7 @@ class Member:
         )
 
     @property
-    def full_name(self: Member) -> str:
+    def full_name(self) -> str:
         """Return the member's full name."""
         return f"{self.first_name} {self.last_name}"
 
