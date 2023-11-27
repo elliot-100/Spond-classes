@@ -5,6 +5,8 @@ from spond_classes import Group
 
 def test_from_dict_complex(complex_group_data: dict) -> None:
     """Test that child Member, Role, Subgroup are created from dict."""
+
+    #act
     my_group = Group.from_dict(complex_group_data)
 
     # Group.members -> Member

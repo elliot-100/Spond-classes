@@ -10,7 +10,6 @@ def test_from_dict(simple_group_data: dict) -> None:
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-    my_group = Group.core_from_dict(simple_group_data)
     valid_attributes = [
         "uid",
         "name",
@@ -18,8 +17,10 @@ def test_from_dict(simple_group_data: dict) -> None:
         "subgroups",
         "roles",
     ]
-    assert sets_equal(public_attributes(my_group), valid_attributes)
+    # act
+    my_group = Group.core_from_dict(simple_group_data)
 
+    assert sets_equal(public_attributes(my_group), valid_attributes)
     assert my_group.uid == "20EA715745389FCDED2C280A8ACB74A6"
     assert my_group.name == "Group A"
     assert (

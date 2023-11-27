@@ -12,7 +12,6 @@ def test_from_dict_simple(simple_member_data: dict) -> None:
     Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-    my_member = Member.from_dict(simple_member_data)
     valid_attributes = [
         "uid",
         "created_time",
@@ -25,8 +24,10 @@ def test_from_dict_simple(simple_member_data: dict) -> None:
         "roles",
         "subgroups",
     ]
-    assert sets_equal(public_attributes(my_member), valid_attributes)
+    # act
+    my_member = Member.from_dict(simple_member_data)
 
+    assert sets_equal(public_attributes(my_member), valid_attributes)
     assert my_member.uid == "6F63AF02CE05328153ABA477C76E6189"
     assert my_member.created_time == datetime(
         2022,
