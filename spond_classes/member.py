@@ -1,5 +1,6 @@
 """Member class."""
 from __future__ import annotations
+from typing import Dict, Union, NewType
 
 from dataclasses import dataclass, field
 from typing import TYPE_CHECKING
@@ -12,7 +13,18 @@ if TYPE_CHECKING:
     from .role import Role
     from .subgroup import Subgroup
 
+# MemberData = NewType("MemberData", Dict[str, Union[str, Dict[str, str]]])
 
+class MemberData(TypedDict):
+    uid: str
+    created_time: str
+    email: str | None
+    first_name: str
+    last_name: str
+    phone_number: str | None
+    profile_uid: str | None
+
+# "builtins.dict[builtins.str, typing.Collection[builtins.str]]"
 @dataclass
 class Member:
     """Represents a member in the Spond system.
@@ -87,7 +99,7 @@ class Member:
         return f"{self.first_name} {self.last_name}"
 
     @staticmethod
-    def from_dict(member_data: dict) -> Member:
+    def from_dict(member_data: MemberData ) -> Member:
         """Create a Member object from relevant dict.
 
         Parameters
@@ -95,7 +107,7 @@ class Member:
         member_data
             Dict representing the member, as returned by `spond.get_person()`.
         """
-        if not isinstance(member_data, dict):
+        if not isinstance(member_data, MemberData):
             raise TypeError
         uid = member_data["id"]
         created_time = parser.isoparse(member_data["createdTime"])

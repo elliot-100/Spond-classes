@@ -1,10 +1,15 @@
 """Fixtures for test suite."""
 
+from __future__ import annotations
 import pytest
+
+from spond_classes.subgroup import SubgroupData
+from spond_classes.role import RoleData
+from spond_classes.member import MemberData
 
 
 @pytest.fixture()
-def simple_member_data() -> dict:
+def simple_member_data() -> MemberData:
     """Represent the simplest possible Member in this implementation.
 
     For testing Member in isolation.
@@ -12,7 +17,7 @@ def simple_member_data() -> dict:
     Item from 'groups' -> 'group' -> 'members'.
 
     """
-    return {
+    reveal_type({
         "createdTime": "2022-03-24T16:36:29Z",
         "email": "brendan@example.com",
         "firstName": "Brendan",
@@ -22,11 +27,11 @@ def simple_member_data() -> dict:
         "profile": {
             "id": "364C188137AD92DC0F32E1A31A0E1731",
         },
-    }
+    })
 
 
 @pytest.fixture()
-def simple_member_data_missing() -> dict:
+def simple_member_data_missing() -> dict[str, str]:
     """Test that missing/restricted data is ignored."""
     return {
         "createdTime": "2022-03-24T16:36:29Z",
@@ -40,7 +45,7 @@ def simple_member_data_missing() -> dict:
 
 
 @pytest.fixture()
-def simple_role_data() -> dict:
+def simple_role_data() -> RoleData:
     """Represent the simplest possible Role in this implementation.
 
     For testing Role in isolation.
@@ -54,7 +59,7 @@ def simple_role_data() -> dict:
 
 
 @pytest.fixture()
-def simple_subgroup_data() -> dict:
+def simple_subgroup_data() -> SubgroupData:
     """Represent the simplest possible Subgroup in this implementation.
 
     For testing Subgroup in isolation.
@@ -68,7 +73,7 @@ def simple_subgroup_data() -> dict:
 
 
 @pytest.fixture()
-def simple_event_data() -> dict:
+def simple_event_data() -> dict[str, str|dict]:
     """Represent the simplest possible Event in this implementation.
 
     For testing Event in isolation.
@@ -105,7 +110,7 @@ def simple_event_data() -> dict:
 
 
 @pytest.fixture()
-def simple_group_data() -> dict:
+def simple_group_data() -> dict[str, str]:
     """Represent the simplest possible Group in this implementation.
 
     For testing Event in isolation.
@@ -120,7 +125,7 @@ def simple_group_data() -> dict:
 
 
 @pytest.fixture()
-def complex_group_data() -> dict:
+def complex_group_data() -> dict[str, str|list]:
     """Represent a single Group with a single Member, single Subgroup, single Role.
 
     The Member is in the Subgroup, and has the Role.

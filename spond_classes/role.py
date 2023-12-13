@@ -1,5 +1,6 @@
 """Role class."""
 from __future__ import annotations
+from typing import Dict
 
 from dataclasses import dataclass, field
 from typing import TYPE_CHECKING
@@ -7,6 +8,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from .member import Member
 
+RoleData = Dict[str, str]
 
 @dataclass
 class Role:
@@ -35,7 +37,7 @@ class Role:
     members: list[Member] = field(default_factory=list, repr=False)
 
     @staticmethod
-    def from_dict(role_data: dict) -> Role:
+    def from_dict(role_data: RoleData) -> Role:
         """Create a Role object from relevant dict.
 
         Parameters

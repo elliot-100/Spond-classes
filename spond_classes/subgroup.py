@@ -1,5 +1,6 @@
 """Subgroup class."""
 from __future__ import annotations
+from typing import Dict
 
 from dataclasses import dataclass, field
 from typing import TYPE_CHECKING
@@ -7,6 +8,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from .member import Member
 
+SubgroupData = Dict[str, str]
 
 @dataclass
 class Subgroup:
@@ -39,7 +41,7 @@ class Subgroup:
         return f"Subgroup '{self.name}'"
 
     @staticmethod
-    def from_dict(subgroup_data: dict) -> Subgroup:
+    def from_dict(subgroup_data: SubgroupData) -> Subgroup:
         """Create a Subgroup object from relevant dict.
 
         Parameters
