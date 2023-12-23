@@ -38,8 +38,8 @@ class Subgroup:
         """Return simple human-readable description."""
         return f"Subgroup '{self.name}'"
 
-    @staticmethod
-    def from_dict(subgroup_data: dict) -> Subgroup:
+    @classmethod
+    def from_dict(cls, subgroup_data: dict) -> Subgroup:
         """Create a Subgroup object from relevant dict.
 
         Parameters
@@ -51,4 +51,4 @@ class Subgroup:
             raise TypeError
         uid = subgroup_data["id"]
         name = subgroup_data["name"]
-        return Subgroup(uid, name)
+        return cls(uid, name)

@@ -53,8 +53,8 @@ class Event:
     waiting_list_uids: list = field(default_factory=list, repr=False)
     unconfirmed_uids: list = field(default_factory=list, repr=False)
 
-    @staticmethod
-    def from_dict(event_data: dict) -> Event:
+    @classmethod
+    def from_dict(cls, event_data: dict) -> Event:
         """Create an Event object from relevant dict.
 
         Parameters
@@ -75,7 +75,7 @@ class Event:
         waiting_list_uids = event_data["responses"].get("waitinglistIds", [])
         unconfirmed_uids = event_data["responses"].get("unconfirmedIds", [])
 
-        return Event(
+        return cls(
             uid,
             heading,
             start_time,
