@@ -8,6 +8,13 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 Historic and pre-release versions aren't necessarily included.
 
 
+## [UNRELEASED] - TBC
+
+### Changed
+
+- Update dev/test dependencies: black, isort, mypy, ruff
+
+
 ## [0.8.0] - 2023-11-25
 
 ### Added
