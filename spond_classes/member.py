@@ -86,8 +86,8 @@ class Member:
         """Return the member's full name."""
         return f"{self.first_name} {self.last_name}"
 
-    @staticmethod
-    def from_dict(member_data: dict) -> Member:
+    @classmethod
+    def from_dict(cls, member_data: dict) -> Member:
         """Create a Member object from relevant dict.
 
         Parameters
@@ -111,7 +111,7 @@ class Member:
         else:
             profile_uid = None
 
-        return Member(
+        return cls(
             uid,
             created_time,
             email,

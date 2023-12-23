@@ -52,8 +52,8 @@ class Group:
         """Return simple human-readable description."""
         return f"Group '{self.name}'"
 
-    @staticmethod
-    def core_from_dict(group_data: dict) -> Group:
+    @classmethod
+    def core_from_dict(cls, group_data: dict) -> Group:
         """Create a minimal Group object (required attributes only) from relevant dict.
 
         Parameters
@@ -65,10 +65,10 @@ class Group:
             raise TypeError
         uid = group_data["id"]
         name = group_data["name"]
-        return Group(uid, name)
+        return cls(uid, name)
 
-    @staticmethod
-    def from_dict(group_data: dict) -> Group:
+    @classmethod
+    def from_dict(cls, group_data: dict) -> Group:
         """Create a full-featured Group object and child objects from relevant dict.
 
         Parameters
@@ -76,7 +76,7 @@ class Group:
         group_data
             Dict representing the group, as returned by `spond.get_group()`.
         """
-        group = Group.core_from_dict(group_data)
+        group = cls.core_from_dict(group_data)
 
         group.members = Group._create_children(group_data, "members", Member)
         group.subgroups = Group._create_children(group_data, "subGroups", Subgroup)

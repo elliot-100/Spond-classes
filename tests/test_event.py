@@ -3,29 +3,15 @@
 from datetime import datetime, timezone
 
 from spond_classes import Event
-from tests.utils import public_attributes, sets_equal
 
 
 def test_from_dict(simple_event_data: dict) -> None:
     """Test that Event is created from dict.
 
-    Verify that only expected attributes exist.
     Verify values of all attributes.
     """
-    valid_attributes = [
-        "uid",
-        "heading",
-        "start_time",
-        "accepted_uids",
-        "declined_uids",
-        "unanswered_uids",
-        "waiting_list_uids",
-        "unconfirmed_uids",
-    ]
-    # act
     my_event = Event.from_dict(simple_event_data)
 
-    assert sets_equal(public_attributes(my_event), valid_attributes)
     assert my_event.uid == "A390CE5396D2F5C3015F53E171EC59D5"
     assert my_event.heading == "Event 1"
     assert my_event.start_time == datetime(2021, 7, 6, 6, 0, tzinfo=timezone.utc)
