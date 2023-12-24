@@ -106,10 +106,7 @@ class Member:
         email = member_data.get("email")
         phone_number = member_data.get("phoneNumber")
         profile = member_data.get("profile")
-        if profile:
-            profile_uid = profile["id"]
-        else:
-            profile_uid = None
+        profile_uid = profile["id"] if profile else None
 
         return cls(
             uid,
