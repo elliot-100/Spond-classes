@@ -84,27 +84,21 @@ class Group:
 
         for member_data in group_data.get("members", []):
             member_data_id = member_data.get("id")
+            member = group.member_by_id(member_data_id)
 
             for subgroup_data_id in member_data.get("subGroups", []):
-                # populate child SpondMembers' subgroup attributes
-                group.member_by_id(member_data_id).subgroups.append(
-                    group.subgroup_by_id(subgroup_data_id),
-                )
-                # populate child SpondSubgroups' members attribute
-                group.subgroup_by_id(subgroup_data_id).members.append(
-                    group.member_by_id(member_data_id),
-                )
+                subgroup = group.subgroup_by_id(subgroup_data_id)
+                # populate group.members.member.subgroups.subgroup
+                member.subgroups.append(subgroup)
+                # populate group.subgroups.subgroup.members.member
+                subgroup.members.append(member)
 
             for role_data_id in member_data.get("roles", []):
-                # populate child SpondMembers' roles attribute
-                group.member_by_id(member_data_id).roles.append(
-                    group.role_by_id(role_data_id),
-                )
-
-                # populate child SpondRoles' members attribute
-                group.role_by_id(role_data_id).members.append(
-                    group.member_by_id(member_data_id),
-                )
+                role = group.role_by_id(role_data_id)
+                # populate group.members.member.roles.role
+                member.roles.append(role)
+                # populate group.roles.role.members.member
+                role.members.append(member)
 
         return group
 
