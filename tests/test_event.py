@@ -5,12 +5,30 @@ from datetime import datetime, timezone
 from spond_classes import Event
 
 
-def test_from_dict(simple_event_data: dict) -> None:
+def test_from_dict_simple(simple_event_data: dict) -> None:
     """Test that Event is created from dict.
 
     Verify values of all attributes.
     """
     my_event = Event.from_dict(simple_event_data)
+
+    assert my_event.uid == "A390CE5396D2F5C3015F53E171EC59D5"
+    assert my_event.heading == "Event 1"
+    assert my_event.start_time == datetime(2021, 7, 6, 6, 0, tzinfo=timezone.utc)
+    assert my_event.accepted_uids == []
+    assert my_event.declined_uids == []
+    assert my_event.unanswered_uids == []
+    assert my_event.waiting_list_uids == []
+    assert my_event.unconfirmed_uids == []
+    assert str(my_event) == "Event 'Event 1' on 2021-07-06"
+
+
+def test_from_dict_complex(complex_event_data: dict) -> None:
+    """Test that Event is created from dict.
+
+    Verify values of all attributes.
+    """
+    my_event = Event.from_dict(complex_event_data)
 
     assert my_event.uid == "A390CE5396D2F5C3015F53E171EC59D5"
     assert my_event.heading == "Event 1"

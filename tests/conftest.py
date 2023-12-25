@@ -8,9 +8,22 @@ def simple_member_data() -> dict:
     """Represent the simplest possible Member in this implementation.
 
     For testing Member in isolation.
-
     Item from 'groups' -> 'group' -> 'members'.
+    """
+    return {
+        "createdTime": "2022-03-24T16:36:29Z",
+        "firstName": "Brendan",
+        "id": "6F63AF02CE05328153ABA477C76E6189",
+        "lastName": "Gleason",
+    }
 
+
+@pytest.fixture()
+def complex_member_data() -> dict:
+    """Represent a single Member with Profile.
+
+    All supported input fields are supplied.
+    Item from 'groups' -> 'group' -> 'members'.
     """
     return {
         "createdTime": "2022-03-24T16:36:29Z",
@@ -26,25 +39,10 @@ def simple_member_data() -> dict:
 
 
 @pytest.fixture()
-def simple_member_data_missing() -> dict:
-    """Test that missing/restricted data is ignored."""
-    return {
-        "createdTime": "2022-03-24T16:36:29Z",
-        # "email": "brendan@example.com",
-        "firstName": "Brendan",
-        "id": "6F63AF02CE05328153ABA477C76E6189",
-        "lastName": "Gleason",
-        # "phoneNumber".
-        # "profile",
-    }
-
-
-@pytest.fixture()
 def simple_role_data() -> dict:
     """Represent the simplest possible Role in this implementation.
 
     For testing Role in isolation.
-
     Item from 'groups' (root) -> 'roles'.
     """
     return {
@@ -58,7 +56,6 @@ def simple_subgroup_data() -> dict:
     """Represent the simplest possible Subgroup in this implementation.
 
     For testing Subgroup in isolation.
-
     Item from 'groups' (root) -> 'group' -> 'subGroups'.
     """
     return {
@@ -69,10 +66,30 @@ def simple_subgroup_data() -> dict:
 
 @pytest.fixture()
 def simple_event_data() -> dict:
-    """Represent the simplest possible Event in this implementation.
+    """Represent a single Event.
 
     For testing Event in isolation.
+    Item from 'events' (root).
+    """
+    return {
+        "id": "A390CE5396D2F5C3015F53E171EC59D5",
+        "heading": "Event 1",
+        "startTimestamp": "2021-07-06T06:00:00Z",
+        "responses": {
+            "acceptedIds": [],
+            "declinedIds": [],
+            "unansweredIds": [],
+            "waitinglistIds": [],
+            "unconfirmedIds": [],
+        },
+    }
 
+
+@pytest.fixture()
+def complex_event_data() -> dict:
+    """Represent the simplest possible Event in this implementation.
+
+    All supported input fields are supplied.
     Item from 'events' (root).
     """
     return {
@@ -109,9 +126,7 @@ def simple_group_data() -> dict:
     """Represent the simplest possible Group in this implementation.
 
     For testing Event in isolation.
-
     Item from 'groups' (root).
-
     """
     return {
         "id": "20EA715745389FCDED2C280A8ACB74A6",
@@ -124,7 +139,7 @@ def complex_group_data() -> dict:
     """Represent a single Group with a single Member, single Subgroup, single Role.
 
     The Member is in the Subgroup, and has the Role.
-
+    All supported input fields are supplied.
     Item from 'groups' (root).
     """
     return {
