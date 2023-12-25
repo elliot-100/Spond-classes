@@ -61,15 +61,8 @@ class Member:
     profile_uid: str | None
 
     # Populated by `Group.from_dict()`, as they rely on full Group data:
-    roles: list[Role] = field(default_factory=list)
-    subgroups: list[Subgroup] = field(default_factory=list)
-
-    def __repr__(self) -> str:
-        """Return string representation."""
-        return (
-            f"Member(uid='{self.uid}', first_name='{self.first_name}', "
-            f"last_name='{self.last_name}')"
-        )
+    roles: list[Role] = field(default_factory=list, repr=False)
+    subgroups: list[Subgroup] = field(default_factory=list, repr=False)
 
     def __str__(self) -> str:
         """Return simple human-readable description.
