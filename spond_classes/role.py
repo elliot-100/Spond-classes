@@ -34,6 +34,10 @@ class Role:
     # Populated by `Group.from_dict()`, as they rely on full Group data:
     members: list[Member] = field(default_factory=list, repr=False)
 
+    def __str__(self) -> str:
+        """Return simple human-readable description."""
+        return f"Role '{self.name}'"
+
     @classmethod
     def from_dict(cls, role_data: dict) -> Role:
         """Create a Role object from relevant dict.
@@ -52,7 +56,3 @@ class Role:
             uid,
             name,
         )
-
-    def __str__(self) -> str:
-        """Return simple human-readable description."""
-        return f"Role '{self.name}'"
