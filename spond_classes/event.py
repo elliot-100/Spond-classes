@@ -53,6 +53,13 @@ class Event:
     waiting_list_uids: list = field(default_factory=list, repr=False)
     unconfirmed_uids: list = field(default_factory=list, repr=False)
 
+    def __str__(self) -> str:
+        """Return simple human-readable description.
+
+        Date is included because heading is unlikely to be unique.
+        """
+        return f"Event '{self.heading}' on {self.start_time.date()}"
+
     @classmethod
     def from_dict(cls, event_data: dict) -> Event:
         """Create an Event object from relevant dict.
@@ -85,10 +92,3 @@ class Event:
             waiting_list_uids,
             unconfirmed_uids,
         )
-
-    def __str__(self) -> str:
-        """Return simple human-readable description.
-
-        Date is included because heading is unlikely to be unique.
-        """
-        return f"Event '{self.heading}' on {self.start_time.date()}"
