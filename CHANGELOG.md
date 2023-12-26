@@ -10,9 +10,19 @@ Historic and pre-release versions aren't necessarily included.
 
 ## [UNRELEASED] - TBC
 
+### Added
+
+- Support for Python 3.12 in GitHub CI 
+
+### Fixed
+
+- `Member.__repr__` follows same pattern as other classes
+
 ### Changed
 
 - Update dev/test dependencies: black, isort, mypy, ruff
+
+- Update ci dependencies: actions/setup_python
 
 
 ## [0.8.0] - 2023-11-25
