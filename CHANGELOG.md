@@ -20,7 +20,7 @@ Historic and pre-release versions aren't necessarily included.
 
 ### Changed
 
-- Update dev/test dependencies: black, isort, mypy, ruff
+- Update dev/test dependencies: black, isort, mypy, pytest, ruff
 
 - Update ci dependencies: actions/setup_python
 
