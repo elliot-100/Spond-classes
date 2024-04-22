@@ -19,7 +19,7 @@ spond = "^0.99.1"
 black = "^24.3.0"
 isort = "^5.13.2"
 pre-commit = "^3.1.1"
-ruff = "^0.3.4"
+ruff = ">=0.3.4,<0.5.0"
 
 [tool.poetry.group.test.dependencies]
 mypy = "^1.8.0"
