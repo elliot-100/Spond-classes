@@ -26,28 +26,25 @@ mypy = "^1.8.0"
 pytest = "^8.1.1"
 types-python-dateutil = "^2.8.19.14"
 
-[tool.black]
-line-length = 88
-target-version = ['py38']
-
-[tool.isort]
-profile = "black"
-
 [tool.mypy]
 warn_unused_configs = true
 strict = true
 disallow_any_generics = false
 
 [tool.ruff.lint]
+
 # Enable rulesets:
 # flake8-ANNotations, flake8-COMmas, pyDocstyle, pycodestylE, pyFlakes,
 # flake8-Future-Annotations, flake8-bandit (S)
 select = ["ANN", "COM", "D", "E", "F", "FA", "S"]
+
+# Ignore rules that conflict with Ruff formatter:
+#   COM812 Trailing comma missing
 # Ignore rules:
-# ANN101 Missing type annotation for `self` in method
-# ANN102 Missing type annotation for `cls` in classmethod
-# D205 1 blank line required between summary line and description
-ignore = ["ANN101", "ANN102", "D205"]
+#   ANN101 Missing type annotation for `self` in method
+#   ANN102 Missing type annotation for `cls` in classmethod
+#   D205 1 blank line required between summary line and description
+ignore = ["ANN101", "ANN102", "COM812", "D205"]
 
 [tool.ruff.lint.per-file-ignores]
 # Use of `assert` detected
