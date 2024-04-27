@@ -30,12 +30,11 @@ jobs:
           virtualenvs-in-project: true
       - name: Install project
         run: poetry install --without dev
-      - name: Lint with isort
-        # by default: exit with error if imports are not properly sorted; show diffs
-        uses: isort/isort-action@master
-      - name: Lint with black
-        # by default: exit with error if code is not properly formatted; show diffs
-        uses: psf/black@stable
+      - name: Lint format with ruff
+        # by default: exit with error if rule violations
+        uses: chartboost/ruff-action@v1
+        with:
+          args: format
       - name: Lint with ruff
         # by default: exit with error if rule violations
         uses: chartboost/ruff-action@v1

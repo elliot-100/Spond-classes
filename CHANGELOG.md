@@ -12,17 +12,23 @@ Historic and pre-release versions aren't necessarily included.
 
 ### Added
 
-- Support for Python 3.12 in GitHub CI 
+- Support for Python 3.12 in GitHub CI
+
+### Changed
+
+- Use `ruff format` instead of `isort` + `black` in CI/pre-commit
+
+- Update dev/test dependencies: mypy, pre-commit-hooks, pytest, ruff, types-python-dateutil
+
+- Update CI dependencies: actions/setup_python
 
 ### Fixed
 
 - `Member.__repr__` follows same pattern as other classes
 
-### Changed
+### Removed
 
-- Update dev/test dependencies: black, isort, mypy, pytest, ruff
-
-- Update ci dependencies: actions/setup_python
+- dev/test dependencies: black, isort
 
 
 ## [0.8.0] - 2023-11-25
@@ -33,7 +39,7 @@ Historic and pre-release versions aren't necessarily included.
 
 ### Changed
 
-- Simplify/rearrange tests 
+- Simplify/rearrange tests
 
 - Update dev/test dependencies: black, mypy, pytest, ruff, types-python-dateutil
 
@@ -47,7 +53,7 @@ Historic and pre-release versions aren't necessarily included.
 ### Fixed
 
 - Missing/outdated/broken package metadata
- 
+
 
 ## [0.7.2] - 2023-09-26
 
