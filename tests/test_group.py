@@ -10,7 +10,7 @@ def test_from_dict(simple_group_data: dict) -> None:
     """
     my_group = Group.core_from_dict(simple_group_data)
 
-    assert my_group.uid == "20EA715745389FCDED2C280A8ACB74A6"
+    assert my_group.uid == "8B4A6A9C60397A41D6D2414AFD520152"
     assert my_group.name == "Group A"
     assert (
         my_group.members == []
