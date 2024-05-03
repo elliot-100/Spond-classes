@@ -6,6 +6,7 @@ from dataclasses import dataclass, field
 from typing import TYPE_CHECKING
 
 from dateutil import parser
+from typing_extensions import Self
 
 if TYPE_CHECKING:
     from datetime import datetime
@@ -62,7 +63,7 @@ class Event:
         return f"Event '{self.heading}' on {self.start_time.date()}"
 
     @classmethod
-    def from_dict(cls, event_data: dict) -> Event:
+    def from_dict(cls, event_data: dict) -> Self:
         """Create an Event object from relevant dict.
 
         Parameters

@@ -6,6 +6,7 @@ from dataclasses import dataclass, field
 from typing import TYPE_CHECKING
 
 from dateutil import parser
+from typing_extensions import Self
 
 if TYPE_CHECKING:
     from datetime import datetime
@@ -81,7 +82,7 @@ class Member:
         return f"{self.first_name} {self.last_name}"
 
     @classmethod
-    def from_dict(cls, member_data: dict) -> Member:
+    def from_dict(cls, member_data: dict) -> Self:
         """Create a Member object from relevant dict.
 
         Parameters
