@@ -12,6 +12,7 @@ license = "GPL 3.0"
 
 [tool.poetry.dependencies]
 python = "^3.8"
+pydantic = "^2.7.1"
 python-dateutil = "^2.8.2"
 spond = "^0.99.1"
 
@@ -30,23 +31,26 @@ strict = true
 disallow_any_generics = false
 
 [tool.ruff.lint]
-
-# Enable rulesets:
-# flake8-ANNotations, flake8-COMmas, pyDocstyle, pycodestylE, pyFlakes,
-# flake8-Future-Annotations, flake8-bandit (S)
-select = ["ANN", "COM", "D", "E", "F", "FA", "S"]
+select = ["ALL"]
 
 # Ignore rules that conflict with Ruff formatter:
 #   COM812 Trailing comma missing
-# Ignore rules:
+
+# Ignore other rules:
 #   ANN101 Missing type annotation for `self` in method
 #   ANN102 Missing type annotation for `cls` in classmethod
 #   D205 1 blank line required between summary line and description
-ignore = ["ANN101", "ANN102", "COM812", "D205"]
+
+ignore = ["COM812", "ANN101", "ANN102", "D205"]
 
 [tool.ruff.lint.per-file-ignores]
-# Use of `assert` detected
+# Ignore rules that aren't relevant in tests:
+#   S101 Use of assert detected
 "**/{tests}/*" = ["S101"]
+
+# Ignore rules that conflict with Mypy
+#   PLC0414 Import alias does not rename original package
+"__init__.py" = ["PLC0414"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "numpy"
