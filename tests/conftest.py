@@ -27,10 +27,10 @@ def complex_member_data() -> dict:
     """
     return {
         "createdTime": "2022-03-24T16:36:29Z",
-        "email": "brendan@example.com",
-        "firstName": "Brendan",
-        "id": "6F63AF02CE05328153ABA477C76E6189",
-        "lastName": "Gleason",
+        "email": "ciarán@example.com",
+        "firstName": "Ciarán",
+        "id": "F59D764E4CE0B643DF4C0CF5E5B2B059",
+        "lastName": "Hinds",
         "phoneNumber": "+123456789",
         "profile": {
             "id": "364C188137AD92DC0F32E1A31A0E1731",
@@ -93,9 +93,9 @@ def complex_event_data() -> dict:
     Item from 'events' (root).
     """
     return {
-        "id": "A390CE5396D2F5C3015F53E171EC59D5",
-        "heading": "Event 1",
-        "startTimestamp": "2021-07-06T06:00:00Z",
+        "id": "36D7F1A46EB2CDED4B6F22D400229822",
+        "heading": "Event 2",
+        "startTimestamp": "2022-11-04T06:00:00Z",
         "responses": {
             "acceptedIds": [
                 "B24FA75A4CCBC63199A57361E88B0646",
@@ -129,7 +129,7 @@ def simple_group_data() -> dict:
     Item from 'groups' (root).
     """
     return {
-        "id": "20EA715745389FCDED2C280A8ACB74A6",
+        "id": "8B4A6A9C60397A41D6D2414AFD520152",
         "name": "Group A",
     }
 
@@ -163,17 +163,17 @@ def complex_group_data() -> dict:
                 ],
             },
         ],
-        "name": "Group A",
+        "name": "Group B",
         "subGroups": [
             {
                 "id": "BB6B3C3592C5FC71DBDD5258D45EF6D4",
-                "name": "Subgroup A1",
+                "name": "Subgroup B1",
             },
         ],
         "roles": [
             {
                 "id": "29A7724B47ABEE7B3C9DC347E13A50B4",
-                "name": "Role A2",
+                "name": "Role B2",
             },
         ],
     }
