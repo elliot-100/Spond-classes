@@ -6,7 +6,7 @@ from spond_classes import Member
 
 
 def test_from_dict_simple(simple_member_data: dict) -> None:
-    """Test that Member is created from dict.
+    """Test that Member is created from the simplest possible dict representation.
 
     Verify values of all attributes.
     """

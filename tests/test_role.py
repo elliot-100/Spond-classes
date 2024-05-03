@@ -4,7 +4,7 @@ from spond_classes import Role
 
 
 def test_from_dict(simple_role_data: dict) -> None:
-    """Test that Event is created from dict.
+    """Test that Event is created from the simplest possible dict representation.
 
     Verify values of all attributes.
     """

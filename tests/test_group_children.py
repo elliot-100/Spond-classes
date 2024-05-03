@@ -1,4 +1,4 @@
-"""Tests for derivations from full Group data."""
+"""Tests for child instances created from full Group data."""
 
 from spond_classes import Group
 
