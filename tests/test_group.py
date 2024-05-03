@@ -4,7 +4,7 @@ from spond_classes import Group
 
 
 def test_from_dict(simple_group_data: dict) -> None:
-    """Test that a Group is created from the simplest possible dict representation.
+    """Test that Group is created from the simplest possible dict representation.
 
     Verify values of all attributes.
     """

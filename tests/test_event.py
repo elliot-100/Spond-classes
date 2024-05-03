@@ -6,7 +6,7 @@ from spond_classes import Event
 
 
 def test_from_dict_simple(simple_event_data: dict) -> None:
-    """Test that Event is created from dict.
+    """Test that Event is created from the simplest possible dict representation.
 
     Verify values of all attributes.
     """

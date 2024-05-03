@@ -4,8 +4,9 @@ from spond_classes import Subgroup
 
 
 def test_from_dict(simple_subgroup_data: dict) -> None:
-    """Test that a Subgroup is created from the simplest possible
-    dict representation.
+    """Test that Subgroup is created from the simplest possible dict representation.
+
+    Verify values of all attributes.
     """
     my_subgroup = Subgroup.from_dict(simple_subgroup_data)
 
