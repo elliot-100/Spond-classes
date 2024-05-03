@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
+from typing_extensions import Self
+
 from .member import Member
 from .role import Role
 from .subgroup import Subgroup
@@ -54,7 +56,7 @@ class Group:
         return f"Group '{self.name}'"
 
     @classmethod
-    def core_from_dict(cls, group_data: dict) -> Group:
+    def core_from_dict(cls, group_data: dict) -> Self:
         """Create a minimal Group object (required attributes only) from relevant dict.
 
         Parameters
@@ -69,7 +71,7 @@ class Group:
         return cls(uid, name)
 
     @classmethod
-    def from_dict(cls, group_data: dict) -> Group:
+    def from_dict(cls, group_data: dict) -> Self:
         """Create a full-featured Group object and child objects from relevant dict.
 
         Parameters
