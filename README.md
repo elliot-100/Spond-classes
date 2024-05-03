@@ -23,6 +23,36 @@ Or if you're using Poetry:
 poetry add spond-classes
 `
 
+## Example code
+
+Adapting the example code in [`Spond`](https://github.com/Olen/Spond/) README:
+
+```
+import asyncio
+from spond import spond
+import spond_classes
+
+username = 'my@mail.invalid'
+password = 'Pa55worD'
+group_id = 'C9DC791FFE63D7914D6952BE10D97B46'  # fake
+
+async def main():
+    s = spond.Spond(username=username, password=password)
+    group_data = await s.get_group(group_id)
+    await s.clientsession.close()
+
+    # Now we can create a class instance ...
+    group = spond_classes.Group.from_dict(group_data)
+
+    # ... use class properties instead of dict keys ...
+    print(group.name)
+
+    # ... and access child instances and their properties
+    for member in group.members:
+        print(member.full_name)
+
+asyncio.run(main())
+```
 ## Key features
 
 * Create `Group` class instance from the dict returned by the corresponding `spond`
@@ -89,34 +119,3 @@ Event.unconfirmed_uids: list
 
 It's also possible to create `Member.from_dict()`, `Role.from_dict()`,
 `Subgroup.from_dict()`.
-
-## Example code
-
-Adapting the example code in [`Spond`](https://github.com/Olen/Spond/) README:
-
-```
-import asyncio
-from spond import spond
-import spond_classes
-
-username = 'my@mail.invalid'
-password = 'Pa55worD'
-group_id = 'C9DC791FFE63D7914D6952BE10D97B46'  # fake
-
-async def main():
-    s = spond.Spond(username=username, password=password)
-    group_data = await s.get_group(group_id)
-    await s.clientsession.close()
-
-    # Now we can create a class instance ...
-    group = spond_classes.Group.from_dict(group_data)
-
-    # ... use class properties instead of dict keys ...
-    print(group.name)
-
-    # ... and access child instances and their properties
-    for member in group.members:
-        print(member.full_name)
-
-asyncio.run(main())
-```
