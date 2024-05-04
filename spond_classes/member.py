@@ -31,7 +31,7 @@ class Member:
         id of the Member.
         'id' in API, but 'id' is a reserved term and the `spond` package uses `uid`.
     created_time : datetime
-        Derived from 'createdTime' in API, but returns a datetime instead of a string.
+        'createdTime' in API, but returns a datetime instead of a string.
     email : str
         'email' in API.
     first_name : str
@@ -44,16 +44,15 @@ class Member:
         `profile` -> `id` in API.
     roles : list[Role]
         The Member's Roles.
-        'roles' in API.
+        Derived from 'roles' in API, but returns instances instead of `uid` refs.
     subgroups : list[Subgroup]
         The Member's Subgroups.
-        Derived from 'subGroups' in API.
+        Derived from 'subGroups' in API, but returns instances instead of `uid` refs.
     full_name : str
         The Member's full name.
         Provided for convenience.
     """
 
-    # Populated by implicit Member.__init__().
     uid: str
     created_time: datetime
     email: str | None
@@ -62,7 +61,7 @@ class Member:
     phone_number: str | None
     profile_uid: str | None
 
-    # Populated by `Group.from_dict()`, as they rely on full Group data:
+    # Optionally populated via `Group.from_dict()`, as they rely on full Group data:
     roles: list[Role] = field(default_factory=list, repr=False)
     subgroups: list[Subgroup] = field(default_factory=list, repr=False)
 

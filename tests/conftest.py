@@ -66,7 +66,7 @@ def simple_subgroup_data() -> dict:
 
 @pytest.fixture()
 def simple_event_data() -> dict:
-    """Represent a single Event.
+    """Represent the simplest possible Event in this implementation.
 
     For testing Event in isolation.
     Item from 'events' (root).
