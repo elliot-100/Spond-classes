@@ -91,7 +91,6 @@ Member.subgroup_uids: list[str]
 
 
 Role.uid: str
-Role.members: List[Member]
 Role.name: str
 
 Subgroup.uid: str
@@ -119,5 +118,5 @@ Event.Responses.waiting_list_uids: list
 Event.Responses.unconfirmed_uids: list
 ```
 
-It's also possible to create `Member()`, `Role.from_dict()`,
+It's also possible to create `Member()`, `Role()`,
 `Subgroup.from_dict()` from appropriate dicts.
