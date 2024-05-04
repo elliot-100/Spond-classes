@@ -58,7 +58,7 @@ def test_from_dict_complex(complex_member_data: dict) -> None:
     assert my_member.full_name == "Ciarán Hinds"
     assert my_member.phone_number == "+123456789"
     assert my_member.profile_uid == "364C188137AD92DC0F32E1A31A0E1731"
-    assert my_member.roles == []
+    assert str(my_member) == "Member 'Ciarán Hinds' (uid ends '...059')"
 
     # Tested as part of complex Group, as it relies on full Group data.
     assert my_member.roles == []
