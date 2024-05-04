@@ -80,13 +80,15 @@ Group.subgroup_by_id() -> Subgroup
 ```
 Member.uid: str
 Member.created_time: datetime
+Member.email: str
 Member.first_name: str
-Member.last_name: str
 Member.full_name: str
+Member.last_name: str
 Member.phone_number: str
-Member.profile_uid: str
-Member.roles: List[Role]
-Member.subgroups: List[Subgroup]
+Member.Profile.uid: str
+Member.role_uids: list[str]
+Member.subgroup_uids: list[str]
+
 
 Role.uid: str
 Role.members: List[Member]
@@ -117,5 +119,5 @@ Event.waiting_list_uids: list
 Event.unconfirmed_uids: list
 ```
 
-It's also possible to create `Member.from_dict()`, `Role.from_dict()`,
-`Subgroup.from_dict()`.
+It's also possible to create `Member()`, `Role.from_dict()`,
+`Subgroup.from_dict()` from appropriate dicts.

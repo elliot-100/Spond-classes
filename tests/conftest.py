@@ -32,6 +32,18 @@ def simple_subgroup_data() -> dict:
 
 
 @pytest.fixture()
+def simple_profile_data() -> dict:
+    """Represent the simplest possible Profile in this implementation.
+
+    For testing Profile in isolation.
+    Item from 'groups' (root) -> {group} -> 'members' -> {member} -> {profile}
+    """
+    return {
+        "id": "364C188137AD92DC0F32E1A31A0E1731",
+    }
+
+
+@pytest.fixture()
 def simple_member_data() -> dict:
     """Represent the simplest possible Member in this implementation.
 
@@ -44,6 +56,8 @@ def simple_member_data() -> dict:
         "id": "6F63AF02CE05328153ABA477C76E6189",
         "lastName": "Gleason",
         # profile is assumed optional (visibility dependent on user permissions?)
+        "roles": [],
+        "subGroups": [],
     }
 
 
@@ -64,6 +78,12 @@ def member_with_profile_data() -> dict:
         "profile": {
             "id": "364C188137AD92DC0F32E1A31A0E1731",
         },
+        "roles": [
+            "F2DFF55011800E66CDDAF2FD8A72039B",
+        ],
+        "subGroups": [
+            "9E95A326090B256E2E9DAA6C0114E1D8",
+        ],
     }
 
 

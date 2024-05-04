@@ -1,29 +1,17 @@
 """Member class."""
 
-from __future__ import annotations
+from datetime import datetime
 
-from dataclasses import dataclass, field
-from typing import TYPE_CHECKING
+from pydantic import BaseModel, Field
 
-from dateutil import parser
-from typing_extensions import Self
-
-if TYPE_CHECKING:
-    from datetime import datetime
-
-    from .role import Role
-    from .subgroup import Subgroup
+from .profile import Profile
 
 
-@dataclass
-class Member:
+class Member(BaseModel):
     """Represents a member in the Spond system.
 
     A Member is an individual's record within a Group.
-
-    A Member belongs to one Group.
-    A Member has zero, one or more Roles.
-    NB: relationship to Events isn't yet implemented.
+    A Member may have a nested Profile.
 
     Attributes
     ----------
@@ -40,30 +28,29 @@ class Member:
         'lastName' in API.
     phone_number : str
         'phoneNumber' in API.
-    profile_uid : str
-        `profile` -> `id` in API.
-    roles : list[Role]
-        The Member's Roles.
-        Derived from 'roles' in API, but returns instances instead of `uid` refs.
-    subgroups : list[Subgroup]
-        The Member's Subgroups.
-        Derived from 'subGroups' in API, but returns instances instead of `uid` refs.
+    profile : Profile
+        `profile` in API.
+    role_uids : list[str]
+        `roles` in API, but aliased here to avoid confusion with `Group.Roles'
+    subgroup_uids : list[str]
+        `subGroups` in API, but aliased here to avoid confusion with `Group.Subgroups'
+
+    Properties
+    ----------
     full_name : str
         The Member's full name.
         Provided for convenience.
     """
 
-    uid: str
-    created_time: datetime
-    email: str | None
-    first_name: str
-    last_name: str
-    phone_number: str | None
-    profile_uid: str | None
-
-    # Optionally populated via `Group.from_dict()`, as they rely on full Group data:
-    roles: list[Role] = field(default_factory=list, repr=False)
-    subgroups: list[Subgroup] = field(default_factory=list, repr=False)
+    uid: str = Field(alias="id")
+    created_time: datetime = Field(alias="createdTime")
+    email: str | None = Field(default=None)
+    first_name: str = Field(alias="firstName")
+    last_name: str = Field(alias="lastName")
+    phone_number: str | None = Field(alias="phoneNumber", default=None)
+    profile: Profile | None = None  # Availability might depend on permissions?
+    role_uids: list = Field(alias="roles")
+    subgroup_uids: list = Field(alias="subGroups")
 
     def __str__(self) -> str:
         """Return simple human-readable description.
@@ -79,35 +66,3 @@ class Member:
     def full_name(self) -> str:
         """Return the member's full name."""
         return f"{self.first_name} {self.last_name}"
-
-    @classmethod
-    def from_dict(cls, member_data: dict) -> Self:
-        """Create a Member object from relevant dict.
-
-        Parameters
-        ----------
-        member_data
-            Dict representing the member, as returned by `spond.get_person()`.
-        """
-        if not isinstance(member_data, dict):
-            raise TypeError
-        uid = member_data["id"]
-        created_time = parser.isoparse(member_data["createdTime"])
-        first_name = member_data["firstName"]
-        last_name = member_data["lastName"]
-
-        # Handle data that may be missing/private
-        email = member_data.get("email")
-        phone_number = member_data.get("phoneNumber")
-        profile = member_data.get("profile")
-        profile_uid = profile["id"] if profile else None
-
-        return cls(
-            uid,
-            created_time,
-            email,
-            first_name,
-            last_name,
-            phone_number,
-            profile_uid,
-        )
