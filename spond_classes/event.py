@@ -1,57 +1,54 @@
-"""Event class."""
+"""Event class and nested Responses class."""
 
-from __future__ import annotations
+from datetime import datetime
 
-from dataclasses import dataclass, field
-from typing import TYPE_CHECKING
-
-from dateutil import parser
-from typing_extensions import Self
-
-if TYPE_CHECKING:
-    from datetime import datetime
+from pydantic import BaseModel, Field
 
 
-@dataclass
-class Event:
+class Responses(BaseModel):
+    """Represents the responses to an Event.
+
+    accepted_uids: list[str]
+        `acceptedIds` in API.
+    declined_uids: list[str]
+        `declinedIds` in API.
+    unanswered_uids: list[str]
+        `unansweredIds` in API.
+    unconfirmed_uids: list[str]
+        `unconfirmedIds` in API.
+    waiting_list_uids: list[str]
+        `waitinglistIds` in API.
+    """
+
+    # Lists which always exist in API data, but may be empty
+    accepted_uids: list[str] = Field(alias="acceptedIds")
+    declined_uids: list[str] = Field(alias="declinedIds")
+    unanswered_uids: list[str] = Field(alias="unansweredIds")
+    waiting_list_uids: list[str] = Field(alias="waitinglistIds")
+    unconfirmed_uids: list[str] = Field(alias="unconfirmedIds")
+
+
+class Event(BaseModel):
     """Represents an event in the Spond system.
-
-    NB: relationship to Group isn't yet implemented.
-    NB: relationship to Member (rather than just their ids) isn't yet implemented.
 
     Attributes
     ----------
     uid : str
         id of the Event.
-        'id' in API, but 'id' is a reserved term and the `spond` package uses `uid`.
+        `id` in API, but `id` is a reserved term and the `spond` package uses `uid`.
     heading : str
-        Name or title of the Event.
-        'heading' in API.
+        Heading/name of the Event.
+        `heading` in API.
     start_time : datetime.
         Datetime at which the Event starts.
-        'startTimestamp' in API, but returns a datetime instead of a string.
-    accepted_uids : list[str]
-        `responses` -> `acceptedIds` in API.
-    declined_uids : list[str]
-        `responses` -> `declinedIds` in API.
-    unanswered_uids : list[str]
-        `responses` -> `unansweredIds` in API.
-    unconfirmed_uids : list[str]
-        `responses` -> `unconfirmedIds` in API.
-    waiting_list_uids : list[str]
-        `responses` -> `waitinglistIds` in API.
+        `startTimestamp` in API, but returns a datetime instead of a string.
+    responses : Responses
     """
 
-    uid: str
+    uid: str = Field(alias="id")
     heading: str
-    start_time: datetime
-
-    # Optionally populated:
-    accepted_uids: list = field(default_factory=list, repr=False)
-    declined_uids: list = field(default_factory=list, repr=False)
-    unanswered_uids: list = field(default_factory=list, repr=False)
-    waiting_list_uids: list = field(default_factory=list, repr=False)
-    unconfirmed_uids: list = field(default_factory=list, repr=False)
+    start_time: datetime = Field(alias="startTimestamp")
+    responses: Responses
 
     def __str__(self) -> str:
         """Return simple human-readable description.
@@ -59,36 +56,3 @@ class Event:
         Date is included because heading is unlikely to be unique.
         """
         return f"Event '{self.heading}' on {self.start_time.date()}"
-
-    @classmethod
-    def from_dict(cls, event_data: dict) -> Self:
-        """Create an Event object from relevant dict.
-
-        Parameters
-        ----------
-        event_data
-            Dict representing the event, as returned by `spond.get_event()`.
-        """
-        if not isinstance(event_data, dict):
-            raise TypeError
-        uid = event_data["id"]
-        heading = event_data["heading"]
-        start_time = parser.isoparse(event_data["startTimestamp"])
-        if not isinstance(event_data["responses"], dict):
-            raise TypeError
-        accepted_uids = event_data["responses"].get("acceptedIds", [])
-        declined_uids = event_data["responses"].get("declinedIds", [])
-        unanswered_uids = event_data["responses"].get("unansweredIds", [])
-        waiting_list_uids = event_data["responses"].get("waitinglistIds", [])
-        unconfirmed_uids = event_data["responses"].get("unconfirmedIds", [])
-
-        return cls(
-            uid,
-            heading,
-            start_time,
-            accepted_uids,
-            declined_uids,
-            unanswered_uids,
-            waiting_list_uids,
-            unconfirmed_uids,
-        )

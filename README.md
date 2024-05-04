@@ -103,7 +103,7 @@ Subgroup.name: str
   method:
 
 ```
-spond_classes.Event.from_dict()
+spond_classes.Event(**dict)
 ```
 
 * Then access attributes:
@@ -112,11 +112,11 @@ spond_classes.Event.from_dict()
 Event.uid: str
 Event.heading: str
 Event.start_time: datetime
-Event.accepted_uids: list
-Event.declined_uids: list
-Event.unanswered_uids: list
-Event.waiting_list_uids: list
-Event.unconfirmed_uids: list
+Event.Responses.accepted_uids: list
+Event.Responses.declined_uids: list
+Event.Responses.unanswered_uids: list
+Event.Responses.waiting_list_uids: list
+Event.Responses.unconfirmed_uids: list
 ```
 
 It's also possible to create `Member()`, `Role.from_dict()`,
