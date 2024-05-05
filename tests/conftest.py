@@ -97,7 +97,9 @@ def simple_group_data() -> dict:
     return {
         "id": "8B4A6A9C60397A41D6D2414AFD520152",
         "name": "Group A",
-        # members assumed optional
+        "members": [],  # assumed always exists, may be empty
+        "roles": [],  # assumed always exists, may be empty
+        "subGroups": [],  # assumed always exists, may be empty
     }
 
 

@@ -59,19 +59,20 @@ asyncio.run(main())
   method:
 
 ```
-spond_classes.Group.from_dict()
+spond_classes.Group()
 ```
 
 * Then access class instance attributes and methods:
 
 ```
 Group.uid: str
+Group.members: list[Member]
 Group.name: str
-Group.members: List[Member]
+Group.roles: list[Role]
+Group.subgroups: list[Subgroup]
+
 Group.member_by_id() -> Member
-Group.roles: List[SpondRoles]
 Group.role_by_id() -> Role
-Group.subgroups: List[Subgroup]
 Group.subgroup_by_id() -> Subgroup
 ```
 
