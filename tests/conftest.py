@@ -2,40 +2,7 @@
 
 import pytest
 
-
-@pytest.fixture()
-def simple_member_data() -> dict:
-    """Represent the simplest possible Member in this implementation.
-
-    For testing Member in isolation.
-    Item from 'groups' -> 'group' -> 'members'.
-    """
-    return {
-        "createdTime": "2022-03-24T16:36:29Z",
-        "firstName": "Brendan",
-        "id": "6F63AF02CE05328153ABA477C76E6189",
-        "lastName": "Gleason",
-    }
-
-
-@pytest.fixture()
-def complex_member_data() -> dict:
-    """Represent a single Member with Profile.
-
-    All supported input fields are supplied.
-    Item from 'groups' -> 'group' -> 'members'.
-    """
-    return {
-        "createdTime": "2022-03-24T16:36:29Z",
-        "email": "ciarán@example.com",
-        "firstName": "Ciarán",
-        "id": "F59D764E4CE0B643DF4C0CF5E5B2B059",
-        "lastName": "Hinds",
-        "phoneNumber": "+123456789",
-        "profile": {
-            "id": "364C188137AD92DC0F32E1A31A0E1731",
-        },
-    }
+# EXTRACTS FROM GROUPS ENDPOINT:
 
 
 @pytest.fixture()
@@ -56,12 +23,110 @@ def simple_subgroup_data() -> dict:
     """Represent the simplest possible Subgroup in this implementation.
 
     For testing Subgroup in isolation.
-    Item from 'groups' (root) -> 'group' -> 'subGroups'.
+    Item from 'groups' (root) -> {group} -> 'subGroups'
     """
     return {
         "id": "8CC576609CF3DCBC44469A799E76B22B",
         "name": "Subgroup A1",
     }
+
+
+@pytest.fixture()
+def simple_member_data() -> dict:
+    """Represent the simplest possible Member in this implementation.
+
+    For testing Member in isolation.
+    Item from 'groups' (root) -> {group} -> 'members'.
+    """
+    return {
+        "createdTime": "2022-03-24T16:36:29Z",
+        "firstName": "Brendan",
+        "id": "6F63AF02CE05328153ABA477C76E6189",
+        "lastName": "Gleason",
+        # profile is assumed optional (visibility dependent on user permissions?)
+    }
+
+
+@pytest.fixture()
+def member_with_profile_data() -> dict:
+    """Represent a single Member with Profile.
+
+    All supported input fields are supplied.
+    Item from 'groups' (root) -> {group} -> 'members'.
+    """
+    return {
+        "createdTime": "2022-03-24T16:36:29Z",
+        "email": "ciarán@example.com",
+        "firstName": "Ciarán",
+        "id": "F59D764E4CE0B643DF4C0CF5E5B2B059",
+        "lastName": "Hinds",
+        "phoneNumber": "+123456789",
+        "profile": {
+            "id": "364C188137AD92DC0F32E1A31A0E1731",
+        },
+    }
+
+
+@pytest.fixture()
+def simple_group_data() -> dict:
+    """Represent the simplest possible Group in this implementation.
+
+    For testing Event in isolation.
+    Item from 'groups' (root).
+    """
+    return {
+        "id": "8B4A6A9C60397A41D6D2414AFD520152",
+        "name": "Group A",
+        # members assumed optional
+    }
+
+
+@pytest.fixture()
+def complex_group_data() -> dict:
+    """Represent a single Group with a single Member, single Subgroup, single Role.
+
+    The Member is in the Subgroup, and has the Role.
+    All supported input fields are supplied.
+    Item from 'groups' (root).
+    """
+    return {
+        "id": "20EA715745389FCDED2C280A8ACB74A6",
+        "members": [
+            {
+                "createdTime": "2022-03-24T16:36:29Z",
+                "email": "brendan@example.com",
+                "firstName": "Brendan",
+                "id": "6F63AF02CE05328153ABA477C76E6189",
+                "lastName": "Gleason",
+                "phoneNumber": "+123456789",
+                "profile": {
+                    "id": "364C188137AD92DC0F32E1A31A0E1731",
+                },
+                "roles": [
+                    "29A7724B47ABEE7B3C9DC347E13A50B4",
+                ],
+                "subGroups": [
+                    "BB6B3C3592C5FC71DBDD5258D45EF6D4",
+                ],
+            },
+        ],
+        "name": "Group B",
+        "subGroups": [
+            {
+                "id": "BB6B3C3592C5FC71DBDD5258D45EF6D4",
+                "name": "Subgroup B1",
+            },
+        ],
+        "roles": [
+            {
+                "id": "29A7724B47ABEE7B3C9DC347E13A50B4",
+                "name": "Role B2",
+            },
+        ],
+    }
+
+
+# EXTRACTS FROM EVENTS ENDPOINT:
 
 
 @pytest.fixture()
@@ -118,62 +183,4 @@ def complex_event_data() -> dict:
                 "49C2447E4ADE8005A9652B24F95E4F6F",
             ],
         },
-    }
-
-
-@pytest.fixture()
-def simple_group_data() -> dict:
-    """Represent the simplest possible Group in this implementation.
-
-    For testing Event in isolation.
-    Item from 'groups' (root).
-    """
-    return {
-        "id": "8B4A6A9C60397A41D6D2414AFD520152",
-        "name": "Group A",
-    }
-
-
-@pytest.fixture()
-def complex_group_data() -> dict:
-    """Represent a single Group with a single Member, single Subgroup, single Role.
-
-    The Member is in the Subgroup, and has the Role.
-    All supported input fields are supplied.
-    Item from 'groups' (root).
-    """
-    return {
-        "id": "20EA715745389FCDED2C280A8ACB74A6",
-        "members": [
-            {
-                "createdTime": "2022-03-24T16:36:29Z",
-                "email": "brendan@example.com",
-                "firstName": "Brendan",
-                "id": "6F63AF02CE05328153ABA477C76E6189",
-                "lastName": "Gleason",
-                "phoneNumber": "+123456789",
-                "profile": {
-                    "id": "364C188137AD92DC0F32E1A31A0E1731",
-                },
-                "roles": [
-                    "29A7724B47ABEE7B3C9DC347E13A50B4",
-                ],
-                "subGroups": [
-                    "BB6B3C3592C5FC71DBDD5258D45EF6D4",
-                ],
-            },
-        ],
-        "name": "Group B",
-        "subGroups": [
-            {
-                "id": "BB6B3C3592C5FC71DBDD5258D45EF6D4",
-                "name": "Subgroup B1",
-            },
-        ],
-        "roles": [
-            {
-                "id": "29A7724B47ABEE7B3C9DC347E13A50B4",
-                "name": "Role B2",
-            },
-        ],
     }

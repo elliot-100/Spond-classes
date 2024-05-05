@@ -35,12 +35,12 @@ def test_from_dict_simple(simple_member_data: dict) -> None:
     assert my_member.subgroups == []
 
 
-def test_from_dict_complex(complex_member_data: dict) -> None:
+def test_from_dict_complex(member_with_profile_data: dict) -> None:
     """Test that Member is created from dict.
 
     Verify values of all attributes.
     """
-    my_member = Member.from_dict(complex_member_data)
+    my_member = Member.from_dict(member_with_profile_data)
 
     assert my_member.uid == "F59D764E4CE0B643DF4C0CF5E5B2B059"
     assert my_member.created_time == datetime(
