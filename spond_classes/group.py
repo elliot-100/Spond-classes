@@ -29,24 +29,22 @@ class Group:
         'id' in API, but 'id' is a reserved term and the `spond` package uses `uid`.
     members : list[Member]
         Members belonging to the Group.
-        Derived from 'members' in API, but returns Member instances instead of dicts.
+        'members' in API.
     name : str
         Name of the Group.
         'name' in API.
     roles : list[Role]
         Roles belonging to the Group.
-        Derived from 'roles' in API, but returns Role instances instead of dicts.
+        'roles' in API.
     subgroups : list[Subgroup]
         The Subgroups belonging to the Group.
-        Derived from 'subgroups' in API, but returns Subgroup instances instead
-        of dicts.
+        'subgroups' in API.
     """
 
-    # Required params, populated by implicit Group.__init__().
     uid: str
     name: str
 
-    # Populated by `Group.from_dict()`, as they rely on full Group data:
+    # Optionally populated:
     members: list[Member] = field(default_factory=list, repr=False)
     roles: list[Role] = field(default_factory=list, repr=False)
     subgroups: list[Subgroup] = field(default_factory=list, repr=False)
@@ -62,7 +60,7 @@ class Group:
         Parameters
         ----------
         group_data
-            Dict representing the group, as returned by `spond.get_group()`.
+            Dict representing the Group, as returned by `spond.get_group()`.
         """
         if not isinstance(group_data, dict):
             raise TypeError
@@ -72,18 +70,20 @@ class Group:
 
     @classmethod
     def from_dict(cls, group_data: dict) -> Self:
-        """Create a full-featured Group object and child objects from relevant dict.
+        """Create a full-featured Group object and nested instances from relevant dict.
 
         Parameters
         ----------
         group_data
-            Dict representing the group, as returned by `spond.get_group()`.
+            Dict representing the Group, as returned by `spond.get_group()`.
         """
         group = cls.core_from_dict(group_data)
 
-        group.members = Group._create_children(group_data, "members", Member)
-        group.subgroups = Group._create_children(group_data, "subGroups", Subgroup)
-        group.roles = Group._create_children(group_data, "roles", Role)
+        group.members = Group._create_nested_instances(group_data, "members", Member)
+        group.subgroups = Group._create_nested_instances(
+            group_data, "subGroups", Subgroup
+        )
+        group.roles = Group._create_nested_instances(group_data, "roles", Role)
 
         for member_data in group_data.get("members", []):
             member_data_id = member_data.get("id")
@@ -105,8 +105,17 @@ class Group:
 
         return group
 
+    @staticmethod
+    def _create_nested_instances(
+        group_data: dict,
+        key: str,
+        nested_cls: type[Member | Role | Subgroup],
+    ) -> list:
+        """Create nested Member, Role, Subgroup instances."""
+        return [nested_cls.from_dict(item) for item in group_data.get(key, [])]
+
     def subgroup_by_id(self, subgroup_uid: str) -> Subgroup:
-        """Return the child Subgroup with matching id, or an error.
+        """Return the nested Subgroup with matching id, or an error.
 
         Parameters
         ----------
@@ -119,12 +128,12 @@ class Group:
         raise IndexError
 
     def member_by_id(self, member_uid: str) -> Member:
-        """Return the child Member with matching id, or an error.
+        """Return the nested Member with matching id, or an error.
 
         Parameters
         ----------
         member_uid
-            ID of the member.
+            ID of the Member.
         """
         for member in self.members:
             if member.uid == member_uid:
@@ -132,23 +141,14 @@ class Group:
         raise IndexError
 
     def role_by_id(self, role_uid: str) -> Role:
-        """Return the child Role with matching id, or an error.
+        """Return the nested Role with matching id, or an error.
 
         Parameters
         ----------
         role_uid
-            ID of the role.
+            ID of the Role.
         """
         for role in self.roles:
             if role.uid == role_uid:
                 return role
         raise IndexError
-
-    @staticmethod
-    def _create_children(
-        group_data: dict,
-        key: str,
-        child_cls: type[Member | Role | Subgroup],
-    ) -> list:
-        """Create child objects."""
-        return [child_cls.from_dict(item) for item in group_data.get(key, [])]

@@ -29,8 +29,7 @@ class Event:
         'heading' in API.
     start_time : datetime.
         Datetime at which the Event starts.
-        Derived from 'startTimestamp' in API, but returns a datetime instead of
-        a string.
+        'startTimestamp' in API, but returns a datetime instead of a string.
     accepted_uids : list[str]
         `responses` -> `acceptedIds` in API.
     declined_uids : list[str]
@@ -43,12 +42,11 @@ class Event:
         `responses` -> `waitinglistIds` in API.
     """
 
-    # Required params, populated by implicit Event.__init__().
     uid: str
     heading: str
     start_time: datetime
 
-    # Populated by `Event.from_dict()`, as they rely on full Event data:
+    # Optionally populated:
     accepted_uids: list = field(default_factory=list, repr=False)
     declined_uids: list = field(default_factory=list, repr=False)
     unanswered_uids: list = field(default_factory=list, repr=False)

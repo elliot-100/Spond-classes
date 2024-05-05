@@ -30,11 +30,10 @@ class Subgroup:
         Members of the Subgroup.
     """
 
-    # Required params, populated by implicit Subgroup.__init__().
     uid: str
     name: str
 
-    # Populated by `Group.from_dict()`, as they rely on full Group data:
+    # Optionally populated by `Group.from_dict()`, as they rely on full Group data:
     members: list[Member] = field(default_factory=list, repr=False)
 
     def __str__(self) -> str:

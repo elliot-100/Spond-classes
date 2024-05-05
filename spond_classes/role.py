@@ -30,11 +30,10 @@ class Role:
         Members with the Role.
     """
 
-    # Required params, populated by implicit Role.__init__().
     uid: str
     name: str
 
-    # Populated by `Group.from_dict()`, as they rely on full Group data:
+    # Optionally populated via `Group.from_dict()`, as they rely on full Group data:
     members: list[Member] = field(default_factory=list, repr=False)
 
     def __str__(self) -> str:

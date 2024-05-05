@@ -47,7 +47,7 @@ async def main():
     # ... use class properties instead of dict keys ...
     print(group.name)
 
-    # ... and access child instances and their properties
+    # ... and access nested instances and their properties
     for member in group.members:
         print(member.full_name)
 
@@ -75,7 +75,7 @@ Group.subgroups: List[Subgroup]
 Group.subgroup_by_id() -> Subgroup
 ```
 
-* Also provides access to child `Member`, `Role`, `Subgroup` instances:
+* Also provides access to nested `Member`, `Role`, `Subgroup` instances:
 
 ```
 Member.uid: str
