@@ -125,6 +125,3 @@ Event.Responses.unanswered_uids: list
 Event.Responses.waiting_list_uids: list
 Event.Responses.unconfirmed_uids: list
 ```
-
-It's also possible to create `Member()`, `Role()`,
-`Subgroup()` from appropriate dicts.
