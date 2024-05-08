@@ -52,11 +52,13 @@ def simple_member_data() -> dict:
     """
     return {
         "createdTime": "2022-03-24T16:36:29Z",
+        # email is optional
         "firstName": "Brendan",
         "id": "6F63AF02CE05328153ABA477C76E6189",
         "lastName": "Gleason",
-        # profile is assumed optional (visibility dependent on user permissions?)
-        "roles": [],
+        # phoneNumber is optional
+        # profile is optional
+        # roles is optional
         "subGroups": [],
     }
 

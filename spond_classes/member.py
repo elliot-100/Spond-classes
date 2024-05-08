@@ -44,13 +44,17 @@ class Member(BaseModel):
 
     uid: str = Field(alias="id")
     created_time: datetime = Field(alias="createdTime")
-    email: str | None = Field(default=None)
     first_name: str = Field(alias="firstName")
     last_name: str = Field(alias="lastName")
+
+    # Lists which always exist in API data, but may be empty
+    subgroup_uids: list[str] = Field(alias="subGroups")
+
+    # Optional in API data
+    email: str | None = Field(default=None)
     phone_number: str | None = Field(alias="phoneNumber", default=None)
-    profile: Profile | None = None  # Availability might depend on permissions?
-    role_uids: list = Field(alias="roles")
-    subgroup_uids: list = Field(alias="subGroups")
+    profile: Profile | None = None  # Availability may depend on permissions
+    role_uids: list[str] | None = Field(alias="roles", default=None)
 
     def __str__(self) -> str:
         """Return simple human-readable description.

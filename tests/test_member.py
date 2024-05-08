@@ -28,7 +28,7 @@ def test_from_dict_simple(simple_member_data: dict) -> None:
     assert my_member.full_name == "Brendan Gleason"
     assert my_member.phone_number is None
     assert my_member.profile is None
-    assert my_member.role_uids == []
+    assert my_member.role_uids is None
     assert my_member.subgroup_uids == []
     assert str(my_member) == "Member 'Brendan Gleason' (uid ends '...189')"
 
@@ -61,6 +61,11 @@ def test_from_dict_with_profile(member_with_profile_data: dict) -> None:
         my_member.profile.uid  # type: ignore[union-attr]
         == "364C188137AD92DC0F32E1A31A0E1731"
     )
-    assert my_member.role_uids[0] == "F2DFF55011800E66CDDAF2FD8A72039B"
+    # Ignore Mypy error:
+    #    Value of type "list[str] | None" is not indexable [index]
+    assert (
+        my_member.role_uids[0]  # type: ignore[index]
+        == "F2DFF55011800E66CDDAF2FD8A72039B"
+    )
     assert my_member.subgroup_uids[0] == "9E95A326090B256E2E9DAA6C0114E1D8"
     assert str(my_member) == "Member 'Ciarán Hinds' (uid ends '...059')"

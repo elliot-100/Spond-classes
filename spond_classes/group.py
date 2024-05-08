@@ -34,7 +34,7 @@ class Group(BaseModel):
     uid: str = Field(alias="id")
     name: str
 
-    # assumed always exists, may be empty
+    # Lists which always exist in API data, but may be empty
     members: list[Member]
     roles: list[Role]
     subgroups: list[Subgroup] = Field(alias="subGroups")
