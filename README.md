@@ -32,9 +32,11 @@ import asyncio
 from spond import spond
 import spond_classes
 
+# fake credentials and ids
 username = 'my@mail.invalid'
 password = 'Pa55worD'
-group_id = 'C9DC791FFE63D7914D6952BE10D97B46'  # fake
+group_id = 'G1'
+subgroup_id = 'SG1'
 
 async def main():
     s = spond.Spond(username=username, password=password)
@@ -42,14 +44,18 @@ async def main():
     await s.clientsession.close()
 
     # Now we can create a class instance ...
-    group = spond_classes.Group.from_dict(group_data)
+    group = spond_classes.Group(**group_data)
 
     # ... use class properties instead of dict keys ...
     print(group.name)
 
-    # ... and access nested instances and their properties
+    # ... access nested instances and their properties ...
     for member in group.members:
-        print(member.full_name)
+        print(f"{member.full_name} is in the {group.name} group")
+
+    # ... and use some helper methods
+    for member in group.members_by_subgroup(group.subgroup_by_id(subgroup_id))
+        print(f"{member.full_name} is in the {subgroup.name} subgroup")
 
 asyncio.run(main())
 ```
@@ -74,6 +80,9 @@ Group.subgroups: list[Subgroup]
 Group.member_by_id() -> Member
 Group.role_by_id() -> Role
 Group.subgroup_by_id() -> Subgroup
+
+Group.members_by_subgroup(subgroup: Subgroup) -> list[Member]
+Group.members_by_role(role: Role) -> list[Member]
 ```
 
 * Also provides access to nested `Member`, `Role`, `Subgroup` instances:
@@ -89,7 +98,6 @@ Member.phone_number: str
 Member.Profile.uid: str
 Member.role_uids: list[str]
 Member.subgroup_uids: list[str]
-
 
 Role.uid: str
 Role.name: str

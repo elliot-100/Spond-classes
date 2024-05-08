@@ -96,3 +96,29 @@ class Group(BaseModel):
                 return subgroup
         err_msg = f"No Subgroup found with id='{subgroup_uid}'."
         raise LookupError(err_msg)
+
+    def members_by_subgroup(self, subgroup: Subgroup) -> list[Member]:
+        """Return members in the nested Subgroup.
+
+        Parameters
+        ----------
+        subgroup
+            Subgroup from which to return Members.
+        """
+        return [
+            member for member in self.members if subgroup.uid in member.subgroup_uids
+        ]
+
+    def members_by_role(self, role: Role) -> list[Member]:
+        """Return members in the nested Role.
+
+        Parameters
+        ----------
+        role
+            Role from which to return Members.
+        """
+        return [
+            member
+            for member in self.members
+            if member.role_uids and role.uid in member.role_uids
+        ]
