@@ -93,7 +93,6 @@ def member_with_profile_data() -> dict:
 def simple_group_data() -> dict:
     """Represent the simplest possible Group in this implementation.
 
-    For testing Event in isolation.
     Item from 'groups' (root).
     """
     return {
@@ -157,7 +156,6 @@ def complex_group_data() -> dict:
 def simple_event_data() -> dict:
     """Represent the simplest possible Event in this implementation.
 
-    For testing Event in isolation.
     Item from 'events' (root).
     """
     return {
