@@ -1,8 +1,98 @@
-"""Event class and nested Responses class."""
+"""Event class and nested classes:
+Responses, Recipients, EventRecipientsGroup, EventRecipientsGroupMember.
+"""
 
 from datetime import datetime
 
 from pydantic import BaseModel, Field
+
+
+class EventRecipientsGroupMemberProfile(BaseModel):
+    """Represents a profile within EventRecipientsGroupMember.
+
+    Simpler than a Profile.
+
+    Attributes
+    ----------
+    uid : str
+        id of the Member.
+        'id' in API, but 'id' is a reserved term and the `spond` package uses `uid`.
+    """
+
+    uid: str = Field(alias="id")
+
+
+class EventRecipientsGroupMember(BaseModel):
+    """Represents a member within EventRecipientsGroup.
+
+    Simpler than a Member.
+
+    Attributes
+    ----------
+    uid : str
+        id of the Member.
+        'id' in API, but 'id' is a reserved term and the `spond` package uses `uid`.
+    first_name : str
+        'firstName' in API.
+    last_name : str
+        'lastName' in API.
+
+    Properties
+    ----------
+    full_name : str
+        The Member's full name.
+        Provided for convenience.
+    """
+
+    uid: str = Field(alias="id")
+    first_name: str = Field(alias="firstName")
+    last_name: str = Field(alias="lastName")
+
+    # Optional in API data
+    profile: EventRecipientsGroupMemberProfile | None = (
+        None  # Availability may depend on permissions
+    )
+
+    @property
+    def full_name(self) -> str:
+        """Return the member's full name."""
+        return f"{self.first_name} {self.last_name}"
+
+
+class EventRecipientsGroup(BaseModel):
+    """Represents a group within Recipients.
+
+    Simpler than a Group.
+
+    Attributes
+    ----------
+    uid : str
+        id of the Group.
+        'id' in API, but 'id' is a reserved term and the `spond` package uses `uid`.
+    members : list[Member]
+        Members belonging to the Group.
+        'members' in API.
+    name : str
+        Name of the Group.
+        'name' in API.
+    """
+
+    uid: str = Field(alias="id")
+    name: str
+
+    # Lists which always exist in API data, but may be empty
+    members: list[EventRecipientsGroupMember]
+
+
+class Recipients(BaseModel):
+    """Represents the recipients of an Event.
+
+    Attributes
+    ----------
+    group : EventRecipientsGroup
+    """
+
+    group: EventRecipientsGroup
 
 
 class Responses(BaseModel):
@@ -41,6 +131,7 @@ class Event(BaseModel):
     heading : str
         Heading/name of the Event.
         `heading` in API.
+    recipients : Recipients
     responses : Responses
     start_time : datetime.
         Datetime at which the Event starts.
@@ -49,6 +140,7 @@ class Event(BaseModel):
 
     uid: str = Field(alias="id")
     heading: str
+    recipients: Recipients
     responses: Responses
     start_time: datetime = Field(alias="startTimestamp")
 
