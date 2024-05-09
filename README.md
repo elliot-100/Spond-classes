@@ -61,11 +61,11 @@ asyncio.run(main())
 ```
 ## Key features
 
-* Create `Group` class instance from the dict returned by the corresponding `spond`
-  method:
+* Create `Group` instance from the dict returned from the API by the corresponding
+  `Spond` method:
 
 ```
-spond_classes.Group()
+spond_classes.Group(**dict)
 ```
 
 * Then access class instance attributes and methods:
@@ -106,8 +106,8 @@ Subgroup.uid: str
 Subgroup.name: str
 ```
 
-* Create `Event` class instance from the dict returned by the corresponding `Spond`
-  method:
+* Create `Event` instance from the dict returned from the API by the corresponding
+  `Spond` method:
 
 ```
 spond_classes.Event(**dict)
@@ -119,9 +119,9 @@ spond_classes.Event(**dict)
 Event.uid: str
 Event.heading: str
 Event.start_time: datetime
-Event.Responses.accepted_uids: list
-Event.Responses.declined_uids: list
-Event.Responses.unanswered_uids: list
-Event.Responses.waiting_list_uids: list
-Event.Responses.unconfirmed_uids: list
+Event.Responses.accepted_uids: list[str]
+Event.Responses.declined_uids: list[str]
+Event.Responses.unanswered_uids: list[str]
+Event.Responses.waiting_list_uids: list[str]
+Event.Responses.unconfirmed_uids: list[str]
 ```

@@ -6,7 +6,7 @@ from pydantic import BaseModel, Field
 class Role(BaseModel):
     """Represents a role in the Spond system.
 
-    A Role belongs to one Group.
+    A Role is nested within a Group.
 
     Attributes
     ----------

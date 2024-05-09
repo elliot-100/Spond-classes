@@ -4,6 +4,9 @@ from pydantic import BaseModel, Field
 
 
 class Profile(BaseModel):
-    """Represents a Member's Profile in the Spond system."""
+    """Represents a profile in the Spond system.
+
+    A Profile is nested within a Member.
+    """
 
     uid: str = Field(alias="id")

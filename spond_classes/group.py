@@ -10,7 +10,11 @@ from .subgroup import Subgroup
 class Group(BaseModel):
     """Represents a group in the Spond system.
 
-    A Group has zero, one or more Members.
+    Groups are retrieved from the 'groups' API endpoint.
+
+    A Group has zero, one or more nested Members.
+    A Group has zero, one or more nested Roles.
+    A Group has zero, one or more nested Subgroups.
 
     Attributes
     ----------

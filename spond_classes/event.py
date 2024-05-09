@@ -31,6 +31,8 @@ class Responses(BaseModel):
 class Event(BaseModel):
     """Represents an event in the Spond system.
 
+    Events are retrieved from the 'events' API endpoint.
+
     Attributes
     ----------
     uid : str

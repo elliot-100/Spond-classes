@@ -10,7 +10,8 @@ from .profile import Profile
 class Member(BaseModel):
     """Represents a member in the Spond system.
 
-    A Member is an individual's record within a Group.
+    A Member is an individual's group-specific record.
+    A Member is nested within a Group.
     A Member may have a nested Profile.
 
     Attributes
@@ -26,11 +27,11 @@ class Member(BaseModel):
         'firstName' in API.
     last_name : str
         'lastName' in API.
-    phone_number : str
+    phone_number : str | None
         'phoneNumber' in API.
-    profile : Profile
+    profile : Profile | None
         `profile` in API.
-    role_uids : list[str]
+    role_uids : list[str] | None
         `roles` in API, but aliased here to avoid confusion with `Group.Roles'
     subgroup_uids : list[str]
         `subGroups` in API, but aliased here to avoid confusion with `Group.Subgroups'

@@ -4,10 +4,9 @@ from pydantic import BaseModel, Field
 
 
 class Subgroup(BaseModel):
-    """Subgroup.
+    """Represents a subgroup in the Spond system.
 
-    Belongs to one Group.
-    May contain zero, one or more SpondMembers.
+    A Subgroup is nested within a Group.
 
     Attributes
     ----------
