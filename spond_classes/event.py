@@ -49,8 +49,8 @@ class Event(BaseModel):
 
     uid: str = Field(alias="id")
     heading: str
-    start_time: datetime = Field(alias="startTimestamp")
     responses: Responses
+    start_time: datetime = Field(alias="startTimestamp")
 
     def __str__(self) -> str:
         """Return simple human-readable description.

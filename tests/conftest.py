@@ -182,7 +182,6 @@ def complex_event_data() -> dict:
     return {
         "id": "36D7F1A46EB2CDED4B6F22D400229822",
         "heading": "Event 2",
-        "startTimestamp": "2022-11-04T06:00:00Z",
         "responses": {
             "acceptedIds": [
                 "B24FA75A4CCBC63199A57361E88B0646",
@@ -205,4 +204,5 @@ def complex_event_data() -> dict:
                 "49C2447E4ADE8005A9652B24F95E4F6F",
             ],
         },
+        "startTimestamp": "2022-11-04T06:00:00Z",
     }
