@@ -2,7 +2,7 @@
 
 from datetime import datetime, timezone
 
-from spond_classes import Event
+from spond_classes.event import Event
 
 
 def test_from_dict_simple(simple_event_data: dict) -> None:
