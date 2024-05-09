@@ -1,6 +1,6 @@
 """Tests for Role class."""
 
-from spond_classes import Role
+from spond_classes.role import Role
 
 
 def test_from_dict(simple_role_data: dict) -> None:

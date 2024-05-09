@@ -1,6 +1,6 @@
 """Tests for Subgroup class."""
 
-from spond_classes import Subgroup
+from spond_classes.subgroup import Subgroup
 
 
 def test_from_dict(simple_subgroup_data: dict) -> None:
