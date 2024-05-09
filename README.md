@@ -32,9 +32,11 @@ import asyncio
 from spond import spond
 import spond_classes
 
+# fake credentials and ids
 username = 'my@mail.invalid'
 password = 'Pa55worD'
-group_id = 'C9DC791FFE63D7914D6952BE10D97B46'  # fake
+group_id = 'G1'
+subgroup_id = 'SG1'
 
 async def main():
     s = spond.Spond(username=username, password=password)
@@ -42,14 +44,18 @@ async def main():
     await s.clientsession.close()
 
     # Now we can create a class instance ...
-    group = spond_classes.Group.from_dict(group_data)
+    group = spond_classes.Group(**group_data)
 
     # ... use class properties instead of dict keys ...
     print(group.name)
 
-    # ... and access nested instances and their properties
+    # ... access nested instances and their properties ...
     for member in group.members:
-        print(member.full_name)
+        print(f"{member.full_name} is in the {group.name} group")
+
+    # ... and use some helper methods
+    for member in group.members_by_subgroup(group.subgroup_by_id(subgroup_id))
+        print(f"{member.full_name} is in the {subgroup.name} subgroup")
 
 asyncio.run(main())
 ```
@@ -59,20 +65,24 @@ asyncio.run(main())
   method:
 
 ```
-spond_classes.Group.from_dict()
+spond_classes.Group()
 ```
 
 * Then access class instance attributes and methods:
 
 ```
 Group.uid: str
+Group.members: list[Member]
 Group.name: str
-Group.members: List[Member]
+Group.roles: list[Role]
+Group.subgroups: list[Subgroup]
+
 Group.member_by_id() -> Member
-Group.roles: List[SpondRoles]
 Group.role_by_id() -> Role
-Group.subgroups: List[Subgroup]
 Group.subgroup_by_id() -> Subgroup
+
+Group.members_by_subgroup(subgroup: Subgroup) -> list[Member]
+Group.members_by_role(role: Role) -> list[Member]
 ```
 
 * Also provides access to nested `Member`, `Role`, `Subgroup` instances:
@@ -80,20 +90,19 @@ Group.subgroup_by_id() -> Subgroup
 ```
 Member.uid: str
 Member.created_time: datetime
+Member.email: str
 Member.first_name: str
-Member.last_name: str
 Member.full_name: str
+Member.last_name: str
 Member.phone_number: str
-Member.profile_uid: str
-Member.roles: List[Role]
-Member.subgroups: List[Subgroup]
+Member.Profile.uid: str
+Member.role_uids: list[str]
+Member.subgroup_uids: list[str]
 
 Role.uid: str
-Role.members: List[Member]
 Role.name: str
 
 Subgroup.uid: str
-Subgroup.members: List[Member]
 Subgroup.name: str
 ```
 
@@ -101,7 +110,7 @@ Subgroup.name: str
   method:
 
 ```
-spond_classes.Event.from_dict()
+spond_classes.Event(**dict)
 ```
 
 * Then access attributes:
@@ -110,12 +119,9 @@ spond_classes.Event.from_dict()
 Event.uid: str
 Event.heading: str
 Event.start_time: datetime
-Event.accepted_uids: list
-Event.declined_uids: list
-Event.unanswered_uids: list
-Event.waiting_list_uids: list
-Event.unconfirmed_uids: list
+Event.Responses.accepted_uids: list
+Event.Responses.declined_uids: list
+Event.Responses.unanswered_uids: list
+Event.Responses.waiting_list_uids: list
+Event.Responses.unconfirmed_uids: list
 ```
-
-It's also possible to create `Member.from_dict()`, `Role.from_dict()`,
-`Subgroup.from_dict()`.

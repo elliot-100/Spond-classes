@@ -32,6 +32,18 @@ def simple_subgroup_data() -> dict:
 
 
 @pytest.fixture()
+def simple_profile_data() -> dict:
+    """Represent the simplest possible Profile in this implementation.
+
+    For testing Profile in isolation.
+    Item from 'groups' (root) -> {group} -> 'members' -> {member} -> {profile}
+    """
+    return {
+        "id": "364C188137AD92DC0F32E1A31A0E1731",
+    }
+
+
+@pytest.fixture()
 def simple_member_data() -> dict:
     """Represent the simplest possible Member in this implementation.
 
@@ -40,10 +52,14 @@ def simple_member_data() -> dict:
     """
     return {
         "createdTime": "2022-03-24T16:36:29Z",
+        # email is optional
         "firstName": "Brendan",
         "id": "6F63AF02CE05328153ABA477C76E6189",
         "lastName": "Gleason",
-        # profile is assumed optional (visibility dependent on user permissions?)
+        # phoneNumber is optional
+        # profile is optional
+        # roles is optional
+        "subGroups": [],
     }
 
 
@@ -64,6 +80,12 @@ def member_with_profile_data() -> dict:
         "profile": {
             "id": "364C188137AD92DC0F32E1A31A0E1731",
         },
+        "roles": [
+            "F2DFF55011800E66CDDAF2FD8A72039B",
+        ],
+        "subGroups": [
+            "9E95A326090B256E2E9DAA6C0114E1D8",
+        ],
     }
 
 
@@ -77,7 +99,9 @@ def simple_group_data() -> dict:
     return {
         "id": "8B4A6A9C60397A41D6D2414AFD520152",
         "name": "Group A",
-        # members assumed optional
+        "members": [],  # assumed always exists, may be empty
+        "roles": [],  # assumed always exists, may be empty
+        "subGroups": [],  # assumed always exists, may be empty
     }
 
 

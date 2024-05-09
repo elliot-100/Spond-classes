@@ -8,6 +8,21 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 Historic and pre-release versions aren't necessarily included.
 
 
+## [UNRELEASED] - TBC
+
+### Changed
+
+- BREAKING CHANGES: Significantly revised API - see README for details.
+
+- Rewritten from scratch using Pydantic; much closer to API data structure
+
+### Fixed
+
+### Removed
+
+- Support for Python 3.8, 3.9
+
+
 ## [0.8.1] - 2024-05-03
 
 ### Added
@@ -70,6 +85,7 @@ Historic and pre-release versions aren't necessarily included.
 - Update dev/test dependencies: ruff
 
 
+[UNRELEASED]: https://github.com/elliot-100/Spond-classes/compare/v0.8.1...HEAD
 [0.8.1]: https://github.com/elliot-100/Spond-classes/compare/v0.8.0...v0.8.1
 [0.8.0]: https://github.com/elliot-100/Spond-classes/compare/v0.7.3...v0.8.0
 [0.7.3]: https://github.com/elliot-100/Spond-classes/compare/v0.7.2...v0.7.3

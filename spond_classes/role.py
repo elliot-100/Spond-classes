@@ -1,22 +1,12 @@
 """Role class."""
 
-from __future__ import annotations
-
-from dataclasses import dataclass, field
-from typing import TYPE_CHECKING
-
-from typing_extensions import Self
-
-if TYPE_CHECKING:
-    from .member import Member
+from pydantic import BaseModel, Field
 
 
-@dataclass
-class Role:
+class Role(BaseModel):
     """Represents a role in the Spond system.
 
     A Role belongs to one Group.
-    A Member has zero, one or more Roles.
 
     Attributes
     ----------
@@ -26,35 +16,11 @@ class Role:
     name : str
         Name of the Role.
         'name' in API.
-    members : list[Member]
-        Members with the Role.
     """
 
-    uid: str
+    uid: str = Field(alias="id")
     name: str
-
-    # Optionally populated via `Group.from_dict()`, as they rely on full Group data:
-    members: list[Member] = field(default_factory=list, repr=False)
 
     def __str__(self) -> str:
         """Return simple human-readable description."""
         return f"Role '{self.name}'"
-
-    @classmethod
-    def from_dict(cls, role_data: dict) -> Self:
-        """Create a Role object from relevant dict.
-
-        Parameters
-        ----------
-        role_data
-            Dict representing the role.
-        """
-        if not isinstance(role_data, dict):
-            raise TypeError
-        uid = role_data["id"]
-        name = role_data["name"]
-
-        return cls(
-            uid,
-            name,
-        )
