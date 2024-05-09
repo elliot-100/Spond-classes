@@ -15,6 +15,7 @@ def test_from_dict_simple(simple_event_data: DictFromJSON) -> None:
     # assert
     assert my_event.uid == "E1"
     assert my_event.heading == "Event One"
+    assert my_event.recipients.group.name == "EventRecipientsGroup One"
     assert my_event.responses.accepted_uids == []
     assert my_event.responses.declined_uids == []
     assert my_event.responses.unanswered_uids == []
@@ -49,6 +50,18 @@ def test_from_dict_complex(complex_event_data: DictFromJSON) -> None:
     # assert
     assert my_event.uid == "E2"
     assert my_event.heading == "Event Two"
+    assert my_event.recipients.group.uid == "E2RG1"
+    assert my_event.recipients.group.name == "EventRecipientsGroup Two"
+    assert my_event.recipients.group.members[0].uid == "E2RG1M1"
+    assert my_event.recipients.group.members[0].first_name == "Kerry"
+    assert my_event.recipients.group.members[0].last_name == "Condon"
+    # Ignore Mypy error:
+    #    Item "None" of "EventRecipientsGroupMemberProfile | None" has no attribute
+    #    "uid"  [union-attr].
+    assert (
+        my_event.recipients.group.members[0].profile.uid  # type: ignore[union-attr]
+        == "E2RG1M1ID"
+    )
     assert my_event.responses.accepted_uids == ["AC1"]
     assert my_event.responses.declined_uids == ["DC1"]
     assert my_event.responses.unanswered_uids == ["UA1"]

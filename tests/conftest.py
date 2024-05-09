@@ -18,6 +18,13 @@ def simple_event_data() -> DictFromJSON:
     return {
         "id": "E1",
         "heading": "Event One",
+        "recipients": {
+            "group": {
+                "id": "E1RG1",
+                "name": "EventRecipientsGroup One",
+                "members": [],  # assumed always exists, may be empty
+            },
+        },
         "responses": {
             "acceptedIds": [],
             "declinedIds": [],
@@ -41,6 +48,20 @@ def complex_event_data() -> DictFromJSON:
     return {
         "id": "E2",
         "heading": "Event Two",
+        "recipients": {
+            "group": {
+                "id": "E2RG1",
+                "name": "EventRecipientsGroup Two",
+                "members": [  # assumed always exists, may be empty
+                    {
+                        "id": "E2RG1M1",
+                        "firstName": "Kerry",
+                        "lastName": "Condon",
+                        "profile": {"id": "E2RG1M1ID"},
+                    }
+                ],
+            }
+        },
         "responses": {
             "acceptedIds": ["AC1"],
             "declinedIds": ["DC1"],
