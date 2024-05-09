@@ -93,7 +93,6 @@ def member_with_profile_data() -> dict:
 def simple_group_data() -> dict:
     """Represent the simplest possible Group in this implementation.
 
-    For testing Event in isolation.
     Item from 'groups' (root).
     """
     return {
@@ -157,7 +156,6 @@ def complex_group_data() -> dict:
 def simple_event_data() -> dict:
     """Represent the simplest possible Event in this implementation.
 
-    For testing Event in isolation.
     Item from 'events' (root).
     """
     return {
@@ -184,7 +182,6 @@ def complex_event_data() -> dict:
     return {
         "id": "36D7F1A46EB2CDED4B6F22D400229822",
         "heading": "Event 2",
-        "startTimestamp": "2022-11-04T06:00:00Z",
         "responses": {
             "acceptedIds": [
                 "B24FA75A4CCBC63199A57361E88B0646",
@@ -207,4 +204,5 @@ def complex_event_data() -> dict:
                 "49C2447E4ADE8005A9652B24F95E4F6F",
             ],
         },
+        "startTimestamp": "2022-11-04T06:00:00Z",
     }

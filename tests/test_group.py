@@ -1,6 +1,6 @@
 """Tests for Group class."""
 
-from spond_classes import Group
+from spond_classes.group import Group
 
 
 def test_from_dict_simple(simple_group_data: dict) -> None:

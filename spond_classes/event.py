@@ -41,16 +41,16 @@ class Event(BaseModel):
     heading : str
         Heading/name of the Event.
         `heading` in API.
+    responses : Responses
     start_time : datetime.
         Datetime at which the Event starts.
         `startTimestamp` in API, but returns a datetime instead of a string.
-    responses : Responses
     """
 
     uid: str = Field(alias="id")
     heading: str
-    start_time: datetime = Field(alias="startTimestamp")
     responses: Responses
+    start_time: datetime = Field(alias="startTimestamp")
 
     def __str__(self) -> str:
         """Return simple human-readable description.
