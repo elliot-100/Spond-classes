@@ -8,6 +8,19 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 Historic and pre-release versions aren't necessarily included.
 
 
+## [0.9.1] - 2024-05-10
+
+### Changed
+
+- Docstring and README improvements
+
+### Fixed
+
+- `Member`, `Role`, `Subgroup` were removed from in top-level namespace
+
+- Docstring and README errors
+
+
 ## [0.9.0] - 2024-05-09
 
 ### Changed
@@ -83,6 +96,7 @@ Historic and pre-release versions aren't necessarily included.
 - Update dev/test dependencies: ruff
 
 
+[0.9.1]: https://github.com/elliot-100/Spond-classes/compare/v0.9.0...v0.9.1
 [0.9.0]: https://github.com/elliot-100/Spond-classes/compare/v0.8.1...v0.9.0
 [0.8.1]: https://github.com/elliot-100/Spond-classes/compare/v0.8.0...v0.8.1
 [0.8.0]: https://github.com/elliot-100/Spond-classes/compare/v0.7.3...v0.8.0
