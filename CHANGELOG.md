@@ -16,7 +16,7 @@ Historic and pre-release versions aren't necessarily included.
 
 ### Fixed
 
-- `Member`, `Role`, `Subgroup` were removed from in top-level namespace
+- `Member`, `Role`, `Subgroup` were removed from top-level namespace
 
 - Docstring and README errors
 
