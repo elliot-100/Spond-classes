@@ -54,7 +54,8 @@ async def main():
         print(f"{member.full_name} is in the {group.name} group")
 
     # ... and use some helper methods
-    for member in group.members_by_subgroup(group.subgroup_by_id(subgroup_id))
+    subgroup = group.subgroup_by_id(subgroup_id)
+    for member in group.members_by_subgroup(subgroup)
         print(f"{member.full_name} is in the {subgroup.name} subgroup")
 
 asyncio.run(main())
