@@ -22,7 +22,7 @@ class EventRecipientsGroupMemberProfile(BaseModel):
 
 
 class EventRecipientsGroupMember(BaseModel):
-    """Represents a member within EventRecipientsGroup.
+    """Represents a member within Event.Responses.EventRecipientGroup.
 
     Simpler than a Member.
 
@@ -58,6 +58,27 @@ class EventRecipientsGroupMember(BaseModel):
         return f"{self.first_name} {self.last_name}"
 
 
+class EventRecipientsGroupSubgroup(BaseModel):
+    """Represents a subgroup within Event.Responses.EventRecipientGroup.
+
+    Attributes
+    ----------
+    uid : str
+        id of the Subgroup.
+        'id' in API, but 'id' is a reserved term and the `spond` package uses `uid`.
+    name : str
+        Name of the Subgroup.
+        'name' in API.
+    """
+
+    uid: str = Field(alias="id")
+    name: str
+
+    def __str__(self) -> str:
+        """Return simple human-readable description."""
+        return f"Subgroup '{self.name}'"
+
+
 class EventRecipientsGroup(BaseModel):
     """Represents a group within Recipients.
 
@@ -74,6 +95,8 @@ class EventRecipientsGroup(BaseModel):
     name : str
         Name of the Group.
         'name' in API.
+    subgroups : list[EventRecipientsGroupSubgroup]
+        'subgroups' in API.
     """
 
     uid: str = Field(alias="id")
@@ -81,6 +104,11 @@ class EventRecipientsGroup(BaseModel):
 
     # Lists which always exist in API data, but may be empty
     members: list[EventRecipientsGroupMember]
+
+    # Optional in API data
+    subgroups: list[EventRecipientsGroupSubgroup] | None = Field(
+        alias="subGroups", default=None
+    )
 
 
 class Recipients(BaseModel):

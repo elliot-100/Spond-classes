@@ -60,6 +60,12 @@ def complex_event_data() -> DictFromJSON:
                         "profile": {"id": "E2RG1M1ID"},
                     }
                 ],
+                "subGroups": [
+                    {
+                        "id": "B55942D170A37362A2C70D1B987CDD33",
+                        "name": "EventRecipientSubgroup C",
+                    }
+                ],
             }
         },
         "responses": {

@@ -56,11 +56,18 @@ def test_from_dict_complex(complex_event_data: DictFromJSON) -> None:
     assert my_event.recipients.group.members[0].first_name == "Kerry"
     assert my_event.recipients.group.members[0].last_name == "Condon"
     # Ignore Mypy error:
-    #    Item "None" of "EventRecipientsGroupMemberProfile | None" has no attribute
-    #    "uid"  [union-attr].
+    #   Item "None" of "EventRecipientsGroupMemberProfile | None" has no attribute
+    #   "uid"  [union-attr].
     assert (
         my_event.recipients.group.members[0].profile.uid  # type: ignore[union-attr]
         == "E2RG1M1ID"
+    )
+    # Ignore Mypy error:
+    #   error: Value of type "list[EventRecipientsGroupSubgroup] | None" is not
+    #   indexable [index].
+    assert (
+        my_event.recipients.group.subgroups[0].name  # type: ignore[index]
+        == "EventRecipientSubgroup C"
     )
     assert my_event.responses.accepted_uids == ["AC1"]
     assert my_event.responses.declined_uids == ["DC1"]
