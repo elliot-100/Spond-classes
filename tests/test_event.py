@@ -55,7 +55,7 @@ def test_from_dict_complex(complex_event_data: dict) -> None:
         == "EventRecipientSubgroup C"
     )
     assert my_event.responses.accepted_uids == [
-        "B24FA75A4CCBC63199A57361E88B0646",
+        "45AD12670CAB93101B66CC0F023DA0E3",
     ]
     assert my_event.responses.declined_uids == [
         "B4C5339E366FB5350310F2F8EA069F41",
@@ -73,30 +73,32 @@ def test_from_dict_complex(complex_event_data: dict) -> None:
     assert str(my_event) == "Event 'Event 2' on 2022-11-04"
 
 
-def test_get_responses__accepted(
-    complex_event_data: dict,
-    complex_group_data: dict,
-) -> None:
-    """Test that 'accepted' Members  instances are returned."""
+def test_erg_members_by_response__happy_path(complex_event_data: dict) -> None:
+    """TO DO."""
     # arrange
-    my_group = Group.from_dict(complex_group_data)
-    my_event = Event.from_dict(complex_event_data)
+    my_event = Event(**complex_event_data)
 
     # act
-    accepted_members = my_event.get_responses(Event.ResponseCategory.ACCEPTED, my_group)
-    declined_members = my_event.get_responses(Event.ResponseCategory.DECLINED, my_group)
-    unanswered_members = my_event.get_responses(
-        Event.ResponseCategory.UNANSWERED, my_group,
-    )
-    waiting_list_members = my_event.get_responses(
-        Event.ResponseCategory.WAITING_LIST, my_group,
-    )
-    unconfirmed_members = my_event.get_responses(
-        Event.ResponseCategory.UNCONFIRMED, my_group,
-    )
+    accepted_erg_members = my_event._erg_members_by_response("accepted")
+    declined_erg_members = my_event._erg_members_by_response("declined")
+    unanswered_erg_members = my_event._erg_members_by_response("unanswered")
+    waiting_list_erg_members = my_event._erg_members_by_response("waiting_list")
+    unconfirmed_erg_members = my_event._erg_members_by_response("unconfirmed")
 
-    assert accepted_members[0].uid == "6F63AF02CE05328153ABA477C76E6189"
-    assert declined_members[0].uid == "B4C5339E366FB5350310F2F8EA069F41"
-    assert unanswered_members[0].uid == "3E546CDE2EAE242C1B8281C2042B5990"
-    assert waiting_list_members[0].uid == "0362B36507E156365471B64574EB6764"
-    assert unconfirmed_members[0].uid == "2D1BB37608F09511FD5F280D219DFD97"
+    # assert
+    assert accepted_erg_members[0].first_name == "Kerry"
+    assert declined_erg_members[0].first_name == "Zoë"
+    assert unanswered_erg_members[0].first_name == "Robert"
+    assert waiting_list_erg_members[0].first_name == "Hailee"
+    assert unconfirmed_erg_members[0].first_name == "Lily"
+
+
+def test_erg_member_by_id__happy_path(complex_event_data: dict) -> None:
+    """TO DO."""
+    # arrange
+    my_event = Event(**complex_event_data)
+
+    # act
+    my_erg_member = my_event._erg_member_by_id("B4C5339E366FB5350310F2F8EA069F41")
+
+    assert my_erg_member.first_name == "Zoë"

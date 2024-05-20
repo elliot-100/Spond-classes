@@ -3,7 +3,6 @@ Responses, Recipients, EventRecipientsGroup, EventRecipientsGroupMember.
 """
 
 from datetime import datetime
-from enum import Enum
 
 from pydantic import BaseModel, Field
 
@@ -147,20 +146,6 @@ class Responses(BaseModel):
     unconfirmed_uids: list[str] = Field(alias="unconfirmedIds")
 
 
-class ResponseCategory(Enum):
-    """Represents possible response categories.
-
-    Values are used to reference fields.
-
-    """
-
-    ACCEPTED = "accepted"
-    DECLINED = "declined"
-    UNANSWERED = "unanswered"
-    UNCONFIRMED = "unconfirmed"
-    WAITING_LIST = "waiting_list"
-
-
 class Event(BaseModel):
     """Represents an event in the Spond system.
 
@@ -194,22 +179,41 @@ class Event(BaseModel):
         """
         return f"Event '{self.heading}' on {self.start_time.date()}"
 
+    def _erg_members_by_response(
+        self, response_category: str
+    ) -> list[EventRecipientsGroupMember]:
+        response_categories = [
+            "accepted",
+            "declined",
+            "unanswered",
+            "waiting_list",
+            "unconfirmed",
+        ]
+        if response_category not in response_categories:
+            err_msg = (
+                f"Invalid `response_category` value '{response_category}'. "
+                f"Expected one of: {response_categories}"
+            )
+            raise ValueError(err_msg)
+        return [
+            self._erg_member_by_id(uid)
+            for uid in getattr(self.responses, f"{response_category}_uids")
+        ]
 
-
-    def get_responses(
-        self, response_category: ResponseCategory, group: Group,
-    ) -> list[Member]:
-        """Get the Members from response category.
+    def _erg_member_by_id(self, erg_member_uid: str) -> EventRecipientsGroupMember:
+        """Return the nested EventRecipientsGroupMember with matching uid.
 
         Parameters
         ----------
-        response_category
-            ACCEPTED | DECLINED | UNANSWERED | UNCONFIRMED | WAITING_LIST
-        group
+        erg_member_uid
+            ID to look up.
 
-        Returns
-        -------
-        List of Members in the response category.
+        Raises
+        ------
+        LookupError if uid is not found.
         """
-        uids = getattr(self, f"{response_category.value}_uids")
-        return [group.member_by_id(uid) for uid in uids]
+        for erg_member in self.recipients.group.members:
+            if erg_member.uid == erg_member_uid:
+                return erg_member
+        err_msg = f"No EventRecipientsGroupMember found with id='{erg_member_uid}'."
+        raise LookupError(err_msg)

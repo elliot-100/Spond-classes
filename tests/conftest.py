@@ -214,7 +214,6 @@ def complex_event_data() -> dict:
     """Represent a single Event with Responses.
 
     All supported input fields are supplied.
-    `Ids` in responses contain `uid`s of members in `complex_group_data()`
     Item from 'events' (root).
     """
     return {
@@ -224,13 +223,33 @@ def complex_event_data() -> dict:
             "group": {
                 "id": "82DA0E2BF349E63736BE7DDB11E07875",
                 "name": "EventRecipientsGroup B",
-                "members": [  # assumed always exists, may be empty
+                "members": [
                     {
-                        "id": "45AD12670CAB93101B66CC0F023DA0E3",
+                        "id": "45AD12670CAB93101B66CC0F023DA0E3",  # accepted
                         "firstName": "Kerry",
                         "lastName": "Condon",
                         "profile": {"id": "E8547508D5A36795B97278EB3AAFF54A"},
-                    }
+                    },
+                    {
+                        "id": "B4C5339E366FB5350310F2F8EA069F41",  # declined
+                        "firstName": "Zoë",
+                        "lastName": "Kravitz",
+                    },
+                    {
+                        "id": "3E546CDE2EAE242C1B8281C2042B5990",  # unanswered
+                        "firstName": "Robert",
+                        "lastName": "Pattinson",
+                    },
+                    {
+                        "id": "0362B36507E156365471B64574EB6764",  # waitinglist
+                        "firstName": "Hailee",
+                        "lastName": "Steinfeld",
+                    },
+                    {
+                        "id": "2D1BB37608F09511FD5F280D219DFD97",  # unconfirmed
+                        "firstName": "Lily",
+                        "lastName": "Tomlin",
+                    },
                 ],
                 "subGroups": [
                     {
@@ -242,7 +261,7 @@ def complex_event_data() -> dict:
         },
         "responses": {
             "acceptedIds": [
-                "B24FA75A4CCBC63199A57361E88B0646",
+                "45AD12670CAB93101B66CC0F023DA0E3",
             ],
             "declinedIds": [
                 "B4C5339E366FB5350310F2F8EA069F41",
