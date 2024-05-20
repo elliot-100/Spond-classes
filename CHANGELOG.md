@@ -8,6 +8,18 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 Historic and pre-release versions aren't necessarily included.
 
 
+## [UNRELEASED] - TBC
+
+### Added
+
+- `Group.members_by_role|subgroup()` raises ValueError if passed instances aren't compatible
+- Tests for `Group.member|role|subgroup_by_id()`, `Group.members_by_role|subgroup()`
+
+### Fixed
+
+- Example code in README
+
+
 ## [0.9.1] - 2024-05-10
 
 ### Changed
