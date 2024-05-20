@@ -23,7 +23,7 @@ class EventRecipientsGroupMemberProfile(BaseModel):
 
 
 class EventRecipientsGroupMember(BaseModel):
-    """Represents a member within Event.Responses.EventRecipientGroup.
+    """Represents a member within EventRecipientsGroup.
 
     Simpler than a Member.
 
@@ -60,7 +60,7 @@ class EventRecipientsGroupMember(BaseModel):
 
 
 class EventRecipientsGroupSubgroup(BaseModel):
-    """Represents a subgroup within Event.Responses.EventRecipientGroup.
+    """Represents a subgroup within EventRecipientsGroup.
 
     Attributes
     ----------
