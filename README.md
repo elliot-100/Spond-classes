@@ -134,10 +134,15 @@ Event.Responses.unconfirmed_uids: list[str]
 EventRecipientsGroup.uid: str
 EventRecipientsGroup.name: str
 EventRecipientsGroup.members: list[EventRecipientsGroupMember]
+EventRecipientsGroup.subgroups: list[EventRecipientsSubgroups]
+
 
 EventRecipientsGroupMember.uid: str
 EventRecipientsGroupMember.first_name: str
 EventRecipientsGroupMember.full_name: str
 EventRecipientsGroupMember.last_name: str
 EventRecipientsGroupMember.Profile.uid: str
+
+EventRecipientsSubgroups.uid: str
+EventRecipientsSubgroups.name: str
 ```

@@ -201,6 +201,12 @@ def complex_event_data() -> dict:
                         "profile": {"id": "E8547508D5A36795B97278EB3AAFF54A"},
                     }
                 ],
+                "subGroups": [
+                    {
+                        "id": "B55942D170A37362A2C70D1B987CDD33",
+                        "name": "EventRecipientSubgroup C",
+                    }
+                ],
             }
         },
         "responses": {
