@@ -8,6 +8,13 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 Historic and pre-release versions aren't necessarily included.
 
 
+# [UNRELEASED] - TBC
+
+### Added
+
+- `Event.Recipients` and nested classes
+
+
 ## [0.11.1] - 2024-09-16
 
 #### Added
