@@ -120,6 +120,20 @@ def test_members_by_subgroup__happy_path(complex_group_data: dict) -> None:
     assert my_subgroup_members[0].uid == "6F63AF02CE05328153ABA477C76E6189"
 
 
+def test_members_by_subgroup__not_subgroup_raises_type_error(
+    complex_group_data: dict,
+) -> None:
+    """Test that TypeError is raised if `subgroup` isn't a Subgroup."""
+    # arrange
+    my_group = Group(**complex_group_data)
+    role_not_subgroup = my_group.role_by_id("29A7724B47ABEE7B3C9DC347E13A50B4")
+
+    # act
+    with pytest.raises(TypeError):
+        # Ignore Mypy error - test purposely passes incompatible type
+        my_subgroup_members = my_group.members_by_subgroup(role_not_subgroup)  # type: ignore[arg-type]
+
+
 def test_members_by_role__happy_path(complex_group_data: dict) -> None:
     """Test that Members are returned from a valid Role."""
     # arrange
@@ -131,3 +145,17 @@ def test_members_by_role__happy_path(complex_group_data: dict) -> None:
 
     # assert
     assert my_role_members[0].uid == "6F63AF02CE05328153ABA477C76E6189"
+
+
+def test_members_by_role__not_role_raises_type_error(
+    complex_group_data: dict,
+) -> None:
+    """Test that TypeError is raised if `role` isn't a Role."""
+    # arrange
+    my_group = Group(**complex_group_data)
+    subgroup_not_role = my_group.subgroup_by_id("BB6B3C3592C5FC71DBDD5258D45EF6D4")
+
+    # act
+    with pytest.raises(TypeError):
+        # Ignore Mypy error - test purposely passes incompatible type
+        my_role_members = my_group.members_by_role(subgroup_not_role)  # type: ignore[arg-type]
