@@ -1,5 +1,7 @@
 """Module containing `Group` class."""
 
+from typing import Sequence
+
 from pydantic import BaseModel, Field
 
 from .member import Member
@@ -53,11 +55,7 @@ class Group(BaseModel):
         LookupError
             If `uid` is not found.
         """
-        for member in self.members:
-            if member.uid == member_uid:
-                return member
-        err_msg = f"No Member found with id='{member_uid}'."
-        raise LookupError(err_msg)
+        return self._instance_by_id(self.members, member_uid)
 
     def role_by_id(self, role_uid: str) -> Role:
         """Return the nested `Role` with matching ID.
@@ -76,11 +74,7 @@ class Group(BaseModel):
         LookupError
             If `uid` is not found.
         """
-        for role in self.roles:
-            if role.uid == role_uid:
-                return role
-        err_msg = f"No Role found with id='{role_uid}'."
-        raise LookupError(err_msg)
+        return self._instance_by_id(self.roles, role_uid)
 
     def subgroup_by_id(self, subgroup_uid: str) -> Subgroup:
         """Return the nested `Subgroup` with matching ID.
@@ -99,10 +93,26 @@ class Group(BaseModel):
         LookupError
             If `uid` is not found.
         """
-        for subgroup in self.subgroups:
-            if subgroup.uid == subgroup_uid:
-                return subgroup
-        err_msg = f"No Subgroup found with id='{subgroup_uid}'."
+        return self._instance_by_id(self.subgroups, subgroup_uid)
+
+    def _instance_by_id(
+        self, instances: Sequence[Member | Subgroup | Role], uid: str
+    ) -> Member | Subgroup | Role:
+        """Return the nested instance with matching `uid`.
+
+        Parameters
+        ----------
+        uid
+            ID to look up.
+
+        Raises
+        ------
+        LookupError if uid is not found.
+        """
+        for item in instances:
+            if item.uid == uid:
+                return item
+        err_msg = f"No instance found with id='{uid}'."
         raise LookupError(err_msg)
 
     def members_by_subgroup(self, subgroup: Subgroup) -> list[Member]:
