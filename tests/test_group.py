@@ -107,7 +107,7 @@ def test_subgroup_by_id__unmatched_id_raises_lookup_error(
         my_subgroup = my_group.subgroup_by_id("DUMMY_ID")
 
 
-def members_by_subgroup__happy_path(complex_group_data: dict) -> None:
+def test_members_by_subgroup__happy_path(complex_group_data: dict) -> None:
     """Test that Members are returned from a valid Subgroup."""
     # arrange
     my_group = Group(**complex_group_data)
@@ -120,7 +120,7 @@ def members_by_subgroup__happy_path(complex_group_data: dict) -> None:
     assert my_subgroup_members[0].uid == "6F63AF02CE05328153ABA477C76E6189"
 
 
-def members_by_role__happy_path(complex_group_data: dict) -> None:
+def test_members_by_role__happy_path(complex_group_data: dict) -> None:
     """Test that Members are returned from a valid Role."""
     # arrange
     my_group = Group(**complex_group_data)
