@@ -105,3 +105,29 @@ def test_subgroup_by_id__unmatched_id_raises_lookup_error(
     # act
     with pytest.raises(LookupError):
         my_subgroup = my_group.subgroup_by_id("DUMMY_ID")
+
+
+def members_by_subgroup__happy_path(complex_group_data: dict) -> None:
+    """Test that Members are returned from a valid Subgroup."""
+    # arrange
+    my_group = Group(**complex_group_data)
+    my_subgroup = my_group.subgroup_by_id("BB6B3C3592C5FC71DBDD5258D45EF6D4")
+
+    # act
+    my_subgroup_members = my_group.members_by_subgroup(my_subgroup)
+
+    # assert
+    assert my_subgroup_members[0].uid == "6F63AF02CE05328153ABA477C76E6189"
+
+
+def members_by_role__happy_path(complex_group_data: dict) -> None:
+    """Test that Members are returned from a valid Role."""
+    # arrange
+    my_group = Group(**complex_group_data)
+    my_role = my_group.role_by_id("29A7724B47ABEE7B3C9DC347E13A50B4")
+
+    # act
+    my_role_members = my_group.members_by_role(my_role)
+
+    # assert
+    assert my_role_members[0].uid == "6F63AF02CE05328153ABA477C76E6189"
