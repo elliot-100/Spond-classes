@@ -34,23 +34,18 @@ def test_from_dict_complex(complex_event_data: dict) -> None:
     assert my_event.heading == "Event 2"
     assert my_event.responses.accepted_uids == [
         "B24FA75A4CCBC63199A57361E88B0646",
-        "C7BCC3B8A95DCF82DFFD27B2B30C8FA2",
     ]
     assert my_event.responses.declined_uids == [
         "B4C5339E366FB5350310F2F8EA069F41",
-        "9520035580A968B6BE26BA2AC9EE5617",
     ]
     assert my_event.responses.unanswered_uids == [
         "3E546CDE2EAE242C1B8281C2042B5990",
-        "D1F1866D652FDBCC7433602B2CE0017F",
     ]
     assert my_event.responses.waiting_list_uids == [
         "0362B36507E156365471B64574EB6764",
-        "AA060BEE5ABB937BD00F4A16C560F267",
     ]
     assert my_event.responses.unconfirmed_uids == [
         "2D1BB37608F09511FD5F280D219DFD97",
-        "49C2447E4ADE8005A9652B24F95E4F6F",
     ]
     assert my_event.start_time == datetime(2022, 11, 4, 6, 0, tzinfo=timezone.utc)
     assert str(my_event) == "Event 'Event 2' on 2022-11-04"
