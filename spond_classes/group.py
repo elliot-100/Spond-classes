@@ -1,12 +1,26 @@
 """Module containing `Group` class."""
 
-from typing import Sequence
+from collections.abc import Sequence
+from typing import TypeGuard, TypeVar
 
 from pydantic import BaseModel, Field
 
 from .member import Member
 from .role import Role
 from .subgroup import Subgroup
+
+T = TypeVar("T")
+
+
+def is_sequence_member_role_subgroup(
+    val: Sequence[object],
+) -> TypeGuard[Sequence[Member | Role | Subgroup]]:
+    """Determine whether all in the list are ..."""
+    return (
+        all(isinstance(x, Member) for x in val)
+        or all(isinstance(x, Role) for x in val)
+        or all(isinstance(x, Subgroup) for x in val)
+    )
 
 
 class Group(BaseModel):
@@ -55,7 +69,7 @@ class Group(BaseModel):
         LookupError
             If `uid` is not found.
         """
-        return self._instance_by_id(self.members, member_uid)
+        return self._instance_by_id(member_uid, Member, self.members)
 
     def role_by_id(self, role_uid: str) -> Role:
         """Return the nested `Role` with matching ID.
@@ -74,7 +88,7 @@ class Group(BaseModel):
         LookupError
             If `uid` is not found.
         """
-        return self._instance_by_id(self.roles, role_uid)
+        return self._instance_by_id(role_uid, Role, self.roles)
 
     def subgroup_by_id(self, subgroup_uid: str) -> Subgroup:
         """Return the nested `Subgroup` with matching ID.
@@ -93,11 +107,14 @@ class Group(BaseModel):
         LookupError
             If `uid` is not found.
         """
-        return self._instance_by_id(self.subgroups, subgroup_uid)
+        return self._instance_by_id(subgroup_uid, Subgroup, self.subgroups)
 
     def _instance_by_id(
-        self, instances: Sequence[Member | Subgroup | Role], uid: str
-    ) -> Member | Subgroup | Role:
+        self,
+        uid: str,
+        cls: T,
+        instances: list[T],
+    ) -> T:
         """Return the nested instance with matching `uid`.
 
         Parameters
@@ -109,10 +126,14 @@ class Group(BaseModel):
         ------
         LookupError if uid is not found.
         """
-        for item in instances:
-            if item.uid == uid:
-                return item
-        err_msg = f"No instance found with id='{uid}'."
+        if not isinstance(cls, Member | Role | Subgroup):
+            raise TypeError
+        if not is_sequence_member_role_subgroup(instances):
+            raise TypeError
+        for instance in instances:
+            if instance.uid == uid:
+                return instance
+        err_msg = f"No {cls} found with id='{uid}'."
         raise LookupError(err_msg)
 
     def members_by_subgroup(self, subgroup: Subgroup) -> list[Member]:
