@@ -8,12 +8,13 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 Historic and pre-release versions aren't necessarily included.
 
 
-## [UNRELEASED] - TBC
+## [0.9.2] - 2024-06-09
 
-### Added
+### Changed
 
 - `Group.members_by_role|subgroup()` raises ValueError if passed instances aren't compatible
 - Tests for `Group.member|role|subgroup_by_id()`, `Group.members_by_role|subgroup()`
+- Update dev/test dependencies: pre-commit-hooks
 
 ### Fixed
 
@@ -29,7 +30,6 @@ Historic and pre-release versions aren't necessarily included.
 ### Fixed
 
 - `Member`, `Role`, `Subgroup` removed in error from top-level namespace
-
 - Docstring and README errors
 
 
@@ -38,7 +38,6 @@ Historic and pre-release versions aren't necessarily included.
 ### Changed
 
 - BREAKING CHANGES: Significantly revised API - see README for details.
-
 - Rewritten from scratch using Pydantic; much closer to API data structure
 
 ### Removed
@@ -55,11 +54,8 @@ Historic and pre-release versions aren't necessarily included.
 ### Changed
 
 - Refactors; test improvements
-
 - Use `ruff format` instead of `isort` + `black` in CI/pre-commit
-
 - Update dev/test dependencies: mypy, pre-commit-hooks, pytest, ruff, types-python-dateutil
-
 - Update CI dependencies: actions/setup_python
 
 ### Fixed
@@ -80,7 +76,6 @@ Historic and pre-release versions aren't necessarily included.
 ### Changed
 
 - Simplify/rearrange tests
-
 - Update dev/test dependencies: black, mypy, pytest, ruff, types-python-dateutil
 
 
@@ -100,7 +95,6 @@ Historic and pre-release versions aren't necessarily included.
 ### Added
 
 - Documentation: This changelog
-
 - Enforce linting with isort, black and ruff in CI using GitHub Actions
 
 ### Changed
@@ -108,6 +102,7 @@ Historic and pre-release versions aren't necessarily included.
 - Update dev/test dependencies: ruff
 
 
+[0.9.2]: https://github.com/elliot-100/Spond-classes/compare/v0.9.1...v0.9.2
 [0.9.1]: https://github.com/elliot-100/Spond-classes/compare/v0.9.0...v0.9.1
 [0.9.0]: https://github.com/elliot-100/Spond-classes/compare/v0.8.1...v0.9.0
 [0.8.1]: https://github.com/elliot-100/Spond-classes/compare/v0.8.0...v0.8.1
