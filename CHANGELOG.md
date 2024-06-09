@@ -12,7 +12,7 @@ Historic and pre-release versions aren't necessarily included.
 
 ### Added
 
-- `Event.Recipients` and nested classes
+-
 
 ### Fixed
 
