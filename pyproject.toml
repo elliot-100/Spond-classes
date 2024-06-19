@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "spond-classes"
-version = "0.9.1"
+version = "0.9.2"
 description = "Experimental Python class abstraction layer for `spond` package."
 authors = ["elliot-100 <3186037+elliot-100@users.noreply.github.com>"]
 readme = "README.md"
@@ -54,7 +54,8 @@ ignore = ["COM812", "ISC001", "ANN101", "ANN102", "D205"]
 [tool.ruff.lint.per-file-ignores]
 # Ignore rules that aren't relevant in tests:
 #   S101 Use of assert detected
-"**/{tests}/*" = ["S101"]
+#   F841 Local variable is assigned to but never used (triggered by testing raises)
+"**/{tests}/*" = ["S101", "F841"]
 
 # Ignore rules that conflict with Mypy
 #   PLC0414 Import alias does not rename original package

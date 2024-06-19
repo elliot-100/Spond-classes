@@ -108,7 +108,14 @@ class Group(BaseModel):
         ----------
         subgroup
             Subgroup from which to return Members.
+
+        Raises
+        ------
+        TypeError if `subgroup` is not a Subgroup instance.
         """
+        if not isinstance(subgroup, Subgroup):
+            err_msg = "`subgroup` must be a Subgroup."
+            raise TypeError(err_msg)
         return [
             member for member in self.members if subgroup.uid in member.subgroup_uids
         ]
@@ -120,7 +127,14 @@ class Group(BaseModel):
         ----------
         role
             Role from which to return Members.
+
+        Raises
+        ------
+        TypeError if `role` is not a Role instance.
         """
+        if not isinstance(role, Role):
+            err_msg = "`role` must be a Role."
+            raise TypeError(err_msg)
         return [
             member
             for member in self.members
