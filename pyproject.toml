@@ -8,7 +8,7 @@ homepage = "https://github.com/elliot-100/Spond-classes"
 repository = "https://github.com/elliot-100/Spond-classes"
 packages = [{include = "spond_classes"}]
 include = ["CHANGELOG.md"]
-license = "GPL 3.0"
+license = "GPL-3.0-only"
 
 [tool.poetry.dependencies]
 python = "^3.10"
