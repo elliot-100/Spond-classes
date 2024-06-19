@@ -14,7 +14,6 @@ def test_from_dict_simple(simple_event_data: dict) -> None:
 
     assert my_event.uid == "A390CE5396D2F5C3015F53E171EC59D5"
     assert my_event.heading == "Event 1"
-    assert my_event.recipients.group.name == "EventRecipientsGroup A"
     assert my_event.responses.accepted_uids == []
     assert my_event.responses.declined_uids == []
     assert my_event.responses.unanswered_uids == []
@@ -33,27 +32,6 @@ def test_from_dict_complex(complex_event_data: dict) -> None:
 
     assert my_event.uid == "36D7F1A46EB2CDED4B6F22D400229822"
     assert my_event.heading == "Event 2"
-    assert my_event.recipients.group.uid == "82DA0E2BF349E63736BE7DDB11E07875"
-    assert my_event.recipients.group.name == "EventRecipientsGroup B"
-    assert (
-        my_event.recipients.group.members[0].uid == "45AD12670CAB93101B66CC0F023DA0E3"
-    )
-    assert my_event.recipients.group.members[0].first_name == "Kerry"
-    assert my_event.recipients.group.members[0].last_name == "Condon"
-    # Ignore Mypy error:
-    #   Item "None" of "EventRecipientsGroupMemberProfile | None" has no attribute
-    #   "uid"  [union-attr].
-    assert (
-        my_event.recipients.group.members[0].profile.uid  # type: ignore[union-attr]
-        == "E8547508D5A36795B97278EB3AAFF54A"
-    )
-    # Ignore Mypy error:
-    #   error: Value of type "list[EventRecipientsGroupSubgroup] | None" is not
-    #   indexable [index].
-    assert (
-        my_event.recipients.group.subgroups[0].name  # type: ignore[index]
-        == "EventRecipientSubgroup C"
-    )
     assert my_event.responses.accepted_uids == [
         "B24FA75A4CCBC63199A57361E88B0646",
     ]

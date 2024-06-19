@@ -54,8 +54,7 @@ ignore = ["COM812", "ISC001", "ANN101", "ANN102", "D205"]
 [tool.ruff.lint.per-file-ignores]
 # Ignore rules that aren't relevant in tests:
 #   S101 Use of assert detected
-#   F841 Local variable is assigned to but never used (triggered by testing raises)
-"**/{tests}/*" = ["S101", "F841"]
+"**/{tests}/*" = ["S101"]
 
 # Ignore rules that conflict with Mypy
 #   PLC0414 Import alias does not rename original package

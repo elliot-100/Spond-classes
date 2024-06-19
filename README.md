@@ -120,29 +120,9 @@ spond_classes.Event(**dict)
 Event.uid: str
 Event.heading: str
 Event.start_time: datetime
-Event.Recipients.group: EventRecipientsGroup
 Event.Responses.accepted_uids: list[str]
 Event.Responses.declined_uids: list[str]
 Event.Responses.unanswered_uids: list[str]
 Event.Responses.waiting_list_uids: list[str]
 Event.Responses.unconfirmed_uids: list[str]
-```
-
-* Also provides access to nested instances:
-
-```
-EventRecipientsGroup.uid: str
-EventRecipientsGroup.name: str
-EventRecipientsGroup.members: list[EventRecipientsGroupMember]
-EventRecipientsGroup.subgroups: list[EventRecipientsSubgroups]
-
-
-EventRecipientsGroupMember.uid: str
-EventRecipientsGroupMember.first_name: str
-EventRecipientsGroupMember.full_name: str
-EventRecipientsGroupMember.last_name: str
-EventRecipientsGroupMember.Profile.uid: str
-
-EventRecipientsSubgroups.uid: str
-EventRecipientsSubgroups.name: str
 ```

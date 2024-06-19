@@ -161,13 +161,6 @@ def simple_event_data() -> dict:
     return {
         "id": "A390CE5396D2F5C3015F53E171EC59D5",
         "heading": "Event 1",
-        "recipients": {
-            "group": {
-                "id": "427C4853A0E886FCEBB51FFBFA889CD6",
-                "name": "EventRecipientsGroup A",
-                "members": [],  # assumed always exists, may be empty
-            }
-        },
         "responses": {
             "acceptedIds": [],
             "declinedIds": [],
@@ -189,26 +182,6 @@ def complex_event_data() -> dict:
     return {
         "id": "36D7F1A46EB2CDED4B6F22D400229822",
         "heading": "Event 2",
-        "recipients": {
-            "group": {
-                "id": "82DA0E2BF349E63736BE7DDB11E07875",
-                "name": "EventRecipientsGroup B",
-                "members": [  # assumed always exists, may be empty
-                    {
-                        "id": "45AD12670CAB93101B66CC0F023DA0E3",
-                        "firstName": "Kerry",
-                        "lastName": "Condon",
-                        "profile": {"id": "E8547508D5A36795B97278EB3AAFF54A"},
-                    }
-                ],
-                "subGroups": [
-                    {
-                        "id": "B55942D170A37362A2C70D1B987CDD33",
-                        "name": "EventRecipientSubgroup C",
-                    }
-                ],
-            }
-        },
         "responses": {
             "acceptedIds": [
                 "B24FA75A4CCBC63199A57361E88B0646",

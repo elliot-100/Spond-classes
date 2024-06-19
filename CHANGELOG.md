@@ -8,17 +8,6 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 Historic and pre-release versions aren't necessarily included.
 
 
-## [UNRELEASED] - TBC
-
-### Added
-
--
-
-### Fixed
-
-- Example code in README
-
-
 ## [0.9.1] - 2024-05-10
 
 ### Changed
