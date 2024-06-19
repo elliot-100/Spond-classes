@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "spond-classes"
-version = "0.9.3a0"
+version = "0.10.0a0"
 description = "Experimental Python class abstraction layer for `spond` package."
 authors = ["elliot-100 <3186037+elliot-100@users.noreply.github.com>"]
 readme = "README.md"
