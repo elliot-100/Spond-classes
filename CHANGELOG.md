@@ -7,6 +7,12 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 
 Historic and pre-release versions aren't necessarily included.
 
+## [UNRELEASED] - 2024-06-19
+
+### Changed
+
+- Dependencies: allow `spond` >= 1
+
 
 ## [0.9.2] - 2024-06-09
 
