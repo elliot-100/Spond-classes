@@ -16,7 +16,7 @@ class Member(BaseModel):
     Attributes
     ----------
     uid : str
-        id of the Member.
+        id of the `Member`.
 
         `id` in API, but that's a reserved term and the `spond` package uses `uid`.
 
@@ -36,13 +36,13 @@ class Member(BaseModel):
         `phoneNumber` in API.
 
     profile : Profile | None
-        `profile` in API.
+        Derived from `profile` in API.
 
     role_uids : list[str] | None
-        `roles` in API, but aliased here to avoid confusion with `Group.Roles'
+        `roles` in API, but aliased here to avoid confusion with `Role`s.
 
     subgroup_uids : list[str]
-        `subGroups` in API, but aliased here to avoid confusion with `Group.Subgroups'
+        `subGroups` in API, but aliased here to avoid confusion with `Subgroup`s.
     """
 
     uid: str = Field(alias="id")

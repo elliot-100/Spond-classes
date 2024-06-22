@@ -12,10 +12,8 @@ class Group(BaseModel):
 
     `Group`s are retrieved from the `groups` API endpoint.
 
-    A Group has zero, one or more nested Members.
-    A Group has zero, one or more nested Roles.
-    A Group has zero, one or more nested Subgroups.
-    A `Group` has zero, one or more nested `spond_classes.member.Member`s;
+    A `Group` has zero, one or more nested `Member`s; zero, one or more nested `Role`s;
+    zero, one or more nested `Subgroup`s.
 
     Attributes
     ----------
@@ -25,10 +23,9 @@ class Group(BaseModel):
         `id` in API, but that's a reserved term and the `spond` package uses `uid`.
 
     members : list[Member]
-        Members belonging to the Group.
-        'members' in API.
+        `Member`s belonging to the `Group`.
 
-        `members` in API.
+        Derived from `members` in API.
 
     name : str
         Name of the `Group`.
@@ -36,14 +33,12 @@ class Group(BaseModel):
         `name` in API.
 
     roles : list[Role]
-        Roles belonging to the Group.
-        'roles' in API.
+        `Role`s belonging to the `Group`.
 
         Derived from `roles` in API.
 
     subgroups : list[Subgroup]
-        The Subgroups belonging to the Group.
-        'subgroups' in API.
+        `Subgroup`s belonging to the `Group`.
 
         Derived from `subGroups` in API.
     """
@@ -135,7 +130,7 @@ class Group(BaseModel):
         Parameters
         ----------
         subgroup
-            Subgroup from which to return Members.
+            `Subgroup` from which to return `Member`s.
 
         Returns
         -------
@@ -154,18 +149,16 @@ class Group(BaseModel):
         ]
 
     def members_by_role(self, role: Role) -> list[Member]:
-        """Return `Member`s with the nested
-        `spond_classes.role.Role`.
+        """Return `Member`s with the nested `Role`.
 
         Parameters
         ----------
         role
-            Role from which to return Members.
-             `spond_classes.member.Member`s.
+            `Role` from which to return `Member`s.
 
         Returns
         -------
-         `list[Member]`
+        `list[Member]`
 
         Raises
         ------
