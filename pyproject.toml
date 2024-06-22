@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "spond-classes"
-version = "0.10.0.post0"
+version = "0.10.0.post1"
 description = "Experimental Python class abstraction layer for `spond` package."
 authors = ["elliot-100 <3186037+elliot-100@users.noreply.github.com>"]
 readme = "README.md"
@@ -19,6 +19,7 @@ pydantic = "^2.7.1"
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^3.1.1"
 ruff = "^0.4.2"
+pdoc3 = "^0.11.0"
 
 [tool.poetry.group.test.dependencies]
 mypy = "^1.8.0"
