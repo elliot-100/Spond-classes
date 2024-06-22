@@ -1,4 +1,4 @@
-"""Member class."""
+"""Module for `Member` class."""
 
 from datetime import datetime
 
@@ -10,37 +10,39 @@ from .profile import Profile
 class Member(BaseModel):
     """Represents a member in the Spond system.
 
-    A Member is an individual's group-specific record.
-    A Member is nested within a Group.
-    A Member may have a nested Profile.
+    A `Member` is an individual's group-specific record, and is nested within a `Group`.
+    A `Member` may have a nested `Profile`.
 
     Attributes
     ----------
     uid : str
         id of the Member.
-        'id' in API, but 'id' is a reserved term and the `spond` package uses `uid`.
+
+        `id` in API, but that's a reserved term and the `spond` package uses `uid`.
+
     created_time : datetime
-        'createdTime' in API, but returns a datetime instead of a string.
+        Derived from `createdTime` in API.
+
     email : str
-        'email' in API.
+        `email` in API.
+
     first_name : str
-        'firstName' in API.
+        `firstName` in API.
+
     last_name : str
-        'lastName' in API.
+        `lastName` in API.
+
     phone_number : str | None
-        'phoneNumber' in API.
+        `phoneNumber` in API.
+
     profile : Profile | None
         `profile` in API.
+
     role_uids : list[str] | None
         `roles` in API, but aliased here to avoid confusion with `Group.Roles'
+
     subgroup_uids : list[str]
         `subGroups` in API, but aliased here to avoid confusion with `Group.Subgroups'
-
-    Properties
-    ----------
-    full_name : str
-        The Member's full name.
-        Provided for convenience.
     """
 
     uid: str = Field(alias="id")
@@ -69,5 +71,5 @@ class Member(BaseModel):
 
     @property
     def full_name(self) -> str:
-        """Return the member's full name."""
+        """Return the `Member`'s full name."""
         return f"{self.first_name} {self.last_name}"

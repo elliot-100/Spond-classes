@@ -1,4 +1,4 @@
-"""Event class and nested Responses class."""
+"""Module for `Event` class and nested `Responses` class."""
 
 from datetime import datetime
 
@@ -6,16 +6,22 @@ from pydantic import BaseModel, Field
 
 
 class Responses(BaseModel):
-    """Represents the responses to an Event.
+    """Represents the responses to an `Event`.
 
+    Attributes
+    ----------
     accepted_uids: list[str]
         `acceptedIds` in API.
+
     declined_uids: list[str]
         `declinedIds` in API.
+
     unanswered_uids: list[str]
         `unansweredIds` in API.
+
     unconfirmed_uids: list[str]
         `unconfirmedIds` in API.
+
     waiting_list_uids: list[str]
         `waitinglistIds` in API.
     """
@@ -31,20 +37,26 @@ class Responses(BaseModel):
 class Event(BaseModel):
     """Represents an event in the Spond system.
 
-    Events are retrieved from the 'events' API endpoint.
+    `Event`s are retrieved from the `events` API endpoint.
 
     Attributes
     ----------
     uid : str
-        id of the Event.
-        `id` in API, but `id` is a reserved term and the `spond` package uses `uid`.
+        id of the `Event`.
+
+        `id` in API, but that's a reserved term and the `spond` package uses `uid`.
+
     heading : str
-        Heading/name of the Event.
+        Heading/name of the `Event`.
+
         `heading` in API.
-    responses : Responses
-    start_time : datetime.
-        Datetime at which the Event starts.
-        `startTimestamp` in API, but returns a datetime instead of a string.
+
+    responses : `Responses`
+
+    start_time : datetime
+        Datetime at which the `Event` starts.
+
+        Derived from `startTimestamp` in API.
     """
 
     uid: str = Field(alias="id")
