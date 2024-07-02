@@ -19,7 +19,6 @@ pydantic = "^2.7.1"
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^3.1.1"
 ruff = "^0.4.2"
-pdoc3 = "^0.11.0"
 
 [tool.poetry.group.test.dependencies]
 mypy = "^1.8.0"
