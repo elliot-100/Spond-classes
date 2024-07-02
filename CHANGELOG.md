@@ -10,10 +10,16 @@ Historic and pre-release versions aren't necessarily included.
 
 ## UNRELEASED - TBC
 
+### Added
+
+- `Event` attributes: `cancelled`, `created_time`, `end_time`, `invite_time`, `type`,
+  property `url`. Tests and docs pending.
+
 ### Changed
 
 - Consistent pattern for all classes' string representation, including full `uid`
-- Dependencies: remove upper bounds for simplicity
+- Dependencies: remove upper bounds for simplicity; drop redundant python-dateutil
+- Dev dependencies: drop redundant types-python-dateutil
 
 
 ## [0.10.1] - 2024-07-02

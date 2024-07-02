@@ -1,6 +1,7 @@
-"""Module containing `Event` class and nested `Responses` class."""
+"""Module containing `Event` class and nested `EventType`,`Responses` classes."""
 
 from datetime import datetime
+from enum import Enum
 
 from pydantic import BaseModel, Field
 
@@ -21,6 +22,13 @@ class Responses(BaseModel):
     """`unconfirmedIds` in API."""
 
 
+class EventType(Enum):
+    """Represents the kind of `Event`."""
+
+    EVENT = "EVENT"
+    RECURRING = "RECURRING"
+
+
 class Event(BaseModel):
     """Represents an event in the Spond system.
 
@@ -32,9 +40,22 @@ class Event(BaseModel):
     uses `uid`."""
     heading: str
     responses: Responses
+    type: EventType
+    created_time: datetime = Field(alias="createdTime")
+    """Derived from `createdTime` in API."""
+    end_time: datetime = Field(alias="endTimestamp")
+    """Datetime at which the `Event` ends.
+        Derived from `endTimestamp` in API."""
     start_time: datetime = Field(alias="startTimestamp")
     """Datetime at which the `Event` starts.
     Derived from `startTimestamp` in API."""
+
+    # Optional in API data
+    cancelled: bool | None = Field(default=None)
+    """Optional."""
+    invite_time: datetime | None = Field(alias="inviteTime", default=None)
+    """Optional.
+    Derived from `inviteTime` in API."""
 
     def __str__(self) -> str:
         """Return simple human-readable description.
@@ -48,3 +69,8 @@ class Event(BaseModel):
             f"start_time: {start_time_tag},"
             f" …)"
         )
+
+    @property
+    def url(self) -> str:
+        """Return the URL of the `Event`."""
+        return f"https://spond.com/client/sponds/{self.uid}/"
