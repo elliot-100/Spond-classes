@@ -46,12 +46,26 @@ class Event(BaseModel):
 
         `id` in API, but that's a reserved term and the `spond` package uses `uid`.
 
+    cancelled : bool, optional
+        `cancelled` in API.
+
     heading : str
         Heading/name of the `Event`.
 
         `heading` in API.
 
     responses : `Responses`
+
+    created_time : datetime
+        Derived from `createdTime` in API.
+
+    end_time : datetime
+        Datetime at which the `Event` ends.
+
+        Derived from `endTimestamp` in API.
+
+    invite_time : datetime
+        Derived from `inviteTime` in API.
 
     start_time : datetime
         Datetime at which the `Event` starts.
@@ -62,7 +76,13 @@ class Event(BaseModel):
     uid: str = Field(alias="id")
     heading: str
     responses: Responses
+    created_time: datetime = Field(alias="createdTime")
+    end_time: datetime = Field(alias="endTimestamp")
+    invite_time: datetime = Field(alias="inviteTime")
     start_time: datetime = Field(alias="startTimestamp")
+
+    # Optional in API data
+    cancelled: bool | None = Field(default=None)
 
     def __str__(self) -> str:
         """Return simple human-readable description.
@@ -70,3 +90,8 @@ class Event(BaseModel):
         Date is included because heading is unlikely to be unique.
         """
         return f"Event '{self.heading}' on {self.start_time.date()}"
+
+    @property
+    def url(self) -> str:
+        """Return the URL of the `Event`."""
+        return f"https://spond.com/client/sponds/{self.uid}/"
