@@ -78,11 +78,11 @@ class Event(BaseModel):
     responses: Responses
     created_time: datetime = Field(alias="createdTime")
     end_time: datetime = Field(alias="endTimestamp")
-    invite_time: datetime = Field(alias="inviteTime")
     start_time: datetime = Field(alias="startTimestamp")
 
     # Optional in API data
     cancelled: bool | None = Field(default=None)
+    invite_time: datetime | None = Field(alias="inviteTime", default=None)
 
     def __str__(self) -> str:
         """Return simple human-readable description.
