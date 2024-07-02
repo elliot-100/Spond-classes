@@ -8,7 +8,7 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 Historic and pre-release versions aren't necessarily included.
 
 
-## 0.11.0.alpha0 - 2024-07-02
+## 0.11.0.alpha2 - 2024-07-02
 
 ### Added
 
