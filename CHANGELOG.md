@@ -8,6 +8,13 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 Historic and pre-release versions aren't necessarily included.
 
 
+## 0.11.0.alpha0 - 2024-07-02
+
+### Added
+
+- `Event` attributes: `cancelled`, `created_time`, `end_time`, `invite_time`, property `url`. Tests and docs pending.
+
+
 ## [0.10.1] - 2024-07-02
 
 ### Changed
@@ -19,7 +26,7 @@ Historic and pre-release versions aren't necessarily included.
 - Docs: licence classifier, docstring omissions, backticks and paragraph breaks
 
 
-- ## [0.10.0] - 2024-06-19
+## [0.10.0] - 2024-06-19
 
 ### Changed
 
