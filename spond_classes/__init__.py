@@ -1,5 +1,6 @@
-"""Explicitly import all classes and functions into the package namespace."""
+"""Main module."""
 
+# Explicitly import all classes and functions into the package namespace.
 # `import x as x` pattern used here for explicit re-export for Mypy
 
 from .event import Event as Event

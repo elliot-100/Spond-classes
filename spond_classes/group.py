@@ -10,7 +10,7 @@ from .subgroup import Subgroup
 class Group(BaseModel):
     """Represents a group in the Spond system.
 
-    `Group`s are retrieved from the `groups` API endpoint.
+    Groups data is retrieved from the `groups` API endpoint.
 
     A `Group` has zero, one or more nested `Member`s; zero, one or more nested `Role`s;
     zero, one or more nested `Subgroup`s.
