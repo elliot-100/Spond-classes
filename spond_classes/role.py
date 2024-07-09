@@ -28,4 +28,4 @@ class Role(BaseModel):
 
     def __str__(self) -> str:
         """Return simple human-readable description."""
-        return f"Role '{self.name}'"
+        return f"Role(uid='{self.uid}', name='{self.name}')"

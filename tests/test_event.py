@@ -20,7 +20,13 @@ def test_from_dict_simple(simple_event_data: dict) -> None:
     assert my_event.responses.waiting_list_uids == []
     assert my_event.responses.unconfirmed_uids == []
     assert my_event.start_time == datetime(2021, 7, 6, 6, 0, tzinfo=timezone.utc)
-    assert str(my_event) == "Event 'Event 1' on 2021-07-06"
+    assert str(my_event) == (
+        "Event("
+        "uid='A390CE5396D2F5C3015F53E171EC59D5', "
+        "heading='Event 1', "
+        "start_time: 2021-07-06 06:00:00+00:00, "
+        "…)"
+    )
 
 
 def test_from_dict_complex(complex_event_data: dict) -> None:
@@ -48,4 +54,10 @@ def test_from_dict_complex(complex_event_data: dict) -> None:
         "2D1BB37608F09511FD5F280D219DFD97",
     ]
     assert my_event.start_time == datetime(2022, 11, 4, 6, 0, tzinfo=timezone.utc)
-    assert str(my_event) == "Event 'Event 2' on 2022-11-04"
+    assert str(my_event) == (
+        "Event("
+        "uid='36D7F1A46EB2CDED4B6F22D400229822', "
+        "heading='Event 2', "
+        "start_time: 2022-11-04 06:00:00+00:00, "
+        "…)"
+    )

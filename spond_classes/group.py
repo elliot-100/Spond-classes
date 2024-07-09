@@ -52,8 +52,11 @@ class Group(BaseModel):
     subgroups: list[Subgroup] = Field(alias="subGroups")
 
     def __str__(self) -> str:
-        """Return simple human-readable description."""
-        return f"Group '{self.name}'"
+        """Return simple human-readable description.
+
+        Includes only key fields in custom order.
+        """
+        return f"Group(uid='{self.uid}', name='{self.name}', …)"
 
     def member_by_id(self, member_uid: str) -> Member:
         """Return the nested `Member` with matching ID.

@@ -17,3 +17,7 @@ class Profile(BaseModel):
     """
 
     uid: str = Field(alias="id")
+
+    def __str__(self) -> str:
+        """Return simple human-readable description."""
+        return f"Profile(uid='{self.uid}')"

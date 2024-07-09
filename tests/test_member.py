@@ -30,7 +30,12 @@ def test_from_dict_simple(simple_member_data: dict) -> None:
     assert my_member.profile is None
     assert my_member.role_uids is None
     assert my_member.subgroup_uids == []
-    assert str(my_member) == "Member 'Brendan Gleason' (uid ends '...189')"
+    assert str(my_member) == (
+        "Member("
+        "uid='6F63AF02CE05328153ABA477C76E6189', "
+        "full_name='Brendan Gleason', "
+        "…)"
+    )
 
 
 def test_from_dict_with_profile(member_with_profile_data: dict) -> None:
@@ -68,4 +73,9 @@ def test_from_dict_with_profile(member_with_profile_data: dict) -> None:
         == "F2DFF55011800E66CDDAF2FD8A72039B"
     )
     assert my_member.subgroup_uids[0] == "9E95A326090B256E2E9DAA6C0114E1D8"
-    assert str(my_member) == "Member 'Ciarán Hinds' (uid ends '...059')"
+    assert str(my_member) == (
+        "Member("
+        "uid='F59D764E4CE0B643DF4C0CF5E5B2B059', "
+        "full_name='Ciarán Hinds', "
+        "…)"
+    )
