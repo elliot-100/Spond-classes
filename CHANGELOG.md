@@ -19,7 +19,7 @@ Historic and pre-release versions aren't necessarily included.
 - Docs: licence classifier, docstring omissions, backticks and paragraph breaks
 
 
-- ## [0.10.0] - 2024-06-19
+## [0.10.0] - 2024-06-19
 
 ### Changed
 
