@@ -8,6 +8,14 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 Historic and pre-release versions aren't necessarily included.
 
 
+## UNRELEASED - TBC
+
+### Changed
+
+- Consistent pattern for all classes' string representation, including full `uid`
+- Dependencies: remove upper bounds for simplicity
+
+
 ## [0.10.1] - 2024-07-02
 
 ### Changed
