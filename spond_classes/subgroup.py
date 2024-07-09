@@ -29,4 +29,4 @@ class Subgroup(BaseModel):
 
     def __str__(self) -> str:
         """Return simple human-readable description."""
-        return f"Subgroup '{self.name}'"
+        return f"Subgroup(uid='{self.uid}', name='{self.name}')"

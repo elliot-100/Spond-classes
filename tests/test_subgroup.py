@@ -12,4 +12,7 @@ def test_from_dict(simple_subgroup_data: dict) -> None:
 
     assert my_subgroup.uid == "8CC576609CF3DCBC44469A799E76B22B"
     assert my_subgroup.name == "Subgroup A1"
-    assert str(my_subgroup) == "Subgroup 'Subgroup A1'"
+    assert (
+        str(my_subgroup)
+        == "Subgroup(uid='8CC576609CF3DCBC44469A799E76B22B', name='Subgroup A1')"
+    )

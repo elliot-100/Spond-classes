@@ -62,12 +62,9 @@ class Member(BaseModel):
     def __str__(self) -> str:
         """Return simple human-readable description.
 
-        Last few chars of uid are included because full name is unlikely to be unique.
+        Includes only key fields in custom order.
         """
-        return (
-            f"Member '{self.first_name} {self.last_name}' "
-            f"(uid ends '...{self.uid[-3:]}')"
-        )
+        return f"Member(uid='{self.uid}', full_name='{self.full_name}', …)"
 
     @property
     def full_name(self) -> str:

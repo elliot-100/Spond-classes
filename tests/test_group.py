@@ -21,7 +21,9 @@ def test_from_dict_simple(simple_group_data: dict) -> None:
     assert my_group.members == []
     assert my_group.roles == []
     assert my_group.subgroups == []
-    assert str(my_group) == "Group 'Group A'"
+    assert str(my_group) == (
+        "Group(" "uid='8B4A6A9C60397A41D6D2414AFD520152', " "name='Group A', " "…)"
+    )
 
 
 def test_from_dict_with_member_role_subgroup(complex_group_data: dict) -> None:

@@ -67,6 +67,12 @@ class Event(BaseModel):
     def __str__(self) -> str:
         """Return simple human-readable description.
 
-        Date is included because heading is unlikely to be unique.
+        Includes only key fields in custom order, and with some prettification.
         """
-        return f"Event '{self.heading}' on {self.start_time.date()}"
+        start_time_tag = str(self.start_time)
+        return (
+            f"Event(uid='{self.uid}', "
+            f"heading='{self.heading}', "
+            f"start_time: {start_time_tag},"
+            f" …)"
+        )

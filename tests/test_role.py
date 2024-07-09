@@ -12,4 +12,4 @@ def test_from_dict(simple_role_data: dict) -> None:
 
     assert my_role.uid == "001"
     assert my_role.name == "My role"
-    assert str(my_role) == "Role 'My role'"
+    assert str(my_role) == "Role(uid='001', name='My role')"
