@@ -1,4 +1,4 @@
-"""Module for `Role` class."""
+"""Module containing `Role` class."""
 
 from pydantic import BaseModel, Field
 
@@ -8,22 +8,12 @@ class Role(BaseModel):
 
     A `Role` is nested within a `Group`.
 
-    Use `Group.members_by_role()` to get `Member`s.
-
-    Attributes
-    ----------
-    uid : str
-        id of the `Role`.
-
-        `id` in API, but that's a reserved term and the `spond` package uses `uid`.
-
-    name : str
-        Name of the `Role`.
-
-        `name` in API.
+    Use `Group.members_by_role()` to get `Member` instances.
     """
 
     uid: str = Field(alias="id")
+    """`id` in API, but that's a reserved term in Python and the Spond package
+    uses `uid`."""
     name: str
 
     def __str__(self) -> str:

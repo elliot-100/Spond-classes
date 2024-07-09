@@ -1,4 +1,4 @@
-"""Module for `Subgroup` class."""
+"""Module containing `Subgroup` class."""
 
 from pydantic import BaseModel, Field
 
@@ -8,23 +8,12 @@ class Subgroup(BaseModel):
 
     A `Subgroup` is nested within a `Group`.
 
-    Use `Group.members_by_subgroup()` to get
-    `Member`s.
-
-    Attributes
-    ----------
-    uid : str
-        id of the `Subgroup`.
-
-        `id` in API, but that's a reserved term and the `spond` package uses `uid`.
-
-    name : str
-        Name of the `Subgroup`.
-
-        `name` in API.
+    Use `Group.members_by_subgroup()` to get `Member` instances.
     """
 
     uid: str = Field(alias="id")
+    """`id` in API, but that's a reserved term in Python and the Spond package
+    uses `uid`."""
     name: str
 
     def __str__(self) -> str:
