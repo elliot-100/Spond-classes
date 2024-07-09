@@ -115,7 +115,7 @@ class Group(BaseModel):
 
         Returns
         -------
-        `list[Member]`
+        list[`Member`]
 
         Raises
         ------
@@ -139,7 +139,7 @@ class Group(BaseModel):
 
         Returns
         -------
-        `list[Member]`
+        list[`Member`]
 
         Raises
         ------
