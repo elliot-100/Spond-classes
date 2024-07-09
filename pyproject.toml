@@ -13,7 +13,7 @@ license = "GPL-3.0-only"
 [tool.poetry.dependencies]
 python = ">=3.10,<4.0"
 python-dateutil = ">=2.8.2"
-spond = ">=0.99.2"
+spond = ">=1.0.0"
 pydantic = ">=2.7.1"
 
 [tool.poetry.group.dev.dependencies]
