@@ -28,8 +28,13 @@ erDiagram
     EVENT {
         str uid PK
         inner_obj responses
+        inner_obj recipients
     }
-    RESPONSES {
+    EVENT-RECIPIENT {
+        str uid FK "GROUP | SUBGROUP | MEMBER"
+
+    }
+    EVENT-RESPONSE {
         str accepted_uids FK "MEMBER"
         str declined_uids FK "MEMBER"
         str unanswered_uids FK "MEMBER"
@@ -40,14 +45,20 @@ erDiagram
     GROUP 1..0+ ROLE : contains
     GROUP 1..0+ MEMBER : contains
     GROUP 1..0+ SUBGROUP : contains
+    GROUP 1..0+ EVENT : owns
 
-    EVENT 1..1 RESPONSES : has
+    EVENT 1..1 EVENT-RESPONSE : has
+    EVENT 1..1 EVENT-RECIPIENT : has
 
     MEMBER 1..zero or one PROFILE : has
     MEMBER 1..0+ ROLE : has
     MEMBER 1..0+ SUBGROUP : has
 
-    RESPONSES 1..0+ MEMBER : contains
+    EVENT-RECIPIENT 1..0+ MEMBER : contains
+    EVENT-RECIPIENT 1..0+ GROUP: has
+    EVENT-RECIPIENT 1..0+ SUBGROUP: has
+
+    EVENT-RESPONSE 1..0+ MEMBER : contains
 ```
 
 """
