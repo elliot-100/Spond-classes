@@ -159,8 +159,9 @@ def simple_event_data() -> dict:
     Item from 'events' (root).
     """
     return {
-        "id": "A390CE5396D2F5C3015F53E171EC59D5",
+        "id": "E001",
         "heading": "Event 1",
+        "type": "EVENT",
         "responses": {
             "acceptedIds": [],
             "declinedIds": [],
@@ -168,6 +169,8 @@ def simple_event_data() -> dict:
             "waitinglistIds": [],
             "unconfirmedIds": [],
         },
+        "createdTime": "2020-12-31T19:00:00Z",
+        "endTimestamp": "2024-08-15T11:00:00Z",
         "startTimestamp": "2021-07-06T06:00:00Z",
     }
 
@@ -180,8 +183,10 @@ def complex_event_data() -> dict:
     Item from 'events' (root).
     """
     return {
-        "id": "36D7F1A46EB2CDED4B6F22D400229822",
+        "id": "E002",
+        "cancelled": "True",
         "heading": "Event 2",
+        "type": "RECURRING",
         "responses": {
             "acceptedIds": [
                 "B24FA75A4CCBC63199A57361E88B0646",
@@ -199,5 +204,7 @@ def complex_event_data() -> dict:
                 "2D1BB37608F09511FD5F280D219DFD97",
             ],
         },
+        "createdTime": "2019-04-24T19:00:00Z",
+        "endTimestamp": "2024-08-15T11:00:00Z",
         "startTimestamp": "2022-11-04T06:00:00Z",
     }
