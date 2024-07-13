@@ -8,7 +8,7 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 Historic and pre-release versions aren't necessarily included.
 
 
-## UNRELEASED - TBC
+## [0.11.0.beta] - 2024-07-13
 
 ### Added
 
@@ -18,6 +18,7 @@ Historic and pre-release versions aren't necessarily included.
 ### Changed
 
 - Consistent pattern for all classes' string representation, including full `uid`
+- Simplified and improved docstrings
 - Dependencies: remove upper bounds for simplicity; drop redundant python-dateutil
 - Dev dependencies: drop redundant types-python-dateutil
 
