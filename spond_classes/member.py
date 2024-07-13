@@ -1,4 +1,4 @@
-"""Module for `Member` class."""
+"""Module containing `Member` class."""
 
 from datetime import datetime
 
@@ -12,52 +12,31 @@ class Member(BaseModel):
 
     A `Member` is an individual's group-specific record, and is nested within a `Group`.
     A `Member` may have a nested `Profile`.
-
-    Attributes
-    ----------
-    uid : str
-        id of the `Member`.
-
-        `id` in API, but that's a reserved term and the `spond` package uses `uid`.
-
-    created_time : datetime
-        Derived from `createdTime` in API.
-
-    email : str
-        `email` in API.
-
-    first_name : str
-        `firstName` in API.
-
-    last_name : str
-        `lastName` in API.
-
-    phone_number : str | None
-        `phoneNumber` in API.
-
-    profile : Profile | None
-        Derived from `profile` in API.
-
-    role_uids : list[str] | None
-        `roles` in API, but aliased here to avoid confusion with `Role`s.
-
-    subgroup_uids : list[str]
-        `subGroups` in API, but aliased here to avoid confusion with `Subgroup`s.
     """
 
     uid: str = Field(alias="id")
+    """`id` in API, but that's a reserved term in Python and the Spond package
+    uses `uid`."""
     created_time: datetime = Field(alias="createdTime")
+    """Derived from `createdTime` in API."""
     first_name: str = Field(alias="firstName")
+    """`firstName` in API."""
     last_name: str = Field(alias="lastName")
+    """`lastName` in API."""
 
     # Lists which always exist in API data, but may be empty
     subgroup_uids: list[str] = Field(alias="subGroups")
+    """`subGroups` in API, but aliased here to avoid confusion with
+    `Subgroup` instances."""
 
     # Optional in API data
     email: str | None = Field(default=None)
     phone_number: str | None = Field(alias="phoneNumber", default=None)
+    """`phoneNumber` in API."""
     profile: Profile | None = None  # Availability may depend on permissions
+    """Derived from `profile` in API."""
     role_uids: list[str] | None = Field(alias="roles", default=None)
+    """`roles` in API, but aliased here to avoid confusion with `Role` instances."""
 
     def __str__(self) -> str:
         """Return simple human-readable description.

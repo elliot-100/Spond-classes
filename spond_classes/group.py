@@ -1,4 +1,4 @@
-"""Module for `Group` class."""
+"""Module containing `Group` class."""
 
 from pydantic import BaseModel, Field
 
@@ -10,46 +10,24 @@ from .subgroup import Subgroup
 class Group(BaseModel):
     """Represents a group in the Spond system.
 
-    `Group`s are retrieved from the `groups` API endpoint.
+    Groups data is retrieved from the `groups` API endpoint.
 
     A `Group` has zero, one or more nested `Member`s; zero, one or more nested `Role`s;
     zero, one or more nested `Subgroup`s.
-
-    Attributes
-    ----------
-    uid : str
-        id of the `Group`.
-
-        `id` in API, but that's a reserved term and the `spond` package uses `uid`.
-
-    members : list[Member]
-        `Member`s belonging to the `Group`.
-
-        Derived from `members` in API.
-
-    name : str
-        Name of the `Group`.
-
-        `name` in API.
-
-    roles : list[Role]
-        `Role`s belonging to the `Group`.
-
-        Derived from `roles` in API.
-
-    subgroups : list[Subgroup]
-        `Subgroup`s belonging to the `Group`.
-
-        Derived from `subGroups` in API.
     """
 
     uid: str = Field(alias="id")
+    """`id` in API, but that's a reserved term in Python and the Spond package
+    uses `uid`."""
     name: str
 
     # Lists which always exist in API data, but may be empty
     members: list[Member]
+    """`Member`s belonging to the `Group`. Derived from `members` in API."""
     roles: list[Role]
+    """`Role`s belonging to the `Group`. Derived from `roles` in API."""
     subgroups: list[Subgroup] = Field(alias="subGroups")
+    """`Subgroup`s belonging to the `Group`. Derived from `subGroups` in API."""
 
     def __str__(self) -> str:
         """Return simple human-readable description.
@@ -63,7 +41,7 @@ class Group(BaseModel):
 
         Parameters
         ----------
-        member_uid : str
+        member_uid
             ID to look up.
 
         Returns
@@ -72,7 +50,7 @@ class Group(BaseModel):
 
         Raises
         ------
-        `LookupError`
+        `LookupError` :
             If `uid` is not found.
         """
         for member in self.members:
@@ -86,7 +64,7 @@ class Group(BaseModel):
 
         Parameters
         ----------
-        role_uid : str
+        role_uid
             ID to look up.
 
         Returns
@@ -95,7 +73,7 @@ class Group(BaseModel):
 
         Raises
         ------
-        `LookupError`
+        `LookupError` :
             If `uid` is not found.
         """
         for role in self.roles:
@@ -109,7 +87,7 @@ class Group(BaseModel):
 
         Parameters
         ----------
-        subgroup_uid : str
+        subgroup_uid
             ID to look up.
 
         Returns
@@ -118,7 +96,7 @@ class Group(BaseModel):
 
         Raises
         ------
-        `LookupError`
+        `LookupError` :
             If `uid` is not found.
         """
         for subgroup in self.subgroups:
@@ -137,11 +115,11 @@ class Group(BaseModel):
 
         Returns
         -------
-        `list[Member]`
+        list[`Member`]
 
         Raises
         ------
-        `TypeError`
+        `TypeError` :
             If `subgroup` is not a `Subgroup` instance.
         """
         if not isinstance(subgroup, Subgroup):
@@ -161,11 +139,11 @@ class Group(BaseModel):
 
         Returns
         -------
-        `list[Member]`
+        list[`Member`]
 
         Raises
         ------
-        `TypeError`
+        `TypeError` :
             If `role` is not a `Role` instance.
         """
         if not isinstance(role, Role):
