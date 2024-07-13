@@ -2,7 +2,7 @@
 
 from datetime import datetime, timezone
 
-from spond_classes.member import Member
+from spond_classes import Member
 
 
 def test_from_dict_simple(simple_member_data: dict) -> None:
