@@ -13,7 +13,7 @@ Historic and pre-release versions aren't necessarily included.
 ### Added
 
 - `Event` attributes: `cancelled`, `created_time`, `end_time`, `invite_time`, `type`,
-  property `url`. Tests and docs pending.
+  property `url`. Docs pending.
 
 ### Changed
 
