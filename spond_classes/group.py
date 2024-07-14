@@ -1,6 +1,6 @@
 """Module containing `Group` class."""
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 from .member import Member
 from .role import Role
@@ -15,6 +15,8 @@ class Group(BaseModel):
     A `Group` has zero, one or more nested `Member`s; zero, one or more nested `Role`s;
     zero, one or more nested `Subgroup`s.
     """
+
+    model_config = ConfigDict(frozen=True)
 
     uid: str = Field(alias="id")
     """`id` in API, but that's a reserved term in Python and the Spond package

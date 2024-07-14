@@ -1,6 +1,6 @@
 """Module containing `Role` class."""
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class Role(BaseModel):
@@ -10,6 +10,8 @@ class Role(BaseModel):
 
     Use `Group.members_by_role()` to get `Member` instances.
     """
+
+    model_config = ConfigDict(frozen=True)
 
     uid: str = Field(alias="id")
     """`id` in API, but that's a reserved term in Python and the Spond package

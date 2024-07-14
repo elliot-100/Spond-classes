@@ -1,5 +1,6 @@
 """Tests for Event class."""
 
+from collections.abc import Hashable
 from datetime import datetime, timezone
 
 from spond_classes import Event, EventType
@@ -11,6 +12,7 @@ def test_from_dict_simple(simple_event_data: dict) -> None:
     # act
     my_event = Event(**simple_event_data)
     # assert
+    assert isinstance(my_event, Hashable)
     assert my_event.uid == "E1"
     assert my_event.heading == "Event One"
     assert my_event.responses.accepted_uids == []

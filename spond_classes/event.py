@@ -3,7 +3,7 @@
 from datetime import datetime
 from enum import Enum
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class Responses(BaseModel):
@@ -34,6 +34,8 @@ class Event(BaseModel):
 
     Events data is retrieved from the `events` API endpoint.
     """
+
+    model_config = ConfigDict(frozen=True)
 
     uid: str = Field(alias="id")
     """`id` in API, but that's a reserved term in Python and the Spond package
