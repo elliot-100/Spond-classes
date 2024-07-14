@@ -2,166 +2,20 @@
 
 import pytest
 
-# EXTRACTS FROM GROUPS ENDPOINT:
-
-
-@pytest.fixture()
-def simple_role_data() -> dict:
-    """Represent the simplest possible Role in this implementation.
-
-    For testing Role in isolation.
-    Item from 'groups' (root) -> 'roles'.
-    """
-    return {
-        "id": "001",
-        "name": "My role",
-    }
-
-
-@pytest.fixture()
-def simple_subgroup_data() -> dict:
-    """Represent the simplest possible Subgroup in this implementation.
-
-    For testing Subgroup in isolation.
-    Item from 'groups' (root) -> {group} -> 'subGroups'
-    """
-    return {
-        "id": "8CC576609CF3DCBC44469A799E76B22B",
-        "name": "Subgroup A1",
-    }
-
-
-@pytest.fixture()
-def simple_profile_data() -> dict:
-    """Represent the simplest possible Profile in this implementation.
-
-    For testing Profile in isolation.
-    Item from 'groups' (root) -> {group} -> 'members' -> {member} -> {profile}
-    """
-    return {
-        "id": "364C188137AD92DC0F32E1A31A0E1731",
-    }
-
-
-@pytest.fixture()
-def simple_member_data() -> dict:
-    """Represent the simplest possible Member in this implementation.
-
-    For testing Member in isolation.
-    Item from 'groups' (root) -> {group} -> 'members'.
-    """
-    return {
-        "createdTime": "2022-03-24T16:36:29Z",
-        # email is optional
-        "firstName": "Brendan",
-        "id": "6F63AF02CE05328153ABA477C76E6189",
-        "lastName": "Gleason",
-        # phoneNumber is optional
-        # profile is optional
-        # roles is optional
-        "subGroups": [],
-    }
-
-
-@pytest.fixture()
-def member_with_profile_data() -> dict:
-    """Represent a single Member with Profile.
-
-    All supported input fields are supplied.
-    Item from 'groups' (root) -> {group} -> 'members'.
-    """
-    return {
-        "createdTime": "2022-03-24T16:36:29Z",
-        "email": "ciarán@example.com",
-        "firstName": "Ciarán",
-        "id": "F59D764E4CE0B643DF4C0CF5E5B2B059",
-        "lastName": "Hinds",
-        "phoneNumber": "+123456789",
-        "profile": {
-            "id": "364C188137AD92DC0F32E1A31A0E1731",
-        },
-        "roles": [
-            "F2DFF55011800E66CDDAF2FD8A72039B",
-        ],
-        "subGroups": [
-            "9E95A326090B256E2E9DAA6C0114E1D8",
-        ],
-    }
-
-
-@pytest.fixture()
-def simple_group_data() -> dict:
-    """Represent the simplest possible Group in this implementation.
-
-    Item from 'groups' (root).
-    """
-    return {
-        "id": "8B4A6A9C60397A41D6D2414AFD520152",
-        "name": "Group A",
-        "members": [],  # assumed always exists, may be empty
-        "roles": [],  # assumed always exists, may be empty
-        "subGroups": [],  # assumed always exists, may be empty
-    }
-
-
-@pytest.fixture()
-def complex_group_data() -> dict:
-    """Represent a single Group with a single Member, single Subgroup, single Role.
-
-    The Member is in the Subgroup, and has the Role.
-    All supported input fields are supplied.
-    Item from 'groups' (root).
-    """
-    return {
-        "id": "20EA715745389FCDED2C280A8ACB74A6",
-        "members": [
-            {
-                "createdTime": "2022-03-24T16:36:29Z",
-                "email": "brendan@example.com",
-                "firstName": "Brendan",
-                "id": "6F63AF02CE05328153ABA477C76E6189",
-                "lastName": "Gleason",
-                "phoneNumber": "+123456789",
-                "profile": {
-                    "id": "364C188137AD92DC0F32E1A31A0E1731",
-                },
-                "roles": [
-                    "29A7724B47ABEE7B3C9DC347E13A50B4",
-                ],
-                "subGroups": [
-                    "BB6B3C3592C5FC71DBDD5258D45EF6D4",
-                ],
-            },
-        ],
-        "name": "Group B",
-        "subGroups": [
-            {
-                "id": "BB6B3C3592C5FC71DBDD5258D45EF6D4",
-                "name": "Subgroup B1",
-            },
-        ],
-        "roles": [
-            {
-                "id": "29A7724B47ABEE7B3C9DC347E13A50B4",
-                "name": "Role B2",
-            },
-        ],
-    }
-
-
 # EXTRACTS FROM EVENTS ENDPOINT:
 
 
 @pytest.fixture()
 def simple_event_data() -> dict:
-    """Represent the simplest possible Event in this implementation.
+    """Simplest possible event data in this implementation.
+
+    For testing Event in isolation.
 
     Item from 'events' (root).
     """
     return {
-        "id": "E001",
-        "heading": "Event 1",
-        "type": "EVENT",
+        "id": "E1",
+        "heading": "Event One",
         "responses": {
             "acceptedIds": [],
             "declinedIds": [],
@@ -169,6 +23,7 @@ def simple_event_data() -> dict:
             "waitinglistIds": [],
             "unconfirmedIds": [],
         },
+        "type": "EVENT",
         "createdTime": "2020-12-31T19:00:00Z",
         "endTimestamp": "2024-08-15T11:00:00Z",
         "startTimestamp": "2021-07-06T06:00:00Z",
@@ -177,34 +32,166 @@ def simple_event_data() -> dict:
 
 @pytest.fixture()
 def complex_event_data() -> dict:
-    """Represent a single Event with Responses.
+    """Event data with all implemented fields populated.
 
-    All supported input fields are supplied.
     Item from 'events' (root).
     """
     return {
-        "id": "E002",
-        "cancelled": "True",
-        "heading": "Event 2",
-        "type": "RECURRING",
+        "id": "E2",
+        "heading": "Event Two",
         "responses": {
-            "acceptedIds": [
-                "B24FA75A4CCBC63199A57361E88B0646",
-            ],
-            "declinedIds": [
-                "B4C5339E366FB5350310F2F8EA069F41",
-            ],
-            "unansweredIds": [
-                "3E546CDE2EAE242C1B8281C2042B5990",
-            ],
-            "waitinglistIds": [
-                "0362B36507E156365471B64574EB6764",
-            ],
-            "unconfirmedIds": [
-                "2D1BB37608F09511FD5F280D219DFD97",
-            ],
+            "acceptedIds": ["AC1"],
+            "declinedIds": ["DC1"],
+            "unansweredIds": ["UA1"],
+            "waitinglistIds": ["WL1"],
+            "unconfirmedIds": ["UC1"],
         },
+        "type": "RECURRING",
         "createdTime": "2019-04-24T19:00:00Z",
         "endTimestamp": "2024-08-15T11:00:00Z",
         "startTimestamp": "2022-11-04T06:00:00Z",
+        # optional:
+        "cancelled": "True",
+        "inviteTime": "2021-01-04T06:00:00Z",
+    }
+
+
+# EXTRACTS FROM GROUPS ENDPOINT:
+
+
+@pytest.fixture()
+def simple_group_data() -> dict:
+    """Simplest possible group data in this implementation.
+
+    For testing Group in isolation.
+
+    Item from 'groups' (root).
+    """
+    return {
+        "id": "G1",
+        "name": "Group One",
+        "members": [],  # assumed always exists, may be empty
+        "roles": [],  # assumed always exists, may be empty
+        "subGroups": [],  # assumed always exists, may be empty
+    }
+
+
+@pytest.fixture()
+def complex_group_data() -> dict:
+    """Group data with all implemented fields populated.
+
+    The Member is in the Subgroup, and has the Role.
+    All supported input fields are supplied.
+    Item from 'groups' (root).
+    """
+    return {
+        "id": "G2",
+        "name": "Group Two",
+        "members": [
+            {
+                "createdTime": "2022-03-24T16:36:29Z",
+                "email": "brendan@example.com",
+                "firstName": "Brendan",
+                "id": "G2M1",
+                "lastName": "Gleason",
+                "phoneNumber": "+123456789",
+                "profile": {
+                    "id": "G2M1P1",
+                },
+                "roles": ["G2R1"],
+                "subGroups": ["G2S1"],
+            },
+        ],
+        "roles": [
+            {
+                "id": "G2R1",
+                "name": "Role B2",
+            },
+        ],
+        "subGroups": [
+            {
+                "id": "G2S1",
+                "name": "Subgroup B1",
+            },
+        ],
+    }
+
+
+@pytest.fixture()
+def simple_member_data() -> dict:
+    """Simplest possible member data in this implementation.
+
+    For testing Member in isolation.
+    Item from 'groups' (root) -> {group} -> 'members'.
+    """
+    return {
+        "id": "M1",
+        "firstName": "Brendan",
+        "lastName": "Gleason",
+        "subGroups": [],
+        "createdTime": "2022-03-24T16:36:29Z",
+    }
+
+
+@pytest.fixture()
+def complex_member_data() -> dict:
+    """Member data with all implemented fields populated.
+
+    Item from 'groups' (root) -> {group} -> 'members'.
+    """
+    return {
+        "id": "M2",
+        "firstName": "Ciarán",
+        "lastName": "Hinds",
+        "createdTime": "2022-03-24T16:36:29Z",
+        # optional:
+        "email": "ciarán@example.com",
+        "phoneNumber": "+123456789",
+        "profile": {
+            "id": "M2P2",
+        },
+        "roles": [
+            "M2R2",
+        ],
+        "subGroups": [
+            "M2S2",
+        ],
+    }
+
+
+@pytest.fixture()
+def simple_profile_data() -> dict:
+    """Simplest possible profile data in this implementation.
+
+    For testing Profile in isolation.
+    Item from 'groups' (root) -> {group} -> 'members' -> {member} -> {profile}
+    """
+    return {
+        "id": "P1",
+    }
+
+
+@pytest.fixture()
+def simple_role_data() -> dict:
+    """Simplest possible role data in this implementation.
+
+    For testing Role in isolation.
+    Item from 'groups' (root) -> 'roles'.
+    """
+    return {
+        "id": "R1",
+        "name": "Role One",
+    }
+
+
+@pytest.fixture()
+def simple_subgroup_data() -> dict:
+    """Simplest possible subgroup data in this implementation.
+
+    For testing Subgroup in isolation.
+    Item from 'groups' (root) -> {group} -> 'subGroups'
+    """
+    return {
+        "id": "S1",
+        "name": "Subgroup One",
     }
