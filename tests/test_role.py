@@ -4,12 +4,11 @@ from spond_classes import Role
 
 
 def test_from_dict(simple_role_data: dict) -> None:
-    """Test that Event is created from the simplest possible dict representation.
-
-    Verify values of all attributes.
-    """
+    """Test that Role is created from the simplest possible data dict."""
+    # arrange
+    # act
     my_role = Role(**simple_role_data)
-
-    assert my_role.uid == "001"
-    assert my_role.name == "My role"
-    assert str(my_role) == "Role(uid='001', name='My role')"
+    # assert
+    assert my_role.uid == "R1"
+    assert my_role.name == "Role One"
+    assert str(my_role) == "Role(uid='R1', name='Role One')"
