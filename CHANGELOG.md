@@ -8,6 +8,14 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 Historic and pre-release versions aren't necessarily included.
 
 
+## [0.11.0.beta1] - 2024-07-15
+
+### Changed
+
+- Pydantic class instances `Event`, `Group`, `Member`, `Profile`, `Role`, `Subgroup`
+  are frozen, therefore hashable.
+
+
 ## [0.11.0.beta] - 2024-07-13
 
 ### Added
@@ -45,7 +53,8 @@ Historic and pre-release versions aren't necessarily included.
 
 ### Changed
 
-- `Group.members_by_role|subgroup()` raises ValueError if passed instances aren't compatible
+- `Group.members_by_role|subgroup()` raises ValueError if passed instances
+  aren't compatible
 - Tests for `Group.member|role|subgroup_by_id()`, `Group.members_by_role|subgroup()`
 - Update dev dependency: pre-commit-hooks
 
@@ -88,7 +97,8 @@ Historic and pre-release versions aren't necessarily included.
 
 - Refactors; test improvements
 - Use `ruff format` instead of `isort` + `black` in CI/pre-commit
-- Update dev/test dependencies: mypy, pre-commit-hooks, pytest, ruff, types-python-dateutil
+- Update dev/test dependencies: mypy, pre-commit-hooks, pytest, ruff,
+  types-python-dateutil
 - Update CI dependencies: actions/setup_python
 
 ### Fixed
