@@ -17,6 +17,8 @@ Historic and pre-release versions aren't necessarily included.
 
 ### Changed
 
+- Pydantic class instances `Event`, `Group`, `Member`, `Profile`, `Role`, `Subgroup`
+  are frozen, therefore hashable.
 - Consistent pattern for all classes' string representation, including full `uid`
 - Dependencies: remove upper bounds for simplicity; drop redundant python-dateutil
 - Dev dependencies: drop redundant types-python-dateutil
@@ -44,7 +46,8 @@ Historic and pre-release versions aren't necessarily included.
 
 ### Changed
 
-- `Group.members_by_role|subgroup()` raises ValueError if passed instances aren't compatible
+- `Group.members_by_role|subgroup()` raises ValueError if passed instances
+  aren't compatible
 - Tests for `Group.member|role|subgroup_by_id()`, `Group.members_by_role|subgroup()`
 - Update dev dependency: pre-commit-hooks
 
@@ -87,7 +90,8 @@ Historic and pre-release versions aren't necessarily included.
 
 - Refactors; test improvements
 - Use `ruff format` instead of `isort` + `black` in CI/pre-commit
-- Update dev/test dependencies: mypy, pre-commit-hooks, pytest, ruff, types-python-dateutil
+- Update dev/test dependencies: mypy, pre-commit-hooks, pytest, ruff,
+  types-python-dateutil
 - Update CI dependencies: actions/setup_python
 
 ### Fixed
