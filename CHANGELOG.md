@@ -19,9 +19,17 @@ Historic and pre-release versions aren't necessarily included.
 
 - Pydantic class instances `Event`, `Group`, `Member`, `Profile`, `Role`, `Subgroup`
   are frozen, therefore hashable.
+- Public API is defined using `__all__` instead of import aliasing, which improves e.g.
+  documentation handling in IDEs.
 - Consistent pattern for all classes' string representation, including full `uid`
+- Simplified and improved docstrings
 - Dependencies: remove upper bounds for simplicity; drop redundant python-dateutil
 - Dev dependencies: drop redundant types-python-dateutil
+
+### Fixed
+
+- Tests didn't import from the top-level namespace, i.e. didn't use public API.
+
 
 
 ## [0.10.1] - 2024-07-02
