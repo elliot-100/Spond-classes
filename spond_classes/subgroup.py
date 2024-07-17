@@ -1,6 +1,6 @@
 """Module containing `Subgroup` class."""
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, Field
 
 
 class Subgroup(BaseModel):
@@ -10,8 +10,6 @@ class Subgroup(BaseModel):
 
     Use `Group.members_by_subgroup()` to get `Member` instances.
     """
-
-    model_config = ConfigDict(frozen=True)
 
     uid: str = Field(alias="id")
     """`id` in API, but that's a reserved term in Python and the Spond package

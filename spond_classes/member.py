@@ -2,7 +2,7 @@
 
 from datetime import datetime
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, Field
 
 from .profile import Profile
 
@@ -13,8 +13,6 @@ class Member(BaseModel):
     A `Member` is an individual's group-specific record, and is nested within a `Group`.
     A `Member` may have a nested `Profile`.
     """
-
-    model_config = ConfigDict(frozen=True)
 
     uid: str = Field(alias="id")
     """`id` in API, but that's a reserved term in Python and the Spond package

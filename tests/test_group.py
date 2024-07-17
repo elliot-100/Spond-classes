@@ -1,7 +1,5 @@
 """Tests for Group class."""
 
-from collections.abc import Hashable
-
 import pytest
 
 from spond_classes import Group
@@ -13,7 +11,6 @@ def test_from_dict_simple(simple_group_data: dict) -> None:
     # act
     my_group = Group(**simple_group_data)
     # assert
-    assert isinstance(my_group, Hashable)
     assert my_group.uid == "G1"
     assert my_group.name == "Group One"
     assert my_group.members == []

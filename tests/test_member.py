@@ -1,6 +1,5 @@
 """Tests for Member class."""
 
-from collections.abc import Hashable
 from datetime import datetime, timezone
 
 from spond_classes import Member
@@ -12,7 +11,6 @@ def test_from_dict_simple(simple_member_data: dict) -> None:
     # act
     my_member = Member(**simple_member_data)
     # assert
-    assert isinstance(my_member, Hashable)
     assert my_member.uid == "M1"
     assert my_member.created_time == datetime(
         2022, 3, 24, 16, 36, 29, tzinfo=timezone.utc

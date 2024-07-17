@@ -1,6 +1,6 @@
 """Module containing `Profile` class."""
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, Field
 
 
 class Profile(BaseModel):
@@ -8,8 +8,6 @@ class Profile(BaseModel):
 
     A `Profile` is nested within a `Member`.
     """
-
-    model_config = ConfigDict(frozen=True)
 
     uid: str = Field(alias="id")
     """`id` in API, but that's a reserved term in Python and the Spond package

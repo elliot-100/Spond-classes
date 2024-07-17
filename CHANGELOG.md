@@ -13,12 +13,10 @@ Historic and pre-release versions aren't necessarily included.
 ### Added
 
 - `Event` attributes: `cancelled`, `created_time`, `end_time`, `invite_time`, `type`,
-  property `url`. Docs pending.
+  property `url`.
 
 ### Changed
 
-- Pydantic class instances `Event`, `Group`, `Member`, `Profile`, `Role`, `Subgroup`
-  are frozen, therefore hashable.
 - Public API is defined using `__all__` instead of import aliasing, which improves e.g.
   documentation handling in IDEs.
 - Consistent pattern for all classes' string representation, including full `uid`
