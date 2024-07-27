@@ -10,4 +10,4 @@ def test_from_dict(simple_profile_data: dict) -> None:
     my_profile = Profile(**simple_profile_data)
     # assert
     assert my_profile.uid == "P1"
-    assert str(my_profile) == ("Profile(uid='P1')")
+    assert str(my_profile) == "Profile(uid='P1')"

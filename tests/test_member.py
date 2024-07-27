@@ -25,7 +25,7 @@ def test_from_dict_simple(simple_member_data: dict) -> None:
     assert my_member.profile is None
     assert my_member.role_uids is None
     # - properties:
-    assert str(my_member) == ("Member(uid='M1', full_name='Brendan Gleason', …)")
+    assert str(my_member) == "Member(uid='M1', full_name='Brendan Gleason', …)"
     assert my_member.full_name == "Brendan Gleason"
 
 
@@ -57,5 +57,5 @@ def test_from_dict_full(complex_member_data: dict) -> None:
         == "M2R2"
     )
     # - properties:
-    assert str(my_member) == ("Member(uid='M2', full_name='Ciarán Hinds', …)")
+    assert str(my_member) == "Member(uid='M2', full_name='Ciarán Hinds', …)"
     assert my_member.full_name == "Ciarán Hinds"

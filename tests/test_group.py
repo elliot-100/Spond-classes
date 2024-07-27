@@ -16,7 +16,7 @@ def test_from_dict_simple(simple_group_data: dict) -> None:
     assert my_group.members == []
     assert my_group.roles == []
     assert my_group.subgroups == []
-    assert str(my_group) == ("Group(uid='G1', name='Group One', …)")
+    assert str(my_group) == "Group(uid='G1', name='Group One', …)"
 
 
 def test_from_dict_with_member_role_subgroup(complex_group_data: dict) -> None:
@@ -113,7 +113,9 @@ def test_members_by_subgroup__not_subgroup_raises_type_error(
     # assert
     with pytest.raises(TypeError):
         # Ignore Mypy error - test purposely passes incompatible type
-        my_subgroup_members = my_group.members_by_subgroup(role_not_subgroup)  # type: ignore[arg-type]
+        my_subgroup_members = my_group.members_by_subgroup(
+            role_not_subgroup  # type: ignore[arg-type]
+        )
 
 
 def test_members_by_role__happy_path(complex_group_data: dict) -> None:
@@ -137,4 +139,6 @@ def test_members_by_role__not_role_raises_type_error(
     # act
     with pytest.raises(TypeError):
         # Ignore Mypy error - test purposely passes incompatible type
-        my_role_members = my_group.members_by_role(subgroup_not_role)  # type: ignore[arg-type]
+        my_role_members = my_group.members_by_role(
+            subgroup_not_role  # type: ignore[arg-type]
+        )
