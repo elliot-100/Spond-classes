@@ -53,9 +53,16 @@ ignore = ["COM812", "ISC001", "D205"]
 #   F841 Local variable is assigned to but never used (triggered by testing raises)
 "**/{tests}/*" = ["S101", "F841"]
 
-# Ignore rules that conflict with Mypy
+# Ignore rules that conflict with Mypy:
 #   PLC0414 Import alias does not rename original package
 "__init__.py" = ["PLC0414"]
+
+# Ignore rules that conflict with Pydantic:
+#   TCH001 Move application import ... into a type-checking block
+#   TCH003 Move standard library import ... into a type-checking block
+"event.py" = ["TCH003"]  # `datetime.datetime`
+"group.py" = ["TCH001"]  # `.member.Member`
+"member.py" = ["TCH001", "TCH003"]  # `.profile.Profile`, `datetime.datetime`
 
 [tool.ruff.lint.pydocstyle]
 convention = "numpy"

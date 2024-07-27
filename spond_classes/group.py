@@ -1,5 +1,7 @@
 """Module containing `Group` class."""
 
+from __future__ import annotations
+
 from pydantic import BaseModel, Field
 
 from .member import Member
