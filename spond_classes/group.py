@@ -159,11 +159,11 @@ class Group(BaseModel):
         """
         return self._instance_by_id(subgroup_uid, Subgroup, self.subgroups)
 
+    @staticmethod
     def _instance_by_id(
-        self,
         uid: str,
         cls: T,
-        instances: list[T],
+        instances: Sequence[T],
     ) -> T:
         """Return the nested instance with matching `uid`.
 
@@ -176,8 +176,6 @@ class Group(BaseModel):
         ------
         LookupError if uid is not found.
         """
-        if not isinstance(cls, Member | Role | Subgroup):
-            raise TypeError
         if not is_sequence_member_role_subgroup(instances):
             raise TypeError
         for instance in instances:
