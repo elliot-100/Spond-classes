@@ -2,8 +2,10 @@
 
 from spond_classes import Subgroup
 
+from . import DictFromJSON
 
-def test_from_dict(simple_subgroup_data: dict) -> None:
+
+def test_from_dict(simple_subgroup_data: DictFromJSON) -> None:
     """Test that Subgroup is created from the simplest possible data dict."""
     # arrange
     # act

@@ -4,8 +4,10 @@ from datetime import datetime, timezone
 
 from spond_classes import Member
 
+from . import DictFromJSON
 
-def test_from_dict_simple(simple_member_data: dict) -> None:
+
+def test_from_dict_simple(simple_member_data: DictFromJSON) -> None:
     """Test that Member is created from the simplest possible data."""
     # arrange
     # act
@@ -29,7 +31,7 @@ def test_from_dict_simple(simple_member_data: dict) -> None:
     assert my_member.full_name == "Brendan Gleason"
 
 
-def test_from_dict_full(complex_member_data: dict) -> None:
+def test_from_dict_full(complex_member_data: DictFromJSON) -> None:
     """Test that Member is created from dict with all supported attributes."""
     # arrange
     # act

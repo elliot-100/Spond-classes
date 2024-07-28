@@ -2,8 +2,10 @@
 
 from spond_classes.profile import Profile
 
+from . import DictFromJSON
 
-def test_from_dict(simple_profile_data: dict) -> None:
+
+def test_from_dict(simple_profile_data: DictFromJSON) -> None:
     """Test that Profile is created from the simplest possible data dict."""
     # arrange
     # act

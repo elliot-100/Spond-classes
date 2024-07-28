@@ -4,8 +4,10 @@ import pytest
 
 from spond_classes import Group
 
+from . import DictFromJSON
 
-def test_from_dict_simple(simple_group_data: dict) -> None:
+
+def test_from_dict_simple(simple_group_data: DictFromJSON) -> None:
     """Test that Group is created from the simplest possible data."""
     # arrange
     # act
@@ -19,7 +21,7 @@ def test_from_dict_simple(simple_group_data: dict) -> None:
     assert str(my_group) == "Group(uid='G1', name='Group One', …)"
 
 
-def test_from_dict_with_member_role_subgroup(complex_group_data: dict) -> None:
+def test_from_dict_with_member_role_subgroup(complex_group_data: DictFromJSON) -> None:
     """Test that nested Member, Role, Subgroup are created from dict."""
     # arrange
     # act
@@ -31,7 +33,7 @@ def test_from_dict_with_member_role_subgroup(complex_group_data: dict) -> None:
     assert my_group.subgroups[0].uid == "G2S1"
 
 
-def test_member_by_id__happy_path(complex_group_data: dict) -> None:
+def test_member_by_id__happy_path(complex_group_data: DictFromJSON) -> None:
     """Test that Member is returned from a valid uid."""
     # arrange
     my_group = Group(**complex_group_data)
@@ -42,7 +44,7 @@ def test_member_by_id__happy_path(complex_group_data: dict) -> None:
 
 
 def test_member_by_id__unmatched_id_raises_lookup_error(
-    complex_group_data: dict,
+    complex_group_data: DictFromJSON,
 ) -> None:
     """Test that LookupError is raised when uid can't be matched against a Member."""
     # arrange
@@ -52,7 +54,7 @@ def test_member_by_id__unmatched_id_raises_lookup_error(
         my_member = my_group.member_by_id("DUMMY_ID")  # act
 
 
-def test_role_by_id__happy_path(complex_group_data: dict) -> None:
+def test_role_by_id__happy_path(complex_group_data: DictFromJSON) -> None:
     """Test that Role is returned from a valid uid."""
     # arrange
     my_group = Group(**complex_group_data)
@@ -62,7 +64,9 @@ def test_role_by_id__happy_path(complex_group_data: dict) -> None:
     assert my_role.uid == "G2R1"
 
 
-def test_role_by_id__unmatched_id_raises_lookup_error(complex_group_data: dict) -> None:
+def test_role_by_id__unmatched_id_raises_lookup_error(
+    complex_group_data: DictFromJSON,
+) -> None:
     """Test that LookupError is raised when uid can't be matched against a Role."""
     # arrange
     my_group = Group(**complex_group_data)
@@ -71,7 +75,7 @@ def test_role_by_id__unmatched_id_raises_lookup_error(complex_group_data: dict) 
         my_role = my_group.role_by_id("DUMMY_ID")  # act
 
 
-def test_subgroup_by_id__happy_path(complex_group_data: dict) -> None:
+def test_subgroup_by_id__happy_path(complex_group_data: DictFromJSON) -> None:
     """Test that Subgroup is returned from a valid uid."""
     # arrange
     my_group = Group(**complex_group_data)
@@ -82,7 +86,7 @@ def test_subgroup_by_id__happy_path(complex_group_data: dict) -> None:
 
 
 def test_subgroup_by_id__unmatched_id_raises_lookup_error(
-    complex_group_data: dict,
+    complex_group_data: DictFromJSON,
 ) -> None:
     """Test that LookupError is raised when uid can't be matched against a Subgroup."""
     # arrange
@@ -92,7 +96,7 @@ def test_subgroup_by_id__unmatched_id_raises_lookup_error(
         my_subgroup = my_group.subgroup_by_id("DUMMY_ID")  # act
 
 
-def test_members_by_subgroup__happy_path(complex_group_data: dict) -> None:
+def test_members_by_subgroup__happy_path(complex_group_data: DictFromJSON) -> None:
     """Test that Members are returned from a valid Subgroup."""
     # arrange
     my_group = Group(**complex_group_data)
@@ -104,7 +108,7 @@ def test_members_by_subgroup__happy_path(complex_group_data: dict) -> None:
 
 
 def test_members_by_subgroup__not_subgroup_raises_type_error(
-    complex_group_data: dict,
+    complex_group_data: DictFromJSON,
 ) -> None:
     """Test that TypeError is raised if `subgroup` isn't a Subgroup."""
     # arrange
@@ -118,7 +122,7 @@ def test_members_by_subgroup__not_subgroup_raises_type_error(
         )
 
 
-def test_members_by_role__happy_path(complex_group_data: dict) -> None:
+def test_members_by_role__happy_path(complex_group_data: DictFromJSON) -> None:
     """Test that Members are returned from a valid Role."""
     # arrange
     my_group = Group(**complex_group_data)
@@ -130,7 +134,7 @@ def test_members_by_role__happy_path(complex_group_data: dict) -> None:
 
 
 def test_members_by_role__not_role_raises_type_error(
-    complex_group_data: dict,
+    complex_group_data: DictFromJSON,
 ) -> None:
     """Test that TypeError is raised if `role` isn't a Role."""
     # arrange
