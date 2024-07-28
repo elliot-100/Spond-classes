@@ -1,10 +1,14 @@
 """Module containing `Group` class."""
 
+from typing import TypeVar
+
 from pydantic import BaseModel, Field
 
 from .member import Member
 from .role import Role
 from .subgroup import Subgroup
+
+T = TypeVar("T")
 
 
 class Group(BaseModel):
@@ -51,13 +55,12 @@ class Group(BaseModel):
         Raises
         ------
         LookupError
-            If `uid` is not found.
+            If ID is not found.
         """
-        for member in self.members:
-            if member.uid == member_uid:
-                return member
-        err_msg = f"No Member found with id='{member_uid}'."
-        raise LookupError(err_msg)
+        result = self._nested_instance_by_id(Member, member_uid)
+        if not isinstance(result, Member):
+            raise TypeError
+        return result
 
     def role_by_id(self, role_uid: str) -> Role:
         """Return the nested `Role` with matching ID.
@@ -74,13 +77,12 @@ class Group(BaseModel):
         Raises
         ------
         LookupError
-            If `uid` is not found.
+            If ID is not found.
         """
-        for role in self.roles:
-            if role.uid == role_uid:
-                return role
-        err_msg = f"No Role found with id='{role_uid}'."
-        raise LookupError(err_msg)
+        result = self._nested_instance_by_id(Role, role_uid)
+        if not isinstance(result, Role):
+            raise TypeError
+        return result
 
     def subgroup_by_id(self, subgroup_uid: str) -> Subgroup:
         """Return the nested `Subgroup` with matching ID.
@@ -97,13 +99,12 @@ class Group(BaseModel):
         Raises
         ------
         LookupError
-            If `uid` is not found.
+            If ID is not found.
         """
-        for subgroup in self.subgroups:
-            if subgroup.uid == subgroup_uid:
-                return subgroup
-        err_msg = f"No Subgroup found with id='{subgroup_uid}'."
-        raise LookupError(err_msg)
+        result = self._nested_instance_by_id(Subgroup, subgroup_uid)
+        if not isinstance(result, Subgroup):
+            raise TypeError
+        return result
 
     def members_by_subgroup(self, subgroup: Subgroup) -> list[Member]:
         """Return `Member`s in the nested `Subgroup`.
@@ -154,3 +155,24 @@ class Group(BaseModel):
             for member in self.members
             if member.role_uids and role.uid in member.role_uids
         ]
+
+    def _nested_instance_by_id(
+        self,
+        nested_class: T,
+        uid: str,
+    ) -> Member | Role | Subgroup:
+        """Return the nested instance with matching ID."""
+        if nested_class is Member:
+            for member in self.members:
+                if member.uid == uid:
+                    return member
+        if nested_class is Role:
+            for role in self.roles:
+                if role.uid == uid:
+                    return role
+        if nested_class is Subgroup:
+            for subgroup in self.subgroups:
+                if subgroup.uid == uid:
+                    return subgroup
+        err_msg = f"No {nested_class} found with id='{uid}'."
+        raise LookupError(err_msg)
