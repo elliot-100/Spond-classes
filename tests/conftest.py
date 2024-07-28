@@ -2,11 +2,13 @@
 
 import pytest
 
+from . import DictFromJSON
+
 # EXTRACTS FROM EVENTS ENDPOINT:
 
 
 @pytest.fixture()
-def simple_event_data() -> dict:
+def simple_event_data() -> DictFromJSON:
     """Simplest possible event data in this implementation.
 
     For testing Event in isolation.
@@ -31,7 +33,7 @@ def simple_event_data() -> dict:
 
 
 @pytest.fixture()
-def complex_event_data() -> dict:
+def complex_event_data() -> DictFromJSON:
     """Event data with all implemented fields populated.
 
     Item from 'events' (root).
@@ -60,7 +62,7 @@ def complex_event_data() -> dict:
 
 
 @pytest.fixture()
-def simple_group_data() -> dict:
+def simple_group_data() -> DictFromJSON:
     """Simplest possible group data in this implementation.
 
     For testing Group in isolation.
@@ -77,7 +79,7 @@ def simple_group_data() -> dict:
 
 
 @pytest.fixture()
-def complex_group_data() -> dict:
+def complex_group_data() -> DictFromJSON:
     """Group data with all implemented fields populated.
 
     The Member is in the Subgroup, and has the Role.
@@ -118,7 +120,7 @@ def complex_group_data() -> dict:
 
 
 @pytest.fixture()
-def simple_member_data() -> dict:
+def simple_member_data() -> DictFromJSON:
     """Simplest possible member data in this implementation.
 
     For testing Member in isolation.
@@ -134,7 +136,7 @@ def simple_member_data() -> dict:
 
 
 @pytest.fixture()
-def complex_member_data() -> dict:
+def complex_member_data() -> DictFromJSON:
     """Member data with all implemented fields populated.
 
     Item from 'groups' (root) -> {group} -> 'members'.
@@ -160,7 +162,7 @@ def complex_member_data() -> dict:
 
 
 @pytest.fixture()
-def simple_profile_data() -> dict:
+def simple_profile_data() -> DictFromJSON:
     """Simplest possible profile data in this implementation.
 
     For testing Profile in isolation.
@@ -172,7 +174,7 @@ def simple_profile_data() -> dict:
 
 
 @pytest.fixture()
-def simple_role_data() -> dict:
+def simple_role_data() -> DictFromJSON:
     """Simplest possible role data in this implementation.
 
     For testing Role in isolation.
@@ -185,7 +187,7 @@ def simple_role_data() -> dict:
 
 
 @pytest.fixture()
-def simple_subgroup_data() -> dict:
+def simple_subgroup_data() -> DictFromJSON:
     """Simplest possible subgroup data in this implementation.
 
     For testing Subgroup in isolation.

@@ -1,8 +1,6 @@
-"""Test suite.
+"""Test suite."""
 
-Note: To generate a representative 32-character hex string ID:
-    ```
-    import secrets
-    secrets.token_hex(16).upper()
-    ```
-"""
+from typing import Any, TypeAlias
+
+DictFromJSON: TypeAlias = dict[str, Any]
+"""Simple type alias to annotate data retrieved from the API."""

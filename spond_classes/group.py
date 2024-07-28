@@ -50,7 +50,7 @@ class Group(BaseModel):
 
         Raises
         ------
-        `LookupError` :
+        LookupError
             If `uid` is not found.
         """
         for member in self.members:
@@ -73,7 +73,7 @@ class Group(BaseModel):
 
         Raises
         ------
-        `LookupError` :
+        LookupError
             If `uid` is not found.
         """
         for role in self.roles:
@@ -96,7 +96,7 @@ class Group(BaseModel):
 
         Raises
         ------
-        `LookupError` :
+        LookupError
             If `uid` is not found.
         """
         for subgroup in self.subgroups:
@@ -119,7 +119,7 @@ class Group(BaseModel):
 
         Raises
         ------
-        `TypeError` :
+        TypeError
             If `subgroup` is not a `Subgroup` instance.
         """
         if not isinstance(subgroup, Subgroup):
@@ -143,7 +143,7 @@ class Group(BaseModel):
 
         Raises
         ------
-        `TypeError` :
+        TypeError
             If `role` is not a `Role` instance.
         """
         if not isinstance(role, Role):

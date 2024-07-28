@@ -4,8 +4,10 @@ from datetime import datetime, timezone
 
 from spond_classes import Event, EventType
 
+from . import DictFromJSON
 
-def test_from_dict_simple(simple_event_data: dict) -> None:
+
+def test_from_dict_simple(simple_event_data: DictFromJSON) -> None:
     """Test that Event is created from the simplest possible data."""
     # arrange
     # act
@@ -36,7 +38,7 @@ def test_from_dict_simple(simple_event_data: dict) -> None:
     assert my_event.url == "https://spond.com/client/sponds/E1/"
 
 
-def test_from_dict_complex(complex_event_data: dict) -> None:
+def test_from_dict_complex(complex_event_data: DictFromJSON) -> None:
     """Test that Event is created from dict with all supported attributes.
 
     Verify values of all attributes.
