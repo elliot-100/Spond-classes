@@ -162,13 +162,15 @@ class Group(BaseModel):
         uid: str,
     ) -> Member | Role | Subgroup:
         """Return the nested instance with matching ID."""
-        result = None
         if nested_class is Member:
-            result = next((m for m in self.members if m.uid == uid), None)
+            gen = (m for m in self.members if m.uid == uid)
         elif nested_class is Role:
-            result = next((r for r in self.roles if r.uid == uid), None)
+            gen = (r for r in self.roles if r.uid == uid)
         elif nested_class is Subgroup:
-            result = next((s for s in self.subgroups if s.uid == uid), None)
+            gen = (s for s in self.subgroups if s.uid == uid)
+        else:
+            raise TypeError
+        result = next(gen, None)
         if result:
             return result
         err_msg = f"No `{nested_class.__qualname__}` found with id='{uid}'."
