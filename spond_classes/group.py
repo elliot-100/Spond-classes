@@ -174,5 +174,5 @@ class Group(BaseModel):
             for subgroup in self.subgroups:
                 if subgroup.uid == uid:
                     return subgroup
-        err_msg = f"No {nested_class} found with id='{uid}'."
+        err_msg = f"No `{nested_class.__qualname__}` found with id='{uid}'."
         raise LookupError(err_msg)
