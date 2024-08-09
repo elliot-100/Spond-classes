@@ -91,14 +91,20 @@ def complex_group_data() -> DictFromJSON:
         "name": "Group Two",
         "members": [
             {
+                "id": "G2M1",
                 "createdTime": "2022-03-24T16:36:29Z",
                 "email": "brendan@example.com",
                 "firstName": "Brendan",
-                "id": "G2M1",
                 "lastName": "Gleason",
                 "phoneNumber": "+123456789",
+                # optional:
                 "profile": {
                     "id": "G2M1P1",
+                    "firstName": "Bren",
+                    "lastName": "Gleason",
+                    # optional:
+                    "email": "brendan-home@example.com",
+                    "phoneNumber": "+123456791",
                 },
                 "roles": ["G2R1"],
                 "subGroups": ["G2S1"],
@@ -151,6 +157,11 @@ def complex_member_data() -> DictFromJSON:
         "phoneNumber": "+123456789",
         "profile": {
             "id": "M2P2",
+            "firstName": "",
+            "lastName": "",
+            # optional:
+            "email": "ciarán2@example.com",
+            "phoneNumber": "+123456790",
         },
         "roles": [
             "M2R2",
@@ -170,6 +181,8 @@ def simple_profile_data() -> DictFromJSON:
     """
     return {
         "id": "P1",
+        "firstName": "Morgan",
+        "lastName": "Freeman",
     }
 
 

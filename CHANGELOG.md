@@ -8,6 +8,14 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 Historic and pre-release versions aren't necessarily included.
 
 
+## UNRELEASED - TBC
+
+### Added
+
+- `Member.Profile` attributes: `email`, `first_name`, `last_name`, `phone_nunber`,
+  property `full_name`
+
+
 ## [0.11.2] - 2024-09-16
 
 ### Fixed
@@ -50,7 +58,6 @@ Historic and pre-release versions aren't necessarily included.
 ### Fixed
 
 - Tests didn't import from the top-level namespace, i.e. didn't use public API
-
 
 
 ## [0.10.1] - 2024-07-02
