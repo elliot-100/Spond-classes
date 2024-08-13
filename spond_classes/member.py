@@ -15,7 +15,7 @@ class Member(BaseModel):
     """
 
     uid: str = Field(alias="id")
-    """`id` in API, but that's a reserved term in Python and the Spond package
+    """`id` in API; aliased as that's a Python built-in, and the Spond package
     uses `uid`."""
     created_time: datetime = Field(alias="createdTime")
     """Derived from `createdTime` in API."""
@@ -26,8 +26,7 @@ class Member(BaseModel):
 
     # Lists which always exist in API data, but may be empty
     subgroup_uids: list[str] = Field(alias="subGroups")
-    """`subGroups` in API, but aliased here to avoid confusion with
-    `Subgroup` instances."""
+    """`subGroups` in API; aliased to avoid confusion with `Subgroup` instances."""
 
     # Optional in API data
     email: str | None = Field(default=None)
@@ -36,7 +35,7 @@ class Member(BaseModel):
     profile: Profile | None = None  # Availability may depend on permissions
     """Derived from `profile` in API."""
     role_uids: list[str] | None = Field(alias="roles", default=None)
-    """`roles` in API, but aliased here to avoid confusion with `Role` instances."""
+    """`roles` in API; aliased to avoid confusion with `Role` instances."""
 
     def __str__(self) -> str:
         """Return simple human-readable description.

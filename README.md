@@ -7,8 +7,8 @@
 The unofficial Python [`spond` library package](https://github.com/Olen/Spond/) gets
 data from the Spond API and returns `dict` objects.
 
-This unofficial Python `spond-classes` package parses those `dict` objects to create
-class instances, i.e. provides an object abstraction layer.
+This unofficial Python `spond-classes` library package parses those `dict` objects to create
+[Pydantic](https://docs.pydantic.dev/) class instances, i.e. provides an object abstraction layer.
 
 Experimental, partial, read-only implementation.
 
@@ -47,7 +47,8 @@ async def main():
     await s.clientsession.close()
 
     # Now we can create a class instance ...
-    group = spond_classes.Group(**group_data)
+    group = spond_classes.Group.model_validate(group_data)
+    # or `spond_classes.Group(**group_data)`
 
     # ... use class properties instead of dict keys ...
     print(group.name)
@@ -69,7 +70,8 @@ asyncio.run(main())
   `Spond` method:
 
 ```python
-spond_classes.Group(**dict)
+spond_classes.Group.model_validate(dict)
+# or `spond_classes.Group(**dict)`
 ```
 
 * Then access class instance attributes and methods:
@@ -114,7 +116,8 @@ Subgroup.name: str
   `Spond` method:
 
 ```python
-spond_classes.Event(**dict)
+spond_classes.Event.model_validate(dict)
+# or spond_classes.Event(**dict)
 ```
 
 * Then access attributes:
