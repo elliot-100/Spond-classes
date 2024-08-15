@@ -7,7 +7,7 @@ from . import DictFromJSON
 # EXTRACTS FROM EVENTS ENDPOINT:
 
 
-@pytest.fixture()
+@pytest.fixture
 def simple_event_data() -> DictFromJSON:
     """Simplest possible event data in this implementation.
 
@@ -32,7 +32,7 @@ def simple_event_data() -> DictFromJSON:
     }
 
 
-@pytest.fixture()
+@pytest.fixture
 def complex_event_data() -> DictFromJSON:
     """Event data with all implemented fields populated.
 
@@ -61,7 +61,7 @@ def complex_event_data() -> DictFromJSON:
 # EXTRACTS FROM GROUPS ENDPOINT:
 
 
-@pytest.fixture()
+@pytest.fixture
 def simple_group_data() -> DictFromJSON:
     """Simplest possible group data in this implementation.
 
@@ -78,7 +78,7 @@ def simple_group_data() -> DictFromJSON:
     }
 
 
-@pytest.fixture()
+@pytest.fixture
 def complex_group_data() -> DictFromJSON:
     """Group data with all implemented fields populated.
 
@@ -119,7 +119,7 @@ def complex_group_data() -> DictFromJSON:
     }
 
 
-@pytest.fixture()
+@pytest.fixture
 def simple_member_data() -> DictFromJSON:
     """Simplest possible member data in this implementation.
 
@@ -135,7 +135,7 @@ def simple_member_data() -> DictFromJSON:
     }
 
 
-@pytest.fixture()
+@pytest.fixture
 def complex_member_data() -> DictFromJSON:
     """Member data with all implemented fields populated.
 
@@ -161,7 +161,7 @@ def complex_member_data() -> DictFromJSON:
     }
 
 
-@pytest.fixture()
+@pytest.fixture
 def simple_profile_data() -> DictFromJSON:
     """Simplest possible profile data in this implementation.
 
@@ -173,7 +173,7 @@ def simple_profile_data() -> DictFromJSON:
     }
 
 
-@pytest.fixture()
+@pytest.fixture
 def simple_role_data() -> DictFromJSON:
     """Simplest possible role data in this implementation.
 
@@ -186,7 +186,7 @@ def simple_role_data() -> DictFromJSON:
     }
 
 
-@pytest.fixture()
+@pytest.fixture
 def simple_subgroup_data() -> DictFromJSON:
     """Simplest possible subgroup data in this implementation.
 
