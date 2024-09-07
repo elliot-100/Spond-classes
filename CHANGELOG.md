@@ -12,8 +12,8 @@ Historic and pre-release versions aren't necessarily included.
 
 ### Added
 
-- `Member.Profile` attributes: `email`, `first_name`, `last_name`, `phone_nunber`,
-  property `full_name`
+- Add `Profile` to public API, with additional attributes: `email`, `first_name`,
+  `last_name`, `phone_nunber`, property `full_name`
 
 
 ## [0.11.2] - 2024-09-16

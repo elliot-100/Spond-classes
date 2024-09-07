@@ -1,6 +1,6 @@
 """Tests for Profile class."""
 
-from spond_classes.profile import Profile
+from spond_classes import Profile
 
 from . import DictFromJSON
 
