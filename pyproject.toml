@@ -35,23 +35,21 @@ no_implicit_optional = true  # Don't assume arguments with default values of Non
 target-version = "py310"  # Ruff doesn't respect Python dependency in [tool.poetry.dependencies]
 
 [tool.ruff.lint]
-
 select = ["ALL"]
-
-# Ignore rules that conflict with Ruff formatter:
-#   COM812 Trailing comma missing
-#   ISC001 Implicitly concatenated string literals on one line
-
-# Ignore other rules:
-#   D205 1 blank line required between summary line and description
-
-ignore = ["COM812", "ISC001", "D205"]
+ignore = [
+# Rules that conflict with Ruff formatter:
+"COM812",  # Trailing comma missing
+"ISC001",  # Implicitly concatenated string literals on one line
+# Other rules:
+"D205",  # 1 blank line required between summary line and description
+]
 
 [tool.ruff.lint.per-file-ignores]
-# Ignore rules that aren't relevant in tests:
-#   S101 Use of assert detected
-#   F841 Local variable is assigned to but never used (triggered by testing raises)
-"**/{tests}/*" = ["S101", "F841"]
+# Rules that aren't relevant in tests:
+"**/{tests}/*" = [
+"S101",  # Use of assert detected
+"F841",  # Local variable is assigned to but never used (triggered by testing raises)
+]
 
 [tool.ruff.lint.pydocstyle]
 convention = "numpy"
