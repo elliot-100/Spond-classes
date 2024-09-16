@@ -14,6 +14,10 @@ Historic and pre-release versions aren't necessarily included.
 
 - Dev dependencies: add pdoc, update mypy, ruff, pytest
 
+### Removed
+
+- Explicit dependency on spond
+
 
 ## [0.11.0] - 2024-07-17
 
