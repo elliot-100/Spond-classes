@@ -16,13 +16,13 @@ spond = ">=1.0.0"
 pydantic = ">=2.7.1"
 
 [tool.poetry.group.dev.dependencies]
-pdoc = ">=14.5.1"
+pdoc = ">=14.7.0"
 pre-commit = ">=3.1.1"
-ruff = ">=0.6.0"
+ruff = ">=0.6.5"
 
 [tool.poetry.group.test.dependencies]
-mypy = ">=1.8.0"
-pytest = ">=8.1.1"
+mypy = ">=1.11.2"
+pytest = ">=8.3.3"
 
 [tool.mypy]
 plugins = ["pydantic.mypy"]
