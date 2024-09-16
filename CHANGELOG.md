@@ -8,6 +8,13 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 Historic and pre-release versions aren't necessarily included.
 
 
+## [0.11.2] - 2024-09-16
+
+### Fixed
+
+- pdoc wouldn't render; solved by setting Pydantic dependency < 2.9
+
+
 ## [0.11.1] - 2024-09-16
 
 #### Added
