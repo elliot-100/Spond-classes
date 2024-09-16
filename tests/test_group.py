@@ -54,6 +54,18 @@ def test_member_by_id__unmatched_id_raises_lookup_error(
         my_member = my_group.member_by_id("DUMMY_ID")  # act
 
 
+def test_member_by_id__no_members_raises_lookup_error(
+    simple_group_data: DictFromJSON,
+) -> None:
+    """Test that LookupError is raised when there are no Members."""
+    # arrange
+    my_group = Group.model_validate(simple_group_data)
+    # assert
+    assert my_group.members == []
+    with pytest.raises(LookupError):
+        my_member = my_group.member_by_id("DUMMY_ID")  # act
+
+
 def test_role_by_id__happy_path(complex_group_data: DictFromJSON) -> None:
     """Test that Role is returned from a valid uid."""
     # arrange
@@ -75,6 +87,18 @@ def test_role_by_id__unmatched_id_raises_lookup_error(
         my_role = my_group.role_by_id("DUMMY_ID")  # act
 
 
+def test_role_by_id__no_roles_raises_lookup_error(
+    simple_group_data: DictFromJSON,
+) -> None:
+    """Test that LookupError is raised when there are no Roles."""
+    # arrange
+    my_group = Group.model_validate(simple_group_data)
+    # assert
+    assert my_group.roles == []
+    with pytest.raises(LookupError):
+        my_role = my_group.role_by_id("DUMMY_ID")  # act
+
+
 def test_subgroup_by_id__happy_path(complex_group_data: DictFromJSON) -> None:
     """Test that Subgroup is returned from a valid uid."""
     # arrange
@@ -92,6 +116,18 @@ def test_subgroup_by_id__unmatched_id_raises_lookup_error(
     # arrange
     my_group = Group.model_validate(complex_group_data)
     # assert
+    with pytest.raises(LookupError):
+        my_subgroup = my_group.subgroup_by_id("DUMMY_ID")  # act
+
+
+def test_subgroup_by_id__no_subgroups_raises_lookup_error(
+    simple_group_data: DictFromJSON,
+) -> None:
+    """Test that LookupError is raised when there are no Subgroups."""
+    # arrange
+    my_group = Group.model_validate(simple_group_data)
+    # assert
+    assert my_group.subgroups == []
     with pytest.raises(LookupError):
         my_subgroup = my_group.subgroup_by_id("DUMMY_ID")  # act
 
