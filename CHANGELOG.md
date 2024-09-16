@@ -13,12 +13,12 @@ Historic and pre-release versions aren't necessarily included.
 ### Added
 
 - `Event` attributes: `cancelled`, `created_time`, `end_time`, `invite_time`, `type`,
-  property `url`.
+  property `url`
 
 ### Changed
 
 - Public API is defined using `__all__` instead of import aliasing, which improves e.g.
-  documentation handling in IDEs.
+  documentation handling in IDEs
 - Consistent pattern for all classes' string representation, including full `uid`
 - Simplified and improved docstrings
 - Dependencies: remove upper bounds for simplicity; drop redundant python-dateutil
@@ -26,7 +26,7 @@ Historic and pre-release versions aren't necessarily included.
 
 ### Fixed
 
-- Tests didn't import from the top-level namespace, i.e. didn't use public API.
+- Tests didn't import from the top-level namespace, i.e. didn't use public API
 
 
 
@@ -78,7 +78,7 @@ Historic and pre-release versions aren't necessarily included.
 
 ### Changed
 
-- BREAKING CHANGES: Significantly revised API - see README for details.
+- BREAKING CHANGES: Significantly revised API - see README for details
 - Rewritten from scratch using Pydantic; much closer to API data structure
 
 ### Removed
@@ -144,6 +144,7 @@ Historic and pre-release versions aren't necessarily included.
 - Update dev/test dependencies: ruff
 
 
+[0.11.0]: https://github.com/elliot-100/Spond-classes/compare/v0.10.1...v0.11.0
 [0.10.1]: https://github.com/elliot-100/Spond-classes/compare/v0.10.0...v0.10.1
 [0.10.0]: https://github.com/elliot-100/Spond-classes/compare/v0.9.2...v0.10.0
 [0.9.2]: https://github.com/elliot-100/Spond-classes/compare/v0.9.1...v0.9.2

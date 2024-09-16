@@ -10,24 +10,24 @@ data from the Spond API and returns `dict` objects.
 This unofficial Python `spond-classes` package parses those `dict` objects to create
 class instances, i.e. provides an object abstraction layer.
 
-Experimental, very partial, read-only implementation.
+Experimental, partial, read-only implementation.
 
 ## Install
 
 Install from PyPI, e.g:
-`
+```shell
 pip install spond-classes
-`
+```
 Or if you're using Poetry:
-`
+```shell
 poetry add spond-classes
-`
+```
 
 ## Example code
 
 Adapting the example code in [`Spond`](https://github.com/Olen/Spond/) README:
 
-```
+```python
 import asyncio
 from spond import spond
 import spond_classes
@@ -65,13 +65,13 @@ asyncio.run(main())
 * Create `Group` instance from the dict returned from the API by the corresponding
   `Spond` method:
 
-```
+```python
 spond_classes.Group(**dict)
 ```
 
 * Then access class instance attributes and methods:
 
-```
+```python
 Group.uid: str
 Group.members: list[Member]
 Group.name: str
@@ -88,7 +88,7 @@ Group.members_by_role(role: Role) -> list[Member]
 
 * Also provides access to nested `Member`, `Role`, `Subgroup` instances:
 
-```
+```python
 Member.uid: str
 Member.created_time: datetime
 Member.email: str
@@ -110,13 +110,13 @@ Subgroup.name: str
 * Create `Event` instance from the dict returned from the API by the corresponding
   `Spond` method:
 
-```
+```python
 spond_classes.Event(**dict)
 ```
 
 * Then access attributes:
 
-```
+```python
 Event.uid: str
 Event.heading: str
 Event.start_time: datetime
