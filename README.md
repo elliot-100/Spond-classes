@@ -22,6 +22,9 @@ Or if you're using Poetry:
 ```shell
 poetry add spond-classes
 ```
+Note that [`spond`](https://github.com/Olen/Spond/) is required for practical use, but not a technical dependency,
+so needs to be installed separately.
+
 
 ## Example code
 
