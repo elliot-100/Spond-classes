@@ -8,7 +8,7 @@ from .member import Member
 from .role import Role
 from .subgroup import Subgroup
 
-T = TypeVar("T")
+T = TypeVar("T", Member, Role, Subgroup)
 
 
 class Group(BaseModel):
@@ -162,11 +162,11 @@ class Group(BaseModel):
         uid: str,
     ) -> Member | Role | Subgroup:
         """Return the nested instance with matching ID."""
-        if nested_class is Member:
+        if isinstance(nested_class, Member):
             gen = (m for m in self.members if m.uid == uid)
-        elif nested_class is Role:
+        elif isinstance(nested_class, Role):
             gen = (r for r in self.roles if r.uid == uid)
-        elif nested_class is Subgroup:
+        elif isinstance(nested_class, Subgroup):
             gen = (s for s in self.subgroups if s.uid == uid)
         else:
             raise TypeError
