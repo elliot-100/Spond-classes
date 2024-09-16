@@ -1,6 +1,6 @@
 """Main module."""
 
-# Explicitly import all classes and functions into the package namespace.
+# Explicitly import classes and functions into the package namespace to define the API.
 
 from .event import Event, EventType
 from .group import Group

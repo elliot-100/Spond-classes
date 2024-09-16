@@ -36,7 +36,7 @@ class Event(BaseModel):
     """
 
     uid: str = Field(alias="id")
-    """`id` in API, but that's a reserved term in Python and the Spond package
+    """`id` in API; aliased as that's a Python built-in, and the Spond package
     uses `uid`."""
     heading: str
     responses: Responses
@@ -60,14 +60,13 @@ class Event(BaseModel):
     def __str__(self) -> str:
         """Return simple human-readable description.
 
-        Includes only key fields in custom order, and with some prettification.
+        Includes only key fields in custom order.
         """
-        start_time_tag = str(self.start_time)
         return (
             f"Event(uid='{self.uid}', "
             f"heading='{self.heading}', "
-            f"start_time: {start_time_tag},"
-            f" …)"
+            f"start_time: {self.start_time}, "
+            "…)"
         )
 
     @property

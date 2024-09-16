@@ -11,7 +11,7 @@ def test_from_dict_simple(simple_event_data: DictFromJSON) -> None:
     """Test that Event is created from the simplest possible data."""
     # arrange
     # act
-    my_event = Event(**simple_event_data)
+    my_event = Event.model_validate(simple_event_data)
     # assert
     assert my_event.uid == "E1"
     assert my_event.heading == "Event One"
@@ -45,7 +45,7 @@ def test_from_dict_complex(complex_event_data: DictFromJSON) -> None:
     """
     # arrange
     # act
-    my_event = Event(**complex_event_data)
+    my_event = Event.model_validate(complex_event_data)
     # assert
     assert my_event.uid == "E2"
     assert my_event.heading == "Event Two"

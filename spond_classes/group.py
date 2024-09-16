@@ -17,7 +17,7 @@ class Group(BaseModel):
     """
 
     uid: str = Field(alias="id")
-    """`id` in API, but that's a reserved term in Python and the Spond package
+    """`id` in API; aliased as that's a Python built-in, and the Spond package
     uses `uid`."""
     name: str
 
