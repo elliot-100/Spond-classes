@@ -8,7 +8,12 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 Historic and pre-release versions aren't necessarily included.
 
 
-## [UNRELEASED] - TBC
+## [0.11.1] - 2024-09-16
+
+#### Added
+
+- Tests for `Group.member|role|subgroup_by_id()` when `Group.members|roles|subgroups`
+  is empty
 
 ### Changed
 
@@ -155,6 +160,7 @@ Historic and pre-release versions aren't necessarily included.
 - Update dev/test dependencies: ruff
 
 
+[0.11.1]: https://github.com/elliot-100/Spond-classes/compare/v0.11.0...v0.11.1
 [0.11.0]: https://github.com/elliot-100/Spond-classes/compare/v0.10.1...v0.11.0
 [0.10.1]: https://github.com/elliot-100/Spond-classes/compare/v0.10.0...v0.10.1
 [0.10.0]: https://github.com/elliot-100/Spond-classes/compare/v0.9.2...v0.10.0
