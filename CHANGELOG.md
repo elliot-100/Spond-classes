@@ -15,6 +15,10 @@ Historic and pre-release versions aren't necessarily included.
 - Add `Profile` to public API, with additional attributes: `email`, `first_name`,
   `last_name`, `phone_nunber`, property `full_name`
 
+### Changed
+
+- Update dev dependencies: pre-commit, ruff
+
 
 ## [0.11.2] - 2024-09-16
 
