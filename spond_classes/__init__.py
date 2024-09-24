@@ -5,6 +5,7 @@
 from .event import Event, EventType
 from .group import Group
 from .member import Member
+from .profile_ import Profile
 from .role import Role
 from .subgroup import Subgroup
 
@@ -13,6 +14,7 @@ __all__ = [
     "EventType",
     "Group",
     "Member",
+    "Profile",
     "Role",
     "Subgroup",
 ]
