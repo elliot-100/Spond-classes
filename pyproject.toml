@@ -16,8 +16,8 @@ pydantic = ">=2.7.1,<2.9"  # 2.9.0, 2.9.1 (latest) appear to break pdoc
 
 [tool.poetry.group.dev.dependencies]
 pdoc = ">=14.7.0"
-pre-commit = ">=3.1.1"
-ruff = ">=0.6.5"
+pre-commit = ">=3.8.0"
+ruff = ">=0.6.7"
 
 [tool.poetry.group.test.dependencies]
 mypy = ">=1.11.2"
