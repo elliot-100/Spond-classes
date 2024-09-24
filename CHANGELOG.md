@@ -24,7 +24,7 @@ Historic and pre-release versions aren't necessarily included.
 
 ### Fixed
 
-- pdoc wouldn't render; solved by setting Pydantic dependency < 2.9
+- Hotfix: pdoc wouldn't render; solved by setting Pydantic dependency < 2.9
 
 
 ## [0.11.1] - 2024-09-16
@@ -36,7 +36,7 @@ Historic and pre-release versions aren't necessarily included.
 
 ### Changed
 
-- Dev dependencies: add pdoc, update mypy, ruff, pytest
+- Dev dependencies: add pdoc; update mypy, ruff, pytest
 
 ### Removed
 
@@ -178,6 +178,7 @@ Historic and pre-release versions aren't necessarily included.
 - Update dev/test dependencies: ruff
 
 
+[0.11.2]: https://github.com/elliot-100/Spond-classes/compare/v0.11.1...v0.11.2
 [0.11.1]: https://github.com/elliot-100/Spond-classes/compare/v0.11.0...v0.11.1
 [0.11.0]: https://github.com/elliot-100/Spond-classes/compare/v0.10.1...v0.11.0
 [0.10.1]: https://github.com/elliot-100/Spond-classes/compare/v0.10.0...v0.10.1
