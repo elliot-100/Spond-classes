@@ -132,3 +132,13 @@ Event.Responses.unanswered_uids: list[str]
 Event.Responses.waiting_list_uids: list[str]
 Event.Responses.unconfirmed_uids: list[str]
 ```
+## Documentation
+
+Full HTML documentation is available in the package source `docs` folder.
+
+## Development
+
+Generate documentation:
+```shell
+pdoc spond_classes -o docs -d numpy
+```
