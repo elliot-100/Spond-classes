@@ -10,8 +10,9 @@ from .profile_ import Profile
 class Member(BaseModel):
     """Represents a member in the Spond system.
 
-    A `Member` is an individual's group-specific record, and is nested within a `Group`.
-    A `Member` may have a nested `Profile`.
+    A `Member` is an individual's `Group`-specific record.
+
+    A `Member` may have a `Profile`.
     """
 
     uid: str = Field(alias="id")
@@ -46,5 +47,5 @@ class Member(BaseModel):
 
     @property
     def full_name(self) -> str:
-        """Return the `Member`'s full name."""
+        """Return the `Member`'s full name, for convenience."""
         return f"{self.first_name} {self.last_name}"

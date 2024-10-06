@@ -6,9 +6,9 @@ from pydantic import BaseModel, Field
 class Subgroup(BaseModel):
     """Represents a subgroup in the Spond system.
 
-    A `Subgroup` is nested within a `Group`.
+    A `Subgroup` belongs to a `Group`.
 
-    Use `Group.members_by_subgroup()` to get `Member` instances.
+    Use `Group.members_by_subgroup()` to get subordinate `Member`s.
     """
 
     uid: str = Field(alias="id")

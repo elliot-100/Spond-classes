@@ -6,7 +6,9 @@ from pydantic import BaseModel, Field
 class Profile(BaseModel):
     """Represents a profile in the Spond system.
 
-    A `Profile` is nested within a `Member`.
+    A `Profile` is an individual's account-specific record.
+
+    A `Profile` belongs to a `Member`.
     """
 
     uid: str = Field(alias="id")
@@ -31,5 +33,5 @@ class Profile(BaseModel):
 
     @property
     def full_name(self) -> str:
-        """Return the `Profile`'s full name."""
+        """Return the `Profile`'s full name, for convenience."""
         return f"{self.first_name} {self.last_name}"

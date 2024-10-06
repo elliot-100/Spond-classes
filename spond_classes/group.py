@@ -12,8 +12,10 @@ class Group(BaseModel):
 
     Groups data is retrieved from the `groups` API endpoint.
 
-    A `Group` has zero, one or more nested `Member`s; zero, one or more nested `Role`s;
-    zero, one or more nested `Subgroup`s.
+    A `Group` has:
+    - zero, one or more `Member`s
+    - zero, one or more `Role`s
+    - zero, one or more `Subgroup`s
     """
 
     uid: str = Field(alias="id")
@@ -37,7 +39,7 @@ class Group(BaseModel):
         return f"Group(uid='{self.uid}', name='{self.name}', …)"
 
     def member_by_id(self, member_uid: str) -> Member:
-        """Return the nested `Member` with matching ID.
+        """Return the `Member` with matching ID.
 
         Parameters
         ----------
@@ -60,7 +62,7 @@ class Group(BaseModel):
         raise LookupError(err_msg)
 
     def role_by_id(self, role_uid: str) -> Role:
-        """Return the nested `Role` with matching ID.
+        """Return the `Role` with matching ID.
 
         Parameters
         ----------
@@ -83,7 +85,7 @@ class Group(BaseModel):
         raise LookupError(err_msg)
 
     def subgroup_by_id(self, subgroup_uid: str) -> Subgroup:
-        """Return the nested `Subgroup` with matching ID.
+        """Return the `Subgroup` with matching ID.
 
         Parameters
         ----------
@@ -106,7 +108,7 @@ class Group(BaseModel):
         raise LookupError(err_msg)
 
     def members_by_subgroup(self, subgroup: Subgroup) -> list[Member]:
-        """Return `Member`s in the nested `Subgroup`.
+        """Return `Member`s in the `Subgroup`.
 
         Parameters
         ----------
@@ -130,7 +132,7 @@ class Group(BaseModel):
         ]
 
     def members_by_role(self, role: Role) -> list[Member]:
-        """Return `Member`s with the nested `Role`.
+        """Return `Member`s with the `Role`.
 
         Parameters
         ----------
