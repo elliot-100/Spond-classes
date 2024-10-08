@@ -84,17 +84,17 @@ class Group:
 
         for member_data in group_data.get("members", []):
             member_data_id = member_data.get("id")
-            member = group.get_child_by_id(member_data_id, Member)
+            member = group.get_child_by_id(member_data_id, 'Member')
 
             for subgroup_data_id in member_data.get("subGroups", []):
-                subgroup = group.get_child_by_id(subgroup_data_id, Subgroup)
+                subgroup = group.get_child_by_id(subgroup_data_id, 'Subgroup')
                 # populate group.members.member.subgroups.subgroup
                 member.subgroups.append(subgroup)
                 # populate group.subgroups.subgroup.members.member
                 subgroup.members.append(member)
 
             for role_data_id in member_data.get("roles", []):
-                role = group.get_child_by_id(role_data_id, Role)
+                role = group.get_child_by_id(role_data_id, 'Role')
                 # populate group.members.member.roles.role
                 member.roles.append(role)
                 # populate group.roles.role.members.member
@@ -105,7 +105,7 @@ class Group:
     def get_child_by_id(
         self,
         child_uid: str,
-        child_type: type,
+        child_type: str,
     ) -> Member | Subgroup | Role:
         """Return the child object with matching id, or an error.
 
@@ -116,15 +116,15 @@ class Group:
         child_type
             Type of the child object (Member, Subgroup, or Role).
         """
-        child_attr_map = {
+        child_map = {
             Member: self.members,
             Subgroup: self.subgroups,
             Role: self.roles,
         }
-        if child_type not in child_attr_map.keys():
+        if child_type not in child_map.keys():
             error_message = f"Unknown child type: {child_type}"
             raise ValueError(error_message)
-        child_list = child_attr_map.get(child_type)
+        child_list = child_map.get(child_type)
         for child in child_list:
             if child.uid == child_uid:
                 return child
@@ -141,7 +141,7 @@ class Group:
         uid
             ID of the subgroup.
         """
-        return self.get_child_by_id(uid, Subgroup)
+        return self.get_child_by_id(uid, 'Subgroup')
 
     def member_by_id(self, uid: str) -> Member:
         """Return the child Member with matching id, or an error.
@@ -153,7 +153,7 @@ class Group:
         uid
             ID of the member.
         """
-        return self.get_child_by_id(uid, Member)
+        return self.get_child_by_id(uid, 'Member')
 
     def role_by_id(self, uid: str) -> Role:
         """Return the child Role with matching id, or an error.
@@ -165,7 +165,7 @@ class Group:
         uid
             ID of the role.
         """
-        return self.get_child_by_id(uid, Role)
+        return self.get_child_by_id(uid, 'Role')
 
     @staticmethod
     def _create_children(
