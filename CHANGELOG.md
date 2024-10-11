@@ -14,11 +14,13 @@ Historic and pre-release versions aren't necessarily included.
 
 - Add `Profile` to public API, with additional attributes: `email`, `first_name`,
   `last_name`, `phone_nunber`, property `full_name`
-- Docs: generated (pdoc) HTML documentation in `/docs`
+- Support for Python 3.13
+- Docs: pdoc-generated HTML documentation in `/docs`
 
 ### Changed
 
-- Update dev dependencies: pre-commit, ruff
+- Update dev dependencies: pdoc, pre-commit, ruff
+- Dependencies: remove pydantic version upper bound
 
 
 ## [0.11.2] - 2024-09-16

@@ -12,16 +12,16 @@ license = "GPL-3.0-only"
 
 [tool.poetry.dependencies]
 python = ">=3.10,<4.0"
-pydantic = ">=2.7.1,<2.9"  # 2.9.0, 2.9.1 (latest) appear to break pdoc
+pydantic = ">=2.7.1"
 
 [tool.poetry.group.dev.dependencies]
-pdoc = ">=14.7.0"
-pre-commit = ">=3.8.0"
-ruff = ">=0.6.7"
+pdoc = "15.0.0"
+pre-commit = "4.0.1"
+ruff = "0.6.9"
 
 [tool.poetry.group.test.dependencies]
-mypy = ">=1.11.2"
-pytest = ">=8.3.3"
+mypy = "1.11.2"
+pytest = "8.3.3"
 
 [tool.mypy]
 plugins = ["pydantic.mypy"]
