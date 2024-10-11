@@ -1,4 +1,4 @@
-"""Module containing `Event` class and nested `EventType`,`Responses` classes."""
+"""Module containing `Event` class and related `EventType`,`Responses` classes."""
 
 from datetime import datetime
 from enum import Enum
@@ -71,5 +71,5 @@ class Event(BaseModel):
 
     @property
     def url(self) -> str:
-        """Return the URL of the `Event`."""
+        """Return the URL of the `Event`, for convenience."""
         return f"https://spond.com/client/sponds/{self.uid}/"

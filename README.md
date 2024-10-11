@@ -53,7 +53,7 @@ async def main():
     # ... use class properties instead of dict keys ...
     print(group.name)
 
-    # ... access nested instances and their properties ...
+    # ... access subordinate instances and their properties ...
     for member in group.members:
         print(f"{member.full_name} is in the {group.name} group")
 
@@ -91,7 +91,7 @@ Group.members_by_subgroup(subgroup: Subgroup) -> list[Member]
 Group.members_by_role(role: Role) -> list[Member]
 ```
 
-* Also provides access to nested `Member`, `Role`, `Subgroup` instances:
+* Also provides access to subordinate `Member`, `Role`, `Subgroup` instances:
 
 ```python
 Member.uid: str
@@ -131,4 +131,14 @@ Event.Responses.declined_uids: list[str]
 Event.Responses.unanswered_uids: list[str]
 Event.Responses.waiting_list_uids: list[str]
 Event.Responses.unconfirmed_uids: list[str]
+```
+## Documentation
+
+Full HTML documentation is available in the package source `docs` folder.
+
+## Development
+
+Generate documentation:
+```shell
+pdoc spond_classes -o docs -d numpy
 ```

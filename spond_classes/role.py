@@ -6,9 +6,9 @@ from pydantic import BaseModel, Field
 class Role(BaseModel):
     """Represents a role in the Spond system.
 
-    A `Role` is nested within a `Group`.
+    A `Role` belongs to a `Group`.
 
-    Use `Group.members_by_role()` to get `Member` instances.
+    Use `Group.members_by_role()` to get subordinate `Member`s.
     """
 
     uid: str = Field(alias="id")

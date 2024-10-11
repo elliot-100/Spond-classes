@@ -1,0 +1,111 @@
+<html>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+      <div class="mermaid">
+
+        classDiagram
+          class BaseModel {
+            model_computed_fields : ClassVar[dict[str, ComputedFieldInfo]]
+            model_config : ClassVar[ConfigDict]
+            model_extra
+            model_fields : ClassVar[dict[str, FieldInfo]]
+            model_fields_set
+            construct(_fields_set: set[str] | None) Self
+            copy() Self
+            dict() Dict[str, Any]
+            from_orm(obj: Any) Self
+            json() str
+            model_construct(_fields_set: set[str] | None) Self
+            model_copy() Self
+            model_dump() dict[str, Any]
+            model_dump_json() str
+            model_json_schema(by_alias: bool, ref_template: str, schema_generator: type[GenerateJsonSchema], mode: JsonSchemaMode) dict[str, Any]
+            model_parametrized_name(params: tuple[type[Any], ...]) str
+            model_post_init(__context: Any)* None
+            model_rebuild() bool | None
+            model_validate(obj: Any) Self
+            model_validate_json(json_data: str | bytes | bytearray) Self
+            model_validate_strings(obj: Any) Self
+            parse_file(path: str | Path) Self
+            parse_obj(obj: Any) Self
+            parse_raw(b: str | bytes) Self
+            schema(by_alias: bool, ref_template: str) Dict[str, Any]
+            schema_json() str
+            update_forward_refs() None
+            validate(value: Any) Self
+          }
+          class Event {
+            cancelled : bool | None
+            created_time : datetime
+            end_time : datetime
+            heading : str
+            invite_time : datetime | None
+            responses
+            start_time : datetime
+            type
+            uid : str
+            url
+          }
+          class EventType {
+            name
+          }
+          class Group {
+            members : list[Member]
+            name : str
+            roles : list[Role]
+            subgroups : list[Subgroup]
+            uid : str
+            member_by_id(member_uid: str) Member
+            members_by_role(role: Role) list[Member]
+            members_by_subgroup(subgroup: Subgroup) list[Member]
+            role_by_id(role_uid: str) Role
+            subgroup_by_id(subgroup_uid: str) Subgroup
+          }
+          class Member {
+            created_time : datetime
+            email : str | None
+            first_name : str
+            full_name
+            last_name : str
+            phone_number : str | None
+            profile : Profile | None
+            role_uids : list[str] | None
+            subgroup_uids : list[str]
+            uid : str
+          }
+          class Profile {
+            email : str | None
+            first_name : str
+            full_name
+            last_name : str
+            phone_number : str | None
+            uid : str
+          }
+          class Responses {
+            accepted_uids : list[str]
+            declined_uids : list[str]
+            unanswered_uids : list[str]
+            unconfirmed_uids : list[str]
+            waiting_list_uids : list[str]
+          }
+          class Role {
+            name : str
+            uid : str
+          }
+          class Subgroup {
+            name : str
+            uid : str
+          }
+          Event --|> BaseModel
+          Responses --|> BaseModel
+          Group --|> BaseModel
+          Member --|> BaseModel
+          Profile --|> BaseModel
+          Role --|> BaseModel
+          Subgroup --|> BaseModel
+          EventType --* Event : type
+          Responses --* Event : responses
+
+       </div>
+  </body>
+</html>
