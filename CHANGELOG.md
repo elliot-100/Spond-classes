@@ -19,7 +19,7 @@ Historic and pre-release versions aren't necessarily included.
 
 ### Changed
 
-- Update dev dependencies: pre-commit, ruff
+- Update dev dependencies: pdoc, pre-commit, ruff
 - Dependencies: remove pydantic version upper bound
 
 
