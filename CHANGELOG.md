@@ -20,6 +20,7 @@ Historic and pre-release versions aren't necessarily included.
 ### Changed
 
 - Update dev dependencies: pre-commit, ruff
+- Dependencies: remove pydantic version upper bound
 
 
 ## [0.11.2] - 2024-09-16

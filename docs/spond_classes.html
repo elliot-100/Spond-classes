@@ -494,19 +494,21 @@ Derived from <code>inviteTime</code> in API.</p>
                             </div>
                             <div id="Event.model_config" class="classattr">
                                 <div class="attr variable">
-            <span class="name">model_config</span>        =
+            <span class="name">model_config</span><span class="annotation">: ClassVar[pydantic.config.ConfigDict]</span>        =
 <span class="default_value">{}</span>
 
 
     </div>
     <a class="headerlink" href="#Event.model_config"></a>
 
+            <div class="docstring"><p>Configuration for the model, should be a dictionary conforming to [<code>ConfigDict</code>][pydantic.config.ConfigDict].</p>
+</div>
 
 
                             </div>
                             <div id="Event.model_fields" class="classattr">
                                 <div class="attr variable">
-            <span class="name">model_fields</span>        =
+            <span class="name">model_fields</span><span class="annotation">: ClassVar[Dict[str, pydantic.fields.FieldInfo]]</span>        =
 <input id="Event.model_fields-view-value" class="view-value-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
             <label class="view-value-button pdoc-button" for="Event.model_fields-view-value"></label><span class="default_value">{&#39;uid&#39;: FieldInfo(annotation=str, required=True, alias=&#39;id&#39;, alias_priority=2), &#39;heading&#39;: FieldInfo(annotation=str, required=True), &#39;responses&#39;: FieldInfo(annotation=Responses, required=True), &#39;type&#39;: FieldInfo(annotation=EventType, required=True), &#39;created_time&#39;: FieldInfo(annotation=datetime, required=True, alias=&#39;createdTime&#39;, alias_priority=2), &#39;end_time&#39;: FieldInfo(annotation=datetime, required=True, alias=&#39;endTimestamp&#39;, alias_priority=2), &#39;start_time&#39;: FieldInfo(annotation=datetime, required=True, alias=&#39;startTimestamp&#39;, alias_priority=2), &#39;cancelled&#39;: FieldInfo(annotation=Union[bool, NoneType], required=False, default=None), &#39;invite_time&#39;: FieldInfo(annotation=Union[datetime, NoneType], required=False, default=None, alias=&#39;inviteTime&#39;, alias_priority=2)}</span>
 
@@ -514,18 +516,25 @@ Derived from <code>inviteTime</code> in API.</p>
     </div>
     <a class="headerlink" href="#Event.model_fields"></a>
 
+            <div class="docstring"><p>Metadata about the fields defined on the model,
+mapping of field names to [<code>FieldInfo</code>][pydantic.fields.FieldInfo] objects.</p>
+
+<p>This replaces <code>Model.__fields__</code> from Pydantic V1.</p>
+</div>
 
 
                             </div>
                             <div id="Event.model_computed_fields" class="classattr">
                                 <div class="attr variable">
-            <span class="name">model_computed_fields</span>        =
+            <span class="name">model_computed_fields</span><span class="annotation">: ClassVar[Dict[str, pydantic.fields.ComputedFieldInfo]]</span>        =
 <span class="default_value">{}</span>
 
 
     </div>
     <a class="headerlink" href="#Event.model_computed_fields"></a>
 
+            <div class="docstring"><p>A dictionary of computed field names and their corresponding <code>ComputedFieldInfo</code> objects.</p>
+</div>
 
 
                             </div>
@@ -1164,19 +1173,21 @@ uses <code><a href="#Group.uid">uid</a></code>.</p>
                             </div>
                             <div id="Group.model_config" class="classattr">
                                 <div class="attr variable">
-            <span class="name">model_config</span>        =
+            <span class="name">model_config</span><span class="annotation">: ClassVar[pydantic.config.ConfigDict]</span>        =
 <span class="default_value">{}</span>
 
 
     </div>
     <a class="headerlink" href="#Group.model_config"></a>
 
+            <div class="docstring"><p>Configuration for the model, should be a dictionary conforming to [<code>ConfigDict</code>][pydantic.config.ConfigDict].</p>
+</div>
 
 
                             </div>
                             <div id="Group.model_fields" class="classattr">
                                 <div class="attr variable">
-            <span class="name">model_fields</span>        =
+            <span class="name">model_fields</span><span class="annotation">: ClassVar[Dict[str, pydantic.fields.FieldInfo]]</span>        =
 <input id="Group.model_fields-view-value" class="view-value-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
             <label class="view-value-button pdoc-button" for="Group.model_fields-view-value"></label><span class="default_value">{&#39;uid&#39;: FieldInfo(annotation=str, required=True, alias=&#39;id&#39;, alias_priority=2), &#39;name&#39;: FieldInfo(annotation=str, required=True), &#39;members&#39;: FieldInfo(annotation=list[Member], required=True), &#39;roles&#39;: FieldInfo(annotation=list[Role], required=True), &#39;subgroups&#39;: FieldInfo(annotation=list[Subgroup], required=True, alias=&#39;subGroups&#39;, alias_priority=2)}</span>
 
@@ -1184,18 +1195,25 @@ uses <code><a href="#Group.uid">uid</a></code>.</p>
     </div>
     <a class="headerlink" href="#Group.model_fields"></a>
 
+            <div class="docstring"><p>Metadata about the fields defined on the model,
+mapping of field names to [<code>FieldInfo</code>][pydantic.fields.FieldInfo] objects.</p>
+
+<p>This replaces <code>Model.__fields__</code> from Pydantic V1.</p>
+</div>
 
 
                             </div>
                             <div id="Group.model_computed_fields" class="classattr">
                                 <div class="attr variable">
-            <span class="name">model_computed_fields</span>        =
+            <span class="name">model_computed_fields</span><span class="annotation">: ClassVar[Dict[str, pydantic.fields.ComputedFieldInfo]]</span>        =
 <span class="default_value">{}</span>
 
 
     </div>
     <a class="headerlink" href="#Group.model_computed_fields"></a>
 
+            <div class="docstring"><p>A dictionary of computed field names and their corresponding <code>ComputedFieldInfo</code> objects.</p>
+</div>
 
 
                             </div>
@@ -1437,19 +1455,21 @@ uses <code><a href="#Member.uid">uid</a></code>.</p>
                             </div>
                             <div id="Member.model_config" class="classattr">
                                 <div class="attr variable">
-            <span class="name">model_config</span>        =
+            <span class="name">model_config</span><span class="annotation">: ClassVar[pydantic.config.ConfigDict]</span>        =
 <span class="default_value">{}</span>
 
 
     </div>
     <a class="headerlink" href="#Member.model_config"></a>
 
+            <div class="docstring"><p>Configuration for the model, should be a dictionary conforming to [<code>ConfigDict</code>][pydantic.config.ConfigDict].</p>
+</div>
 
 
                             </div>
                             <div id="Member.model_fields" class="classattr">
                                 <div class="attr variable">
-            <span class="name">model_fields</span>        =
+            <span class="name">model_fields</span><span class="annotation">: ClassVar[Dict[str, pydantic.fields.FieldInfo]]</span>        =
 <input id="Member.model_fields-view-value" class="view-value-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
             <label class="view-value-button pdoc-button" for="Member.model_fields-view-value"></label><span class="default_value">{&#39;uid&#39;: FieldInfo(annotation=str, required=True, alias=&#39;id&#39;, alias_priority=2), &#39;created_time&#39;: FieldInfo(annotation=datetime, required=True, alias=&#39;createdTime&#39;, alias_priority=2), &#39;first_name&#39;: FieldInfo(annotation=str, required=True, alias=&#39;firstName&#39;, alias_priority=2), &#39;last_name&#39;: FieldInfo(annotation=str, required=True, alias=&#39;lastName&#39;, alias_priority=2), &#39;subgroup_uids&#39;: FieldInfo(annotation=list[str], required=True, alias=&#39;subGroups&#39;, alias_priority=2), &#39;email&#39;: FieldInfo(annotation=Union[str, NoneType], required=False, default=None), &#39;phone_number&#39;: FieldInfo(annotation=Union[str, NoneType], required=False, default=None, alias=&#39;phoneNumber&#39;, alias_priority=2), &#39;profile&#39;: FieldInfo(annotation=Union[Profile, NoneType], required=False, default=None), &#39;role_uids&#39;: FieldInfo(annotation=Union[list[str], NoneType], required=False, default=None, alias=&#39;roles&#39;, alias_priority=2)}</span>
 
@@ -1457,18 +1477,25 @@ uses <code><a href="#Member.uid">uid</a></code>.</p>
     </div>
     <a class="headerlink" href="#Member.model_fields"></a>
 
+            <div class="docstring"><p>Metadata about the fields defined on the model,
+mapping of field names to [<code>FieldInfo</code>][pydantic.fields.FieldInfo] objects.</p>
+
+<p>This replaces <code>Model.__fields__</code> from Pydantic V1.</p>
+</div>
 
 
                             </div>
                             <div id="Member.model_computed_fields" class="classattr">
                                 <div class="attr variable">
-            <span class="name">model_computed_fields</span>        =
+            <span class="name">model_computed_fields</span><span class="annotation">: ClassVar[Dict[str, pydantic.fields.ComputedFieldInfo]]</span>        =
 <span class="default_value">{}</span>
 
 
     </div>
     <a class="headerlink" href="#Member.model_computed_fields"></a>
 
+            <div class="docstring"><p>A dictionary of computed field names and their corresponding <code>ComputedFieldInfo</code> objects.</p>
+</div>
 
 
                             </div>
@@ -1648,19 +1675,21 @@ uses <code><a href="#Profile.uid">uid</a></code>.</p>
                             </div>
                             <div id="Profile.model_config" class="classattr">
                                 <div class="attr variable">
-            <span class="name">model_config</span>        =
+            <span class="name">model_config</span><span class="annotation">: ClassVar[pydantic.config.ConfigDict]</span>        =
 <span class="default_value">{}</span>
 
 
     </div>
     <a class="headerlink" href="#Profile.model_config"></a>
 
+            <div class="docstring"><p>Configuration for the model, should be a dictionary conforming to [<code>ConfigDict</code>][pydantic.config.ConfigDict].</p>
+</div>
 
 
                             </div>
                             <div id="Profile.model_fields" class="classattr">
                                 <div class="attr variable">
-            <span class="name">model_fields</span>        =
+            <span class="name">model_fields</span><span class="annotation">: ClassVar[Dict[str, pydantic.fields.FieldInfo]]</span>        =
 <input id="Profile.model_fields-view-value" class="view-value-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
             <label class="view-value-button pdoc-button" for="Profile.model_fields-view-value"></label><span class="default_value">{&#39;uid&#39;: FieldInfo(annotation=str, required=True, alias=&#39;id&#39;, alias_priority=2), &#39;first_name&#39;: FieldInfo(annotation=str, required=True, alias=&#39;firstName&#39;, alias_priority=2), &#39;last_name&#39;: FieldInfo(annotation=str, required=True, alias=&#39;lastName&#39;, alias_priority=2), &#39;email&#39;: FieldInfo(annotation=Union[str, NoneType], required=False, default=None), &#39;phone_number&#39;: FieldInfo(annotation=Union[str, NoneType], required=False, default=None, alias=&#39;phoneNumber&#39;, alias_priority=2)}</span>
 
@@ -1668,18 +1697,25 @@ uses <code><a href="#Profile.uid">uid</a></code>.</p>
     </div>
     <a class="headerlink" href="#Profile.model_fields"></a>
 
+            <div class="docstring"><p>Metadata about the fields defined on the model,
+mapping of field names to [<code>FieldInfo</code>][pydantic.fields.FieldInfo] objects.</p>
+
+<p>This replaces <code>Model.__fields__</code> from Pydantic V1.</p>
+</div>
 
 
                             </div>
                             <div id="Profile.model_computed_fields" class="classattr">
                                 <div class="attr variable">
-            <span class="name">model_computed_fields</span>        =
+            <span class="name">model_computed_fields</span><span class="annotation">: ClassVar[Dict[str, pydantic.fields.ComputedFieldInfo]]</span>        =
 <span class="default_value">{}</span>
 
 
     </div>
     <a class="headerlink" href="#Profile.model_computed_fields"></a>
 
+            <div class="docstring"><p>A dictionary of computed field names and their corresponding <code>ComputedFieldInfo</code> objects.</p>
+</div>
 
 
                             </div>
@@ -1783,19 +1819,21 @@ uses <code><a href="#Role.uid">uid</a></code>.</p>
                             </div>
                             <div id="Role.model_config" class="classattr">
                                 <div class="attr variable">
-            <span class="name">model_config</span>        =
+            <span class="name">model_config</span><span class="annotation">: ClassVar[pydantic.config.ConfigDict]</span>        =
 <span class="default_value">{}</span>
 
 
     </div>
     <a class="headerlink" href="#Role.model_config"></a>
 
+            <div class="docstring"><p>Configuration for the model, should be a dictionary conforming to [<code>ConfigDict</code>][pydantic.config.ConfigDict].</p>
+</div>
 
 
                             </div>
                             <div id="Role.model_fields" class="classattr">
                                 <div class="attr variable">
-            <span class="name">model_fields</span>        =
+            <span class="name">model_fields</span><span class="annotation">: ClassVar[Dict[str, pydantic.fields.FieldInfo]]</span>        =
 <input id="Role.model_fields-view-value" class="view-value-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
             <label class="view-value-button pdoc-button" for="Role.model_fields-view-value"></label><span class="default_value">{&#39;uid&#39;: FieldInfo(annotation=str, required=True, alias=&#39;id&#39;, alias_priority=2), &#39;name&#39;: FieldInfo(annotation=str, required=True)}</span>
 
@@ -1803,18 +1841,25 @@ uses <code><a href="#Role.uid">uid</a></code>.</p>
     </div>
     <a class="headerlink" href="#Role.model_fields"></a>
 
+            <div class="docstring"><p>Metadata about the fields defined on the model,
+mapping of field names to [<code>FieldInfo</code>][pydantic.fields.FieldInfo] objects.</p>
+
+<p>This replaces <code>Model.__fields__</code> from Pydantic V1.</p>
+</div>
 
 
                             </div>
                             <div id="Role.model_computed_fields" class="classattr">
                                 <div class="attr variable">
-            <span class="name">model_computed_fields</span>        =
+            <span class="name">model_computed_fields</span><span class="annotation">: ClassVar[Dict[str, pydantic.fields.ComputedFieldInfo]]</span>        =
 <span class="default_value">{}</span>
 
 
     </div>
     <a class="headerlink" href="#Role.model_computed_fields"></a>
 
+            <div class="docstring"><p>A dictionary of computed field names and their corresponding <code>ComputedFieldInfo</code> objects.</p>
+</div>
 
 
                             </div>
@@ -1918,19 +1963,21 @@ uses <code><a href="#Subgroup.uid">uid</a></code>.</p>
                             </div>
                             <div id="Subgroup.model_config" class="classattr">
                                 <div class="attr variable">
-            <span class="name">model_config</span>        =
+            <span class="name">model_config</span><span class="annotation">: ClassVar[pydantic.config.ConfigDict]</span>        =
 <span class="default_value">{}</span>
 
 
     </div>
     <a class="headerlink" href="#Subgroup.model_config"></a>
 
+            <div class="docstring"><p>Configuration for the model, should be a dictionary conforming to [<code>ConfigDict</code>][pydantic.config.ConfigDict].</p>
+</div>
 
 
                             </div>
                             <div id="Subgroup.model_fields" class="classattr">
                                 <div class="attr variable">
-            <span class="name">model_fields</span>        =
+            <span class="name">model_fields</span><span class="annotation">: ClassVar[Dict[str, pydantic.fields.FieldInfo]]</span>        =
 <input id="Subgroup.model_fields-view-value" class="view-value-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
             <label class="view-value-button pdoc-button" for="Subgroup.model_fields-view-value"></label><span class="default_value">{&#39;uid&#39;: FieldInfo(annotation=str, required=True, alias=&#39;id&#39;, alias_priority=2), &#39;name&#39;: FieldInfo(annotation=str, required=True)}</span>
 
@@ -1938,18 +1985,25 @@ uses <code><a href="#Subgroup.uid">uid</a></code>.</p>
     </div>
     <a class="headerlink" href="#Subgroup.model_fields"></a>
 
+            <div class="docstring"><p>Metadata about the fields defined on the model,
+mapping of field names to [<code>FieldInfo</code>][pydantic.fields.FieldInfo] objects.</p>
+
+<p>This replaces <code>Model.__fields__</code> from Pydantic V1.</p>
+</div>
 
 
                             </div>
                             <div id="Subgroup.model_computed_fields" class="classattr">
                                 <div class="attr variable">
-            <span class="name">model_computed_fields</span>        =
+            <span class="name">model_computed_fields</span><span class="annotation">: ClassVar[Dict[str, pydantic.fields.ComputedFieldInfo]]</span>        =
 <span class="default_value">{}</span>
 
 
     </div>
     <a class="headerlink" href="#Subgroup.model_computed_fields"></a>
 
+            <div class="docstring"><p>A dictionary of computed field names and their corresponding <code>ComputedFieldInfo</code> objects.</p>
+</div>
 
 
                             </div>
