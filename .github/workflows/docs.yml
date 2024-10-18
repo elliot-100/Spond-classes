@@ -1,0 +1,33 @@
+# Build documentation when there are new commits on main
+
+name: Static docs
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+      - name: Install project
+        run: poetry install --no-root
+      - name: Generate docs
+        run: poetry run pdoc spond_classes -o docs -d numpy -t doc_templates
+      - name: Upload docs
+        uses: actions/upload-artifact@v4
+        with:
+          path: docs/
