@@ -1,0 +1,11 @@
+{# Hide Pydantic internals by overriding the `is_public` macro #}
+
+{% extends "default/module.html.jinja2" %}
+
+{% macro is_public(doc) %}
+    {% if doc.name.startswith("model_") %}
+        {# False #}
+    {% else %}
+        {{ default_is_public(doc) }}
+    {% endif %}
+{% endmacro %}

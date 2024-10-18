@@ -73,5 +73,5 @@ Full HTML documentation is available in the package source `docs` folder.
 
 Generate documentation:
 ```shell
-pdoc spond_classes -o docs -d numpy
+pdoc spond_classes -o docs -d numpy -t docs_templates
 ```

@@ -17,6 +17,7 @@ Historic and pre-release versions aren't necessarily included.
 ### Changed
 
 - Update dev dependencies: mypy, ruff
+- Docs: don't document Pydantic internals
 
 
 ## [0.12.0] - 2024-10-11
