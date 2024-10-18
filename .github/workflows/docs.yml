@@ -27,3 +27,7 @@ jobs:
         run: poetry install --no-root
       - name: Generate docs
         run: poetry run pdoc spond_classes -o docs -d numpy -t doc_templates
+      - name: Upload docs
+        uses: actions/upload-artifact@v4
+        with:
+          path: docs/
