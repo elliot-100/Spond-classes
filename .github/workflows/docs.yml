@@ -25,4 +25,5 @@ jobs:
           virtualenvs-in-project: true
       - name: Install project
         run: poetry install --no-root
-      - run: poetry run pdoc spond_classes -o docs -d numpy
+      - name: Generate docs
+        run: poetry run pdoc spond_classes -o docs -d numpy -t doc_templates
