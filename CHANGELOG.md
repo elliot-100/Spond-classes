@@ -8,6 +8,17 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 Historic and pre-release versions aren't necessarily included.
 
 
+## UNRELEASED - TBC
+
+### Added
+
+- Event `Responses` to public API
+
+### Changed
+
+- Update dev dependencies: mypy, ruff
+
+
 ## [0.12.0] - 2024-10-11
 
 ### Added

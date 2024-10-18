@@ -81,6 +81,36 @@
 
             </li>
             <li>
+                    <a class="class" href="#Responses">Responses</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="variable" href="#Responses.accepted_uids">accepted_uids</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Responses.declined_uids">declined_uids</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Responses.unanswered_uids">unanswered_uids</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Responses.waiting_list_uids">waiting_list_uids</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Responses.unconfirmed_uids">unconfirmed_uids</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Responses.model_config">model_config</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Responses.model_fields">model_fields</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Responses.model_computed_fields">model_computed_fields</a>
+                        </li>
+                </ul>
+
+            </li>
+            <li>
                     <a class="class" href="#Group">Group</a>
                             <ul class="memberlist">
                         <li>
@@ -272,7 +302,7 @@ spond_classes    </h1>
 </span><span id="L-2"><a href="#L-2"><span class="linenos"> 2</span></a>
 </span><span id="L-3"><a href="#L-3"><span class="linenos"> 3</span></a><span class="c1"># Explicitly import classes and functions into the package namespace to define the API.</span>
 </span><span id="L-4"><a href="#L-4"><span class="linenos"> 4</span></a>
-</span><span id="L-5"><a href="#L-5"><span class="linenos"> 5</span></a><span class="kn">from</span> <span class="nn">.event</span> <span class="kn">import</span> <span class="n">Event</span><span class="p">,</span> <span class="n">EventType</span>
+</span><span id="L-5"><a href="#L-5"><span class="linenos"> 5</span></a><span class="kn">from</span> <span class="nn">.event</span> <span class="kn">import</span> <span class="n">Event</span><span class="p">,</span> <span class="n">EventType</span><span class="p">,</span> <span class="n">Responses</span>
 </span><span id="L-6"><a href="#L-6"><span class="linenos"> 6</span></a><span class="kn">from</span> <span class="nn">.group</span> <span class="kn">import</span> <span class="n">Group</span>
 </span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a><span class="kn">from</span> <span class="nn">.member</span> <span class="kn">import</span> <span class="n">Member</span>
 </span><span id="L-8"><a href="#L-8"><span class="linenos"> 8</span></a><span class="kn">from</span> <span class="nn">.profile_</span> <span class="kn">import</span> <span class="n">Profile</span>
@@ -282,12 +312,13 @@ spond_classes    </h1>
 </span><span id="L-12"><a href="#L-12"><span class="linenos">12</span></a><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
 </span><span id="L-13"><a href="#L-13"><span class="linenos">13</span></a>    <span class="s2">&quot;Event&quot;</span><span class="p">,</span>
 </span><span id="L-14"><a href="#L-14"><span class="linenos">14</span></a>    <span class="s2">&quot;EventType&quot;</span><span class="p">,</span>
-</span><span id="L-15"><a href="#L-15"><span class="linenos">15</span></a>    <span class="s2">&quot;Group&quot;</span><span class="p">,</span>
-</span><span id="L-16"><a href="#L-16"><span class="linenos">16</span></a>    <span class="s2">&quot;Member&quot;</span><span class="p">,</span>
-</span><span id="L-17"><a href="#L-17"><span class="linenos">17</span></a>    <span class="s2">&quot;Profile&quot;</span><span class="p">,</span>
-</span><span id="L-18"><a href="#L-18"><span class="linenos">18</span></a>    <span class="s2">&quot;Role&quot;</span><span class="p">,</span>
-</span><span id="L-19"><a href="#L-19"><span class="linenos">19</span></a>    <span class="s2">&quot;Subgroup&quot;</span><span class="p">,</span>
-</span><span id="L-20"><a href="#L-20"><span class="linenos">20</span></a><span class="p">]</span>
+</span><span id="L-15"><a href="#L-15"><span class="linenos">15</span></a>    <span class="s2">&quot;Responses&quot;</span><span class="p">,</span>
+</span><span id="L-16"><a href="#L-16"><span class="linenos">16</span></a>    <span class="s2">&quot;Group&quot;</span><span class="p">,</span>
+</span><span id="L-17"><a href="#L-17"><span class="linenos">17</span></a>    <span class="s2">&quot;Member&quot;</span><span class="p">,</span>
+</span><span id="L-18"><a href="#L-18"><span class="linenos">18</span></a>    <span class="s2">&quot;Profile&quot;</span><span class="p">,</span>
+</span><span id="L-19"><a href="#L-19"><span class="linenos">19</span></a>    <span class="s2">&quot;Role&quot;</span><span class="p">,</span>
+</span><span id="L-20"><a href="#L-20"><span class="linenos">20</span></a>    <span class="s2">&quot;Subgroup&quot;</span><span class="p">,</span>
+</span><span id="L-21"><a href="#L-21"><span class="linenos">21</span></a><span class="p">]</span>
 </span></pre></div>
 
 
@@ -383,7 +414,7 @@ uses <code><a href="#Event.uid">uid</a></code>.</p>
                             </div>
                             <div id="Event.responses" class="classattr">
                                 <div class="attr variable">
-            <span class="name">responses</span><span class="annotation">: spond_classes.event.Responses</span>
+            <span class="name">responses</span><span class="annotation">: <a href="#Responses">Responses</a></span>
 
 
     </div>
@@ -583,6 +614,150 @@ mapping of field names to [<code>FieldInfo</code>][pydantic.fields.FieldInfo] ob
     </div>
     <a class="headerlink" href="#EventType.RECURRING"></a>
 
+
+
+                            </div>
+                </section>
+                <section id="Responses">
+                            <input id="Responses-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr class">
+
+    <span class="def">class</span>
+    <span class="name">Responses</span><wbr>(<span class="base">pydantic.main.BaseModel</span>):
+
+                <label class="view-source-button" for="Responses-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Responses"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Responses-10"><a href="#Responses-10"><span class="linenos">10</span></a><span class="k">class</span> <span class="nc">Responses</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="Responses-11"><a href="#Responses-11"><span class="linenos">11</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents the responses to an `Event`.&quot;&quot;&quot;</span>
+</span><span id="Responses-12"><a href="#Responses-12"><span class="linenos">12</span></a>
+</span><span id="Responses-13"><a href="#Responses-13"><span class="linenos">13</span></a>    <span class="c1"># Lists which always exist in API data, but may be empty</span>
+</span><span id="Responses-14"><a href="#Responses-14"><span class="linenos">14</span></a>    <span class="n">accepted_uids</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">alias</span><span class="o">=</span><span class="s2">&quot;acceptedIds&quot;</span><span class="p">)</span>
+</span><span id="Responses-15"><a href="#Responses-15"><span class="linenos">15</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;`acceptedIds` in API.&quot;&quot;&quot;</span>
+</span><span id="Responses-16"><a href="#Responses-16"><span class="linenos">16</span></a>    <span class="n">declined_uids</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">alias</span><span class="o">=</span><span class="s2">&quot;declinedIds&quot;</span><span class="p">)</span>
+</span><span id="Responses-17"><a href="#Responses-17"><span class="linenos">17</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;`declinedIds` in API.&quot;&quot;&quot;</span>
+</span><span id="Responses-18"><a href="#Responses-18"><span class="linenos">18</span></a>    <span class="n">unanswered_uids</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">alias</span><span class="o">=</span><span class="s2">&quot;unansweredIds&quot;</span><span class="p">)</span>
+</span><span id="Responses-19"><a href="#Responses-19"><span class="linenos">19</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;`unansweredIds` in API.&quot;&quot;&quot;</span>
+</span><span id="Responses-20"><a href="#Responses-20"><span class="linenos">20</span></a>    <span class="n">waiting_list_uids</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">alias</span><span class="o">=</span><span class="s2">&quot;waitinglistIds&quot;</span><span class="p">)</span>
+</span><span id="Responses-21"><a href="#Responses-21"><span class="linenos">21</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;`waitinglistIds` in API.&quot;&quot;&quot;</span>
+</span><span id="Responses-22"><a href="#Responses-22"><span class="linenos">22</span></a>    <span class="n">unconfirmed_uids</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">alias</span><span class="o">=</span><span class="s2">&quot;unconfirmedIds&quot;</span><span class="p">)</span>
+</span><span id="Responses-23"><a href="#Responses-23"><span class="linenos">23</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;`unconfirmedIds` in API.&quot;&quot;&quot;</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Represents the responses to an <code><a href="#Event">Event</a></code>.</p>
+</div>
+
+
+                            <div id="Responses.accepted_uids" class="classattr">
+                                <div class="attr variable">
+            <span class="name">accepted_uids</span><span class="annotation">: list[str]</span>
+
+
+    </div>
+    <a class="headerlink" href="#Responses.accepted_uids"></a>
+
+            <div class="docstring"><p><code>acceptedIds</code> in API.</p>
+</div>
+
+
+                            </div>
+                            <div id="Responses.declined_uids" class="classattr">
+                                <div class="attr variable">
+            <span class="name">declined_uids</span><span class="annotation">: list[str]</span>
+
+
+    </div>
+    <a class="headerlink" href="#Responses.declined_uids"></a>
+
+            <div class="docstring"><p><code>declinedIds</code> in API.</p>
+</div>
+
+
+                            </div>
+                            <div id="Responses.unanswered_uids" class="classattr">
+                                <div class="attr variable">
+            <span class="name">unanswered_uids</span><span class="annotation">: list[str]</span>
+
+
+    </div>
+    <a class="headerlink" href="#Responses.unanswered_uids"></a>
+
+            <div class="docstring"><p><code>unansweredIds</code> in API.</p>
+</div>
+
+
+                            </div>
+                            <div id="Responses.waiting_list_uids" class="classattr">
+                                <div class="attr variable">
+            <span class="name">waiting_list_uids</span><span class="annotation">: list[str]</span>
+
+
+    </div>
+    <a class="headerlink" href="#Responses.waiting_list_uids"></a>
+
+            <div class="docstring"><p><code>waitinglistIds</code> in API.</p>
+</div>
+
+
+                            </div>
+                            <div id="Responses.unconfirmed_uids" class="classattr">
+                                <div class="attr variable">
+            <span class="name">unconfirmed_uids</span><span class="annotation">: list[str]</span>
+
+
+    </div>
+    <a class="headerlink" href="#Responses.unconfirmed_uids"></a>
+
+            <div class="docstring"><p><code>unconfirmedIds</code> in API.</p>
+</div>
+
+
+                            </div>
+                            <div id="Responses.model_config" class="classattr">
+                                <div class="attr variable">
+            <span class="name">model_config</span><span class="annotation">: ClassVar[pydantic.config.ConfigDict]</span>        =
+<span class="default_value">{}</span>
+
+
+    </div>
+    <a class="headerlink" href="#Responses.model_config"></a>
+
+            <div class="docstring"><p>Configuration for the model, should be a dictionary conforming to [<code>ConfigDict</code>][pydantic.config.ConfigDict].</p>
+</div>
+
+
+                            </div>
+                            <div id="Responses.model_fields" class="classattr">
+                                <div class="attr variable">
+            <span class="name">model_fields</span><span class="annotation">: ClassVar[Dict[str, pydantic.fields.FieldInfo]]</span>        =
+<input id="Responses.model_fields-view-value" class="view-value-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+            <label class="view-value-button pdoc-button" for="Responses.model_fields-view-value"></label><span class="default_value">{&#39;accepted_uids&#39;: FieldInfo(annotation=list[str], required=True, alias=&#39;acceptedIds&#39;, alias_priority=2), &#39;declined_uids&#39;: FieldInfo(annotation=list[str], required=True, alias=&#39;declinedIds&#39;, alias_priority=2), &#39;unanswered_uids&#39;: FieldInfo(annotation=list[str], required=True, alias=&#39;unansweredIds&#39;, alias_priority=2), &#39;waiting_list_uids&#39;: FieldInfo(annotation=list[str], required=True, alias=&#39;waitinglistIds&#39;, alias_priority=2), &#39;unconfirmed_uids&#39;: FieldInfo(annotation=list[str], required=True, alias=&#39;unconfirmedIds&#39;, alias_priority=2)}</span>
+
+
+    </div>
+    <a class="headerlink" href="#Responses.model_fields"></a>
+
+            <div class="docstring"><p>Metadata about the fields defined on the model,
+mapping of field names to [<code>FieldInfo</code>][pydantic.fields.FieldInfo] objects.</p>
+
+<p>This replaces <code>Model.__fields__</code> from Pydantic V1.</p>
+</div>
+
+
+                            </div>
+                            <div id="Responses.model_computed_fields" class="classattr">
+                                <div class="attr variable">
+            <span class="name">model_computed_fields</span><span class="annotation">: ClassVar[Dict[str, pydantic.fields.ComputedFieldInfo]]</span>        =
+<span class="default_value">{}</span>
+
+
+    </div>
+    <a class="headerlink" href="#Responses.model_computed_fields"></a>
+
+            <div class="docstring"><p>A dictionary of computed field names and their corresponding <code>ComputedFieldInfo</code> objects.</p>
+</div>
 
 
                             </div>
