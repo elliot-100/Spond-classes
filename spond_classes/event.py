@@ -73,3 +73,30 @@ class Event(BaseModel):
     def url(self) -> str:
         """Return the URL of the `Event`, for convenience."""
         return f"https://spond.com/client/sponds/{self.uid}/"
+
+
+class MatchType(Enum):
+    """Represents the kind of `Match`."""
+
+    HOME = "HOME"
+    AWAY = "AWAY"
+
+
+class MatchInfo(BaseModel):
+    """Represents match data."""
+    opponent_name: str = Field(alias="opponentName")
+    opponent_score: int = Field(alias="opponentScore")
+    scores_final: bool = Field(alias="scoresFinal")
+    scores_public: bool = Field(alias="scoresPublic")
+    scores_set: bool = Field(alias="scoresSet")
+    scores_set_ever: bool = Field(alias="scoresSetEver")
+    team_name: str = Field(alias="teamName")
+    team_score: int = Field(alias="teamScore")
+    type: MatchType
+
+
+class Match(Event):
+    """Represents match event."""
+    match_event: bool = Field(alias="matchEvent", default=True)
+    match_info: MatchInfo = Field(alias="matchInfo")
+
