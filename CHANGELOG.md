@@ -8,11 +8,12 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 Historic and pre-release versions aren't necessarily included.
 
 
-## UNRELEASED - TBC
+## [0.13.0] - 2024-11-04
 
 ### Added
 
 - Event `Responses` to public API
+- API documentation at https://elliot-100.github.io/Spond-classes/
 
 ### Changed
 
