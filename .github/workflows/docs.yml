@@ -19,9 +19,15 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.13'
-      - run: poetry install --no-root
-      - run: poetry run pdoc spond_classes -o docs -d numpy -t docs_templates
-
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+      - name: Install project
+        run: poetry install --no-root
+      - name: Generate HTML docs with pdoc
+        run: poetry run pdoc spond_classes -o docs -d numpy -t docs_templates
       - uses: actions/upload-pages-artifact@v3
         with:
           path: docs/
