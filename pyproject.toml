@@ -1,4 +1,5 @@
 [tool.poetry]
+package-mode = true
 name = "spond-classes"
 version = "0.12.0"
 description = "Unofficial class abstraction layer for the `spond` library package."
