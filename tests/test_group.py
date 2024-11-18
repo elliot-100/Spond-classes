@@ -7,6 +7,68 @@ from spond_classes import Group
 from . import DictFromJSON
 
 
+@pytest.fixture
+def simple_group_data() -> DictFromJSON:
+    """Simplest possible group data in this implementation.
+
+    Mocks dict returned by `Spond.get_group()` or `Spond.get_groups()[n].`
+    """
+    return {
+        "id": "G1",
+        "name": "Group One",
+        "members": [],  # assumed always exists, may be empty
+        "roles": [],  # assumed always exists, may be empty
+        "subGroups": [],  # assumed always exists, may be empty
+    }
+
+
+@pytest.fixture
+def complex_group_data() -> DictFromJSON:
+    """Group data with all implemented fields populated.
+
+    Mocks dict returned by `Spond.get_group()` or `Spond.get_groups()[n].`
+
+    The Member is in the Subgroup, and has the Role.
+    """
+    return {
+        "id": "G2",
+        "name": "Group Two",
+        "members": [
+            {
+                "id": "G2M1",
+                "createdTime": "2022-03-24T16:36:29Z",
+                "email": "brendan@example.com",
+                "firstName": "Brendan",
+                "lastName": "Gleason",
+                "phoneNumber": "+123456789",
+                # optional:
+                "profile": {
+                    "id": "G2M1P1",
+                    "firstName": "Bren",
+                    "lastName": "Gleason",
+                    # optional:
+                    "email": "brendan-home@example.com",
+                    "phoneNumber": "+123456791",
+                },
+                "roles": ["G2R1"],
+                "subGroups": ["G2S1"],
+            },
+        ],
+        "roles": [
+            {
+                "id": "G2R1",
+                "name": "Role B2",
+            },
+        ],
+        "subGroups": [
+            {
+                "id": "G2S1",
+                "name": "Subgroup B1",
+            },
+        ],
+    }
+
+
 def test_from_dict_simple(simple_group_data: DictFromJSON) -> None:
     """Test that Group is created from the simplest possible data."""
     # arrange

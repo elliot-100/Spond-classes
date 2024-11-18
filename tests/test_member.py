@@ -2,9 +2,57 @@
 
 from datetime import datetime, timezone
 
+import pytest
+
 from spond_classes import Member
 
 from . import DictFromJSON
+
+
+@pytest.fixture
+def simple_member_data() -> DictFromJSON:
+    """Simplest possible member data in this implementation.
+
+    Mocks dict returned by `Spond.get_group()['members'][n]`.
+    """
+    return {
+        "id": "M1",
+        "firstName": "Brendan",
+        "lastName": "Gleason",
+        "subGroups": [],
+        "createdTime": "2022-03-24T16:36:29Z",
+    }
+
+
+@pytest.fixture
+def complex_member_data() -> DictFromJSON:
+    """Member data with all implemented fields populated.
+
+    Mocks dict returned by `Spond.get_group()['members'][n]`.
+    """
+    return {
+        "id": "M2",
+        "firstName": "Ciarán",
+        "lastName": "Hinds",
+        "createdTime": "2022-03-24T16:36:29Z",
+        # optional:
+        "email": "ciarán@example.com",
+        "phoneNumber": "+123456789",
+        "profile": {
+            "id": "M2P2",
+            "firstName": "",
+            "lastName": "",
+            # optional:
+            "email": "ciarán2@example.com",
+            "phoneNumber": "+123456790",
+        },
+        "roles": [
+            "M2R2",
+        ],
+        "subGroups": [
+            "M2S2",
+        ],
+    }
 
 
 def test_from_dict_simple(simple_member_data: DictFromJSON) -> None:
