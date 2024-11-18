@@ -30,10 +30,7 @@ class EventType(Enum):
 
 
 class Event(BaseModel):
-    """Represents an event in the Spond system.
-
-    Events data is retrieved from the `events` API endpoint.
-    """
+    """Represents an event in the Spond system."""
 
     uid: str = Field(alias="id")
     """`id` in API; aliased as that's a Python built-in, and the Spond package
