@@ -11,7 +11,7 @@ def test_from_dict_simple(simple_member_data: DictFromJSON) -> None:
     """Test that Member is created from the simplest possible data."""
     # arrange
     # act
-    my_member = Member.model_validate(simple_member_data)
+    my_member = Member(**simple_member_data)
     # assert
     assert my_member.uid == "M1"
     assert my_member.created_time == datetime(
@@ -35,7 +35,7 @@ def test_from_dict_full(complex_member_data: DictFromJSON) -> None:
     """Test that Member is created from dict with all supported attributes."""
     # arrange
     # act
-    my_member = Member.model_validate(complex_member_data)
+    my_member = Member(**complex_member_data)
     # assert
     assert my_member.uid == "M2"
     assert my_member.created_time == datetime(
