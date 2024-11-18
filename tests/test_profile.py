@@ -1,8 +1,23 @@
 """Tests for Profile class."""
 
+import pytest
+
 from spond_classes import Profile
 
 from . import DictFromJSON
+
+
+@pytest.fixture
+def simple_profile_data() -> DictFromJSON:
+    """Simplest possible profile data in this implementation.
+
+    Mocks dict returned by `Spond.get_group()['members'][n][profile]`.
+    """
+    return {
+        "id": "P1",
+        "firstName": "Morgan",
+        "lastName": "Freeman",
+    }
 
 
 def test_from_dict(simple_profile_data: DictFromJSON) -> None:

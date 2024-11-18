@@ -2,9 +2,60 @@
 
 from datetime import datetime, timezone
 
+import pytest
+
 from spond_classes import Event, EventType
 
 from . import DictFromJSON
+
+
+@pytest.fixture
+def simple_event_data() -> DictFromJSON:
+    """Simplest possible event data in this implementation.
+
+    Mocks dict returned by `Spond.get_event()` or `Spond.get_events()[n].`
+    """
+    return {
+        "id": "E1",
+        "heading": "Event One",
+        "responses": {
+            "acceptedIds": [],
+            "declinedIds": [],
+            "unansweredIds": [],
+            "waitinglistIds": [],
+            "unconfirmedIds": [],
+        },
+        "type": "EVENT",
+        "createdTime": "2020-12-31T19:00:00Z",
+        "endTimestamp": "2024-08-15T11:00:00Z",
+        "startTimestamp": "2021-07-06T06:00:00Z",
+    }
+
+
+@pytest.fixture
+def complex_event_data() -> DictFromJSON:
+    """Event data with all implemented fields populated.
+
+    Mocks dict returned by `Spond.get_event()` or `Spond.get_events()[n].`
+    """
+    return {
+        "id": "E2",
+        "heading": "Event Two",
+        "responses": {
+            "acceptedIds": ["AC1"],
+            "declinedIds": ["DC1"],
+            "unansweredIds": ["UA1"],
+            "waitinglistIds": ["WL1"],
+            "unconfirmedIds": ["UC1"],
+        },
+        "type": "RECURRING",
+        "createdTime": "2019-04-24T19:00:00Z",
+        "endTimestamp": "2024-08-15T11:00:00Z",
+        "startTimestamp": "2022-11-04T06:00:00Z",
+        # optional:
+        "cancelled": "True",
+        "inviteTime": "2021-01-04T06:00:00Z",
+    }
 
 
 def test_from_dict_simple(simple_event_data: DictFromJSON) -> None:

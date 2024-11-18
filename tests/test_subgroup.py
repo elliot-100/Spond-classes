@@ -1,8 +1,22 @@
 """Tests for Subgroup class."""
 
+import pytest
+
 from spond_classes import Subgroup
 
 from . import DictFromJSON
+
+
+@pytest.fixture
+def simple_subgroup_data() -> DictFromJSON:
+    """Simplest possible subgroup data in this implementation.
+
+    Mocks dict returned by `Spond.get_group()['subGroups'][n]`.
+    """
+    return {
+        "id": "S1",
+        "name": "Subgroup One",
+    }
 
 
 def test_from_dict(simple_subgroup_data: DictFromJSON) -> None:
