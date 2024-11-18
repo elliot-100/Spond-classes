@@ -11,7 +11,7 @@ def test_from_dict_simple(simple_group_data: DictFromJSON) -> None:
     """Test that Group is created from the simplest possible data."""
     # arrange
     # act
-    my_group = Group.model_validate(simple_group_data)
+    my_group = Group(**simple_group_data)
     # assert
     assert my_group.uid == "G1"
     assert my_group.name == "Group One"
@@ -25,7 +25,7 @@ def test_from_dict_with_member_role_subgroup(complex_group_data: DictFromJSON) -
     """Test that subordinate Member, Role, Subgroup are created from dict."""
     # arrange
     # act
-    my_group = Group.model_validate(complex_group_data)
+    my_group = Group(**complex_group_data)
     # assert
     assert my_group.uid == "G2"
     assert my_group.members[0].uid == "G2M1"
@@ -36,7 +36,7 @@ def test_from_dict_with_member_role_subgroup(complex_group_data: DictFromJSON) -
 def test_member_by_id__happy_path(complex_group_data: DictFromJSON) -> None:
     """Test that subordinate Member is returned from a valid uid."""
     # arrange
-    my_group = Group.model_validate(complex_group_data)
+    my_group = Group(**complex_group_data)
     # act
     my_member = my_group.member_by_id("G2M1")
     # assert
@@ -48,7 +48,7 @@ def test_member_by_id__unmatched_id_raises_lookup_error(
 ) -> None:
     """Test that LookupError is raised when there is no matching subordinate Member."""
     # arrange
-    my_group = Group.model_validate(complex_group_data)
+    my_group = Group(**complex_group_data)
     # assert
     with pytest.raises(LookupError):
         my_member = my_group.member_by_id("DUMMY_ID")  # act
@@ -59,7 +59,7 @@ def test_member_by_id__no_members_raises_lookup_error(
 ) -> None:
     """Test that LookupError is raised when there are no subordinate Members."""
     # arrange
-    my_group = Group.model_validate(simple_group_data)
+    my_group = Group(**simple_group_data)
     # assert
     assert my_group.members == []
     with pytest.raises(LookupError):
@@ -69,7 +69,7 @@ def test_member_by_id__no_members_raises_lookup_error(
 def test_role_by_id__happy_path(complex_group_data: DictFromJSON) -> None:
     """Test that subordinate Role is returned from a valid uid."""
     # arrange
-    my_group = Group.model_validate(complex_group_data)
+    my_group = Group(**complex_group_data)
     # act
     my_role = my_group.role_by_id("G2R1")
     # assert
@@ -81,7 +81,7 @@ def test_role_by_id__unmatched_id_raises_lookup_error(
 ) -> None:
     """Test that LookupError is raised when there is no matching subordinate Role."""
     # arrange
-    my_group = Group.model_validate(complex_group_data)
+    my_group = Group(**complex_group_data)
     # assert
     with pytest.raises(LookupError):
         my_role = my_group.role_by_id("DUMMY_ID")  # act
@@ -92,7 +92,7 @@ def test_role_by_id__no_roles_raises_lookup_error(
 ) -> None:
     """Test that LookupError is raised when there are no subordinate Roles."""
     # arrange
-    my_group = Group.model_validate(simple_group_data)
+    my_group = Group(**simple_group_data)
     # assert
     assert my_group.roles == []
     with pytest.raises(LookupError):
@@ -102,7 +102,7 @@ def test_role_by_id__no_roles_raises_lookup_error(
 def test_subgroup_by_id__happy_path(complex_group_data: DictFromJSON) -> None:
     """Test that subordinate Subgroup is returned from a valid uid."""
     # arrange
-    my_group = Group.model_validate(complex_group_data)
+    my_group = Group(**complex_group_data)
     # act
     my_subgroup = my_group.subgroup_by_id("G2S1")
     # assert
@@ -116,7 +116,7 @@ def test_subgroup_by_id__unmatched_id_raises_lookup_error(
     subordinate Subgroup.
     """
     # arrange
-    my_group = Group.model_validate(complex_group_data)
+    my_group = Group(**complex_group_data)
     # assert
     with pytest.raises(LookupError):
         my_subgroup = my_group.subgroup_by_id("DUMMY_ID")  # act
@@ -127,7 +127,7 @@ def test_subgroup_by_id__no_subgroups_raises_lookup_error(
 ) -> None:
     """Test that LookupError is raised when there are no subordinate Subgroups."""
     # arrange
-    my_group = Group.model_validate(simple_group_data)
+    my_group = Group(**simple_group_data)
     # assert
     assert my_group.subgroups == []
     with pytest.raises(LookupError):
@@ -137,7 +137,7 @@ def test_subgroup_by_id__no_subgroups_raises_lookup_error(
 def test_members_by_subgroup__happy_path(complex_group_data: DictFromJSON) -> None:
     """Test that Members are returned from a valid subordinate Subgroup."""
     # arrange
-    my_group = Group.model_validate(complex_group_data)
+    my_group = Group(**complex_group_data)
     my_subgroup = my_group.subgroup_by_id("G2S1")
     # act
     my_subgroup_members = my_group.members_by_subgroup(my_subgroup)
@@ -150,7 +150,7 @@ def test_members_by_subgroup__not_subgroup_raises_type_error(
 ) -> None:
     """Test that TypeError is raised if `subgroup` isn't a Subgroup."""
     # arrange
-    my_group = Group.model_validate(complex_group_data)
+    my_group = Group(**complex_group_data)
     role_not_subgroup = my_group.role_by_id("G2R1")
     # assert
     with pytest.raises(TypeError):
@@ -163,7 +163,7 @@ def test_members_by_subgroup__not_subgroup_raises_type_error(
 def test_members_by_role__happy_path(complex_group_data: DictFromJSON) -> None:
     """Test that Members are returned from a valid subordinate Role."""
     # arrange
-    my_group = Group.model_validate(complex_group_data)
+    my_group = Group(**complex_group_data)
     my_role = my_group.role_by_id("G2R1")
     # act
     my_role_members = my_group.members_by_role(my_role)
@@ -176,7 +176,7 @@ def test_members_by_role__not_role_raises_type_error(
 ) -> None:
     """Test that TypeError is raised if `role` isn't a Role."""
     # arrange
-    my_group = Group.model_validate(complex_group_data)
+    my_group = Group(**complex_group_data)
     subgroup_not_role = my_group.subgroup_by_id("G2S1")
     # act
     with pytest.raises(TypeError):
