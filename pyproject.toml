@@ -1,7 +1,7 @@
 [tool.poetry]
 package-mode = true
 name = "spond-classes"
-version = "0.13.0"
+version = "0.13.1"
 description = "Unofficial class abstraction layer for the `spond` library package."
 license = "GPL-3.0-only"
 authors = ["elliot-100 <3186037+elliot-100@users.noreply.github.com>"]
