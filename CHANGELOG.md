@@ -8,6 +8,13 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 Historic and pre-release versions aren't necessarily included.
 
 
+## UNRELEASED - TBC
+
+### Added
+
+- Explicit constructors `Event.from_dict()`, `Group.from_dict()`
+
+
 ## [0.13.1] - 2024-11-19
 
 ### Changed

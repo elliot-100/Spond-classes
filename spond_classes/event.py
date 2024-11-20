@@ -1,9 +1,19 @@
 """Module containing `Event` class and related `EventType`,`Responses` classes."""
 
+import sys
+
+if sys.version_info < (3, 11):
+    from typing_extensions import Self
+else:
+    from typing import Self
+
+
 from datetime import datetime
 from enum import Enum
 
 from pydantic import BaseModel, Field
+
+from .types import DictFromJSON
 
 
 class Responses(BaseModel):
@@ -70,3 +80,19 @@ class Event(BaseModel):
     def url(self) -> str:
         """Return the URL of the `Event`, for convenience."""
         return f"https://spond.com/client/sponds/{self.uid}/"
+
+    @classmethod
+    def from_dict(cls, dict_: DictFromJSON) -> Self:
+        """Construct an `Event`.
+
+        Parameters
+        ----------
+        dict_
+            as returned by `spond.spond.Spond.get_event()`
+            or from the list returned by `spond.spond.Spond.get_events()`.
+
+        Returns
+        -------
+        `Event`
+        """
+        return cls(**dict_)
