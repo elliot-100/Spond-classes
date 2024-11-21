@@ -17,7 +17,8 @@ Historic and pre-release versions aren't necessarily included.
 
 ### Changed
 
-- Email attributes are Pydantic `EmailStr` type 
+- Email attributes are Pydantic `EmailStr` type
+- Update dev dependencies: mypy, ruff
 
 
 ## [0.13.1] - 2024-11-19
