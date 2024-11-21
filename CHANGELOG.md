@@ -16,7 +16,8 @@ Historic and pre-release versions aren't necessarily included.
 
 ### Changed
 
-- `Event.type` is Literal instead of Enum
+- `Event.type` is `Literal` instead of `Enum`
+- Phone numbers are Pydantic `EmailStr` type instead of `str`
 
 ### Removed
 
