@@ -13,6 +13,7 @@ Historic and pre-release versions aren't necessarily included.
 ### Added
 
 - Explicit constructors `Event.from_dict()`, `Group.from_dict()`
+- `Event.is_cancelled` convenience property
 - Tests: missing tests for `Profile` optional attributes
 
 ### Changed
