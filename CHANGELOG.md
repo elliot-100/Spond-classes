@@ -14,7 +14,11 @@ Historic and pre-release versions aren't necessarily included.
 
 - Explicit constructors `Event.from_dict()`, `Group.from_dict()`
 - Tests: missing tests for `Profile` optional attributes
- 
+
+### Changed
+
+- Email attributes are Pydantic `EmailStr` type 
+
 
 ## [0.13.1] - 2024-11-19
 
