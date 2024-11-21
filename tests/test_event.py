@@ -82,6 +82,7 @@ def test_from_dict_simple(simple_event_data: DictFromJSON) -> None:
         "Event(uid='E1', heading='Event One', start_time: 2021-07-06 06:00:00+00:00, …)"
     )
     assert my_event.url == "https://spond.com/client/sponds/E1/"
+    assert my_event.is_cancelled is False
 
 
 def test_from_dict_additional_fields(complex_event_data: DictFromJSON) -> None:

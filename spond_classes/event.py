@@ -88,6 +88,14 @@ class Event(BaseModel):
         """Return the URL of the `Event`, for convenience."""
         return f"https://spond.com/client/sponds/{self.uid}/"
 
+    @property
+    def is_cancelled(self) -> bool:
+        """Return whether the `Event` is cancelled.
+
+        Simpler than checking optional `cancelled` attribute.
+        """
+        return hasattr(self, "cancelled") and self.cancelled is True
+
     @classmethod
     def from_dict(cls, dict_: DictFromJSON) -> Self:
         """Construct an `Event`.

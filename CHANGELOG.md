@@ -12,7 +12,8 @@ Historic and pre-release versions aren't necessarily included.
 
 ### Added
 
-- Add support for 'availability request' events
+- `Event.is_cancelled` convenience property
+- Support for 'availability request' events
 
 ### Changed
 
