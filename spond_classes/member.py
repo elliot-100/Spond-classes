@@ -3,6 +3,7 @@
 from datetime import datetime
 
 from pydantic import BaseModel, EmailStr, Field
+from pydantic_extra_types.phone_numbers import PhoneNumber
 
 from .profile_ import Profile
 
@@ -33,7 +34,7 @@ class Member(BaseModel):
     # Optional in Spond API data
     email: EmailStr | None = Field(default=None)
     """Same name in Spond API. Not always present."""
-    phone_number: str | None = Field(alias="phoneNumber", default=None)
+    phone_number: PhoneNumber | None = Field(alias="phoneNumber", default=None)
     """`phoneNumber` in Spond API.
     Not always present."""
     profile: Profile | None = None  # Availability may depend on permissions

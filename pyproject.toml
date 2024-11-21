@@ -13,7 +13,9 @@ include = ["CHANGELOG.md"]
 
 [tool.poetry.dependencies]
 python = ">=3.10"
+phonenumbers = ">=8.13.50"
 pydantic = {extras = ["email"], version = ">=2.7.1"}
+pydantic-extra-types = ">=2.7.1"  # Match pydantic required version
 
 [tool.poetry.group.dev.dependencies]
 pdoc = "15.0.4"
