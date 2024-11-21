@@ -47,7 +47,7 @@ async def main():
     await s.clientsession.close()
 
     # Now we can create a class instance ...
-    group = Group(**group_data)
+    group = Group.from_dict(group_data)
 
     # ... use class attributes instead of dict keys ...
     print(group.name)

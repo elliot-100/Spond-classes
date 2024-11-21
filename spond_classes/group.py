@@ -1,10 +1,18 @@
 """Module containing `Group` class."""
 
+import sys
+
+if sys.version_info < (3, 11):
+    from typing_extensions import Self
+else:
+    from typing import Self
+
 from pydantic import BaseModel, Field
 
 from .member import Member
 from .role import Role
 from .subgroup import Subgroup
+from .types import DictFromJSON
 
 
 class Group(BaseModel):
@@ -35,6 +43,22 @@ class Group(BaseModel):
         Includes only key fields in custom order.
         """
         return f"Group(uid='{self.uid}', name='{self.name}', …)"
+
+    @classmethod
+    def from_dict(cls, dict_: DictFromJSON) -> Self:
+        """Construct a `Group`.
+
+        Parameters
+        ----------
+        dict_
+            as returned by `spond.spond.Spond.get_group()`
+            or from the list returned by `spond.spond.Spond.get_groups()`.
+
+        Returns
+        -------
+        `Group`
+        """
+        return cls(**dict_)
 
     def member_by_id(self, member_uid: str) -> Member:
         """Return the `Member` with matching ID.
