@@ -2,7 +2,7 @@
 
 from datetime import datetime
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, EmailStr, Field
 
 from .profile_ import Profile
 
@@ -30,7 +30,7 @@ class Member(BaseModel):
     """`subGroups` in API; aliased to avoid confusion with `Subgroup` instances."""
 
     # Optional in API data
-    email: str | None = Field(default=None)
+    email: EmailStr | None = Field(default=None)
     phone_number: str | None = Field(alias="phoneNumber", default=None)
     """`phoneNumber` in API."""
     profile: Profile | None = None  # Availability may depend on permissions

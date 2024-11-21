@@ -1,6 +1,6 @@
 """Module containing `Profile` class."""
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, EmailStr, Field
 
 
 class Profile(BaseModel):
@@ -20,7 +20,7 @@ class Profile(BaseModel):
     """`lastName` in API."""
 
     # Optional in API data
-    email: str | None = Field(default=None)
+    email: EmailStr | None = Field(default=None)
     phone_number: str | None = Field(alias="phoneNumber", default=None)
     """`phoneNumber` in API."""
 
