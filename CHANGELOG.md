@@ -13,7 +13,8 @@ Historic and pre-release versions aren't necessarily included.
 ### Added
 
 - Explicit constructors `Event.from_dict()`, `Group.from_dict()`
-
+- Tests: missing tests for `Profile` optional attributes
+ 
 
 ## [0.13.1] - 2024-11-19
 
