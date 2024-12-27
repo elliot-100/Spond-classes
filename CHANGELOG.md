@@ -18,7 +18,8 @@ Historic and pre-release versions aren't necessarily included.
 ### Changed
 
 - Email attributes are Pydantic `EmailStr` type
-- Update dev dependencies: mypy, ruff, pdoc, pytest
+- Docs: be explicit when referring to Spond API; attributes aren't 'optional', they 'may not be present'.
+- Update dev dependencies: mypy, pdoc, pytest, ruff
 
 
 ## [0.13.1] - 2024-11-19

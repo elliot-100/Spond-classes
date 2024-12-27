@@ -21,15 +21,20 @@ class Responses(BaseModel):
 
     # Lists which always exist in API data, but may be empty
     accepted_uids: list[str] = Field(alias="acceptedIds")
-    """`acceptedIds` in API."""
+    """`acceptedIds` in Spond API.
+    May be empty."""
     declined_uids: list[str] = Field(alias="declinedIds")
-    """`declinedIds` in API."""
+    """`declinedIds` in Spond API.
+    May be empty."""
     unanswered_uids: list[str] = Field(alias="unansweredIds")
-    """`unansweredIds` in API."""
+    """`unansweredIds` in Spond API.
+    May be empty."""
     waiting_list_uids: list[str] = Field(alias="waitinglistIds")
-    """`waitinglistIds` in API."""
+    """`waitinglistIds` in Spond API.
+    May be empty."""
     unconfirmed_uids: list[str] = Field(alias="unconfirmedIds")
-    """`unconfirmedIds` in API."""
+    """`unconfirmedIds` in Spond API.
+    May be empty."""
 
 
 class EventType(Enum):
@@ -43,26 +48,26 @@ class Event(BaseModel):
     """Represents an event in the Spond system."""
 
     uid: str = Field(alias="id")
-    """`id` in API; aliased as that's a Python built-in, and the Spond package
+    """`id` in Spond API; aliased as that's a Python built-in, and the Spond package
     uses `uid`."""
     heading: str
     responses: Responses
     type: EventType
     created_time: datetime = Field(alias="createdTime")
-    """Derived from `createdTime` in API."""
+    """Derived from `createdTime` in Spond API."""
     end_time: datetime = Field(alias="endTimestamp")
     """Datetime at which the `Event` ends.
-        Derived from `endTimestamp` in API."""
+    Derived from `endTimestamp` in Spond API."""
     start_time: datetime = Field(alias="startTimestamp")
     """Datetime at which the `Event` starts.
-    Derived from `startTimestamp` in API."""
+    Derived from `startTimestamp` in Spond API."""
 
     # Optional in API data
     cancelled: bool | None = Field(default=None)
-    """Optional."""
+    """Not always present."""
     invite_time: datetime | None = Field(alias="inviteTime", default=None)
-    """Optional.
-    Derived from `inviteTime` in API."""
+    """Derived from `inviteTime` in Spond API.
+    Not always present."""
 
     def __str__(self) -> str:
         """Return simple human-readable description.

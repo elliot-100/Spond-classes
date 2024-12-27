@@ -25,17 +25,23 @@ class Group(BaseModel):
     """
 
     uid: str = Field(alias="id")
-    """`id` in API; aliased as that's a Python built-in, and the Spond package
+    """`id` in Spond API; aliased as that's a Python built-in, and the Spond package
     uses `uid`."""
     name: str
 
-    # Lists which always exist in API data, but may be empty
+    # Lists which always exist in Spond API data, but may be empty
     members: list[Member]
-    """`Member`s belonging to the `Group`. Derived from `members` in API."""
+    """`Member`s belonging to the `Group`.
+    Derived from `members` in Spond API.
+    May be empty."""
     roles: list[Role]
-    """`Role`s belonging to the `Group`. Derived from `roles` in API."""
+    """`Role`s belonging to the `Group`.
+    Derived from `roles` in Spond API.
+    May be empty."""
     subgroups: list[Subgroup] = Field(alias="subGroups")
-    """`Subgroup`s belonging to the `Group`. Derived from `subGroups` in API."""
+    """`Subgroup`s belonging to the `Group`.
+    Derived from `subGroups` in Spond API.
+    May be empty."""
 
     def __str__(self) -> str:
         """Return simple human-readable description.
