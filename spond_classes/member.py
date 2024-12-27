@@ -16,27 +16,32 @@ class Member(BaseModel):
     """
 
     uid: str = Field(alias="id")
-    """`id` in API; aliased as that's a Python built-in, and the Spond package
+    """`id` in Spond API; aliased as that's a Python built-in, and the Spond package
     uses `uid`."""
     created_time: datetime = Field(alias="createdTime")
-    """Derived from `createdTime` in API."""
+    """Derived from `createdTime` in Spond API."""
     first_name: str = Field(alias="firstName")
-    """`firstName` in API."""
+    """`firstName` in Spond API."""
     last_name: str = Field(alias="lastName")
-    """`lastName` in API."""
+    """`lastName` in Spond API."""
 
-    # Lists which always exist in API data, but may be empty
+    # Lists which always exist in Spond API data, but may be empty
     subgroup_uids: list[str] = Field(alias="subGroups")
-    """`subGroups` in API; aliased to avoid confusion with `Subgroup` instances."""
+    """`subGroups` in Spond API; aliased to avoid confusion with `Subgroup` instances.
+    May be empty."""
 
-    # Optional in API data
+    # Optional in Spond API data
     email: EmailStr | None = Field(default=None)
+    """ Not always present."""
     phone_number: str | None = Field(alias="phoneNumber", default=None)
-    """`phoneNumber` in API."""
+    """`phoneNumber` in Spond API.
+    Not always present."""
     profile: Profile | None = None  # Availability may depend on permissions
-    """Derived from `profile` in API."""
+    """Derived from `profile` in Spond API.
+    Not always present."""
     role_uids: list[str] | None = Field(alias="roles", default=None)
-    """`roles` in API; aliased to avoid confusion with `Role` instances."""
+    """`roles` in Spond API; aliased to avoid confusion with `Role` instances.
+    Not always present."""
 
     def __str__(self) -> str:
         """Return simple human-readable description.
