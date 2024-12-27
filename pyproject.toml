@@ -16,13 +16,13 @@ python = ">=3.10"
 pydantic = {extras = ["email"], version = ">=2.7.1"}
 
 [tool.poetry.group.dev.dependencies]
-pdoc = "15.0.0"
+pdoc = "15.0.1"
 pre-commit = "4.0.1"
-ruff = "0.7.4"
+ruff = "0.8.4"
 
 [tool.poetry.group.test.dependencies]
-mypy = "1.13.0"
-pytest = "8.3.3"
+mypy = "1.14.0"
+pytest = "8.3.4"
 
 [tool.mypy]
 plugins = ["pydantic.mypy"]
