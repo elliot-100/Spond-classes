@@ -8,12 +8,12 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 Historic and pre-release versions aren't necessarily included.
 
 
-## UNRELEASED - TBC
+## [0.14.0] - 2024-12-27
 
 ### Added
 
 - Explicit constructors `Event.from_dict()`, `Group.from_dict()`
-- Tests: missing tests for `Profile` optional attributes
+  - Tests: missing tests for `Profile` optional attributes; simplify `Event` tests
 
 ### Changed
 
@@ -217,6 +217,7 @@ Historic and pre-release versions aren't necessarily included.
 - Update dev/test dependencies: ruff
 
 
+[0.14.0]: https://github.com/elliot-100/Spond-classes/compare/v0.13.1...v0.14.0
 [0.13.1]: https://github.com/elliot-100/Spond-classes/compare/v0.13.0...v0.13.1
 [0.13.0]: https://github.com/elliot-100/Spond-classes/compare/v0.12.0...v0.13.0
 [0.12.0]: https://github.com/elliot-100/Spond-classes/compare/v0.11.2...v0.12.0
