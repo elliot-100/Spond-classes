@@ -12,7 +12,7 @@ class Subgroup(BaseModel):
     """
 
     uid: str = Field(alias="id")
-    """`id` in API; aliased as that's a Python built-in, and the Spond package
+    """`id` in Spond API; aliased as that's a Python built-in, and the Spond package
     uses `uid`."""
     name: str
 

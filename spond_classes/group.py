@@ -1,16 +1,22 @@
 """Module containing `Group` class."""
 
+import sys
+
+if sys.version_info < (3, 11):
+    from typing_extensions import Self
+else:
+    from typing import Self
+
 from pydantic import BaseModel, Field
 
 from .member import Member
 from .role import Role
 from .subgroup import Subgroup
+from .types import DictFromJSON
 
 
 class Group(BaseModel):
     """Represents a group in the Spond system.
-
-    Groups data is retrieved from the `groups` API endpoint.
 
     A `Group` has:
     - zero, one or more `Member`s
@@ -19,17 +25,23 @@ class Group(BaseModel):
     """
 
     uid: str = Field(alias="id")
-    """`id` in API; aliased as that's a Python built-in, and the Spond package
+    """`id` in Spond API; aliased as that's a Python built-in, and the Spond package
     uses `uid`."""
     name: str
 
-    # Lists which always exist in API data, but may be empty
+    # Lists which always exist in Spond API data, but may be empty
     members: list[Member]
-    """`Member`s belonging to the `Group`. Derived from `members` in API."""
+    """`Member`s belonging to the `Group`.
+    Derived from `members` in Spond API.
+    May be empty."""
     roles: list[Role]
-    """`Role`s belonging to the `Group`. Derived from `roles` in API."""
+    """`Role`s belonging to the `Group`.
+    Derived from `roles` in Spond API.
+    May be empty."""
     subgroups: list[Subgroup] = Field(alias="subGroups")
-    """`Subgroup`s belonging to the `Group`. Derived from `subGroups` in API."""
+    """`Subgroup`s belonging to the `Group`.
+    Derived from `subGroups` in Spond API.
+    May be empty."""
 
     def __str__(self) -> str:
         """Return simple human-readable description.
@@ -37,6 +49,22 @@ class Group(BaseModel):
         Includes only key fields in custom order.
         """
         return f"Group(uid='{self.uid}', name='{self.name}', …)"
+
+    @classmethod
+    def from_dict(cls, dict_: DictFromJSON) -> Self:
+        """Construct a `Group`.
+
+        Parameters
+        ----------
+        dict_
+            as returned by `spond.spond.Spond.get_group()`
+            or from the list returned by `spond.spond.Spond.get_groups()`.
+
+        Returns
+        -------
+        `Group`
+        """
+        return cls(**dict_)
 
     def member_by_id(self, member_uid: str) -> Member:
         """Return the `Member` with matching ID.

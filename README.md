@@ -8,9 +8,9 @@ The unofficial Python [`spond` library package](https://github.com/Olen/Spond/) 
 data from the Spond API and returns `dict` objects.
 
 This unofficial Python `spond-classes` library package parses those `dict` objects to
-create [Pydantic](https://docs.pydantic.dev/) class instances, i.e. provides an object abstraction layer.
+create [Pydantic](https://docs.pydantic.dev/) class instances.
 
-Experimental, partial, read-only implementation.
+Partial, read-only implementation.
 
 ## Install
 
@@ -47,8 +47,7 @@ async def main():
     await s.clientsession.close()
 
     # Now we can create a class instance ...
-    group = Group.model_validate(group_data)
-    # or `spond_classes.Group(**group_data)`
+    group = Group.from_dict(group_data)
 
     # ... use class attributes instead of dict keys ...
     print(group.name)
@@ -67,11 +66,5 @@ asyncio.run(main())
 ```
 ## Documentation
 
-Full HTML documentation is available in the package source `docs` folder.
-
-## Development
-
-Generate documentation:
-```shell
-pdoc spond_classes -o docs -d numpy -t docs_templates
-```
+Full API documentation is published at https://elliot-100.github.io/Spond-classes/ and
+is also included as HTML in the package source `docs` folder.

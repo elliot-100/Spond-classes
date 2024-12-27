@@ -1,6 +1,6 @@
 """Module containing `Profile` class."""
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, EmailStr, Field
 
 
 class Profile(BaseModel):
@@ -12,17 +12,19 @@ class Profile(BaseModel):
     """
 
     uid: str = Field(alias="id")
-    """`id` in API; aliased as that's a Python built-in, and the Spond package
+    """`id` in Spond API; aliased as that's a Python built-in, and the Spond package
     uses `uid`."""
     first_name: str = Field(alias="firstName")
-    """`firstName` in API."""
+    """`firstName` in Spond API."""
     last_name: str = Field(alias="lastName")
-    """`lastName` in API."""
+    """`lastName` in Spond API."""
 
-    # Optional in API data
-    email: str | None = Field(default=None)
+    # Optional in Spond API data
+    email: EmailStr | None = Field(default=None)
+    """Not always present."""
     phone_number: str | None = Field(alias="phoneNumber", default=None)
-    """`phoneNumber` in API."""
+    """`phoneNumber` in Spond API.
+    Not always present."""
 
     def __str__(self) -> str:
         """Return simple human-readable description.

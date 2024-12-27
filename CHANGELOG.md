@@ -8,11 +8,35 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 Historic and pre-release versions aren't necessarily included.
 
 
-## UNRELEASED - TBC
+## [0.14.0] - 2024-12-27
+
+### Added
+
+- Explicit constructors `Event.from_dict()`, `Group.from_dict()`
+  - Tests: missing tests for `Profile` optional attributes; simplify `Event` tests
+
+### Changed
+
+- Email attributes are Pydantic `EmailStr` type
+- Docs: be explicit when referring to Spond API; attributes aren't 'optional', they 'may not be present'.
+- Update dev dependencies: mypy, pdoc, pytest, ruff
+
+
+## [0.13.1] - 2024-11-19
+
+### Changed
+
+- Remove upper bound on Python version
+- Docs: add intro, highlight `Event` and `Group` classes
+- Tests: instantiate with `MyClass(**dict)` instead of Pydantic internals; refactor fixtures
+
+
+## [0.13.0] - 2024-11-04
 
 ### Added
 
 - Event `Responses` to public API
+- API documentation at https://elliot-100.github.io/Spond-classes/
 
 ### Changed
 
@@ -193,6 +217,9 @@ Historic and pre-release versions aren't necessarily included.
 - Update dev/test dependencies: ruff
 
 
+[0.14.0]: https://github.com/elliot-100/Spond-classes/compare/v0.13.1...v0.14.0
+[0.13.1]: https://github.com/elliot-100/Spond-classes/compare/v0.13.0...v0.13.1
+[0.13.0]: https://github.com/elliot-100/Spond-classes/compare/v0.12.0...v0.13.0
 [0.12.0]: https://github.com/elliot-100/Spond-classes/compare/v0.11.2...v0.12.0
 [0.11.2]: https://github.com/elliot-100/Spond-classes/compare/v0.11.1...v0.11.2
 [0.11.1]: https://github.com/elliot-100/Spond-classes/compare/v0.11.0...v0.11.1
