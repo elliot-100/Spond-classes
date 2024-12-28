@@ -4,11 +4,10 @@
 
 [Spond](https://spond.com/welcome) is a team/group-oriented events system.
 
-The unofficial Python [`spond` library package](https://github.com/Olen/Spond/) gets
+The unofficial Python `spond` library package ([GitHub](https://github.com/Olen/Spond/), [PyPI](https://pypi.org/project/spond/))  gets
 data from the Spond API and returns `dict` objects.
 
-This unofficial Python `spond-classes` library package parses those `dict` objects to
-create [Pydantic](https://docs.pydantic.dev/) class instances.
+This unofficial Python `spond-classes` library package ([GitHub](https://github.com/elliot-100/Spond-classes), [PyPI](https://pypi.org/project/spond-classes/)) parses those `dict`s using [Pydantic](https://docs.pydantic.dev/) to create class instances.
 
 Partial, read-only implementation.
 
@@ -25,6 +24,12 @@ poetry add spond-classes
 Note that [`spond`](https://github.com/Olen/Spond/) is required for practical use, but not a technical dependency,
 so needs to be installed separately.
 
+> [!IMPORTANT]  
+> The project is `Spond-classes`; the PYPI package is `spond-classes` with a hyphen; the module name is `spond_classes` with  an underscore.
+> 
+> So it's `pip install spond-classes` but `import spond-classes`.
+> 
+> This may change.
 
 ## Example code
 
