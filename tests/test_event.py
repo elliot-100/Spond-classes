@@ -4,7 +4,7 @@ from datetime import datetime, timezone
 
 import pytest
 
-from spond_classes import Event, EventType
+from spond_classes import Event, EventType, Match, MatchType
 from spond_classes.types import DictFromJSON
 
 
@@ -57,6 +57,41 @@ def complex_event_data() -> DictFromJSON:
     }
 
 
+@pytest.fixture
+def match_data() -> DictFromJSON:
+    """Event data with match fields populated.
+
+    Mocks dict returned by `Spond.get_event()` or `Spond.get_events()[n].`
+    """
+    return {
+        "id": "M1",
+        "heading": "Match One",
+        "responses": {
+            "acceptedIds": [],
+            "declinedIds": [],
+            "unansweredIds": [],
+            "waitinglistIds": [],
+            "unconfirmedIds": [],
+        },
+        "type": "EVENT",
+        "createdTime": "2020-12-31T19:00:00Z",
+        "endTimestamp": "2024-08-15T11:00:00Z",
+        "startTimestamp": "2021-07-06T06:00:00Z",
+        "matchEvent": True,
+        "matchInfo": {
+            "opponentName": "Hasle-Løren Hvit",
+            "opponentScore": 6,
+            "scoresFinal": True,
+            "scoresPublic": True,
+            "scoresSet": True,
+            "scoresSetEver": True,
+            "teamName": "Grüner lilla",
+            "teamScore": 11,
+            "type": "AWAY",
+        },
+    }
+
+
 def test_from_dict_simple(simple_event_data: DictFromJSON) -> None:
     """Test that Event is created from the simplest possible data."""
     # arrange
@@ -103,3 +138,30 @@ def test_from_dict_additional_fields(complex_event_data: DictFromJSON) -> None:
     # - optional:
     assert my_event.cancelled is True
     assert my_event.invite_time == datetime(2021, 1, 4, 6, 0, tzinfo=timezone.utc)
+
+
+def test_match_from_dict(match_data: DictFromJSON) -> None:
+    """Test that Match can be created from event data with additional match data."""
+    # arrange
+    # act
+    my_match = Match.from_dict(match_data)
+    # assert
+    assert isinstance(my_match, Event)
+    assert isinstance(my_match, Match)
+    assert my_match.match_event is True
+    assert my_match.match_info.opponent_name == "Hasle-Løren Hvit"
+    assert my_match.match_info.opponent_score == 6
+    assert my_match.match_info.scores_final is True
+    assert my_match.match_info.scores_public is True
+    assert my_match.match_info.scores_set is True
+    assert my_match.match_info.scores_set_ever is True
+    assert my_match.match_info.team_name == "Grüner lilla"
+    assert my_match.match_info.team_score == 11
+    assert my_match.match_info.type is MatchType.AWAY
+    assert str(my_match) == (
+        "Match("
+        "uid='M1', "
+        "heading='Match One', "
+        "start_time: 2021-07-06 06:00:00+00:00, "
+        "…)"
+    )
