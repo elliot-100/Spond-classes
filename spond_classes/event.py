@@ -1,4 +1,4 @@
-"""Module containing `Event` class and related `EventType`,`Responses` classes."""
+"""Module containing `Event` and related classes."""
 
 import sys
 
@@ -75,7 +75,7 @@ class Event(BaseModel):
         Includes only key fields in custom order.
         """
         return (
-            f"Event(uid='{self.uid}', "
+            f"{self.__class__.__name__}(uid='{self.uid}', "
             f"heading='{self.heading}', "
             f"start_time: {self.start_time}, "
             "…)"
@@ -112,6 +112,7 @@ class MatchType(Enum):
 
 class MatchInfo(BaseModel):
     """Represents match data."""
+
     opponent_name: str = Field(alias="opponentName")
     opponent_score: int = Field(alias="opponentScore")
     scores_final: bool = Field(alias="scoresFinal")
@@ -125,5 +126,6 @@ class MatchInfo(BaseModel):
 
 class Match(Event):
     """Represents match event."""
+
     match_event: bool = Field(alias="matchEvent", default=True)
     match_info: MatchInfo = Field(alias="matchInfo")
