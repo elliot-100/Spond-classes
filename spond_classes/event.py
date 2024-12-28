@@ -114,18 +114,28 @@ class MatchInfo(BaseModel):
     """Represents match data."""
 
     opponent_name: str = Field(alias="opponentName")
+    """`opponentName` in Spond API."""
     opponent_score: int = Field(alias="opponentScore")
+    """`opponentScore` in Spond API."""
     scores_final: bool = Field(alias="scoresFinal")
+    """`scoresFinal` in Spond API."""
     scores_public: bool = Field(alias="scoresPublic")
+    """`scoresPublic` in Spond API."""
     scores_set: bool = Field(alias="scoresSet")
+    """`scoresSet` in Spond API."""
     scores_set_ever: bool = Field(alias="scoresSetEver")
+    """`scoresSetEver` in Spond API."""
     team_name: str = Field(alias="teamName")
+    """`teamName` in Spond API."""
     team_score: int = Field(alias="teamScore")
+    """`teamScore` in Spond API."""
     type: MatchType
 
 
 class Match(Event):
-    """Represents match event."""
+    """Represents a match event."""
 
     match_event: bool = Field(alias="matchEvent", default=True)
+    """`matchEvent` in Spond API."""
     match_info: MatchInfo = Field(alias="matchInfo")
+    """`matchInfo` in Spond API."""
