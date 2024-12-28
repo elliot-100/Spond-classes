@@ -50,6 +50,7 @@ ignore = [
 "**/{tests}/*" = [
     "S101",  # Use of assert detected
     "F841",  # Local variable is assigned to but never used (triggered by testing raises)
+    "PLR2004",  # Magic value used in comparison
 ]
 "spond_classes/__init__.py" = [
     "D400",  # First line should end with a period

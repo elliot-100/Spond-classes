@@ -1,4 +1,4 @@
-"""Module containing `Event` class and related `EventType`,`Responses` classes."""
+"""Module containing `Event` and related classes."""
 
 import sys
 
@@ -75,7 +75,7 @@ class Event(BaseModel):
         Includes only key fields in custom order.
         """
         return (
-            f"Event(uid='{self.uid}', "
+            f"{self.__class__.__name__}(uid='{self.uid}', "
             f"heading='{self.heading}', "
             f"start_time: {self.start_time}, "
             "…)"
@@ -101,3 +101,41 @@ class Event(BaseModel):
         `Event`
         """
         return cls(**dict_)
+
+
+class MatchType(Enum):
+    """Represents the kind of `Match`."""
+
+    HOME = "HOME"
+    AWAY = "AWAY"
+
+
+class MatchInfo(BaseModel):
+    """Represents match data."""
+
+    opponent_name: str = Field(alias="opponentName")
+    """`opponentName` in Spond API."""
+    opponent_score: int = Field(alias="opponentScore")
+    """`opponentScore` in Spond API."""
+    scores_final: bool = Field(alias="scoresFinal")
+    """`scoresFinal` in Spond API."""
+    scores_public: bool = Field(alias="scoresPublic")
+    """`scoresPublic` in Spond API."""
+    scores_set: bool = Field(alias="scoresSet")
+    """`scoresSet` in Spond API."""
+    scores_set_ever: bool = Field(alias="scoresSetEver")
+    """`scoresSetEver` in Spond API."""
+    team_name: str = Field(alias="teamName")
+    """`teamName` in Spond API."""
+    team_score: int = Field(alias="teamScore")
+    """`teamScore` in Spond API."""
+    type: MatchType
+
+
+class Match(Event):
+    """Represents a match event."""
+
+    match_event: bool = Field(alias="matchEvent", default=True)
+    """`matchEvent` in Spond API."""
+    match_info: MatchInfo = Field(alias="matchInfo")
+    """`matchInfo` in Spond API."""
