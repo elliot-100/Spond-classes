@@ -8,12 +8,19 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 Historic and pre-release versions aren't necessarily included.
 
 
+## UNRELEASED - TBC
+
+### Added
+
+- Add support for 'availability request' events
+
+
 ## [0.14.0] - 2024-12-27
 
 ### Added
 
 - Explicit constructors `Event.from_dict()`, `Group.from_dict()`
-  - Tests: missing tests for `Profile` optional attributes; simplify `Event` tests
+- Tests: missing tests for `Profile` optional attributes; simplify `Event` tests
 
 ### Changed
 
