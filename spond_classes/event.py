@@ -40,6 +40,8 @@ class Responses(BaseModel):
 class EventType(Enum):
     """Represents the kind of `Event`."""
 
+    AVAILABILITY = "AVAILABILITY"
+    """Availability request."""
     EVENT = "EVENT"
     RECURRING = "RECURRING"
 
