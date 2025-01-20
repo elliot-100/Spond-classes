@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 import pytest
 
 from spond_classes import Event, EventType
-from spond_classes.types import DictFromJSON
+from spond_classes.types_ import DictFromJSON
 
 
 @pytest.fixture
@@ -79,11 +79,7 @@ def test_from_dict_simple(simple_event_data: DictFromJSON) -> None:
     assert my_event.invite_time is None
     # - properties:
     assert str(my_event) == (
-        "Event("
-        "uid='E1', "
-        "heading='Event One', "
-        "start_time: 2021-07-06 06:00:00+00:00, "
-        "…)"
+        "Event(uid='E1', heading='Event One', start_time: 2021-07-06 06:00:00+00:00, …)"
     )
     assert my_event.url == "https://spond.com/client/sponds/E1/"
 

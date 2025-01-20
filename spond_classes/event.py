@@ -13,7 +13,7 @@ from enum import Enum
 
 from pydantic import BaseModel, Field
 
-from .types import DictFromJSON
+from .types_ import DictFromJSON
 
 
 class Responses(BaseModel):
