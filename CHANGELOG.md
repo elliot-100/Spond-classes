@@ -14,6 +14,11 @@ Historic and pre-release versions aren't necessarily included.
 
 - Add support for 'availability request' events
 
+### Changed
+
+- Rename `types` to `types_` as it shadowed a built-in
+- Update dev dependency ruff
+
 
 ## [0.14.0] - 2024-12-27
 
