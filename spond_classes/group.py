@@ -12,7 +12,7 @@ from pydantic import BaseModel, Field
 from .member import Member
 from .role import Role
 from .subgroup import Subgroup
-from .types import DictFromJSON
+from .types_ import DictFromJSON
 
 
 class Group(BaseModel):

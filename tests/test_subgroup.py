@@ -3,7 +3,7 @@
 import pytest
 
 from spond_classes import Subgroup
-from spond_classes.types import DictFromJSON
+from spond_classes.types_ import DictFromJSON
 
 
 @pytest.fixture
