@@ -24,7 +24,7 @@ def simple_event_data() -> DictFromJSON:
             "waitinglistIds": [],
             "unconfirmedIds": [],
         },
-        "type": "EVENT",
+        "type": "AVAILABILITY",
         "createdTime": "2020-12-31T19:00:00Z",
         "endTimestamp": "2024-08-15T11:00:00Z",
         "startTimestamp": "2021-07-06T06:00:00Z",
@@ -71,7 +71,7 @@ def test_from_dict_simple(simple_event_data: DictFromJSON) -> None:
     assert my_event.responses.unanswered_uids == []
     assert my_event.responses.waiting_list_uids == []
     assert my_event.responses.unconfirmed_uids == []
-    assert my_event.type is EventType.EVENT
+    assert my_event.type is EventType.AVAILABILITY
     assert my_event.created_time == datetime(2020, 12, 31, 19, 0, tzinfo=timezone.utc)
     assert my_event.end_time == datetime(2024, 8, 15, 11, 0, tzinfo=timezone.utc)
     assert my_event.start_time == datetime(2021, 7, 6, 6, 0, tzinfo=timezone.utc)
