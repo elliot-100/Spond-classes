@@ -13,11 +13,12 @@ Historic and pre-release versions aren't necessarily included.
 ### Added
 
 - Add support for 'availability request' events
+- Add `Event.hidden` attribute; `Event.is_cancelled`, `Event.is_hidden` properties
 
 ### Changed
 
 - Rename `types` to `types_` as it shadowed a built-in
-- Update dev dependency ruff
+- Update dev dependencies mypy, pre-commit, pytest, ruff
 
 
 ## [0.14.0] - 2024-12-27

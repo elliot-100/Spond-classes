@@ -66,7 +66,11 @@ class Event(BaseModel):
 
     # Optional in API data
     cancelled: bool | None = Field(default=None)
-    """Not always present."""
+    """Not always present. Use `Event.is_cancelled` instead to always return
+    a `bool`."""
+    hidden: bool | None = Field(default=None)
+    """Not always present. Use `Event.is_hidden` instead to always return
+    a `bool`."""
     invite_time: datetime | None = Field(alias="inviteTime", default=None)
     """Derived from `inviteTime` in Spond API.
     Not always present."""
@@ -87,6 +91,16 @@ class Event(BaseModel):
     def url(self) -> str:
         """Return the URL of the `Event`, for convenience."""
         return f"https://spond.com/client/sponds/{self.uid}/"
+
+    @property
+    def is_cancelled(self) -> bool:
+        """Return whether the `Event` is cancelled."""
+        return getattr(self, "cancelled", False)
+
+    @property
+    def is_hidden(self) -> bool:
+        """Return whether the `Event` is hidden."""
+        return getattr(self, "hidden", False)
 
     @classmethod
     def from_dict(cls, dict_: DictFromJSON) -> Self:
