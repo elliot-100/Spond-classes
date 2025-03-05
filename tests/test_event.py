@@ -4,7 +4,7 @@ from datetime import datetime, timezone
 
 import pytest
 
-from spond_classes import Event, EventType
+from spond_classes import Event, EventType, Responses
 from spond_classes.types_ import DictFromJSON
 
 
@@ -58,6 +58,32 @@ def complex_event_data() -> DictFromJSON:
     }
 
 
+def test_response_from_dict_empty(simple_event_data: DictFromJSON) -> None:
+    """Test that Response is created from empty data."""
+    # arrange
+    # act
+    my_responses = Responses.from_dict(simple_event_data["responses"])
+    # assert
+    assert my_responses.accepted_uids == []
+    assert my_responses.declined_uids == []
+    assert my_responses.unanswered_uids == []
+    assert my_responses.waiting_list_uids == []
+    assert my_responses.unconfirmed_uids == []
+
+
+def test_response_from_dict(complex_event_data: DictFromJSON) -> None:
+    """Test that Response is created from data."""
+    # arrange
+    # act
+    my_responses = Responses.from_dict(complex_event_data["responses"])
+    # assert
+    assert my_responses.accepted_uids == ["AC1"]
+    assert my_responses.declined_uids == ["DC1"]
+    assert my_responses.unanswered_uids == ["UA1"]
+    assert my_responses.waiting_list_uids == ["WL1"]
+    assert my_responses.unconfirmed_uids == ["UC1"]
+
+
 def test_from_dict_simple(simple_event_data: DictFromJSON) -> None:
     """Test that Event is created from the simplest possible data."""
     # arrange
@@ -66,11 +92,7 @@ def test_from_dict_simple(simple_event_data: DictFromJSON) -> None:
     # assert
     assert my_event.uid == "E1"
     assert my_event.heading == "Event One"
-    assert my_event.responses.accepted_uids == []
-    assert my_event.responses.declined_uids == []
-    assert my_event.responses.unanswered_uids == []
-    assert my_event.responses.waiting_list_uids == []
-    assert my_event.responses.unconfirmed_uids == []
+    assert isinstance(my_event.responses, Responses)
     assert my_event.type is EventType.EVENT
     assert my_event.created_time == datetime(2020, 12, 31, 19, 0, tzinfo=timezone.utc)
     assert my_event.end_time == datetime(2024, 8, 15, 11, 0, tzinfo=timezone.utc)
@@ -92,12 +114,6 @@ def test_from_dict_additional_fields(complex_event_data: DictFromJSON) -> None:
     # act
     my_event = Event.from_dict(complex_event_data)
     # assert
-    # - optionally populated:
-    assert my_event.responses.accepted_uids == ["AC1"]
-    assert my_event.responses.declined_uids == ["DC1"]
-    assert my_event.responses.unanswered_uids == ["UA1"]
-    assert my_event.responses.waiting_list_uids == ["WL1"]
-    assert my_event.responses.unconfirmed_uids == ["UC1"]
     # - optional:
     assert my_event.cancelled is True
     assert my_event.hidden is True
