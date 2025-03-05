@@ -53,6 +53,7 @@ def complex_event_data() -> DictFromJSON:
         "startTimestamp": "2022-11-04T06:00:00Z",
         # optional:
         "cancelled": "True",
+        "hidden": "True",
         "inviteTime": "2021-01-04T06:00:00Z",
     }
 
@@ -76,6 +77,7 @@ def test_from_dict_simple(simple_event_data: DictFromJSON) -> None:
     assert my_event.start_time == datetime(2021, 7, 6, 6, 0, tzinfo=timezone.utc)
     # - optional:
     assert my_event.cancelled is None
+    assert my_event.hidden is None
     assert my_event.invite_time is None
     # - properties:
     assert str(my_event) == (
@@ -98,4 +100,8 @@ def test_from_dict_additional_fields(complex_event_data: DictFromJSON) -> None:
     assert my_event.responses.unconfirmed_uids == ["UC1"]
     # - optional:
     assert my_event.cancelled is True
+    assert my_event.hidden is True
     assert my_event.invite_time == datetime(2021, 1, 4, 6, 0, tzinfo=timezone.utc)
+    # - properties:
+    assert my_event.is_cancelled is True
+    assert my_event.is_hidden is True
