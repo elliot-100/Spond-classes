@@ -34,4 +34,5 @@ __all__ = [
     "Profile",
     "Role",
     "Subgroup",
+    "typing",
 ]
