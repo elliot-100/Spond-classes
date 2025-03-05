@@ -58,10 +58,19 @@
                                 <a class="variable" href="#Event.cancelled">cancelled</a>
                         </li>
                         <li>
+                                <a class="variable" href="#Event.hidden">hidden</a>
+                        </li>
+                        <li>
                                 <a class="variable" href="#Event.invite_time">invite_time</a>
                         </li>
                         <li>
                                 <a class="variable" href="#Event.url">url</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Event.is_cancelled">is_cancelled</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Event.is_hidden">is_hidden</a>
                         </li>
                         <li>
                                 <a class="function" href="#Event.from_dict">from_dict</a>
@@ -313,7 +322,7 @@ package parses those <code>dict</code>s to <a href="https://docs.pydantic.dev/">
                 <section id="Event">
                             <input id="Event-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr class">
-            
+
     <span class="def">class</span>
     <span class="name">Event</span><wbr>(<span class="base">pydantic.main.BaseModel</span>):
 
@@ -341,43 +350,57 @@ package parses those <code>dict</code>s to <a href="https://docs.pydantic.dev/">
 </span><span id="Event-67"><a href="#Event-67"><span class="linenos"> 67</span></a>
 </span><span id="Event-68"><a href="#Event-68"><span class="linenos"> 68</span></a>    <span class="c1"># Optional in API data</span>
 </span><span id="Event-69"><a href="#Event-69"><span class="linenos"> 69</span></a>    <span class="n">cancelled</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-</span><span id="Event-70"><a href="#Event-70"><span class="linenos"> 70</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Not always present.&quot;&quot;&quot;</span>
-</span><span id="Event-71"><a href="#Event-71"><span class="linenos"> 71</span></a>    <span class="n">invite_time</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">alias</span><span class="o">=</span><span class="s2">&quot;inviteTime&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-</span><span id="Event-72"><a href="#Event-72"><span class="linenos"> 72</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Derived from `inviteTime` in Spond API.</span>
-</span><span id="Event-73"><a href="#Event-73"><span class="linenos"> 73</span></a><span class="sd">    Not always present.&quot;&quot;&quot;</span>
-</span><span id="Event-74"><a href="#Event-74"><span class="linenos"> 74</span></a>
-</span><span id="Event-75"><a href="#Event-75"><span class="linenos"> 75</span></a>    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-</span><span id="Event-76"><a href="#Event-76"><span class="linenos"> 76</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Return simple human-readable description.</span>
-</span><span id="Event-77"><a href="#Event-77"><span class="linenos"> 77</span></a>
-</span><span id="Event-78"><a href="#Event-78"><span class="linenos"> 78</span></a><span class="sd">        Includes only key fields in custom order.</span>
-</span><span id="Event-79"><a href="#Event-79"><span class="linenos"> 79</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="Event-80"><a href="#Event-80"><span class="linenos"> 80</span></a>        <span class="k">return</span> <span class="p">(</span>
-</span><span id="Event-81"><a href="#Event-81"><span class="linenos"> 81</span></a>            <span class="sa">f</span><span class="s2">&quot;Event(uid=&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">uid</span><span class="si">}</span><span class="s2">&#39;, &quot;</span>
-</span><span id="Event-82"><a href="#Event-82"><span class="linenos"> 82</span></a>            <span class="sa">f</span><span class="s2">&quot;heading=&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">heading</span><span class="si">}</span><span class="s2">&#39;, &quot;</span>
-</span><span id="Event-83"><a href="#Event-83"><span class="linenos"> 83</span></a>            <span class="sa">f</span><span class="s2">&quot;start_time: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">start_time</span><span class="si">}</span><span class="s2">, &quot;</span>
-</span><span id="Event-84"><a href="#Event-84"><span class="linenos"> 84</span></a>            <span class="s2">&quot;…)&quot;</span>
-</span><span id="Event-85"><a href="#Event-85"><span class="linenos"> 85</span></a>        <span class="p">)</span>
-</span><span id="Event-86"><a href="#Event-86"><span class="linenos"> 86</span></a>
-</span><span id="Event-87"><a href="#Event-87"><span class="linenos"> 87</span></a>    <span class="nd">@property</span>
-</span><span id="Event-88"><a href="#Event-88"><span class="linenos"> 88</span></a>    <span class="k">def</span> <span class="nf">url</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-</span><span id="Event-89"><a href="#Event-89"><span class="linenos"> 89</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the URL of the `Event`, for convenience.&quot;&quot;&quot;</span>
-</span><span id="Event-90"><a href="#Event-90"><span class="linenos"> 90</span></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;https://spond.com/client/sponds/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">uid</span><span class="si">}</span><span class="s2">/&quot;</span>
-</span><span id="Event-91"><a href="#Event-91"><span class="linenos"> 91</span></a>
-</span><span id="Event-92"><a href="#Event-92"><span class="linenos"> 92</span></a>    <span class="nd">@classmethod</span>
-</span><span id="Event-93"><a href="#Event-93"><span class="linenos"> 93</span></a>    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">dict_</span><span class="p">:</span> <span class="n">DictFromJSON</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
-</span><span id="Event-94"><a href="#Event-94"><span class="linenos"> 94</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Construct an `Event`.</span>
+</span><span id="Event-70"><a href="#Event-70"><span class="linenos"> 70</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Not always present. Use `Event.is_cancelled` instead to always return</span>
+</span><span id="Event-71"><a href="#Event-71"><span class="linenos"> 71</span></a><span class="sd">    a `bool`.&quot;&quot;&quot;</span>
+</span><span id="Event-72"><a href="#Event-72"><span class="linenos"> 72</span></a>    <span class="n">hidden</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</span><span id="Event-73"><a href="#Event-73"><span class="linenos"> 73</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Not always present. Use `Event.is_hidden` instead to always return</span>
+</span><span id="Event-74"><a href="#Event-74"><span class="linenos"> 74</span></a><span class="sd">    a `bool`.&quot;&quot;&quot;</span>
+</span><span id="Event-75"><a href="#Event-75"><span class="linenos"> 75</span></a>    <span class="n">invite_time</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">alias</span><span class="o">=</span><span class="s2">&quot;inviteTime&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</span><span id="Event-76"><a href="#Event-76"><span class="linenos"> 76</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Derived from `inviteTime` in Spond API.</span>
+</span><span id="Event-77"><a href="#Event-77"><span class="linenos"> 77</span></a><span class="sd">    Not always present.&quot;&quot;&quot;</span>
+</span><span id="Event-78"><a href="#Event-78"><span class="linenos"> 78</span></a>
+</span><span id="Event-79"><a href="#Event-79"><span class="linenos"> 79</span></a>    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span id="Event-80"><a href="#Event-80"><span class="linenos"> 80</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Return simple human-readable description.</span>
+</span><span id="Event-81"><a href="#Event-81"><span class="linenos"> 81</span></a>
+</span><span id="Event-82"><a href="#Event-82"><span class="linenos"> 82</span></a><span class="sd">        Includes only key fields in custom order.</span>
+</span><span id="Event-83"><a href="#Event-83"><span class="linenos"> 83</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="Event-84"><a href="#Event-84"><span class="linenos"> 84</span></a>        <span class="k">return</span> <span class="p">(</span>
+</span><span id="Event-85"><a href="#Event-85"><span class="linenos"> 85</span></a>            <span class="sa">f</span><span class="s2">&quot;Event(uid=&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">uid</span><span class="si">}</span><span class="s2">&#39;, &quot;</span>
+</span><span id="Event-86"><a href="#Event-86"><span class="linenos"> 86</span></a>            <span class="sa">f</span><span class="s2">&quot;heading=&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">heading</span><span class="si">}</span><span class="s2">&#39;, &quot;</span>
+</span><span id="Event-87"><a href="#Event-87"><span class="linenos"> 87</span></a>            <span class="sa">f</span><span class="s2">&quot;start_time: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">start_time</span><span class="si">}</span><span class="s2">, &quot;</span>
+</span><span id="Event-88"><a href="#Event-88"><span class="linenos"> 88</span></a>            <span class="s2">&quot;…)&quot;</span>
+</span><span id="Event-89"><a href="#Event-89"><span class="linenos"> 89</span></a>        <span class="p">)</span>
+</span><span id="Event-90"><a href="#Event-90"><span class="linenos"> 90</span></a>
+</span><span id="Event-91"><a href="#Event-91"><span class="linenos"> 91</span></a>    <span class="nd">@property</span>
+</span><span id="Event-92"><a href="#Event-92"><span class="linenos"> 92</span></a>    <span class="k">def</span> <span class="nf">url</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span id="Event-93"><a href="#Event-93"><span class="linenos"> 93</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the URL of the `Event`, for convenience.&quot;&quot;&quot;</span>
+</span><span id="Event-94"><a href="#Event-94"><span class="linenos"> 94</span></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;https://spond.com/client/sponds/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">uid</span><span class="si">}</span><span class="s2">/&quot;</span>
 </span><span id="Event-95"><a href="#Event-95"><span class="linenos"> 95</span></a>
-</span><span id="Event-96"><a href="#Event-96"><span class="linenos"> 96</span></a><span class="sd">        Parameters</span>
-</span><span id="Event-97"><a href="#Event-97"><span class="linenos"> 97</span></a><span class="sd">        ----------</span>
-</span><span id="Event-98"><a href="#Event-98"><span class="linenos"> 98</span></a><span class="sd">        dict_</span>
-</span><span id="Event-99"><a href="#Event-99"><span class="linenos"> 99</span></a><span class="sd">            as returned by `spond.spond.Spond.get_event()`</span>
-</span><span id="Event-100"><a href="#Event-100"><span class="linenos">100</span></a><span class="sd">            or from the list returned by `spond.spond.Spond.get_events()`.</span>
-</span><span id="Event-101"><a href="#Event-101"><span class="linenos">101</span></a>
-</span><span id="Event-102"><a href="#Event-102"><span class="linenos">102</span></a><span class="sd">        Returns</span>
-</span><span id="Event-103"><a href="#Event-103"><span class="linenos">103</span></a><span class="sd">        -------</span>
-</span><span id="Event-104"><a href="#Event-104"><span class="linenos">104</span></a><span class="sd">        `Event`</span>
-</span><span id="Event-105"><a href="#Event-105"><span class="linenos">105</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="Event-106"><a href="#Event-106"><span class="linenos">106</span></a>        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">dict_</span><span class="p">)</span>
+</span><span id="Event-96"><a href="#Event-96"><span class="linenos"> 96</span></a>    <span class="nd">@property</span>
+</span><span id="Event-97"><a href="#Event-97"><span class="linenos"> 97</span></a>    <span class="k">def</span> <span class="nf">is_cancelled</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span><span id="Event-98"><a href="#Event-98"><span class="linenos"> 98</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Return whether the `Event` is cancelled.&quot;&quot;&quot;</span>
+</span><span id="Event-99"><a href="#Event-99"><span class="linenos"> 99</span></a>        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;cancelled&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+</span><span id="Event-100"><a href="#Event-100"><span class="linenos">100</span></a>
+</span><span id="Event-101"><a href="#Event-101"><span class="linenos">101</span></a>    <span class="nd">@property</span>
+</span><span id="Event-102"><a href="#Event-102"><span class="linenos">102</span></a>    <span class="k">def</span> <span class="nf">is_hidden</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span><span id="Event-103"><a href="#Event-103"><span class="linenos">103</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Return whether the `Event` is hidden.&quot;&quot;&quot;</span>
+</span><span id="Event-104"><a href="#Event-104"><span class="linenos">104</span></a>        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;hidden&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+</span><span id="Event-105"><a href="#Event-105"><span class="linenos">105</span></a>
+</span><span id="Event-106"><a href="#Event-106"><span class="linenos">106</span></a>    <span class="nd">@classmethod</span>
+</span><span id="Event-107"><a href="#Event-107"><span class="linenos">107</span></a>    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">dict_</span><span class="p">:</span> <span class="n">DictFromJSON</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+</span><span id="Event-108"><a href="#Event-108"><span class="linenos">108</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Construct an `Event`.</span>
+</span><span id="Event-109"><a href="#Event-109"><span class="linenos">109</span></a>
+</span><span id="Event-110"><a href="#Event-110"><span class="linenos">110</span></a><span class="sd">        Parameters</span>
+</span><span id="Event-111"><a href="#Event-111"><span class="linenos">111</span></a><span class="sd">        ----------</span>
+</span><span id="Event-112"><a href="#Event-112"><span class="linenos">112</span></a><span class="sd">        dict_</span>
+</span><span id="Event-113"><a href="#Event-113"><span class="linenos">113</span></a><span class="sd">            as returned by `spond.spond.Spond.get_event()`</span>
+</span><span id="Event-114"><a href="#Event-114"><span class="linenos">114</span></a><span class="sd">            or from the list returned by `spond.spond.Spond.get_events()`.</span>
+</span><span id="Event-115"><a href="#Event-115"><span class="linenos">115</span></a>
+</span><span id="Event-116"><a href="#Event-116"><span class="linenos">116</span></a><span class="sd">        Returns</span>
+</span><span id="Event-117"><a href="#Event-117"><span class="linenos">117</span></a><span class="sd">        -------</span>
+</span><span id="Event-118"><a href="#Event-118"><span class="linenos">118</span></a><span class="sd">        `Event`</span>
+</span><span id="Event-119"><a href="#Event-119"><span class="linenos">119</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="Event-120"><a href="#Event-120"><span class="linenos">120</span></a>        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">dict_</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -389,10 +412,10 @@ package parses those <code>dict</code>s to <a href="https://docs.pydantic.dev/">
                                 <div class="attr variable">
             <span class="name">uid</span><span class="annotation">: str</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Event.uid"></a>
-    
+
             <div class="docstring"><p><code>id</code> in Spond API; aliased as that's a Python built-in, and the Spond package
 uses <code><a href="#Event.uid">uid</a></code>.</p>
 </div>
@@ -403,43 +426,43 @@ uses <code><a href="#Event.uid">uid</a></code>.</p>
                                 <div class="attr variable">
             <span class="name">heading</span><span class="annotation">: str</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Event.heading"></a>
-    
-    
+
+
 
                             </div>
                             <div id="Event.responses" class="classattr">
                                 <div class="attr variable">
             <span class="name">responses</span><span class="annotation">: <a href="#Responses">Responses</a></span>
 
-        
+
     </div>
     <a class="headerlink" href="#Event.responses"></a>
-    
-    
+
+
 
                             </div>
                             <div id="Event.type" class="classattr">
                                 <div class="attr variable">
             <span class="name">type</span><span class="annotation">: <a href="#EventType">EventType</a></span>
 
-        
+
     </div>
     <a class="headerlink" href="#Event.type"></a>
-    
-    
+
+
 
                             </div>
                             <div id="Event.created_time" class="classattr">
                                 <div class="attr variable">
             <span class="name">created_time</span><span class="annotation">: datetime.datetime</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Event.created_time"></a>
-    
+
             <div class="docstring"><p>Derived from <code>createdTime</code> in Spond API.</p>
 </div>
 
@@ -449,10 +472,10 @@ uses <code><a href="#Event.uid">uid</a></code>.</p>
                                 <div class="attr variable">
             <span class="name">end_time</span><span class="annotation">: datetime.datetime</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Event.end_time"></a>
-    
+
             <div class="docstring"><p>Datetime at which the <code><a href="#Event">Event</a></code> ends.
 Derived from <code>endTimestamp</code> in Spond API.</p>
 </div>
@@ -463,10 +486,10 @@ Derived from <code>endTimestamp</code> in Spond API.</p>
                                 <div class="attr variable">
             <span class="name">start_time</span><span class="annotation">: datetime.datetime</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Event.start_time"></a>
-    
+
             <div class="docstring"><p>Datetime at which the <code><a href="#Event">Event</a></code> starts.
 Derived from <code>startTimestamp</code> in Spond API.</p>
 </div>
@@ -477,11 +500,26 @@ Derived from <code>startTimestamp</code> in Spond API.</p>
                                 <div class="attr variable">
             <span class="name">cancelled</span><span class="annotation">: bool | None</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Event.cancelled"></a>
-    
-            <div class="docstring"><p>Not always present.</p>
+
+            <div class="docstring"><p>Not always present. Use <code><a href="#Event.is_cancelled">Event.is_cancelled</a></code> instead to always return
+a <code>bool</code>.</p>
+</div>
+
+
+                            </div>
+                            <div id="Event.hidden" class="classattr">
+                                <div class="attr variable">
+            <span class="name">hidden</span><span class="annotation">: bool | None</span>
+
+
+    </div>
+    <a class="headerlink" href="#Event.hidden"></a>
+
+            <div class="docstring"><p>Not always present. Use <code><a href="#Event.is_hidden">Event.is_hidden</a></code> instead to always return
+a <code>bool</code>.</p>
 </div>
 
 
@@ -490,10 +528,10 @@ Derived from <code>startTimestamp</code> in Spond API.</p>
                                 <div class="attr variable">
             <span class="name">invite_time</span><span class="annotation">: datetime.datetime | None</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Event.invite_time"></a>
-    
+
             <div class="docstring"><p>Derived from <code>inviteTime</code> in Spond API.
 Not always present.</p>
 </div>
@@ -509,14 +547,56 @@ Not always present.</p>
 
     </div>
     <a class="headerlink" href="#Event.url"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Event.url-87"><a href="#Event.url-87"><span class="linenos">87</span></a>    <span class="nd">@property</span>
-</span><span id="Event.url-88"><a href="#Event.url-88"><span class="linenos">88</span></a>    <span class="k">def</span> <span class="nf">url</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-</span><span id="Event.url-89"><a href="#Event.url-89"><span class="linenos">89</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the URL of the `Event`, for convenience.&quot;&quot;&quot;</span>
-</span><span id="Event.url-90"><a href="#Event.url-90"><span class="linenos">90</span></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;https://spond.com/client/sponds/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">uid</span><span class="si">}</span><span class="s2">/&quot;</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Event.url-91"><a href="#Event.url-91"><span class="linenos">91</span></a>    <span class="nd">@property</span>
+</span><span id="Event.url-92"><a href="#Event.url-92"><span class="linenos">92</span></a>    <span class="k">def</span> <span class="nf">url</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span id="Event.url-93"><a href="#Event.url-93"><span class="linenos">93</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the URL of the `Event`, for convenience.&quot;&quot;&quot;</span>
+</span><span id="Event.url-94"><a href="#Event.url-94"><span class="linenos">94</span></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;https://spond.com/client/sponds/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">uid</span><span class="si">}</span><span class="s2">/&quot;</span>
 </span></pre></div>
 
 
             <div class="docstring"><p>Return the URL of the <code><a href="#Event">Event</a></code>, for convenience.</p>
+</div>
+
+
+                            </div>
+                            <div id="Event.is_cancelled" class="classattr">
+                                        <input id="Event.is_cancelled-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr variable">
+            <span class="name">is_cancelled</span><span class="annotation">: bool</span>
+
+                <label class="view-source-button" for="Event.is_cancelled-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Event.is_cancelled"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Event.is_cancelled-96"><a href="#Event.is_cancelled-96"><span class="linenos">96</span></a>    <span class="nd">@property</span>
+</span><span id="Event.is_cancelled-97"><a href="#Event.is_cancelled-97"><span class="linenos">97</span></a>    <span class="k">def</span> <span class="nf">is_cancelled</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span><span id="Event.is_cancelled-98"><a href="#Event.is_cancelled-98"><span class="linenos">98</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Return whether the `Event` is cancelled.&quot;&quot;&quot;</span>
+</span><span id="Event.is_cancelled-99"><a href="#Event.is_cancelled-99"><span class="linenos">99</span></a>        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;cancelled&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Return whether the <code><a href="#Event">Event</a></code> is cancelled.</p>
+</div>
+
+
+                            </div>
+                            <div id="Event.is_hidden" class="classattr">
+                                        <input id="Event.is_hidden-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr variable">
+            <span class="name">is_hidden</span><span class="annotation">: bool</span>
+
+                <label class="view-source-button" for="Event.is_hidden-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Event.is_hidden"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Event.is_hidden-101"><a href="#Event.is_hidden-101"><span class="linenos">101</span></a>    <span class="nd">@property</span>
+</span><span id="Event.is_hidden-102"><a href="#Event.is_hidden-102"><span class="linenos">102</span></a>    <span class="k">def</span> <span class="nf">is_hidden</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span><span id="Event.is_hidden-103"><a href="#Event.is_hidden-103"><span class="linenos">103</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Return whether the `Event` is hidden.&quot;&quot;&quot;</span>
+</span><span id="Event.is_hidden-104"><a href="#Event.is_hidden-104"><span class="linenos">104</span></a>        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;hidden&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Return whether the <code><a href="#Event">Event</a></code> is hidden.</p>
 </div>
 
 
@@ -533,21 +613,21 @@ Not always present.</p>
 
     </div>
     <a class="headerlink" href="#Event.from_dict"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Event.from_dict-92"><a href="#Event.from_dict-92"><span class="linenos"> 92</span></a>    <span class="nd">@classmethod</span>
-</span><span id="Event.from_dict-93"><a href="#Event.from_dict-93"><span class="linenos"> 93</span></a>    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">dict_</span><span class="p">:</span> <span class="n">DictFromJSON</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
-</span><span id="Event.from_dict-94"><a href="#Event.from_dict-94"><span class="linenos"> 94</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Construct an `Event`.</span>
-</span><span id="Event.from_dict-95"><a href="#Event.from_dict-95"><span class="linenos"> 95</span></a>
-</span><span id="Event.from_dict-96"><a href="#Event.from_dict-96"><span class="linenos"> 96</span></a><span class="sd">        Parameters</span>
-</span><span id="Event.from_dict-97"><a href="#Event.from_dict-97"><span class="linenos"> 97</span></a><span class="sd">        ----------</span>
-</span><span id="Event.from_dict-98"><a href="#Event.from_dict-98"><span class="linenos"> 98</span></a><span class="sd">        dict_</span>
-</span><span id="Event.from_dict-99"><a href="#Event.from_dict-99"><span class="linenos"> 99</span></a><span class="sd">            as returned by `spond.spond.Spond.get_event()`</span>
-</span><span id="Event.from_dict-100"><a href="#Event.from_dict-100"><span class="linenos">100</span></a><span class="sd">            or from the list returned by `spond.spond.Spond.get_events()`.</span>
-</span><span id="Event.from_dict-101"><a href="#Event.from_dict-101"><span class="linenos">101</span></a>
-</span><span id="Event.from_dict-102"><a href="#Event.from_dict-102"><span class="linenos">102</span></a><span class="sd">        Returns</span>
-</span><span id="Event.from_dict-103"><a href="#Event.from_dict-103"><span class="linenos">103</span></a><span class="sd">        -------</span>
-</span><span id="Event.from_dict-104"><a href="#Event.from_dict-104"><span class="linenos">104</span></a><span class="sd">        `Event`</span>
-</span><span id="Event.from_dict-105"><a href="#Event.from_dict-105"><span class="linenos">105</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="Event.from_dict-106"><a href="#Event.from_dict-106"><span class="linenos">106</span></a>        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">dict_</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Event.from_dict-106"><a href="#Event.from_dict-106"><span class="linenos">106</span></a>    <span class="nd">@classmethod</span>
+</span><span id="Event.from_dict-107"><a href="#Event.from_dict-107"><span class="linenos">107</span></a>    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">dict_</span><span class="p">:</span> <span class="n">DictFromJSON</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+</span><span id="Event.from_dict-108"><a href="#Event.from_dict-108"><span class="linenos">108</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Construct an `Event`.</span>
+</span><span id="Event.from_dict-109"><a href="#Event.from_dict-109"><span class="linenos">109</span></a>
+</span><span id="Event.from_dict-110"><a href="#Event.from_dict-110"><span class="linenos">110</span></a><span class="sd">        Parameters</span>
+</span><span id="Event.from_dict-111"><a href="#Event.from_dict-111"><span class="linenos">111</span></a><span class="sd">        ----------</span>
+</span><span id="Event.from_dict-112"><a href="#Event.from_dict-112"><span class="linenos">112</span></a><span class="sd">        dict_</span>
+</span><span id="Event.from_dict-113"><a href="#Event.from_dict-113"><span class="linenos">113</span></a><span class="sd">            as returned by `spond.spond.Spond.get_event()`</span>
+</span><span id="Event.from_dict-114"><a href="#Event.from_dict-114"><span class="linenos">114</span></a><span class="sd">            or from the list returned by `spond.spond.Spond.get_events()`.</span>
+</span><span id="Event.from_dict-115"><a href="#Event.from_dict-115"><span class="linenos">115</span></a>
+</span><span id="Event.from_dict-116"><a href="#Event.from_dict-116"><span class="linenos">116</span></a><span class="sd">        Returns</span>
+</span><span id="Event.from_dict-117"><a href="#Event.from_dict-117"><span class="linenos">117</span></a><span class="sd">        -------</span>
+</span><span id="Event.from_dict-118"><a href="#Event.from_dict-118"><span class="linenos">118</span></a><span class="sd">        `Event`</span>
+</span><span id="Event.from_dict-119"><a href="#Event.from_dict-119"><span class="linenos">119</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="Event.from_dict-120"><a href="#Event.from_dict-120"><span class="linenos">120</span></a>        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">dict_</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -573,7 +653,7 @@ or from the list returned by <code>spond.spond.Spond.get_events()</code>.</li>
                 <section id="EventType">
                             <input id="EventType-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr class">
-            
+
     <span class="def">class</span>
     <span class="name">EventType</span><wbr>(<span class="base">enum.Enum</span>):
 
@@ -600,10 +680,10 @@ or from the list returned by <code>spond.spond.Spond.get_events()</code>.</li>
             <span class="name">AVAILABILITY</span>        =
 <span class="default_value">&lt;<a href="#EventType.AVAILABILITY">EventType.AVAILABILITY</a>: &#39;AVAILABILITY&#39;&gt;</span>
 
-        
+
     </div>
     <a class="headerlink" href="#EventType.AVAILABILITY"></a>
-    
+
             <div class="docstring"><p>Availability request.</p>
 </div>
 
@@ -614,11 +694,11 @@ or from the list returned by <code>spond.spond.Spond.get_events()</code>.</li>
             <span class="name">EVENT</span>        =
 <span class="default_value">&lt;<a href="#EventType.EVENT">EventType.EVENT</a>: &#39;EVENT&#39;&gt;</span>
 
-        
+
     </div>
     <a class="headerlink" href="#EventType.EVENT"></a>
-    
-    
+
+
 
                             </div>
                             <div id="EventType.RECURRING" class="classattr">
@@ -626,18 +706,18 @@ or from the list returned by <code>spond.spond.Spond.get_events()</code>.</li>
             <span class="name">RECURRING</span>        =
 <span class="default_value">&lt;<a href="#EventType.RECURRING">EventType.RECURRING</a>: &#39;RECURRING&#39;&gt;</span>
 
-        
+
     </div>
     <a class="headerlink" href="#EventType.RECURRING"></a>
-    
-    
+
+
 
                             </div>
                 </section>
                 <section id="Responses">
                             <input id="Responses-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr class">
-            
+
     <span class="def">class</span>
     <span class="name">Responses</span><wbr>(<span class="base">pydantic.main.BaseModel</span>):
 
@@ -675,10 +755,10 @@ or from the list returned by <code>spond.spond.Spond.get_events()</code>.</li>
                                 <div class="attr variable">
             <span class="name">accepted_uids</span><span class="annotation">: list[str]</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Responses.accepted_uids"></a>
-    
+
             <div class="docstring"><p><code>acceptedIds</code> in Spond API.
 May be empty.</p>
 </div>
@@ -689,10 +769,10 @@ May be empty.</p>
                                 <div class="attr variable">
             <span class="name">declined_uids</span><span class="annotation">: list[str]</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Responses.declined_uids"></a>
-    
+
             <div class="docstring"><p><code>declinedIds</code> in Spond API.
 May be empty.</p>
 </div>
@@ -703,10 +783,10 @@ May be empty.</p>
                                 <div class="attr variable">
             <span class="name">unanswered_uids</span><span class="annotation">: list[str]</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Responses.unanswered_uids"></a>
-    
+
             <div class="docstring"><p><code>unansweredIds</code> in Spond API.
 May be empty.</p>
 </div>
@@ -717,10 +797,10 @@ May be empty.</p>
                                 <div class="attr variable">
             <span class="name">waiting_list_uids</span><span class="annotation">: list[str]</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Responses.waiting_list_uids"></a>
-    
+
             <div class="docstring"><p><code>waitinglistIds</code> in Spond API.
 May be empty.</p>
 </div>
@@ -731,10 +811,10 @@ May be empty.</p>
                                 <div class="attr variable">
             <span class="name">unconfirmed_uids</span><span class="annotation">: list[str]</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Responses.unconfirmed_uids"></a>
-    
+
             <div class="docstring"><p><code>unconfirmedIds</code> in Spond API.
 May be empty.</p>
 </div>
@@ -745,7 +825,7 @@ May be empty.</p>
                 <section id="Group">
                             <input id="Group-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr class">
-            
+
     <span class="def">class</span>
     <span class="name">Group</span><wbr>(<span class="base">pydantic.main.BaseModel</span>):
 
@@ -941,10 +1021,10 @@ May be empty.</p>
                                 <div class="attr variable">
             <span class="name">uid</span><span class="annotation">: str</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Group.uid"></a>
-    
+
             <div class="docstring"><p><code>id</code> in Spond API; aliased as that's a Python built-in, and the Spond package
 uses <code><a href="#Group.uid">uid</a></code>.</p>
 </div>
@@ -955,21 +1035,21 @@ uses <code><a href="#Group.uid">uid</a></code>.</p>
                                 <div class="attr variable">
             <span class="name">name</span><span class="annotation">: str</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Group.name"></a>
-    
-    
+
+
 
                             </div>
                             <div id="Group.members" class="classattr">
                                 <div class="attr variable">
             <span class="name">members</span><span class="annotation">: list[<a href="#Member">Member</a>]</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Group.members"></a>
-    
+
             <div class="docstring"><p><code><a href="#Member">Member</a></code>s belonging to the <code><a href="#Group">Group</a></code>.
 Derived from <code><a href="#Group.members">members</a></code> in Spond API.
 May be empty.</p>
@@ -981,10 +1061,10 @@ May be empty.</p>
                                 <div class="attr variable">
             <span class="name">roles</span><span class="annotation">: list[<a href="#Role">Role</a>]</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Group.roles"></a>
-    
+
             <div class="docstring"><p><code><a href="#Role">Role</a></code>s belonging to the <code><a href="#Group">Group</a></code>.
 Derived from <code><a href="#Group.roles">roles</a></code> in Spond API.
 May be empty.</p>
@@ -996,10 +1076,10 @@ May be empty.</p>
                                 <div class="attr variable">
             <span class="name">subgroups</span><span class="annotation">: list[<a href="#Subgroup">Subgroup</a>]</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Group.subgroups"></a>
-    
+
             <div class="docstring"><p><code><a href="#Subgroup">Subgroup</a></code>s belonging to the <code><a href="#Group">Group</a></code>.
 Derived from <code>subGroups</code> in Spond API.
 May be empty.</p>
@@ -1058,7 +1138,7 @@ or from the list returned by <code>spond.spond.Spond.get_groups()</code>.</li>
                             <div id="Group.member_by_id" class="classattr">
                                         <input id="Group.member_by_id-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
-            
+
         <span class="def">def</span>
         <span class="name">member_by_id</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">member_uid</span><span class="p">:</span> <span class="nb">str</span></span><span class="return-annotation">) -> <span class="n"><a href="#Member">Member</a></span>:</span></span>
 
@@ -1117,7 +1197,7 @@ or from the list returned by <code>spond.spond.Spond.get_groups()</code>.</li>
                             <div id="Group.role_by_id" class="classattr">
                                         <input id="Group.role_by_id-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
-            
+
         <span class="def">def</span>
         <span class="name">role_by_id</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">role_uid</span><span class="p">:</span> <span class="nb">str</span></span><span class="return-annotation">) -> <span class="n"><a href="#Role">Role</a></span>:</span></span>
 
@@ -1176,7 +1256,7 @@ or from the list returned by <code>spond.spond.Spond.get_groups()</code>.</li>
                             <div id="Group.subgroup_by_id" class="classattr">
                                         <input id="Group.subgroup_by_id-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
-            
+
         <span class="def">def</span>
         <span class="name">subgroup_by_id</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">subgroup_uid</span><span class="p">:</span> <span class="nb">str</span></span><span class="return-annotation">) -> <span class="n"><a href="#Subgroup">Subgroup</a></span>:</span></span>
 
@@ -1235,7 +1315,7 @@ or from the list returned by <code>spond.spond.Spond.get_groups()</code>.</li>
                             <div id="Group.members_by_subgroup" class="classattr">
                                         <input id="Group.members_by_subgroup-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
-            
+
         <span class="def">def</span>
         <span class="name">members_by_subgroup</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="bp">self</span>,</span><span class="param">	<span class="n">subgroup</span><span class="p">:</span> <span class="n"><a href="#Subgroup">Subgroup</a></span></span><span class="return-annotation">) -> <span class="nb">list</span><span class="p">[</span><span class="n"><a href="#Member">Member</a></span><span class="p">]</span>:</span></span>
 
@@ -1295,7 +1375,7 @@ or from the list returned by <code>spond.spond.Spond.get_groups()</code>.</li>
                             <div id="Group.members_by_role" class="classattr">
                                         <input id="Group.members_by_role-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
-            
+
         <span class="def">def</span>
         <span class="name">members_by_role</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">role</span><span class="p">:</span> <span class="n"><a href="#Role">Role</a></span></span><span class="return-annotation">) -> <span class="nb">list</span><span class="p">[</span><span class="n"><a href="#Member">Member</a></span><span class="p">]</span>:</span></span>
 
@@ -1358,7 +1438,7 @@ or from the list returned by <code>spond.spond.Spond.get_groups()</code>.</li>
                 <section id="Member">
                             <input id="Member-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr class">
-            
+
     <span class="def">class</span>
     <span class="name">Member</span><wbr>(<span class="base">pydantic.main.BaseModel</span>):
 
@@ -1428,10 +1508,10 @@ or from the list returned by <code>spond.spond.Spond.get_groups()</code>.</li>
                                 <div class="attr variable">
             <span class="name">uid</span><span class="annotation">: str</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Member.uid"></a>
-    
+
             <div class="docstring"><p><code>id</code> in Spond API; aliased as that's a Python built-in, and the Spond package
 uses <code><a href="#Member.uid">uid</a></code>.</p>
 </div>
@@ -1442,10 +1522,10 @@ uses <code><a href="#Member.uid">uid</a></code>.</p>
                                 <div class="attr variable">
             <span class="name">created_time</span><span class="annotation">: datetime.datetime</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Member.created_time"></a>
-    
+
             <div class="docstring"><p>Derived from <code>createdTime</code> in Spond API.</p>
 </div>
 
@@ -1455,10 +1535,10 @@ uses <code><a href="#Member.uid">uid</a></code>.</p>
                                 <div class="attr variable">
             <span class="name">first_name</span><span class="annotation">: str</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Member.first_name"></a>
-    
+
             <div class="docstring"><p><code>firstName</code> in Spond API.</p>
 </div>
 
@@ -1468,10 +1548,10 @@ uses <code><a href="#Member.uid">uid</a></code>.</p>
                                 <div class="attr variable">
             <span class="name">last_name</span><span class="annotation">: str</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Member.last_name"></a>
-    
+
             <div class="docstring"><p><code>lastName</code> in Spond API.</p>
 </div>
 
@@ -1481,10 +1561,10 @@ uses <code><a href="#Member.uid">uid</a></code>.</p>
                                 <div class="attr variable">
             <span class="name">subgroup_uids</span><span class="annotation">: list[str]</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Member.subgroup_uids"></a>
-    
+
             <div class="docstring"><p><code>subGroups</code> in Spond API; aliased to avoid confusion with <code><a href="#Subgroup">Subgroup</a></code> instances.
 May be empty.</p>
 </div>
@@ -1495,10 +1575,10 @@ May be empty.</p>
                                 <div class="attr variable">
             <span class="name">email</span><span class="annotation">: pydantic.networks.EmailStr | None</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Member.email"></a>
-    
+
             <div class="docstring"><p>Not always present.</p>
 </div>
 
@@ -1508,10 +1588,10 @@ May be empty.</p>
                                 <div class="attr variable">
             <span class="name">phone_number</span><span class="annotation">: str | None</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Member.phone_number"></a>
-    
+
             <div class="docstring"><p><code>phoneNumber</code> in Spond API.
 Not always present.</p>
 </div>
@@ -1522,10 +1602,10 @@ Not always present.</p>
                                 <div class="attr variable">
             <span class="name">profile</span><span class="annotation">: <a href="#Profile">Profile</a> | None</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Member.profile"></a>
-    
+
             <div class="docstring"><p>Derived from <code><a href="#Member.profile">profile</a></code> in Spond API.
 Not always present.</p>
 </div>
@@ -1536,10 +1616,10 @@ Not always present.</p>
                                 <div class="attr variable">
             <span class="name">role_uids</span><span class="annotation">: list[str] | None</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Member.role_uids"></a>
-    
+
             <div class="docstring"><p><code>roles</code> in Spond API; aliased to avoid confusion with <code><a href="#Role">Role</a></code> instances.
 Not always present.</p>
 </div>
@@ -1571,7 +1651,7 @@ Not always present.</p>
                 <section id="Profile">
                             <input id="Profile-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr class">
-            
+
     <span class="def">class</span>
     <span class="name">Profile</span><wbr>(<span class="base">pydantic.main.BaseModel</span>):
 
@@ -1628,10 +1708,10 @@ Not always present.</p>
                                 <div class="attr variable">
             <span class="name">uid</span><span class="annotation">: str</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Profile.uid"></a>
-    
+
             <div class="docstring"><p><code>id</code> in Spond API; aliased as that's a Python built-in, and the Spond package
 uses <code><a href="#Profile.uid">uid</a></code>.</p>
 </div>
@@ -1642,10 +1722,10 @@ uses <code><a href="#Profile.uid">uid</a></code>.</p>
                                 <div class="attr variable">
             <span class="name">first_name</span><span class="annotation">: str</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Profile.first_name"></a>
-    
+
             <div class="docstring"><p><code>firstName</code> in Spond API.</p>
 </div>
 
@@ -1655,10 +1735,10 @@ uses <code><a href="#Profile.uid">uid</a></code>.</p>
                                 <div class="attr variable">
             <span class="name">last_name</span><span class="annotation">: str</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Profile.last_name"></a>
-    
+
             <div class="docstring"><p><code>lastName</code> in Spond API.</p>
 </div>
 
@@ -1668,10 +1748,10 @@ uses <code><a href="#Profile.uid">uid</a></code>.</p>
                                 <div class="attr variable">
             <span class="name">email</span><span class="annotation">: pydantic.networks.EmailStr | None</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Profile.email"></a>
-    
+
             <div class="docstring"><p>Not always present.</p>
 </div>
 
@@ -1681,10 +1761,10 @@ uses <code><a href="#Profile.uid">uid</a></code>.</p>
                                 <div class="attr variable">
             <span class="name">phone_number</span><span class="annotation">: str | None</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Profile.phone_number"></a>
-    
+
             <div class="docstring"><p><code>phoneNumber</code> in Spond API.
 Not always present.</p>
 </div>
@@ -1716,7 +1796,7 @@ Not always present.</p>
                 <section id="Role">
                             <input id="Role-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr class">
-            
+
     <span class="def">class</span>
     <span class="name">Role</span><wbr>(<span class="base">pydantic.main.BaseModel</span>):
 
@@ -1755,10 +1835,10 @@ Not always present.</p>
                                 <div class="attr variable">
             <span class="name">uid</span><span class="annotation">: str</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Role.uid"></a>
-    
+
             <div class="docstring"><p><code>id</code> in Spond API; aliased as that's a Python built-in, and the Spond package
 uses <code><a href="#Role.uid">uid</a></code>.</p>
 </div>
@@ -1769,18 +1849,18 @@ uses <code><a href="#Role.uid">uid</a></code>.</p>
                                 <div class="attr variable">
             <span class="name">name</span><span class="annotation">: str</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Role.name"></a>
-    
-    
+
+
 
                             </div>
                 </section>
                 <section id="Subgroup">
                             <input id="Subgroup-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr class">
-            
+
     <span class="def">class</span>
     <span class="name">Subgroup</span><wbr>(<span class="base">pydantic.main.BaseModel</span>):
 
@@ -1819,10 +1899,10 @@ uses <code><a href="#Role.uid">uid</a></code>.</p>
                                 <div class="attr variable">
             <span class="name">uid</span><span class="annotation">: str</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Subgroup.uid"></a>
-    
+
             <div class="docstring"><p><code>id</code> in Spond API; aliased as that's a Python built-in, and the Spond package
 uses <code><a href="#Subgroup.uid">uid</a></code>.</p>
 </div>
@@ -1833,11 +1913,11 @@ uses <code><a href="#Subgroup.uid">uid</a></code>.</p>
                                 <div class="attr variable">
             <span class="name">name</span><span class="annotation">: str</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Subgroup.name"></a>
-    
-    
+
+
 
                             </div>
                 </section>
