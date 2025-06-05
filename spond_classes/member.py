@@ -32,7 +32,7 @@ class Member(BaseModel):
 
     # Optional in Spond API data
     email: EmailStr | None = Field(default=None)
-    """ Not always present."""
+    """Same name in Spond API. Not always present."""
     phone_number: str | None = Field(alias="phoneNumber", default=None)
     """`phoneNumber` in Spond API.
     Not always present."""
