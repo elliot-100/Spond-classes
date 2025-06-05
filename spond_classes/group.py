@@ -28,6 +28,7 @@ class Group(BaseModel):
     """`id` in Spond API; aliased as that's a Python built-in, and the Spond package
     uses `uid`."""
     name: str
+    """Same name in Spond API."""
 
     # Lists which always exist in Spond API data, but may be empty
     members: list[Member]

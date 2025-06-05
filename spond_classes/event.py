@@ -44,6 +44,7 @@ class EventType(Enum):
     """Availability request."""
     EVENT = "EVENT"
     RECURRING = "RECURRING"
+    """Instance of recurring event."""
 
 
 class Event(BaseModel):
@@ -53,8 +54,11 @@ class Event(BaseModel):
     """`id` in Spond API; aliased as that's a Python built-in, and the Spond package
     uses `uid`."""
     heading: str
+    """Same name in Spond API."""
     responses: Responses
+    """Same name in Spond API."""
     type: EventType
+    """Same name in Spond API."""
     created_time: datetime = Field(alias="createdTime")
     """Derived from `createdTime` in Spond API."""
     end_time: datetime = Field(alias="endTimestamp")
@@ -66,11 +70,11 @@ class Event(BaseModel):
 
     # Optional in API data
     cancelled: bool | None = Field(default=None)
-    """Not always present. Use `Event.is_cancelled` instead to always return
-    a `bool`."""
+    """Same name in Spond API. Not always present. Use `Event.is_cancelled` instead to
+    always return a `bool`."""
     hidden: bool | None = Field(default=None)
-    """Not always present. Use `Event.is_hidden` instead to always return
-    a `bool`."""
+    """Same name in Spond API. Not always present. Use `Event.is_hidden` instead to
+    always return a `bool`."""
     invite_time: datetime | None = Field(alias="inviteTime", default=None)
     """Derived from `inviteTime` in Spond API.
     Not always present."""

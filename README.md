@@ -4,13 +4,13 @@
 
 [Spond](https://spond.com/welcome) is a team/group-oriented events system.
 
-The unofficial Python [`spond` library package](https://github.com/Olen/Spond/) gets
+The unofficial Python `spond` library package ([GitHub](https://github.com/Olen/Spond/), [PyPI](https://pypi.org/project/spond/))  gets
 data from the Spond API and returns `dict` objects.
 
-This unofficial Python `spond-classes` library package parses those `dict` objects to
-create [Pydantic](https://docs.pydantic.dev/) class instances.
+This unofficial Python `spond-classes` library package ([GitHub](https://github.com/elliot-100/Spond-classes), [PyPI](https://pypi.org/project/spond-classes/)) parses those `dict`s using [Pydantic](https://docs.pydantic.dev/) to create class instances.
 
 Partial, read-only implementation.
+
 
 ## Install
 
@@ -62,9 +62,18 @@ async def main():
         print(f"{member.full_name} is in the {subgroup.name} subgroup")
 
 asyncio.run(main())
-
 ```
+
+
 ## Documentation
 
 Full API documentation is published at https://elliot-100.github.io/Spond-classes/ and
 is also included as HTML in the package source `docs` folder.
+
+
+# Development
+
+Build documentation:
+```shell
+pdoc spond_classes -d numpy -t docs_templates -o docs
+```
