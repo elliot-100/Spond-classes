@@ -14,6 +14,7 @@ include = ["CHANGELOG.md"]
 [tool.poetry.dependencies]
 python = ">=3.10"
 pydantic = {extras = ["email"], version = ">=2.7.1"}
+spond = { git = "https://github.com/Olen/Spond.git", rev = "1.1.1" }
 
 [tool.poetry.group.dev.dependencies]
 pdoc = "15.0.4"
