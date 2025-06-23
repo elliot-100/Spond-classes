@@ -19,7 +19,7 @@ These are the classes intended for direct user instantiation:
 
 # Explicitly import classes and functions into the package namespace to define the API.
 
-from .event import Event, EventType, Responses
+from .event import Event, Responses
 from .group import Group
 from .member import Member
 from .profile_ import Profile
@@ -28,7 +28,6 @@ from .subgroup import Subgroup
 
 __all__ = [
     "Event",
-    "EventType",
     "Responses",
     "Group",
     "Member",

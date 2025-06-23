@@ -4,12 +4,12 @@ import sys
 
 if sys.version_info < (3, 11):
     from typing_extensions import Self
+
 else:
     from typing import Self
 
-
 from datetime import datetime
-from enum import Enum
+from typing import Literal
 
 from pydantic import BaseModel, Field
 
@@ -37,16 +37,6 @@ class Responses(BaseModel):
     May be empty."""
 
 
-class EventType(Enum):
-    """Represents the kind of `Event`."""
-
-    AVAILABILITY = "AVAILABILITY"
-    """Availability request."""
-    EVENT = "EVENT"
-    RECURRING = "RECURRING"
-    """Instance of recurring event."""
-
-
 class Event(BaseModel):
     """Represents an event in the Spond system."""
 
@@ -57,8 +47,12 @@ class Event(BaseModel):
     """Same name in Spond API."""
     responses: Responses
     """Same name in Spond API."""
-    type: EventType
-    """Same name in Spond API."""
+    type: Literal["AVAILABILITY", "EVENT", "RECURRING"]
+    """Same name in Spond API.
+
+    'AVAILABILITY': availability request.
+    'EVENT': regular event.
+    'RECURRING': instance of recurring event."""
     created_time: datetime = Field(alias="createdTime")
     """Derived from `createdTime` in Spond API."""
     end_time: datetime = Field(alias="endTimestamp")

@@ -8,6 +8,17 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 Historic and pre-release versions aren't necessarily included.
 
 
+## UNRELEASED - TBC
+
+### Changed
+
+- `Event.type` is Literal instead of Enum
+
+### Removed
+
+- `EventType`
+
+
 ## [0.15.0] - 2025-03-05
 
 ### Added
