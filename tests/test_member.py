@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 import pytest
 
 from spond_classes import Member
-from spond_classes.types_ import DictFromJSON
+from spond_classes.typing import DictFromJSON
 
 
 @pytest.fixture

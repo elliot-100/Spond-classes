@@ -10,6 +10,10 @@ Historic and pre-release versions aren't necessarily included.
 
 ## UNRELEASED - TBC
 
+### Added
+
+- `typing` (previously `types_`) module to public API
+
 ### Changed
 
 - `Event.type` is Literal instead of Enum

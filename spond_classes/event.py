@@ -13,7 +13,7 @@ from typing import Literal
 
 from pydantic import BaseModel, Field
 
-from .types_ import DictFromJSON
+from .typing import DictFromJSON
 
 
 class Responses(BaseModel):
