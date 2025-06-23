@@ -22,7 +22,7 @@ ruff = "0.11.12"
 
 [tool.poetry.group.test.dependencies]
 mypy = "1.16.0"
-pytest = "8.4.0"
+pytest = "8.4.1"
 
 [tool.mypy]
 plugins = ["pydantic.mypy"]
