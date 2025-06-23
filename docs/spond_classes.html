@@ -19,6 +19,8 @@
         <input id="togglestate" type="checkbox" aria-hidden="true" tabindex="-1">
         <div>
 
+            <input type="search" placeholder="Search..." role="searchbox" aria-label="search"
+                   pattern=".+" required>
 
             <h2>Contents</h2>
             <ul>
@@ -27,6 +29,10 @@
 </ul>
 
 
+            <h2>Submodules</h2>
+            <ul>
+                    <li><a href="spond_classes/typing.html">typing</a></li>
+            </ul>
 
             <h2>API Documentation</h2>
                 <ul class="memberlist">
@@ -74,21 +80,6 @@
                         </li>
                         <li>
                                 <a class="function" href="#Event.from_dict">from_dict</a>
-                        </li>
-                </ul>
-
-            </li>
-            <li>
-                    <a class="class" href="#EventType">EventType</a>
-                            <ul class="memberlist">
-                        <li>
-                                <a class="variable" href="#EventType.AVAILABILITY">AVAILABILITY</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#EventType.EVENT">EVENT</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#EventType.RECURRING">RECURRING</a>
                         </li>
                 </ul>
 
@@ -298,7 +289,7 @@ package parses those <code>dict</code>s to <a href="https://docs.pydantic.dev/">
 </span><span id="L-19"><a href="#L-19"><span class="linenos">19</span></a>
 </span><span id="L-20"><a href="#L-20"><span class="linenos">20</span></a><span class="c1"># Explicitly import classes and functions into the package namespace to define the API.</span>
 </span><span id="L-21"><a href="#L-21"><span class="linenos">21</span></a>
-</span><span id="L-22"><a href="#L-22"><span class="linenos">22</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">.event</span><span class="w"> </span><span class="kn">import</span> <span class="n">Event</span><span class="p">,</span> <span class="n">EventType</span><span class="p">,</span> <span class="n">Responses</span>
+</span><span id="L-22"><a href="#L-22"><span class="linenos">22</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">.event</span><span class="w"> </span><span class="kn">import</span> <span class="n">Event</span><span class="p">,</span> <span class="n">Responses</span>
 </span><span id="L-23"><a href="#L-23"><span class="linenos">23</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">.group</span><span class="w"> </span><span class="kn">import</span> <span class="n">Group</span>
 </span><span id="L-24"><a href="#L-24"><span class="linenos">24</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">.member</span><span class="w"> </span><span class="kn">import</span> <span class="n">Member</span>
 </span><span id="L-25"><a href="#L-25"><span class="linenos">25</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">.profile_</span><span class="w"> </span><span class="kn">import</span> <span class="n">Profile</span>
@@ -307,13 +298,13 @@ package parses those <code>dict</code>s to <a href="https://docs.pydantic.dev/">
 </span><span id="L-28"><a href="#L-28"><span class="linenos">28</span></a>
 </span><span id="L-29"><a href="#L-29"><span class="linenos">29</span></a><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
 </span><span id="L-30"><a href="#L-30"><span class="linenos">30</span></a>    <span class="s2">&quot;Event&quot;</span><span class="p">,</span>
-</span><span id="L-31"><a href="#L-31"><span class="linenos">31</span></a>    <span class="s2">&quot;EventType&quot;</span><span class="p">,</span>
-</span><span id="L-32"><a href="#L-32"><span class="linenos">32</span></a>    <span class="s2">&quot;Responses&quot;</span><span class="p">,</span>
-</span><span id="L-33"><a href="#L-33"><span class="linenos">33</span></a>    <span class="s2">&quot;Group&quot;</span><span class="p">,</span>
-</span><span id="L-34"><a href="#L-34"><span class="linenos">34</span></a>    <span class="s2">&quot;Member&quot;</span><span class="p">,</span>
-</span><span id="L-35"><a href="#L-35"><span class="linenos">35</span></a>    <span class="s2">&quot;Profile&quot;</span><span class="p">,</span>
-</span><span id="L-36"><a href="#L-36"><span class="linenos">36</span></a>    <span class="s2">&quot;Role&quot;</span><span class="p">,</span>
-</span><span id="L-37"><a href="#L-37"><span class="linenos">37</span></a>    <span class="s2">&quot;Subgroup&quot;</span><span class="p">,</span>
+</span><span id="L-31"><a href="#L-31"><span class="linenos">31</span></a>    <span class="s2">&quot;Responses&quot;</span><span class="p">,</span>
+</span><span id="L-32"><a href="#L-32"><span class="linenos">32</span></a>    <span class="s2">&quot;Group&quot;</span><span class="p">,</span>
+</span><span id="L-33"><a href="#L-33"><span class="linenos">33</span></a>    <span class="s2">&quot;Member&quot;</span><span class="p">,</span>
+</span><span id="L-34"><a href="#L-34"><span class="linenos">34</span></a>    <span class="s2">&quot;Profile&quot;</span><span class="p">,</span>
+</span><span id="L-35"><a href="#L-35"><span class="linenos">35</span></a>    <span class="s2">&quot;Role&quot;</span><span class="p">,</span>
+</span><span id="L-36"><a href="#L-36"><span class="linenos">36</span></a>    <span class="s2">&quot;Subgroup&quot;</span><span class="p">,</span>
+</span><span id="L-37"><a href="#L-37"><span class="linenos">37</span></a>    <span class="s2">&quot;typing&quot;</span><span class="p">,</span>
 </span><span id="L-38"><a href="#L-38"><span class="linenos">38</span></a><span class="p">]</span>
 </span></pre></div>
 
@@ -330,80 +321,84 @@ package parses those <code>dict</code>s to <a href="https://docs.pydantic.dev/">
 
     </div>
     <a class="headerlink" href="#Event"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Event-51"><a href="#Event-51"><span class="linenos"> 51</span></a><span class="k">class</span><span class="w"> </span><span class="nc">Event</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-</span><span id="Event-52"><a href="#Event-52"><span class="linenos"> 52</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents an event in the Spond system.&quot;&quot;&quot;</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Event-41"><a href="#Event-41"><span class="linenos"> 41</span></a><span class="k">class</span><span class="w"> </span><span class="nc">Event</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="Event-42"><a href="#Event-42"><span class="linenos"> 42</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents an event in the Spond system.&quot;&quot;&quot;</span>
+</span><span id="Event-43"><a href="#Event-43"><span class="linenos"> 43</span></a>
+</span><span id="Event-44"><a href="#Event-44"><span class="linenos"> 44</span></a>    <span class="n">uid</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">alias</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
+</span><span id="Event-45"><a href="#Event-45"><span class="linenos"> 45</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;`id` in Spond API; aliased as that&#39;s a Python built-in, and the Spond package</span>
+</span><span id="Event-46"><a href="#Event-46"><span class="linenos"> 46</span></a><span class="sd">    uses `uid`.&quot;&quot;&quot;</span>
+</span><span id="Event-47"><a href="#Event-47"><span class="linenos"> 47</span></a>    <span class="n">heading</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="Event-48"><a href="#Event-48"><span class="linenos"> 48</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Same name in Spond API.&quot;&quot;&quot;</span>
+</span><span id="Event-49"><a href="#Event-49"><span class="linenos"> 49</span></a>    <span class="n">responses</span><span class="p">:</span> <span class="n">Responses</span>
+</span><span id="Event-50"><a href="#Event-50"><span class="linenos"> 50</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Same name in Spond API.&quot;&quot;&quot;</span>
+</span><span id="Event-51"><a href="#Event-51"><span class="linenos"> 51</span></a>    <span class="nb">type</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;AVAILABILITY&quot;</span><span class="p">,</span> <span class="s2">&quot;EVENT&quot;</span><span class="p">,</span> <span class="s2">&quot;RECURRING&quot;</span><span class="p">]</span>
+</span><span id="Event-52"><a href="#Event-52"><span class="linenos"> 52</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Same name in Spond API.</span>
 </span><span id="Event-53"><a href="#Event-53"><span class="linenos"> 53</span></a>
-</span><span id="Event-54"><a href="#Event-54"><span class="linenos"> 54</span></a>    <span class="n">uid</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">alias</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
-</span><span id="Event-55"><a href="#Event-55"><span class="linenos"> 55</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;`id` in Spond API; aliased as that&#39;s a Python built-in, and the Spond package</span>
-</span><span id="Event-56"><a href="#Event-56"><span class="linenos"> 56</span></a><span class="sd">    uses `uid`.&quot;&quot;&quot;</span>
-</span><span id="Event-57"><a href="#Event-57"><span class="linenos"> 57</span></a>    <span class="n">heading</span><span class="p">:</span> <span class="nb">str</span>
-</span><span id="Event-58"><a href="#Event-58"><span class="linenos"> 58</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Same name in Spond API.&quot;&quot;&quot;</span>
-</span><span id="Event-59"><a href="#Event-59"><span class="linenos"> 59</span></a>    <span class="n">responses</span><span class="p">:</span> <span class="n">Responses</span>
-</span><span id="Event-60"><a href="#Event-60"><span class="linenos"> 60</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Same name in Spond API.&quot;&quot;&quot;</span>
-</span><span id="Event-61"><a href="#Event-61"><span class="linenos"> 61</span></a>    <span class="nb">type</span><span class="p">:</span> <span class="n">EventType</span>
-</span><span id="Event-62"><a href="#Event-62"><span class="linenos"> 62</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Same name in Spond API.&quot;&quot;&quot;</span>
-</span><span id="Event-63"><a href="#Event-63"><span class="linenos"> 63</span></a>    <span class="n">created_time</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">alias</span><span class="o">=</span><span class="s2">&quot;createdTime&quot;</span><span class="p">)</span>
-</span><span id="Event-64"><a href="#Event-64"><span class="linenos"> 64</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Derived from `createdTime` in Spond API.&quot;&quot;&quot;</span>
-</span><span id="Event-65"><a href="#Event-65"><span class="linenos"> 65</span></a>    <span class="n">end_time</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">alias</span><span class="o">=</span><span class="s2">&quot;endTimestamp&quot;</span><span class="p">)</span>
-</span><span id="Event-66"><a href="#Event-66"><span class="linenos"> 66</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Datetime at which the `Event` ends.</span>
-</span><span id="Event-67"><a href="#Event-67"><span class="linenos"> 67</span></a><span class="sd">    Derived from `endTimestamp` in Spond API.&quot;&quot;&quot;</span>
-</span><span id="Event-68"><a href="#Event-68"><span class="linenos"> 68</span></a>    <span class="n">start_time</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">alias</span><span class="o">=</span><span class="s2">&quot;startTimestamp&quot;</span><span class="p">)</span>
-</span><span id="Event-69"><a href="#Event-69"><span class="linenos"> 69</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Datetime at which the `Event` starts.</span>
-</span><span id="Event-70"><a href="#Event-70"><span class="linenos"> 70</span></a><span class="sd">    Derived from `startTimestamp` in Spond API.&quot;&quot;&quot;</span>
-</span><span id="Event-71"><a href="#Event-71"><span class="linenos"> 71</span></a>
-</span><span id="Event-72"><a href="#Event-72"><span class="linenos"> 72</span></a>    <span class="c1"># Optional in API data</span>
-</span><span id="Event-73"><a href="#Event-73"><span class="linenos"> 73</span></a>    <span class="n">cancelled</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-</span><span id="Event-74"><a href="#Event-74"><span class="linenos"> 74</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Same name in Spond API. Not always present. Use `Event.is_cancelled` instead to</span>
-</span><span id="Event-75"><a href="#Event-75"><span class="linenos"> 75</span></a><span class="sd">    always return a `bool`.&quot;&quot;&quot;</span>
-</span><span id="Event-76"><a href="#Event-76"><span class="linenos"> 76</span></a>    <span class="n">hidden</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-</span><span id="Event-77"><a href="#Event-77"><span class="linenos"> 77</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Same name in Spond API. Not always present. Use `Event.is_hidden` instead to</span>
-</span><span id="Event-78"><a href="#Event-78"><span class="linenos"> 78</span></a><span class="sd">    always return a `bool`.&quot;&quot;&quot;</span>
-</span><span id="Event-79"><a href="#Event-79"><span class="linenos"> 79</span></a>    <span class="n">invite_time</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">alias</span><span class="o">=</span><span class="s2">&quot;inviteTime&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-</span><span id="Event-80"><a href="#Event-80"><span class="linenos"> 80</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Derived from `inviteTime` in Spond API.</span>
-</span><span id="Event-81"><a href="#Event-81"><span class="linenos"> 81</span></a><span class="sd">    Not always present.&quot;&quot;&quot;</span>
-</span><span id="Event-82"><a href="#Event-82"><span class="linenos"> 82</span></a>
-</span><span id="Event-83"><a href="#Event-83"><span class="linenos"> 83</span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-</span><span id="Event-84"><a href="#Event-84"><span class="linenos"> 84</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Return simple human-readable description.</span>
-</span><span id="Event-85"><a href="#Event-85"><span class="linenos"> 85</span></a>
-</span><span id="Event-86"><a href="#Event-86"><span class="linenos"> 86</span></a><span class="sd">        Includes only key fields in custom order.</span>
-</span><span id="Event-87"><a href="#Event-87"><span class="linenos"> 87</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="Event-88"><a href="#Event-88"><span class="linenos"> 88</span></a>        <span class="k">return</span> <span class="p">(</span>
-</span><span id="Event-89"><a href="#Event-89"><span class="linenos"> 89</span></a>            <span class="sa">f</span><span class="s2">&quot;Event(uid=&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">uid</span><span class="si">}</span><span class="s2">&#39;, &quot;</span>
-</span><span id="Event-90"><a href="#Event-90"><span class="linenos"> 90</span></a>            <span class="sa">f</span><span class="s2">&quot;heading=&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">heading</span><span class="si">}</span><span class="s2">&#39;, &quot;</span>
-</span><span id="Event-91"><a href="#Event-91"><span class="linenos"> 91</span></a>            <span class="sa">f</span><span class="s2">&quot;start_time: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">start_time</span><span class="si">}</span><span class="s2">, &quot;</span>
-</span><span id="Event-92"><a href="#Event-92"><span class="linenos"> 92</span></a>            <span class="s2">&quot;…)&quot;</span>
-</span><span id="Event-93"><a href="#Event-93"><span class="linenos"> 93</span></a>        <span class="p">)</span>
-</span><span id="Event-94"><a href="#Event-94"><span class="linenos"> 94</span></a>
-</span><span id="Event-95"><a href="#Event-95"><span class="linenos"> 95</span></a>    <span class="nd">@property</span>
-</span><span id="Event-96"><a href="#Event-96"><span class="linenos"> 96</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">url</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-</span><span id="Event-97"><a href="#Event-97"><span class="linenos"> 97</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the URL of the `Event`, for convenience.&quot;&quot;&quot;</span>
-</span><span id="Event-98"><a href="#Event-98"><span class="linenos"> 98</span></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;https://spond.com/client/sponds/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">uid</span><span class="si">}</span><span class="s2">/&quot;</span>
-</span><span id="Event-99"><a href="#Event-99"><span class="linenos"> 99</span></a>
-</span><span id="Event-100"><a href="#Event-100"><span class="linenos">100</span></a>    <span class="nd">@property</span>
-</span><span id="Event-101"><a href="#Event-101"><span class="linenos">101</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">is_cancelled</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-</span><span id="Event-102"><a href="#Event-102"><span class="linenos">102</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Return whether the `Event` is cancelled.&quot;&quot;&quot;</span>
-</span><span id="Event-103"><a href="#Event-103"><span class="linenos">103</span></a>        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;cancelled&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-</span><span id="Event-104"><a href="#Event-104"><span class="linenos">104</span></a>
-</span><span id="Event-105"><a href="#Event-105"><span class="linenos">105</span></a>    <span class="nd">@property</span>
-</span><span id="Event-106"><a href="#Event-106"><span class="linenos">106</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">is_hidden</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-</span><span id="Event-107"><a href="#Event-107"><span class="linenos">107</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Return whether the `Event` is hidden.&quot;&quot;&quot;</span>
-</span><span id="Event-108"><a href="#Event-108"><span class="linenos">108</span></a>        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;hidden&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-</span><span id="Event-109"><a href="#Event-109"><span class="linenos">109</span></a>
-</span><span id="Event-110"><a href="#Event-110"><span class="linenos">110</span></a>    <span class="nd">@classmethod</span>
-</span><span id="Event-111"><a href="#Event-111"><span class="linenos">111</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">dict_</span><span class="p">:</span> <span class="n">DictFromJSON</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
-</span><span id="Event-112"><a href="#Event-112"><span class="linenos">112</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Construct an `Event`.</span>
+</span><span id="Event-54"><a href="#Event-54"><span class="linenos"> 54</span></a><span class="sd">    &#39;AVAILABILITY&#39;: availability request.</span>
+</span><span id="Event-55"><a href="#Event-55"><span class="linenos"> 55</span></a><span class="sd">    &#39;EVENT&#39;: regular event.</span>
+</span><span id="Event-56"><a href="#Event-56"><span class="linenos"> 56</span></a><span class="sd">    &#39;RECURRING&#39;: instance of recurring event.&quot;&quot;&quot;</span>
+</span><span id="Event-57"><a href="#Event-57"><span class="linenos"> 57</span></a>    <span class="n">created_time</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">alias</span><span class="o">=</span><span class="s2">&quot;createdTime&quot;</span><span class="p">)</span>
+</span><span id="Event-58"><a href="#Event-58"><span class="linenos"> 58</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Derived from `createdTime` in Spond API.&quot;&quot;&quot;</span>
+</span><span id="Event-59"><a href="#Event-59"><span class="linenos"> 59</span></a>    <span class="n">end_time</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">alias</span><span class="o">=</span><span class="s2">&quot;endTimestamp&quot;</span><span class="p">)</span>
+</span><span id="Event-60"><a href="#Event-60"><span class="linenos"> 60</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Datetime at which the `Event` ends.</span>
+</span><span id="Event-61"><a href="#Event-61"><span class="linenos"> 61</span></a><span class="sd">    Derived from `endTimestamp` in Spond API.&quot;&quot;&quot;</span>
+</span><span id="Event-62"><a href="#Event-62"><span class="linenos"> 62</span></a>    <span class="n">start_time</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">alias</span><span class="o">=</span><span class="s2">&quot;startTimestamp&quot;</span><span class="p">)</span>
+</span><span id="Event-63"><a href="#Event-63"><span class="linenos"> 63</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Datetime at which the `Event` starts.</span>
+</span><span id="Event-64"><a href="#Event-64"><span class="linenos"> 64</span></a><span class="sd">    Derived from `startTimestamp` in Spond API.&quot;&quot;&quot;</span>
+</span><span id="Event-65"><a href="#Event-65"><span class="linenos"> 65</span></a>
+</span><span id="Event-66"><a href="#Event-66"><span class="linenos"> 66</span></a>    <span class="c1"># Optional in API data</span>
+</span><span id="Event-67"><a href="#Event-67"><span class="linenos"> 67</span></a>    <span class="n">cancelled</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</span><span id="Event-68"><a href="#Event-68"><span class="linenos"> 68</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Same name in Spond API. Not always present. Use `Event.is_cancelled` instead to</span>
+</span><span id="Event-69"><a href="#Event-69"><span class="linenos"> 69</span></a><span class="sd">    always return a `bool`.&quot;&quot;&quot;</span>
+</span><span id="Event-70"><a href="#Event-70"><span class="linenos"> 70</span></a>    <span class="n">hidden</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</span><span id="Event-71"><a href="#Event-71"><span class="linenos"> 71</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Same name in Spond API. Not always present. Use `Event.is_hidden` instead to</span>
+</span><span id="Event-72"><a href="#Event-72"><span class="linenos"> 72</span></a><span class="sd">    always return a `bool`.&quot;&quot;&quot;</span>
+</span><span id="Event-73"><a href="#Event-73"><span class="linenos"> 73</span></a>    <span class="n">invite_time</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">alias</span><span class="o">=</span><span class="s2">&quot;inviteTime&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</span><span id="Event-74"><a href="#Event-74"><span class="linenos"> 74</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Derived from `inviteTime` in Spond API.</span>
+</span><span id="Event-75"><a href="#Event-75"><span class="linenos"> 75</span></a><span class="sd">    Not always present.&quot;&quot;&quot;</span>
+</span><span id="Event-76"><a href="#Event-76"><span class="linenos"> 76</span></a>
+</span><span id="Event-77"><a href="#Event-77"><span class="linenos"> 77</span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span id="Event-78"><a href="#Event-78"><span class="linenos"> 78</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Return simple human-readable description.</span>
+</span><span id="Event-79"><a href="#Event-79"><span class="linenos"> 79</span></a>
+</span><span id="Event-80"><a href="#Event-80"><span class="linenos"> 80</span></a><span class="sd">        Includes only key fields in custom order.</span>
+</span><span id="Event-81"><a href="#Event-81"><span class="linenos"> 81</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="Event-82"><a href="#Event-82"><span class="linenos"> 82</span></a>        <span class="k">return</span> <span class="p">(</span>
+</span><span id="Event-83"><a href="#Event-83"><span class="linenos"> 83</span></a>            <span class="sa">f</span><span class="s2">&quot;Event(uid=&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">uid</span><span class="si">}</span><span class="s2">&#39;, &quot;</span>
+</span><span id="Event-84"><a href="#Event-84"><span class="linenos"> 84</span></a>            <span class="sa">f</span><span class="s2">&quot;heading=&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">heading</span><span class="si">}</span><span class="s2">&#39;, &quot;</span>
+</span><span id="Event-85"><a href="#Event-85"><span class="linenos"> 85</span></a>            <span class="sa">f</span><span class="s2">&quot;start_time: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">start_time</span><span class="si">}</span><span class="s2">, &quot;</span>
+</span><span id="Event-86"><a href="#Event-86"><span class="linenos"> 86</span></a>            <span class="s2">&quot;…)&quot;</span>
+</span><span id="Event-87"><a href="#Event-87"><span class="linenos"> 87</span></a>        <span class="p">)</span>
+</span><span id="Event-88"><a href="#Event-88"><span class="linenos"> 88</span></a>
+</span><span id="Event-89"><a href="#Event-89"><span class="linenos"> 89</span></a>    <span class="nd">@property</span>
+</span><span id="Event-90"><a href="#Event-90"><span class="linenos"> 90</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">url</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span id="Event-91"><a href="#Event-91"><span class="linenos"> 91</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the URL of the `Event`, for convenience.&quot;&quot;&quot;</span>
+</span><span id="Event-92"><a href="#Event-92"><span class="linenos"> 92</span></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;https://spond.com/client/sponds/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">uid</span><span class="si">}</span><span class="s2">/&quot;</span>
+</span><span id="Event-93"><a href="#Event-93"><span class="linenos"> 93</span></a>
+</span><span id="Event-94"><a href="#Event-94"><span class="linenos"> 94</span></a>    <span class="nd">@property</span>
+</span><span id="Event-95"><a href="#Event-95"><span class="linenos"> 95</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">is_cancelled</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span><span id="Event-96"><a href="#Event-96"><span class="linenos"> 96</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Return whether the `Event` is cancelled.&quot;&quot;&quot;</span>
+</span><span id="Event-97"><a href="#Event-97"><span class="linenos"> 97</span></a>        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;cancelled&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+</span><span id="Event-98"><a href="#Event-98"><span class="linenos"> 98</span></a>
+</span><span id="Event-99"><a href="#Event-99"><span class="linenos"> 99</span></a>    <span class="nd">@property</span>
+</span><span id="Event-100"><a href="#Event-100"><span class="linenos">100</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">is_hidden</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span><span id="Event-101"><a href="#Event-101"><span class="linenos">101</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Return whether the `Event` is hidden.&quot;&quot;&quot;</span>
+</span><span id="Event-102"><a href="#Event-102"><span class="linenos">102</span></a>        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;hidden&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+</span><span id="Event-103"><a href="#Event-103"><span class="linenos">103</span></a>
+</span><span id="Event-104"><a href="#Event-104"><span class="linenos">104</span></a>    <span class="nd">@classmethod</span>
+</span><span id="Event-105"><a href="#Event-105"><span class="linenos">105</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">dict_</span><span class="p">:</span> <span class="n">DictFromJSON</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+</span><span id="Event-106"><a href="#Event-106"><span class="linenos">106</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Construct an `Event`.</span>
+</span><span id="Event-107"><a href="#Event-107"><span class="linenos">107</span></a>
+</span><span id="Event-108"><a href="#Event-108"><span class="linenos">108</span></a><span class="sd">        Parameters</span>
+</span><span id="Event-109"><a href="#Event-109"><span class="linenos">109</span></a><span class="sd">        ----------</span>
+</span><span id="Event-110"><a href="#Event-110"><span class="linenos">110</span></a><span class="sd">        dict_</span>
+</span><span id="Event-111"><a href="#Event-111"><span class="linenos">111</span></a><span class="sd">            as returned by `spond.spond.Spond.get_event()`</span>
+</span><span id="Event-112"><a href="#Event-112"><span class="linenos">112</span></a><span class="sd">            or from the list returned by `spond.spond.Spond.get_events()`.</span>
 </span><span id="Event-113"><a href="#Event-113"><span class="linenos">113</span></a>
-</span><span id="Event-114"><a href="#Event-114"><span class="linenos">114</span></a><span class="sd">        Parameters</span>
-</span><span id="Event-115"><a href="#Event-115"><span class="linenos">115</span></a><span class="sd">        ----------</span>
-</span><span id="Event-116"><a href="#Event-116"><span class="linenos">116</span></a><span class="sd">        dict_</span>
-</span><span id="Event-117"><a href="#Event-117"><span class="linenos">117</span></a><span class="sd">            as returned by `spond.spond.Spond.get_event()`</span>
-</span><span id="Event-118"><a href="#Event-118"><span class="linenos">118</span></a><span class="sd">            or from the list returned by `spond.spond.Spond.get_events()`.</span>
-</span><span id="Event-119"><a href="#Event-119"><span class="linenos">119</span></a>
-</span><span id="Event-120"><a href="#Event-120"><span class="linenos">120</span></a><span class="sd">        Returns</span>
-</span><span id="Event-121"><a href="#Event-121"><span class="linenos">121</span></a><span class="sd">        -------</span>
-</span><span id="Event-122"><a href="#Event-122"><span class="linenos">122</span></a><span class="sd">        `Event`</span>
-</span><span id="Event-123"><a href="#Event-123"><span class="linenos">123</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="Event-124"><a href="#Event-124"><span class="linenos">124</span></a>        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">dict_</span><span class="p">)</span>
+</span><span id="Event-114"><a href="#Event-114"><span class="linenos">114</span></a><span class="sd">        Returns</span>
+</span><span id="Event-115"><a href="#Event-115"><span class="linenos">115</span></a><span class="sd">        -------</span>
+</span><span id="Event-116"><a href="#Event-116"><span class="linenos">116</span></a><span class="sd">        `Event`</span>
+</span><span id="Event-117"><a href="#Event-117"><span class="linenos">117</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="Event-118"><a href="#Event-118"><span class="linenos">118</span></a>        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">dict_</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -453,13 +448,17 @@ uses <code><a href="#Event.uid">uid</a></code>.</p>
                             </div>
                             <div id="Event.type" class="classattr">
                                 <div class="attr variable">
-            <span class="name">type</span><span class="annotation">: <a href="#EventType">EventType</a></span>
+            <span class="name">type</span><span class="annotation">: Literal[&#39;AVAILABILITY&#39;, &#39;EVENT&#39;, &#39;RECURRING&#39;]</span>
 
 
     </div>
     <a class="headerlink" href="#Event.type"></a>
 
             <div class="docstring"><p>Same name in Spond API.</p>
+
+<p>'AVAILABILITY': availability request.
+'EVENT': regular event.
+'RECURRING': instance of recurring event.</p>
 </div>
 
 
@@ -556,10 +555,10 @@ Not always present.</p>
 
     </div>
     <a class="headerlink" href="#Event.url"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Event.url-95"><a href="#Event.url-95"><span class="linenos">95</span></a>    <span class="nd">@property</span>
-</span><span id="Event.url-96"><a href="#Event.url-96"><span class="linenos">96</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">url</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-</span><span id="Event.url-97"><a href="#Event.url-97"><span class="linenos">97</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the URL of the `Event`, for convenience.&quot;&quot;&quot;</span>
-</span><span id="Event.url-98"><a href="#Event.url-98"><span class="linenos">98</span></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;https://spond.com/client/sponds/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">uid</span><span class="si">}</span><span class="s2">/&quot;</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Event.url-89"><a href="#Event.url-89"><span class="linenos">89</span></a>    <span class="nd">@property</span>
+</span><span id="Event.url-90"><a href="#Event.url-90"><span class="linenos">90</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">url</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span id="Event.url-91"><a href="#Event.url-91"><span class="linenos">91</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the URL of the `Event`, for convenience.&quot;&quot;&quot;</span>
+</span><span id="Event.url-92"><a href="#Event.url-92"><span class="linenos">92</span></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;https://spond.com/client/sponds/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">uid</span><span class="si">}</span><span class="s2">/&quot;</span>
 </span></pre></div>
 
 
@@ -577,10 +576,10 @@ Not always present.</p>
 
     </div>
     <a class="headerlink" href="#Event.is_cancelled"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Event.is_cancelled-100"><a href="#Event.is_cancelled-100"><span class="linenos">100</span></a>    <span class="nd">@property</span>
-</span><span id="Event.is_cancelled-101"><a href="#Event.is_cancelled-101"><span class="linenos">101</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">is_cancelled</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-</span><span id="Event.is_cancelled-102"><a href="#Event.is_cancelled-102"><span class="linenos">102</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Return whether the `Event` is cancelled.&quot;&quot;&quot;</span>
-</span><span id="Event.is_cancelled-103"><a href="#Event.is_cancelled-103"><span class="linenos">103</span></a>        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;cancelled&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Event.is_cancelled-94"><a href="#Event.is_cancelled-94"><span class="linenos">94</span></a>    <span class="nd">@property</span>
+</span><span id="Event.is_cancelled-95"><a href="#Event.is_cancelled-95"><span class="linenos">95</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">is_cancelled</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span><span id="Event.is_cancelled-96"><a href="#Event.is_cancelled-96"><span class="linenos">96</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Return whether the `Event` is cancelled.&quot;&quot;&quot;</span>
+</span><span id="Event.is_cancelled-97"><a href="#Event.is_cancelled-97"><span class="linenos">97</span></a>        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;cancelled&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -598,10 +597,10 @@ Not always present.</p>
 
     </div>
     <a class="headerlink" href="#Event.is_hidden"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Event.is_hidden-105"><a href="#Event.is_hidden-105"><span class="linenos">105</span></a>    <span class="nd">@property</span>
-</span><span id="Event.is_hidden-106"><a href="#Event.is_hidden-106"><span class="linenos">106</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">is_hidden</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-</span><span id="Event.is_hidden-107"><a href="#Event.is_hidden-107"><span class="linenos">107</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Return whether the `Event` is hidden.&quot;&quot;&quot;</span>
-</span><span id="Event.is_hidden-108"><a href="#Event.is_hidden-108"><span class="linenos">108</span></a>        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;hidden&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Event.is_hidden-99"><a href="#Event.is_hidden-99"><span class="linenos"> 99</span></a>    <span class="nd">@property</span>
+</span><span id="Event.is_hidden-100"><a href="#Event.is_hidden-100"><span class="linenos">100</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">is_hidden</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span><span id="Event.is_hidden-101"><a href="#Event.is_hidden-101"><span class="linenos">101</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Return whether the `Event` is hidden.&quot;&quot;&quot;</span>
+</span><span id="Event.is_hidden-102"><a href="#Event.is_hidden-102"><span class="linenos">102</span></a>        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;hidden&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -622,21 +621,21 @@ Not always present.</p>
 
     </div>
     <a class="headerlink" href="#Event.from_dict"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Event.from_dict-110"><a href="#Event.from_dict-110"><span class="linenos">110</span></a>    <span class="nd">@classmethod</span>
-</span><span id="Event.from_dict-111"><a href="#Event.from_dict-111"><span class="linenos">111</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">dict_</span><span class="p">:</span> <span class="n">DictFromJSON</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
-</span><span id="Event.from_dict-112"><a href="#Event.from_dict-112"><span class="linenos">112</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Construct an `Event`.</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Event.from_dict-104"><a href="#Event.from_dict-104"><span class="linenos">104</span></a>    <span class="nd">@classmethod</span>
+</span><span id="Event.from_dict-105"><a href="#Event.from_dict-105"><span class="linenos">105</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">dict_</span><span class="p">:</span> <span class="n">DictFromJSON</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+</span><span id="Event.from_dict-106"><a href="#Event.from_dict-106"><span class="linenos">106</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Construct an `Event`.</span>
+</span><span id="Event.from_dict-107"><a href="#Event.from_dict-107"><span class="linenos">107</span></a>
+</span><span id="Event.from_dict-108"><a href="#Event.from_dict-108"><span class="linenos">108</span></a><span class="sd">        Parameters</span>
+</span><span id="Event.from_dict-109"><a href="#Event.from_dict-109"><span class="linenos">109</span></a><span class="sd">        ----------</span>
+</span><span id="Event.from_dict-110"><a href="#Event.from_dict-110"><span class="linenos">110</span></a><span class="sd">        dict_</span>
+</span><span id="Event.from_dict-111"><a href="#Event.from_dict-111"><span class="linenos">111</span></a><span class="sd">            as returned by `spond.spond.Spond.get_event()`</span>
+</span><span id="Event.from_dict-112"><a href="#Event.from_dict-112"><span class="linenos">112</span></a><span class="sd">            or from the list returned by `spond.spond.Spond.get_events()`.</span>
 </span><span id="Event.from_dict-113"><a href="#Event.from_dict-113"><span class="linenos">113</span></a>
-</span><span id="Event.from_dict-114"><a href="#Event.from_dict-114"><span class="linenos">114</span></a><span class="sd">        Parameters</span>
-</span><span id="Event.from_dict-115"><a href="#Event.from_dict-115"><span class="linenos">115</span></a><span class="sd">        ----------</span>
-</span><span id="Event.from_dict-116"><a href="#Event.from_dict-116"><span class="linenos">116</span></a><span class="sd">        dict_</span>
-</span><span id="Event.from_dict-117"><a href="#Event.from_dict-117"><span class="linenos">117</span></a><span class="sd">            as returned by `spond.spond.Spond.get_event()`</span>
-</span><span id="Event.from_dict-118"><a href="#Event.from_dict-118"><span class="linenos">118</span></a><span class="sd">            or from the list returned by `spond.spond.Spond.get_events()`.</span>
-</span><span id="Event.from_dict-119"><a href="#Event.from_dict-119"><span class="linenos">119</span></a>
-</span><span id="Event.from_dict-120"><a href="#Event.from_dict-120"><span class="linenos">120</span></a><span class="sd">        Returns</span>
-</span><span id="Event.from_dict-121"><a href="#Event.from_dict-121"><span class="linenos">121</span></a><span class="sd">        -------</span>
-</span><span id="Event.from_dict-122"><a href="#Event.from_dict-122"><span class="linenos">122</span></a><span class="sd">        `Event`</span>
-</span><span id="Event.from_dict-123"><a href="#Event.from_dict-123"><span class="linenos">123</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="Event.from_dict-124"><a href="#Event.from_dict-124"><span class="linenos">124</span></a>        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">dict_</span><span class="p">)</span>
+</span><span id="Event.from_dict-114"><a href="#Event.from_dict-114"><span class="linenos">114</span></a><span class="sd">        Returns</span>
+</span><span id="Event.from_dict-115"><a href="#Event.from_dict-115"><span class="linenos">115</span></a><span class="sd">        -------</span>
+</span><span id="Event.from_dict-116"><a href="#Event.from_dict-116"><span class="linenos">116</span></a><span class="sd">        `Event`</span>
+</span><span id="Event.from_dict-117"><a href="#Event.from_dict-117"><span class="linenos">117</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="Event.from_dict-118"><a href="#Event.from_dict-118"><span class="linenos">118</span></a>        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">dict_</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -654,73 +653,6 @@ or from the list returned by <code>spond.spond.Spond.get_events()</code>.</li>
 <ul>
 <li><strong><code><a href="#Event">Event</a></code></strong></li>
 </ul>
-</div>
-
-
-                            </div>
-                </section>
-                <section id="EventType">
-                            <input id="EventType-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
-<div class="attr class">
-
-    <span class="def">class</span>
-    <span class="name">EventType</span><wbr>(<span class="base">enum.Enum</span>):
-
-                <label class="view-source-button" for="EventType-view-source"><span>View Source</span></label>
-
-    </div>
-    <a class="headerlink" href="#EventType"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="EventType-41"><a href="#EventType-41"><span class="linenos">41</span></a><span class="k">class</span><span class="w"> </span><span class="nc">EventType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
-</span><span id="EventType-42"><a href="#EventType-42"><span class="linenos">42</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents the kind of `Event`.&quot;&quot;&quot;</span>
-</span><span id="EventType-43"><a href="#EventType-43"><span class="linenos">43</span></a>
-</span><span id="EventType-44"><a href="#EventType-44"><span class="linenos">44</span></a>    <span class="n">AVAILABILITY</span> <span class="o">=</span> <span class="s2">&quot;AVAILABILITY&quot;</span>
-</span><span id="EventType-45"><a href="#EventType-45"><span class="linenos">45</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Availability request.&quot;&quot;&quot;</span>
-</span><span id="EventType-46"><a href="#EventType-46"><span class="linenos">46</span></a>    <span class="n">EVENT</span> <span class="o">=</span> <span class="s2">&quot;EVENT&quot;</span>
-</span><span id="EventType-47"><a href="#EventType-47"><span class="linenos">47</span></a>    <span class="n">RECURRING</span> <span class="o">=</span> <span class="s2">&quot;RECURRING&quot;</span>
-</span><span id="EventType-48"><a href="#EventType-48"><span class="linenos">48</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Instance of recurring event.&quot;&quot;&quot;</span>
-</span></pre></div>
-
-
-            <div class="docstring"><p>Represents the kind of <code><a href="#Event">Event</a></code>.</p>
-</div>
-
-
-                            <div id="EventType.AVAILABILITY" class="classattr">
-                                <div class="attr variable">
-            <span class="name">AVAILABILITY</span>        =
-<span class="default_value">&lt;<a href="#EventType.AVAILABILITY">EventType.AVAILABILITY</a>: &#39;AVAILABILITY&#39;&gt;</span>
-
-
-    </div>
-    <a class="headerlink" href="#EventType.AVAILABILITY"></a>
-
-            <div class="docstring"><p>Availability request.</p>
-</div>
-
-
-                            </div>
-                            <div id="EventType.EVENT" class="classattr">
-                                <div class="attr variable">
-            <span class="name">EVENT</span>        =
-<span class="default_value">&lt;<a href="#EventType.EVENT">EventType.EVENT</a>: &#39;EVENT&#39;&gt;</span>
-
-
-    </div>
-    <a class="headerlink" href="#EventType.EVENT"></a>
-
-
-
-                            </div>
-                            <div id="EventType.RECURRING" class="classattr">
-                                <div class="attr variable">
-            <span class="name">RECURRING</span>        =
-<span class="default_value">&lt;<a href="#EventType.RECURRING">EventType.RECURRING</a>: &#39;RECURRING&#39;&gt;</span>
-
-
-    </div>
-    <a class="headerlink" href="#EventType.RECURRING"></a>
-
-            <div class="docstring"><p>Instance of recurring event.</p>
 </div>
 
 
@@ -1943,5 +1875,186 @@ uses <code><a href="#Subgroup.uid">uid</a></code>.</p>
                             </div>
                 </section>
     </main>
-</body>
+<script>
+    function escapeHTML(html) {
+        return document.createElement('div').appendChild(document.createTextNode(html)).parentNode.innerHTML;
+    }
+
+    const originalContent = document.querySelector("main.pdoc");
+    let currentContent = originalContent;
+
+    function setContent(innerHTML) {
+        let elem;
+        if (innerHTML) {
+            elem = document.createElement("main");
+            elem.classList.add("pdoc");
+            elem.innerHTML = innerHTML;
+        } else {
+            elem = originalContent;
+        }
+        if (currentContent !== elem) {
+            currentContent.replaceWith(elem);
+            currentContent = elem;
+        }
+    }
+
+    function getSearchTerm() {
+        return (new URL(window.location)).searchParams.get("search");
+    }
+
+    const searchBox = document.querySelector(".pdoc input[type=search]");
+    searchBox.addEventListener("input", function () {
+        let url = new URL(window.location);
+        if (searchBox.value.trim()) {
+            url.hash = "";
+            url.searchParams.set("search", searchBox.value);
+        } else {
+            url.searchParams.delete("search");
+        }
+        history.replaceState("", "", url.toString());
+        onInput();
+    });
+    window.addEventListener("popstate", onInput);
+
+
+    let search, searchErr;
+
+    async function initialize() {
+        try {
+            search = await new Promise((resolve, reject) => {
+                const script = document.createElement("script");
+                script.type = "text/javascript";
+                script.async = true;
+                script.onload = () => resolve(window.pdocSearch);
+                script.onerror = (e) => reject(e);
+                script.src = "search.js";
+                document.getElementsByTagName("head")[0].appendChild(script);
+            });
+        } catch (e) {
+            console.error("Cannot fetch pdoc search index");
+            searchErr = "Cannot fetch search index.";
+        }
+        onInput();
+
+        document.querySelector("nav.pdoc").addEventListener("click", e => {
+            if (e.target.hash) {
+                searchBox.value = "";
+                searchBox.dispatchEvent(new Event("input"));
+            }
+        });
+    }
+
+    function onInput() {
+        setContent((() => {
+            const term = getSearchTerm();
+            if (!term) {
+                return null
+            }
+            if (searchErr) {
+                return `<h3>Error: ${searchErr}</h3>`
+            }
+            if (!search) {
+                return "<h3>Searching...</h3>"
+            }
+
+            window.scrollTo({top: 0, left: 0, behavior: 'auto'});
+
+            const results = search(term);
+
+            let html;
+            if (results.length === 0) {
+                html = `No search results for '${escapeHTML(term)}'.`
+            } else {
+                html = `<h4>${results.length} search result${results.length > 1 ? "s" : ""} for '${escapeHTML(term)}'.</h4>`;
+            }
+            for (let result of results.slice(0, 10)) {
+                let doc = result.doc;
+                let url = `${doc.modulename.replaceAll(".", "/")}.html`;
+                if (doc.qualname) {
+                    url += `#${doc.qualname}`;
+                }
+
+                let heading;
+                switch (result.doc.kind) {
+                    case "function":
+                        if (doc.fullname.endsWith(".__init__")) {
+                            heading = `<span class="name">${doc.fullname.replace(/\.__init__$/, "")}</span>${doc.signature}`;
+                        } else {
+                            heading = `<span class="def">${doc.funcdef}</span> <span class="name">${doc.fullname}</span>${doc.signature}`;
+                        }
+                        break;
+                    case "class":
+                        heading = `<span class="def">class</span> <span class="name">${doc.fullname}</span>`;
+                        if (doc.bases)
+                            heading += `<wbr>(<span class="base">${doc.bases}</span>)`;
+                        heading += `:`;
+                        break;
+                    case "variable":
+                        heading = `<span class="name">${doc.fullname}</span>`;
+                        if (doc.annotation)
+                            heading += `<span class="annotation">${doc.annotation}</span>`;
+                        if (doc.default_value)
+                            heading += `<span class="default_value"> = ${doc.default_value}</span>`;
+                        break;
+                    default:
+                        heading = `<span class="name">${doc.fullname}</span>`;
+                        break;
+                }
+                html += `
+                        <section class="search-result">
+                        <a href="${url}" class="attr ${doc.kind}">${heading}</a>
+                        <div class="docstring">${doc.doc}</div>
+                        </section>
+                    `;
+
+            }
+            return html;
+        })());
+    }
+
+    if (getSearchTerm()) {
+        initialize();
+        searchBox.value = getSearchTerm();
+        onInput();
+    } else {
+        searchBox.addEventListener("focus", initialize, {once: true});
+    }
+
+    searchBox.addEventListener("keydown", e => {
+        if (["ArrowDown", "ArrowUp", "Enter"].includes(e.key)) {
+            let focused = currentContent.querySelector(".search-result.focused");
+            if (!focused) {
+                currentContent.querySelector(".search-result").classList.add("focused");
+            } else if (
+                e.key === "ArrowDown"
+                && focused.nextElementSibling
+                && focused.nextElementSibling.classList.contains("search-result")
+            ) {
+                focused.classList.remove("focused");
+                focused.nextElementSibling.classList.add("focused");
+                focused.nextElementSibling.scrollIntoView({
+                    behavior: "smooth",
+                    block: "nearest",
+                    inline: "nearest"
+                });
+            } else if (
+                e.key === "ArrowUp"
+                && focused.previousElementSibling
+                && focused.previousElementSibling.classList.contains("search-result")
+            ) {
+                focused.classList.remove("focused");
+                focused.previousElementSibling.classList.add("focused");
+                focused.previousElementSibling.scrollIntoView({
+                    behavior: "smooth",
+                    block: "nearest",
+                    inline: "nearest"
+                });
+            } else if (
+                e.key === "Enter"
+            ) {
+                focused.querySelector("a").click();
+            }
+        }
+    });
+</script></body>
 </html>
