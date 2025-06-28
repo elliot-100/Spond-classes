@@ -19,6 +19,7 @@ These are the classes intended for direct user instantiation:
 
 # Explicitly import classes and functions into the package namespace to define the API.
 
+from . import typing
 from .event import Event, Responses
 from .group import Group
 from .member import Member
