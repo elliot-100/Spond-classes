@@ -17,10 +17,12 @@ Historic and pre-release versions aren't necessarily included.
 ### Changed
 
 - `Event.type` is Literal instead of Enum
+- CI: run with read permissions
+- Update dev dependencies
 
 ### Removed
 
-- `EventType`
+- `spond_classes.EventType`
 
 
 ## [0.15.0] - 2025-03-05
