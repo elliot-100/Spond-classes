@@ -16,6 +16,8 @@ Historic and pre-release versions aren't necessarily included.
 
 ### Changed
 
+- BREAKING CHANGES: `uid` is used consistently instead of `id`:
+  `Event.member|role|subgroup_by_id()` are now `Event.member|role|subgroup_by_uid()`  
 - `Event.type` is Literal instead of Enum
 - CI: run with read permissions
 - Update dev dependencies

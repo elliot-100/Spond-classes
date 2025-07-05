@@ -4,10 +4,14 @@
 
 [Spond](https://spond.com/welcome) is a team/group-oriented events system.
 
-The unofficial Python `spond` library package ([GitHub](https://github.com/Olen/Spond/), [PyPI](https://pypi.org/project/spond/))  gets
-data from the Spond API and returns `dict` objects.
+The unofficial Python `spond` library package ([GitHub](https://github.com/Olen/Spond/),
+[PyPI](https://pypi.org/project/spond/))  gets data from the Spond API and returns
+`dict` objects.
 
-This unofficial Python `spond-classes` library package ([GitHub](https://github.com/elliot-100/Spond-classes), [PyPI](https://pypi.org/project/spond-classes/)) parses those `dict`s using [Pydantic](https://docs.pydantic.dev/) to create class instances.
+This unofficial Python `spond-classes` library package
+([GitHub](https://github.com/elliot-100/Spond-classes), 
+[PyPI](https://pypi.org/project/spond-classes/)) parses those `dict`s using
+[Pydantic](https://docs.pydantic.dev/) to create class instances.
 
 Partial, read-only implementation.
 
@@ -22,8 +26,8 @@ Or if you're using Poetry:
 ```shell
 poetry add spond-classes
 ```
-Note that [`spond`](https://github.com/Olen/Spond/) is required for practical use, but not a technical dependency,
-so needs to be installed separately.
+Note that [`spond`](https://github.com/Olen/Spond/) is required for practical use, but
+is not a technical dependency, so needs to be installed separately.
 
 
 ## Example code
@@ -57,7 +61,7 @@ async def main():
         print(f"{member.full_name} is in the {group.name} group")
 
     # ... and use some helper methods
-    subgroup = group.subgroup_by_id(SUBGROUP_ID)
+    subgroup = group.subgroup_by_uid(SUBGROUP_ID)
     for member in group.members_by_subgroup(subgroup):
         print(f"{member.full_name} is in the {subgroup.name} subgroup")
 

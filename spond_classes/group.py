@@ -67,13 +67,12 @@ class Group(BaseModel):
         """
         return cls(**dict_)
 
-    def member_by_id(self, member_uid: str) -> Member:
-        """Return the `Member` with matching ID.
+    def member_by_uid(self, uid: str) -> Member:
+        """Return the `Member` with matching `uid`.
 
         Parameters
         ----------
-        member_uid
-            ID to look up.
+        uid
 
         Returns
         -------
@@ -85,18 +84,17 @@ class Group(BaseModel):
             If `uid` is not found.
         """
         for member in self.members:
-            if member.uid == member_uid:
+            if member.uid == uid:
                 return member
-        err_msg = f"No Member found with id='{member_uid}'."
+        err_msg = f"No Member found with id='{uid}'."
         raise LookupError(err_msg)
 
-    def role_by_id(self, role_uid: str) -> Role:
-        """Return the `Role` with matching ID.
+    def role_by_uid(self, uid: str) -> Role:
+        """Return the `Role` with matching `uid`.
 
         Parameters
         ----------
-        role_uid
-            ID to look up.
+        uid
 
         Returns
         -------
@@ -108,18 +106,17 @@ class Group(BaseModel):
             If `uid` is not found.
         """
         for role in self.roles:
-            if role.uid == role_uid:
+            if role.uid == uid:
                 return role
-        err_msg = f"No Role found with id='{role_uid}'."
+        err_msg = f"No Role found with id='{uid}'."
         raise LookupError(err_msg)
 
-    def subgroup_by_id(self, subgroup_uid: str) -> Subgroup:
-        """Return the `Subgroup` with matching ID.
+    def subgroup_by_uid(self, uid: str) -> Subgroup:
+        """Return the `Subgroup` with matching `uid`.
 
         Parameters
         ----------
-        subgroup_uid
-            ID to look up.
+        uid
 
         Returns
         -------
@@ -131,9 +128,9 @@ class Group(BaseModel):
             If `uid` is not found.
         """
         for subgroup in self.subgroups:
-            if subgroup.uid == subgroup_uid:
+            if subgroup.uid == uid:
                 return subgroup
-        err_msg = f"No Subgroup found with id='{subgroup_uid}'."
+        err_msg = f"No Subgroup found with id='{uid}'."
         raise LookupError(err_msg)
 
     def members_by_subgroup(self, subgroup: Subgroup) -> list[Member]:
