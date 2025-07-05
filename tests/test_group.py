@@ -112,7 +112,7 @@ def test_member_by_uid__unmatched_uid_raises_lookup_error(
     my_group = Group.from_dict(complex_group_data)
     # assert
     with pytest.raises(LookupError):
-        my_member = my_group.member_by_uid("DUMMY_ID")  # act
+        my_group.member_by_uid("DUMMY_ID")  # act
 
 
 def test_member_by_uid__no_members_raises_lookup_error(
@@ -124,7 +124,7 @@ def test_member_by_uid__no_members_raises_lookup_error(
     # assert
     assert my_group.members == []
     with pytest.raises(LookupError):
-        my_member = my_group.member_by_uid("DUMMY_ID")  # act
+        my_group.member_by_uid("DUMMY_ID")  # act
 
 
 def test_role_by_uid__happy_path(complex_group_data: DictFromJSON) -> None:
@@ -145,7 +145,7 @@ def test_role_by_uid__unmatched_uid_raises_lookup_error(
     my_group = Group.from_dict(complex_group_data)
     # assert
     with pytest.raises(LookupError):
-        my_role = my_group.role_by_uid("DUMMY_ID")  # act
+        my_group.role_by_uid("DUMMY_ID")  # act
 
 
 def test_role_by_uid__no_roles_raises_lookup_error(
@@ -157,7 +157,7 @@ def test_role_by_uid__no_roles_raises_lookup_error(
     # assert
     assert my_group.roles == []
     with pytest.raises(LookupError):
-        my_role = my_group.role_by_uid("DUMMY_ID")  # act
+        my_group.role_by_uid("DUMMY_ID")  # act
 
 
 def test_subgroup_by_uid__happy_path(complex_group_data: DictFromJSON) -> None:
@@ -180,7 +180,7 @@ def test_subgroup_by_uid__unmatched_uid_raises_lookup_error(
     my_group = Group.from_dict(complex_group_data)
     # assert
     with pytest.raises(LookupError):
-        my_subgroup = my_group.subgroup_by_uid("DUMMY_ID")  # act
+        my_group.subgroup_by_uid("DUMMY_ID")  # act
 
 
 def test_subgroup_by_uid__no_subgroups_raises_lookup_error(
@@ -192,7 +192,7 @@ def test_subgroup_by_uid__no_subgroups_raises_lookup_error(
     # assert
     assert my_group.subgroups == []
     with pytest.raises(LookupError):
-        my_subgroup = my_group.subgroup_by_uid("DUMMY_ID")  # act
+        my_group.subgroup_by_uid("DUMMY_ID")  # act
 
 
 def test_members_by_subgroup__happy_path(complex_group_data: DictFromJSON) -> None:
@@ -216,7 +216,7 @@ def test_members_by_subgroup__not_subgroup_raises_type_error(
     # assert
     with pytest.raises(TypeError):
         # Ignore Mypy error - test purposely passes incompatible type
-        my_subgroup_members = my_group.members_by_subgroup(
+        my_group.members_by_subgroup(
             role_not_subgroup  # type: ignore[arg-type]
         )
 
@@ -242,6 +242,6 @@ def test_members_by_role__not_role_raises_type_error(
     # act
     with pytest.raises(TypeError):
         # Ignore Mypy error - test purposely passes incompatible type
-        my_role_members = my_group.members_by_role(
+        my_group.members_by_role(
             subgroup_not_role  # type: ignore[arg-type]
         )
