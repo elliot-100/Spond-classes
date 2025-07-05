@@ -12,9 +12,12 @@ Historic and pre-release versions aren't necessarily included.
 
 ### Changed
 
+- Tests: minor improvements
 - CI/CD:
   - Add Python 3.14 to matrix
   - Only publish documentation site on release
+  - Update dependencies
+- Update dev dependencies
 
 
 ## [0.16.0] - 2025-07-05
@@ -258,6 +261,7 @@ Historic and pre-release versions aren't necessarily included.
 - Update dev/test dependencies: ruff
 
 
+[0.16.0]: https://github.com/elliot-100/Spond-classes/compare/v0.15.0...v0.16.0
 [0.15.0]: https://github.com/elliot-100/Spond-classes/compare/v0.14.0...v0.15.0
 [0.14.0]: https://github.com/elliot-100/Spond-classes/compare/v0.13.1...v0.14.0
 [0.13.1]: https://github.com/elliot-100/Spond-classes/compare/v0.13.0...v0.13.1
