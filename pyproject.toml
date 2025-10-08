@@ -49,7 +49,6 @@ ignore = [
 # Rules that aren't relevant in tests:
 "**/{tests}/*" = [
     "S101",  # Use of assert detected
-    "F841",  # Local variable is assigned to but never used (triggered by testing raises)
 ]
 "spond_classes/__init__.py" = [
     "D400",  # First line should end with a period

@@ -72,9 +72,9 @@ def test_from_dict_simple(simple_event_data: DictFromJSON) -> None:
     assert my_event.responses.waiting_list_uids == []
     assert my_event.responses.unconfirmed_uids == []
     assert my_event.type == "EVENT"
-    assert my_event.created_time == datetime(2020, 12, 31, 19, 0, tzinfo=timezone.utc)
-    assert my_event.end_time == datetime(2024, 8, 15, 11, 0, tzinfo=timezone.utc)
-    assert my_event.start_time == datetime(2021, 7, 6, 6, 0, tzinfo=timezone.utc)
+    assert my_event.created_time == datetime(2020, 12, 31, 19, tzinfo=timezone.utc)
+    assert my_event.end_time == datetime(2024, 8, 15, 11, tzinfo=timezone.utc)
+    assert my_event.start_time == datetime(2021, 7, 6, 6, tzinfo=timezone.utc)
     # - optional:
     assert my_event.cancelled is None
     assert my_event.hidden is None
@@ -101,7 +101,7 @@ def test_from_dict_additional_fields(complex_event_data: DictFromJSON) -> None:
     # - optional:
     assert my_event.cancelled is True
     assert my_event.hidden is True
-    assert my_event.invite_time == datetime(2021, 1, 4, 6, 0, tzinfo=timezone.utc)
+    assert my_event.invite_time == datetime(2021, 1, 4, 6, tzinfo=timezone.utc)
     # - properties:
     assert my_event.is_cancelled is True
     assert my_event.is_hidden is True
