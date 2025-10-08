@@ -27,7 +27,7 @@ jobs:
         run: poetry install --no-root
       - name: Generate HTML docs with pdoc
         run: poetry run pdoc spond_classes -o docs -d numpy -t docs_templates
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v4
         with:
           path: docs/
 
