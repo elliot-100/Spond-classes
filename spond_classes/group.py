@@ -1,4 +1,4 @@
-"""Module containing `Group` class."""
+"""Module containing `Group` class and related `FieldDef` class."""
 
 import sys
 
@@ -13,6 +13,15 @@ from .member import Member
 from .role import Role
 from .subgroup import Subgroup
 from .typing import DictFromJSON
+
+
+class FieldDef(BaseModel):
+    """Custom field definition."""
+
+    uid: str = Field(alias="id")
+    """`id` in Spond API; aliased as that's a Python built-in, and the Spond package
+    uses `uid`."""
+    name: str
 
 
 class Group(BaseModel):
@@ -30,7 +39,7 @@ class Group(BaseModel):
     name: str
     """Same name in Spond API."""
 
-    # Lists which always exist in Spond API data, but may be empty
+    # Mutables which always exist in Spond API data, but may be empty
     members: list[Member]
     """`Member`s belonging to the `Group`.
     Derived from `members` in Spond API.
@@ -42,6 +51,10 @@ class Group(BaseModel):
     subgroups: list[Subgroup] = Field(alias="subGroups")
     """`Subgroup`s belonging to the `Group`.
     Derived from `subGroups` in Spond API.
+    May be empty."""
+    field_defs: list[FieldDef] = Field(alias="fieldDefs")
+    """Custom field definitions.
+    Derived from `fieldDefs` in Spond API.
     May be empty."""
 
     def __str__(self) -> str:

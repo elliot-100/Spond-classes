@@ -20,6 +20,7 @@ def simple_member_data() -> DictFromJSON:
         "lastName": "Gleason",
         "subGroups": [],
         "createdTime": "2022-03-24T16:36:29Z",
+        "fields": {},
     }
 
 
@@ -51,6 +52,10 @@ def complex_member_data() -> DictFromJSON:
         "subGroups": [
             "M2S2",
         ],
+        "fields": {
+            "F1": "V1",
+            "F2": 2,
+        },
     }
 
 
@@ -68,6 +73,7 @@ def test_from_dict_simple(simple_member_data: DictFromJSON) -> None:
     assert my_member.last_name == "Gleason"
     # - optionally populated:
     assert my_member.subgroup_uids == []
+    assert my_member.fields == {}
     # - optional:
     assert my_member.email is None
     assert my_member.phone_number is None
@@ -92,6 +98,7 @@ def test_from_dict_full(complex_member_data: DictFromJSON) -> None:
     assert my_member.last_name == "Hinds"
     # - optionally populated:
     assert my_member.subgroup_uids[0] == "M2S2"
+    assert my_member.fields == {"F1": "V1", "F2": 2}
     # - optional:
     assert my_member.email == "ciarán@example.com"
     assert my_member.phone_number == "+123456789"
