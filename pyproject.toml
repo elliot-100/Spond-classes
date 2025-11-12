@@ -54,6 +54,9 @@ ignore = [
     "D400",  # First line should end with a period
     "RUF022", # `__all__` is not sorted
 ]
+"spond_classes/typing.py" = [
+    "ANN401"  #  Dynamically typed expressions (typing.Any)
+]
 
 [tool.ruff.lint.pydocstyle]
 convention = "numpy"

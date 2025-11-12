@@ -85,6 +85,16 @@ def test_from_dict_simple(simple_group_data: DictFromJSON) -> None:
     assert str(my_group) == "Group(uid='G1', name='Group One', …)"
 
 
+def test_from_dict__not_dict_raises_type_error() -> None:
+    """Test that TypeError is raised if arg is not a `dict`."""
+    # arrange
+    list_not_dict: list[str] = ["Group One", "Group Two"]
+    # assert
+    with pytest.raises(TypeError):
+        # Ignore Mypy error - test purposely passes incompatible type
+        Group.from_dict(list_not_dict)  # type: ignore[arg-type]
+
+
 def test_from_dict_with_member_role_subgroup(complex_group_data: DictFromJSON) -> None:
     """Test that subordinate Member, Role, Subgroup are created from dict."""
     # arrange

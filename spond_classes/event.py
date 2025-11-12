@@ -113,5 +113,14 @@ class Event(BaseModel):
         Returns
         -------
         `Event`
+
+        Raises
+        ------
+        `TypeError`
+            if `dict_` is not a dictionary.
         """
+        if not isinstance(dict_, dict):
+            err_msg = f"Expected `dict`, got `{dict_.__class__.__name__}`: '{dict_}'"
+            raise TypeError(err_msg)
+
         return cls(**dict_)
