@@ -8,6 +8,17 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 Historic and pre-release versions aren't necessarily included.
 
 
+## [UNRELEASED] - TBC
+
+### Added
+
+- add: `Member.fields`; basic support for `Group.field_defs`
+
+### Changed
+
+- Update dev/test dependencies
+
+
 ## [0.16.1] - 2025-10-08
 
 ### Changed

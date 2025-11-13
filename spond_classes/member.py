@@ -25,9 +25,12 @@ class Member(BaseModel):
     last_name: str = Field(alias="lastName")
     """`lastName` in Spond API."""
 
-    # Lists which always exist in Spond API data, but may be empty
+    # Mutables which always exist in Spond API data, but may be empty
     subgroup_uids: list[str] = Field(alias="subGroups")
     """`subGroups` in Spond API; aliased to avoid confusion with `Subgroup` instances.
+    May be empty."""
+    fields: dict[str, int | str] = Field(alias="fields")
+    """Custom fields. Same name in Spond API.
     May be empty."""
 
     # Optional in Spond API data

@@ -18,6 +18,7 @@ def simple_group_data() -> DictFromJSON:
         "members": [],  # assumed always exists, may be empty
         "roles": [],  # assumed always exists, may be empty
         "subGroups": [],  # assumed always exists, may be empty
+        "fieldDefs": [],  # assumed always exists, may be empty
     }
 
 
@@ -51,6 +52,7 @@ def complex_group_data() -> DictFromJSON:
                 },
                 "roles": ["G2R1"],
                 "subGroups": ["G2S1"],
+                "fields": {},
             },
         ],
         "roles": [
@@ -65,6 +67,7 @@ def complex_group_data() -> DictFromJSON:
                 "name": "Subgroup B1",
             },
         ],
+        "fieldDefs": [],
     }
 
 
