@@ -77,7 +77,16 @@ class Group(BaseModel):
         Returns
         -------
         `Group`
+
+        Raises
+        ------
+        `TypeError`
+            if `dict_` is not a dictionary.
         """
+        if not isinstance(dict_, dict):
+            err_msg = f"Expected `dict`, got `{dict_.__class__.__name__}`: '{dict}'"
+            raise TypeError(err_msg)
+
         return cls(**dict_)
 
     def member_by_uid(self, uid: str) -> Member:

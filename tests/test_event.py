@@ -86,6 +86,16 @@ def test_from_dict_simple(simple_event_data: DictFromJSON) -> None:
     assert my_event.url == "https://spond.com/client/sponds/E1/"
 
 
+def test_from_dict__not_dict_raises_type_error() -> None:
+    """Test that TypeError is raised if arg is not a `dict`."""
+    # arrange
+    list_not_dict: list[str] = ["Event One", "Event Two"]
+    # assert
+    with pytest.raises(TypeError):
+        # Ignore Mypy error - test purposely passes incompatible type
+        Event.from_dict(list_not_dict)  # type: ignore[arg-type]
+
+
 def test_from_dict_additional_fields(complex_event_data: DictFromJSON) -> None:
     """Test that Event can be created with additional supported data."""
     # arrange

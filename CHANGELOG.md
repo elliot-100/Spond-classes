@@ -12,7 +12,8 @@ Historic and pre-release versions aren't necessarily included.
 
 ### Added
 
-- add: `Member.fields`; basic support for `Group.field_defs`
+- `Member.fields`; basic support for `Group.field_defs`
+- Raise TypeError if a non-dict is passed to `Event|Group.from_dict()`
 
 ### Changed
 
