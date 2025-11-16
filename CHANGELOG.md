@@ -8,6 +8,14 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 Historic and pre-release versions aren't necessarily included.
 
 
+## [UNRELEASED] - tbc
+
+### Fixed
+
+- `FieldDef` was missing from public API and therefore documentation
+- Documentation included in source distriution was outdated 
+
+
 ## [0.17.0] - 2025-11-16
 
 ### Added

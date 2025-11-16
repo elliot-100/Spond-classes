@@ -21,7 +21,7 @@ These are the classes intended for direct user instantiation:
 
 from . import typing
 from .event import Event, Responses
-from .group import Group
+from .group import FieldDef, Group
 from .member import Member
 from .profile_ import Profile
 from .role import Role
@@ -30,6 +30,7 @@ from .subgroup import Subgroup
 __all__ = [
     "Event",
     "Responses",
+    "FieldDef",
     "Group",
     "Member",
     "Profile",
