@@ -17,7 +17,7 @@ pydantic = {extras = ["email"], version = ">=2.7.1"}
 
 [tool.poetry.group.dev.dependencies]
 pdoc = "16.0.0"
-pre-commit = "4.4.0"
+pre-commit = "4.5.0"
 ruff = "0.14.4"
 
 [tool.poetry.group.test.dependencies]
