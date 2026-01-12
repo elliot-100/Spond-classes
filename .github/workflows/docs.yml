@@ -1,32 +1,29 @@
+# Build documentation website on publishing a release
 name: website
 
-# build the documentation on publishing a release
 on:
   release:
     types: [published]
 
-# security: restrict permissions for CI jobs.
 permissions:
   contents: read
 
 jobs:
   # Build the documentation and upload the static HTML files as an artifact.
   build:
+
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-python@v6
+      - uses: actions/checkout@v6
+
+      - name: Install uv and set Python version
+        uses: astral-sh/setup-uv@v7
         with:
-          python-version: '3.13'
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
-        with:
-          virtualenvs-create: true
-          virtualenvs-in-project: true
-      - name: Install project
-        run: poetry install --no-root
+          python-version: '3.14'
+
       - name: Generate HTML docs with pdoc
-        run: poetry run pdoc spond_classes -o docs -d numpy -t docs_templates
+        run: uv run pdoc spond_classes -o docs -d numpy -t docs_templates
       - uses: actions/upload-pages-artifact@v4
         with:
           path: docs/

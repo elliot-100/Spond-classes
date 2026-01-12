@@ -1,28 +1,50 @@
-[tool.poetry]
-package-mode = true
+[project]
 name = "spond-classes"
 version = "0.17.1"
+dependencies = [
+    "pydantic[email]>=2.7.1",
+    "ty>=0.0.11",
+]
+requires-python = ">=3.10"
+authors = [
+    { name = "elliot-100", email = "3186037+elliot-100@users.noreply.github.com" }
+]
 description = "Unofficial class abstraction layer for the `spond` library package."
-license = "GPL-3.0-only"
-authors = ["elliot-100 <3186037+elliot-100@users.noreply.github.com>"]
 readme = "README.md"
-repository = "https://github.com/elliot-100/Spond-classes"
-documentation = "https://elliot-100.github.io/Spond-classes/"
-packages = [{include = "spond_classes"}]
-include = ["CHANGELOG.md"]
+license = "GPL-3.0-only"
+license-files = ["LICENSE"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Typing :: Typed",
+]
 
-[tool.poetry.dependencies]
-python = ">=3.10,<4"  # markdown2 (from pdoc) requires <4
-pydantic = {extras = ["email"], version = ">=2.7.1"}
+[project.urls]
+Documentation = "https://elliot-100.github.io/Spond-classes/"
+Repository = "https://github.com/elliot-100/Spond-classes/"
+Issues = "https://github.com/elliot-100/Spond-classes/issues/"
+Changelog = "https://github.com/elliot-100/Spond-classes/blob/main/CHANGELOG.md"
 
-[tool.poetry.group.dev.dependencies]
-pdoc = "16.0.0"
-pre-commit = "4.4.0"
-ruff = "0.14.4"
+[build-system]
+requires = ["uv_build>=0.9.24,<0.10.0"]
+build-backend = "uv_build"
 
-[tool.poetry.group.test.dependencies]
-mypy = "1.18.2"
-pytest = "9.0.0"
+[dependency-groups]
+dev = [
+    "mypy>=1.19.1",
+    "pdoc>=16.0.0",
+    "pre-commit>=4.5.1",
+    "pytest>=9.0.2",
+    "ruff>=0.14.11",
+]
 
 [tool.mypy]
 plugins = ["pydantic.mypy"]
@@ -31,9 +53,6 @@ warn_unused_configs = true
 strict = true
 disallow_any_unimported = true  # Disallow Any types resulting from unfollowed imports
 no_implicit_optional = true  # Don't assume arguments with default values of None are Optional
-
-[tool.ruff]
-target-version = "py310"  # Ruff doesn't respect Python dependency in [tool.poetry.dependencies]
 
 [tool.ruff.lint]
 select = ["ALL"]
@@ -50,17 +69,13 @@ ignore = [
 "**/{tests}/*" = [
     "S101",  # Use of assert detected
 ]
-"spond_classes/__init__.py" = [
+"src/spond_classes/__init__.py" = [
     "D400",  # First line should end with a period
     "RUF022", # `__all__` is not sorted
 ]
-"spond_classes/typing.py" = [
+"src/spond_classes/typing.py" = [
     "ANN401"  #  Dynamically typed expressions (typing.Any)
 ]
 
 [tool.ruff.lint.pydocstyle]
 convention = "numpy"
-
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
