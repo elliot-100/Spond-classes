@@ -79,5 +79,5 @@ is also included as HTML in the package source `docs` folder.
 
 Build documentation:
 ```shell
-pdoc spond_classes -d numpy -t docs_templates -o docs
+uv run pdoc src/spond_classes -d numpy -t docs_templates -o docs
 ```
