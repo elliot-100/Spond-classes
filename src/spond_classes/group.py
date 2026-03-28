@@ -1,19 +1,27 @@
 """Module containing `Group` class and related `FieldDef` class."""
 
+from __future__ import annotations
+
 import sys
-from collections.abc import Iterable
 
 if sys.version_info < (3, 11):
     from typing_extensions import Self
 else:
     from typing import Self
 
+from typing import TYPE_CHECKING
+
 from pydantic import BaseModel, Field
 
 from .member import Member
 from .role import Role
 from .subgroup import Subgroup
-from .typing import DictFromJSON, _ensure_dict
+from .typing import _ensure_dict
+
+if TYPE_CHECKING:
+    from collections.abc import Iterable
+
+    from .typing import DictFromJSON
 
 
 class FieldDef(BaseModel):

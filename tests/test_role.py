@@ -1,9 +1,15 @@
 """Tests for Role class."""
 
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 import pytest
 
 from spond_classes import Role
-from spond_classes.typing import DictFromJSON
+
+if TYPE_CHECKING:
+    from spond_classes.typing import DictFromJSON
 
 
 @pytest.fixture

@@ -1,7 +1,8 @@
 """Module containing `Event` class and related `EventType`,`Responses` classes."""
 
+from __future__ import annotations
+
 import sys
-from collections.abc import Iterable
 
 if sys.version_info < (3, 11):
     from typing_extensions import Self
@@ -10,11 +11,16 @@ else:
     from typing import Self
 
 from datetime import datetime
-from typing import Literal
+from typing import TYPE_CHECKING, Literal
 
 from pydantic import BaseModel, Field
 
-from .typing import DictFromJSON, _ensure_dict
+from .typing import _ensure_dict
+
+if TYPE_CHECKING:
+    from collections.abc import Iterable
+
+    from .typing import DictFromJSON
 
 
 class Responses(BaseModel):

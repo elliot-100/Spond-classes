@@ -1,12 +1,18 @@
 """Tests for Event class."""
 
-from collections.abc import Sequence
+from __future__ import annotations
+
 from datetime import datetime, timezone
+from typing import TYPE_CHECKING
 
 import pytest
 
 from spond_classes import Event
-from spond_classes.typing import DictFromJSON
+
+if TYPE_CHECKING:
+    from collections.abc import Sequence
+
+    from spond_classes.typing import DictFromJSON
 
 
 @pytest.fixture
