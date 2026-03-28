@@ -86,7 +86,7 @@ class Event(BaseModel):
         Includes only key fields in custom order.
         """
         return (
-            f"Event(uid='{self.uid}', "
+            f"{self.__class__.__name__}(uid='{self.uid}', "
             f"heading='{self.heading}', "
             f"start_time: {self.start_time}, "
             "…)"
