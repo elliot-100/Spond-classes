@@ -1,6 +1,7 @@
 """Module containing `Group` class and related `FieldDef` class."""
 
 import sys
+from collections.abc import Iterable
 
 if sys.version_info < (3, 11):
     from typing_extensions import Self
@@ -12,7 +13,7 @@ from pydantic import BaseModel, Field
 from .member import Member
 from .role import Role
 from .subgroup import Subgroup
-from .typing import DictFromJSON
+from .typing import DictFromJSON, _ensure_dict
 
 
 class FieldDef(BaseModel):
@@ -65,6 +66,26 @@ class Group(BaseModel):
         return f"Group(uid='{self.uid}', name='{self.name}', …)"
 
     @classmethod
+    def list_from_data(cls, data: Iterable[DictFromJSON]) -> list[Self]:
+        """Construct a list of `Group`s from the list returned by `Spond.get_groups()`.
+
+        Parameters
+        ----------
+        data
+            as returned by `spond.spond.Spond.get_groups()`.
+
+        Returns
+        -------
+        `list[Group]`
+
+        Raises
+        ------
+        `TypeError`
+            if an item in `data` is not a `dict`.
+        """
+        return [cls.from_dict(item) for item in data]
+
+    @classmethod
     def from_dict(cls, dict_: DictFromJSON) -> Self:
         """Construct a `Group`.
 
@@ -81,12 +102,9 @@ class Group(BaseModel):
         Raises
         ------
         `TypeError`
-            if `dict_` is not a dictionary.
+            if `dict_` is not a `dict`.
         """
-        if not isinstance(dict_, dict):
-            err_msg = f"Expected `dict`, got `{dict_.__class__.__name__}`: '{dict}'"
-            raise TypeError(err_msg)
-
+        _ensure_dict(dict_)
         return cls(**dict_)
 
     def member_by_uid(self, uid: str) -> Member:

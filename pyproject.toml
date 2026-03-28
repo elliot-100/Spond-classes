@@ -42,7 +42,7 @@ dev = [
     "pdoc>=16.0.0",
     "pre-commit>=4.5.1",
     "pytest>=9.0.2",
-    "ruff>=0.14.11",
+    "ruff>=0.15.8",
 ]
 
 [tool.mypy]
@@ -58,7 +58,6 @@ select = ["ALL"]
 ignore = [
     # Rules that conflict with Ruff formatter:
     "COM812",  # Trailing comma missing
-    "ISC001",  # Implicitly concatenated string literals on one line
     # Other rules:
     "D205",  # 1 blank line required between summary line and description
 ]
