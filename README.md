@@ -8,7 +8,7 @@ The unofficial Python `spond` library package ([GitHub](https://github.com/Olen/
 [PyPI](https://pypi.org/project/spond/))  returns data from the Spond API.
 
 This unofficial Python `spond-classes` library package
-([GitHub](https://github.com/elliot-100/Spond-classes), 
+([GitHub](https://github.com/elliot-100/Spond-classes),
 [PyPI](https://pypi.org/project/spond-classes/)) parses that data using
 [Pydantic](https://docs.pydantic.dev/) to create class instances.
 
@@ -21,10 +21,7 @@ Install from PyPI, e.g:
 ```shell
 pip install spond-classes
 ```
-Or if you're using Poetry:
-```shell
-poetry add spond-classes
-```
+
 Note that [`spond`](https://github.com/Olen/Spond/) is required for practical use, but
 is not a technical dependency, so needs to be installed separately.
 

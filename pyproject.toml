@@ -1,6 +1,6 @@
 [project]
 name = "spond-classes"
-version = "0.17.1"
+version = "0.18.0-a0"
 dependencies = [
     "pydantic[email]>=2.7.1",
 ]

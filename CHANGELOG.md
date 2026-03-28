@@ -8,11 +8,14 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 Historic and pre-release versions aren't necessarily included.
 
 
-## UNRELEASED - tbc
+## [0.18.0-a0] - 2026-03-28
+
+### Added
+
+- `Event.list_from_data()`, `Group.list_from_data()`
 
 ### Changed
 
-- `Event.list_from_data()`, `Group.list_from_data()`
 - Migrate management from Poetry to uv
 
 
@@ -21,7 +24,7 @@ Historic and pre-release versions aren't necessarily included.
 ### Fixed
 
 - `FieldDef` was missing from public API and therefore documentation
-- Documentation included in source distribution was outdated 
+- Documentation included in source distribution was outdated
 
 
 ## [0.17.0] - 2025-11-16
@@ -57,7 +60,7 @@ Historic and pre-release versions aren't necessarily included.
 ### Changed
 
 - BREAKING CHANGES: `uid` is used consistently instead of `id`:
-  `Event.member|role|subgroup_by_id()` are now `Event.member|role|subgroup_by_uid()`  
+  `Event.member|role|subgroup_by_id()` are now `Event.member|role|subgroup_by_uid()`
 - `Event.type` is Literal instead of Enum
 - CI: run with read permissions
 - Update dev dependencies
@@ -289,6 +292,7 @@ Historic and pre-release versions aren't necessarily included.
 - Update dev/test dependencies: ruff
 
 
+[0.18.0-a0]: https://github.com/elliot-100/Spond-classes/compare/v0.17.1...v0.18.0-a0
 [0.17.1]: https://github.com/elliot-100/Spond-classes/compare/v0.17.0...v0.17.1
 [0.17.0]: https://github.com/elliot-100/Spond-classes/compare/v0.16.1...v0.17.0
 [0.16.1]: https://github.com/elliot-100/Spond-classes/compare/v0.16.0...v0.16.1
