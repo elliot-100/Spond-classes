@@ -1,9 +1,15 @@
 """Tests for Subgroup class."""
 
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 import pytest
 
 from spond_classes import Subgroup
-from spond_classes.typing import DictFromJSON
+
+if TYPE_CHECKING:
+    from spond_classes.typing import DictFromJSON
 
 
 @pytest.fixture

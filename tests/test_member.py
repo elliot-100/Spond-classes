@@ -1,11 +1,16 @@
 """Tests for Member class."""
 
+from __future__ import annotations
+
 from datetime import datetime, timezone
+from typing import TYPE_CHECKING
 
 import pytest
 
 from spond_classes import Member
-from spond_classes.typing import DictFromJSON
+
+if TYPE_CHECKING:
+    from spond_classes.typing import DictFromJSON
 
 
 @pytest.fixture

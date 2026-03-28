@@ -1,11 +1,17 @@
 """Tests for Group class."""
 
-from collections.abc import Sequence
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
 
 import pytest
 
 from spond_classes import Group
-from spond_classes.typing import DictFromJSON
+
+if TYPE_CHECKING:
+    from collections.abc import Sequence
+
+    from spond_classes.typing import DictFromJSON
 
 
 @pytest.fixture
