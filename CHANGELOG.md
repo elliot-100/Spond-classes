@@ -12,6 +12,7 @@ Historic and pre-release versions aren't necessarily included.
 
 ### Changed
 
+- `Event.list_from_data()`, `Group.list_from_data()`
 - Migrate management from Poetry to uv
 
 
@@ -20,7 +21,7 @@ Historic and pre-release versions aren't necessarily included.
 ### Fixed
 
 - `FieldDef` was missing from public API and therefore documentation
-- Documentation included in source distriution was outdated 
+- Documentation included in source distribution was outdated 
 
 
 ## [0.17.0] - 2025-11-16

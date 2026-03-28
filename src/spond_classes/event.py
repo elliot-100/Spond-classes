@@ -1,6 +1,7 @@
 """Module containing `Event` class and related `EventType`,`Responses` classes."""
 
 import sys
+from collections.abc import Iterable
 
 if sys.version_info < (3, 11):
     from typing_extensions import Self
@@ -13,7 +14,7 @@ from typing import Literal
 
 from pydantic import BaseModel, Field
 
-from .typing import DictFromJSON
+from .typing import DictFromJSON, _ensure_dict
 
 
 class Responses(BaseModel):
@@ -101,6 +102,26 @@ class Event(BaseModel):
         return getattr(self, "hidden", False)
 
     @classmethod
+    def list_from_data(cls, data: Iterable[DictFromJSON]) -> list[Self]:
+        """Construct a list of `Event`s from the list returned by `Spond.get_events()`.
+
+        Parameters
+        ----------
+        data
+            as returned by `spond.spond.Spond.get_events()`.
+
+        Returns
+        -------
+        `list[Event]`
+
+        Raises
+        ------
+        `TypeError`
+            if an item in `data` is not a `dict`.
+        """
+        return [cls.from_dict(item) for item in data]
+
+    @classmethod
     def from_dict(cls, dict_: DictFromJSON) -> Self:
         """Construct an `Event`.
 
@@ -117,10 +138,7 @@ class Event(BaseModel):
         Raises
         ------
         `TypeError`
-            if `dict_` is not a dictionary.
+            if `dict_` is not a `dict`.
         """
-        if not isinstance(dict_, dict):
-            err_msg = f"Expected `dict`, got `{dict_.__class__.__name__}`: '{dict_}'"
-            raise TypeError(err_msg)
-
+        _ensure_dict(dict_)
         return cls(**dict_)

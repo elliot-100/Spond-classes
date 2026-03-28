@@ -1,5 +1,6 @@
 """Tests for Event class."""
 
+from collections.abc import Sequence
 from datetime import datetime, timezone
 
 import pytest
@@ -9,53 +10,46 @@ from spond_classes.typing import DictFromJSON
 
 
 @pytest.fixture
-def simple_event_data() -> DictFromJSON:
-    """Simplest possible event data in this implementation.
+def simple_events_data() -> list[DictFromJSON]:
+    """Simplest possible events data in this implementation.
 
-    Mocks dict returned by `Spond.get_event()` or `Spond.get_events()[n].`
+    Mocks dict returned by `Spond.get_events()`.
     """
-    return {
-        "id": "E1",
-        "heading": "Event One",
-        "responses": {
-            "acceptedIds": [],
-            "declinedIds": [],
-            "unansweredIds": [],
-            "waitinglistIds": [],
-            "unconfirmedIds": [],
-        },
-        "type": "EVENT",
-        "createdTime": "2020-12-31T19:00:00Z",
-        "endTimestamp": "2024-08-15T11:00:00Z",
-        "startTimestamp": "2021-07-06T06:00:00Z",
-    }
+    return [
+        {
+            "id": "E1",
+            "heading": "Event One",
+            "responses": {
+                "acceptedIds": [],
+                "declinedIds": [],
+                "unansweredIds": [],
+                "waitinglistIds": [],
+                "unconfirmedIds": [],
+            },
+            "type": "EVENT",
+            "createdTime": "2020-12-31T19:00:00Z",
+            "endTimestamp": "2024-08-15T11:00:00Z",
+            "startTimestamp": "2021-07-06T06:00:00Z",
+        }
+    ]
+
+
+def test_from_data_simple(simple_events_data: list[DictFromJSON]) -> None:
+    """Test that `Event`s are created from the simplest possible data."""
+    # arrange
+    # act
+    my_events = Event.list_from_data(simple_events_data)
+    # assert
+    assert isinstance(my_events[0], Event)
 
 
 @pytest.fixture
-def complex_event_data() -> DictFromJSON:
-    """Event data with all implemented fields populated.
+def simple_event_data(simple_events_data: Sequence[DictFromJSON]) -> DictFromJSON:
+    """Simplest possible group data in this implementation.
 
     Mocks dict returned by `Spond.get_event()` or `Spond.get_events()[n].`
     """
-    return {
-        "id": "E2",
-        "heading": "Event Two",
-        "responses": {
-            "acceptedIds": ["AC1"],
-            "declinedIds": ["DC1"],
-            "unansweredIds": ["UA1"],
-            "waitinglistIds": ["WL1"],
-            "unconfirmedIds": ["UC1"],
-        },
-        "type": "RECURRING",
-        "createdTime": "2019-04-24T19:00:00Z",
-        "endTimestamp": "2024-08-15T11:00:00Z",
-        "startTimestamp": "2022-11-04T06:00:00Z",
-        # optional:
-        "cancelled": "True",
-        "hidden": "True",
-        "inviteTime": "2021-01-04T06:00:00Z",
-    }
+    return simple_events_data[0]
 
 
 def test_from_dict_simple(simple_event_data: DictFromJSON) -> None:
@@ -89,11 +83,46 @@ def test_from_dict_simple(simple_event_data: DictFromJSON) -> None:
 def test_from_dict__not_dict_raises_type_error() -> None:
     """Test that TypeError is raised if arg is not a `dict`."""
     # arrange
-    list_not_dict: list[str] = ["Event One", "Event Two"]
+    list_not_dict = ["Event One", "Event Two"]
     # assert
     with pytest.raises(TypeError):
         # Ignore Mypy error - test purposely passes incompatible type
         Event.from_dict(list_not_dict)  # type: ignore[arg-type]
+
+
+@pytest.fixture
+def complex_events_data() -> list[DictFromJSON]:
+    """Event data with all implemented fields populated.
+
+    Mocks dict returned by `Spond.get_event()` or `Spond.get_events()[n].`
+    """
+    return [
+        {
+            "id": "E2",
+            "heading": "Event Two",
+            "responses": {
+                "acceptedIds": ["AC1"],
+                "declinedIds": ["DC1"],
+                "unansweredIds": ["UA1"],
+                "waitinglistIds": ["WL1"],
+                "unconfirmedIds": ["UC1"],
+            },
+            "type": "RECURRING",
+            "createdTime": "2019-04-24T19:00:00Z",
+            "endTimestamp": "2024-08-15T11:00:00Z",
+            "startTimestamp": "2022-11-04T06:00:00Z",
+            # optional:
+            "cancelled": "True",
+            "hidden": "True",
+            "inviteTime": "2021-01-04T06:00:00Z",
+        }
+    ]
+
+
+@pytest.fixture
+def complex_event_data(complex_events_data: Sequence[DictFromJSON]) -> DictFromJSON:
+    """Complex `Event`."""
+    return complex_events_data[0]
 
 
 def test_from_dict_additional_fields(complex_event_data: DictFromJSON) -> None:

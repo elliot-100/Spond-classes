@@ -13,8 +13,8 @@ package parses those `dict`s to [Pydantic](https://docs.pydantic.dev/) class ins
 
 These are the classes intended for direct user instantiation:
 
-- `Event` via `Event.from_dict()`
-- `Group` via `Group.from_dict()`
+- `Event` via `Event.list_from_data()`
+- `Group` via `Group.list_from_data()`
 """
 
 # Explicitly import classes and functions into the package namespace to define the API.
