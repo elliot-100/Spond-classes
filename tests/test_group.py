@@ -74,6 +74,16 @@ def test_from_dict__not_dict_raises_type_error() -> None:
         Group.from_dict(list_not_dict)  # type: ignore[arg-type]
 
 
+def test_from_data__not_sequence_raises_type_error() -> None:
+    """Test that TypeError is raised if arg is not a `Sequence`."""
+    # arrange
+    set_not_list = {"Group One", "Group Two"}
+    # assert
+    with pytest.raises(TypeError):
+        # Ignore Mypy error - test purposely passes incompatible type
+        Group.list_from_data(set_not_list)  # type: ignore[arg-type]
+
+
 @pytest.fixture
 def simple_group(simple_group_data: DictFromJSON) -> Group:
     """Simplest possible `Group` in this implementation."""

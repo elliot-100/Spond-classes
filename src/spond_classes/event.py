@@ -15,7 +15,7 @@ from typing import TYPE_CHECKING, Literal
 
 from pydantic import BaseModel, Field
 
-from .typing import _ensure_dict
+from .typing import _ensure_dict, _ensure_iterable_of_dict
 
 if TYPE_CHECKING:
     from collections.abc import Iterable
@@ -123,8 +123,9 @@ class Event(BaseModel):
         Raises
         ------
         `TypeError`
-            if an item in `data` is not a `dict`.
+            if `data` is not `Iterable[dict]`.
         """
+        _ensure_iterable_of_dict(data)
         return [cls.from_dict(item) for item in data]
 
     @classmethod

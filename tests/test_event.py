@@ -96,6 +96,16 @@ def test_from_dict__not_dict_raises_type_error() -> None:
         Event.from_dict(list_not_dict)  # type: ignore[arg-type]
 
 
+def test_list_from_data__not_sequence_raises_type_error() -> None:
+    """Test that TypeError is raised if arg is not a `Sequence`."""
+    # arrange
+    set_not_sequence = {"Event One", "Event Two"}
+    # assert
+    with pytest.raises(TypeError):
+        # Ignore Mypy error - test purposely passes incompatible type
+        Event.list_from_data(set_not_sequence)  # type: ignore[arg-type]
+
+
 @pytest.fixture
 def complex_events_data() -> list[DictFromJSON]:
     """Event data with all implemented fields populated.

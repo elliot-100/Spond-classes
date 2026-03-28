@@ -16,7 +16,7 @@ from pydantic import BaseModel, Field
 from .member import Member
 from .role import Role
 from .subgroup import Subgroup
-from .typing import _ensure_dict
+from .typing import _ensure_dict, _ensure_iterable_of_dict
 
 if TYPE_CHECKING:
     from collections.abc import Iterable
@@ -89,8 +89,9 @@ class Group(BaseModel):
         Raises
         ------
         `TypeError`
-            if an item in `data` is not a `dict`.
+            if `data` is not `Iterable[dict]`.
         """
+        _ensure_iterable_of_dict(data)
         return [cls.from_dict(item) for item in data]
 
     @classmethod
