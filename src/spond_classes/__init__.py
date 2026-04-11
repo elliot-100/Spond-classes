@@ -15,6 +15,7 @@ These are the classes intended for direct user instantiation:
 
 - `Event` via `Event.from_dict()` or `Event.list_from_data()`
 - `Group` via `Group.from_dict()` or `Group.list_from_data()`
+- `Profile` via `profile.from_dict()`
 """
 
 # Explicitly import classes and functions into the package namespace to define the API.
