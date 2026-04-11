@@ -2,7 +2,22 @@
 
 from __future__ import annotations
 
+import sys
+
+if sys.version_info < (3, 11):
+    from typing_extensions import Self
+
+else:
+    from typing import Self
+
+from typing import TYPE_CHECKING
+
 from pydantic import BaseModel, EmailStr, Field
+
+from spond_classes.typing import _ensure_dict
+
+if TYPE_CHECKING:
+    from .typing import DictFromJSON
 
 
 class Profile(BaseModel):
@@ -33,9 +48,33 @@ class Profile(BaseModel):
 
         Includes only key fields in custom order.
         """
-        return f"Profile(uid='{self.uid}', full_name='{self.full_name}', …)"
+        return (
+            f"{self.__class__.__name__}(uid='{self.uid}', "
+            f"full_name='{self.full_name}', …)"
+        )
 
     @property
     def full_name(self) -> str:
         """Return the `Profile`'s full name, for convenience."""
         return f"{self.first_name} {self.last_name}"
+
+    @classmethod
+    def from_dict(cls, dict_: DictFromJSON) -> Self:
+        """Construct a `Profile`.
+
+        Parameters
+        ----------
+        dict_
+            as returned by `spond.spond.Spond.get_profile()`.
+
+        Returns
+        -------
+        `Group`
+
+        Raises
+        ------
+        `TypeError`
+            if `dict_` is not a `dict`.
+        """
+        _ensure_dict(dict_)
+        return cls(**dict_)

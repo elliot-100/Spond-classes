@@ -40,11 +40,11 @@ def complex_profile_data() -> DictFromJSON:
     }
 
 
-def test_from_dict(simple_profile_data: DictFromJSON) -> None:
+def test_from_dict_simple(simple_profile_data: DictFromJSON) -> None:
     """Test that Profile is created from the simplest possible data dict."""
     # arrange
     # act
-    my_profile = Profile(**simple_profile_data)
+    my_profile = Profile.from_dict(simple_profile_data)
     # assert
     assert my_profile.uid == "P1"
     assert str(my_profile) == "Profile(uid='P1', full_name='Morgan Freeman', …)"
@@ -54,7 +54,7 @@ def test_from_dict_additional_fields(complex_profile_data: DictFromJSON) -> None
     """Test that Profile can be created with additional supported data."""
     # arrange
     # act
-    my_profile = Profile(**complex_profile_data)
+    my_profile = Profile.from_dict(complex_profile_data)
     # assert
     # - optional:
     assert my_profile.email == "s_hayek@example.com"

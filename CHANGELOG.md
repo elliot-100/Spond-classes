@@ -7,6 +7,12 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 
 Historic and pre-release versions aren't necessarily included.
 
+## UNRELEASED - TBC
+
+### Added
+
+- Explicit constructor `Profile.from_dict()`
+
 
 ## [0.18.0] - 2026-04-11
 

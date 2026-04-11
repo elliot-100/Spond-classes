@@ -53,7 +53,10 @@ class Member(BaseModel):
 
         Includes only key fields in custom order.
         """
-        return f"Member(uid='{self.uid}', full_name='{self.full_name}', …)"
+        return (
+            f"{self.__class__.__name__}(uid='{self.uid}', "
+            f"full_name='{self.full_name}', …)"
+        )
 
     @property
     def full_name(self) -> str:

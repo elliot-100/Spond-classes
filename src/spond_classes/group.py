@@ -71,7 +71,7 @@ class Group(BaseModel):
 
         Includes only key fields in custom order.
         """
-        return f"Group(uid='{self.uid}', name='{self.name}', …)"
+        return f"{self.__class__.__name__}(uid='{self.uid}', name='{self.name}', …)"
 
     @classmethod
     def list_from_data(cls, data: Iterable[DictFromJSON]) -> list[Self]:
