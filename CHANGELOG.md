@@ -8,11 +8,12 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 Historic and pre-release versions aren't necessarily included.
 
 
-## [0.18.0-a0] - 2026-03-28
+## [0.18.0] - 2026-04-11
 
 ### Added
 
 - `Event.list_from_data()`, `Group.list_from_data()`
+- Reduced runtime imports
 
 ### Changed
 
@@ -292,7 +293,7 @@ Historic and pre-release versions aren't necessarily included.
 - Update dev/test dependencies: ruff
 
 
-[0.18.0-a0]: https://github.com/elliot-100/Spond-classes/compare/v0.17.1...v0.18.0-a0
+[0.18.0]: https://github.com/elliot-100/Spond-classes/compare/v0.17.1...v0.18.0
 [0.17.1]: https://github.com/elliot-100/Spond-classes/compare/v0.17.0...v0.17.1
 [0.17.0]: https://github.com/elliot-100/Spond-classes/compare/v0.16.1...v0.17.0
 [0.16.1]: https://github.com/elliot-100/Spond-classes/compare/v0.16.0...v0.16.1
