@@ -99,6 +99,7 @@ def complex_group_data() -> DictFromJSON:
                 "firstName": "Brendan",
                 "lastName": "Gleason",
                 "phoneNumber": "+123456789",
+                "respondent": False,
                 # optional:
                 "profile": {
                     "id": "G2M1P1",
