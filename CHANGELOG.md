@@ -12,6 +12,7 @@ Historic and pre-release versions aren't necessarily included.
 ### Added
 
 - Explicit constructor `Profile.from_dict()`
+- `Member.respondent` attribute
 
 
 ## [0.18.0] - 2026-04-11

@@ -26,6 +26,8 @@ class Member(BaseModel):
     """`firstName` in Spond API."""
     last_name: str = Field(alias="lastName")
     """`lastName` in Spond API."""
+    respondent: bool
+    """Same name in Spond API."""
 
     # Mutables which always exist in Spond API data, but may be empty
     subgroup_uids: list[str] = Field(alias="subGroups")
