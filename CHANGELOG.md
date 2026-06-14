@@ -7,7 +7,7 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 
 Historic and pre-release versions aren't necessarily included.
 
-## UNRELEASED - TBC
+## [0.19.0] - 2026-06-14
 
 ### Added
 
@@ -300,6 +300,7 @@ Historic and pre-release versions aren't necessarily included.
 - Update dev/test dependencies: ruff
 
 
+[0.19.0]: https://github.com/elliot-100/Spond-classes/compare/v0.18.0...v0.19.0
 [0.18.0]: https://github.com/elliot-100/Spond-classes/compare/v0.17.1...v0.18.0
 [0.17.1]: https://github.com/elliot-100/Spond-classes/compare/v0.17.0...v0.17.1
 [0.17.0]: https://github.com/elliot-100/Spond-classes/compare/v0.16.1...v0.17.0
