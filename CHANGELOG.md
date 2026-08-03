@@ -7,6 +7,14 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 
 Historic and pre-release versions aren't necessarily included.
 
+
+## [UNRELEASED] - tbc
+
+### Changed
+
+- Build: bump uv_build requirement to 12.x
+
+
 ## [0.19.0] - 2026-06-14
 
 ### Added
