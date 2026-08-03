@@ -38,11 +38,11 @@ build-backend = "uv_build"
 
 [dependency-groups]
 dev = [
-    "mypy>=1.20.0",
+    "mypy>=2.3.0",
     "pdoc>=16.0.0",
-    "pre-commit>=4.5.1",
-    "pytest>=9.0.3",
-    "ruff>=0.15.10",
+    "pre-commit>=4.6.1",
+    "pytest>=9.1.1",
+    "ruff>=0.16.1",
 ]
 
 [tool.mypy]
@@ -60,6 +60,7 @@ ignore = [
     # Rules that conflict with Ruff formatter:
     "COM812",  # Trailing comma missing
     # Other rules:
+    "CPY001", # missing-copyright-notice
     "D205",  # 1 blank line required between summary line and description
 ]
 extend-unsafe-fixes = [
