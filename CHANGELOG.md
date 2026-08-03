@@ -7,6 +7,15 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 
 Historic and pre-release versions aren't necessarily included.
 
+
+
+## [UNRELEASED] - TBC
+
+### Added
+
+- `Group.contact_person` attribute
+
+
 ## [0.19.0] - 2026-06-14
 
 ### Added
