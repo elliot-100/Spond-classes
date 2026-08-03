@@ -14,6 +14,7 @@ Historic and pre-release versions aren't necessarily included.
 ### Added
 
 - `Group.contact_person` attribute
+- Extended pre-commit checks
 
 
 ## [0.19.0] - 2026-06-14
