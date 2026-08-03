@@ -24,7 +24,7 @@ jobs:
 
       - name: Generate HTML docs with pdoc
         run: uv run pdoc spond_classes -o docs -d numpy -t docs_templates
-      - uses: actions/upload-pages-artifact@v4
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: docs/
 
