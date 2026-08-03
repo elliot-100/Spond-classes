@@ -40,6 +40,7 @@ USERNAME = "my@mail.invalid"
 PASSWORD = "Pa55worD"
 SUBGROUP_ID = "SG1"
 
+
 async def main():
     s = Spond(username=USERNAME, password=PASSWORD)
     groups_data = await s.get_groups()
@@ -60,6 +61,7 @@ async def main():
     subgroup = my_group.subgroup_by_uid(SUBGROUP_ID)
     for member in my_group.members_by_subgroup(subgroup):
         print(f"{member.full_name} is in the {subgroup.name} subgroup")
+
 
 asyncio.run(main())
 ```
