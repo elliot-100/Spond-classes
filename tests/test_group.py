@@ -91,6 +91,13 @@ def complex_group_data() -> DictFromJSON:
     return {
         "id": "G2",
         "name": "Group Two",
+        "contactPerson": {
+            "id": "G2C1",
+            "email": "clemence@example.com",
+            "firstName": "Clémence",
+            "lastName": "Poésy",
+            "phoneNumber": "+123456792",
+        },
         "members": [
             {
                 "id": "G2M1",
@@ -136,13 +143,15 @@ def complex_group(complex_group_data: DictFromJSON) -> Group:
     return Group.from_dict(complex_group_data)
 
 
-def test_from_dict_with_member_role_subgroup(complex_group: Group) -> None:
-    """Test that subordinate Member, Role, Subgroup are created from dict."""
+def test_from_dict_subordinate_objects(complex_group: Group) -> None:
+    """Test that subordinate objects are created from dict."""
     # arrange
     # act
     my_group = complex_group
     # assert
     assert my_group.uid == "G2"
+    assert my_group.contact_person
+    assert my_group.contact_person.uid == "G2C1"
     assert my_group.members[0].uid == "G2M1"
     assert my_group.roles[0].uid == "G2R1"
     assert my_group.subgroups[0].uid == "G2S1"
