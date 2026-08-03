@@ -15,6 +15,11 @@ Historic and pre-release versions aren't necessarily included.
 
 - `Group.contact_person` attribute
 
+### Changed
+
+- Bump dev/CI dependencies
+- Docs: format code blocks
+
 
 ## [0.19.0] - 2026-06-14
 
