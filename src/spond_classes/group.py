@@ -14,6 +14,7 @@ from typing import TYPE_CHECKING
 from pydantic import BaseModel, Field
 
 from .member import Member
+from .profile_ import Profile
 from .role import Role
 from .subgroup import Subgroup
 from .typing import _ensure_dict
@@ -47,6 +48,11 @@ class Group(BaseModel):
     uses `uid`."""
     name: str
     """Same name in Spond API."""
+
+    # Optional in API data
+    contact_person: Profile | None = Field(alias="contactPerson", default=None)
+    """Derived from `contactPerson` in Spond API.
+    Assumed not always present, may be dependent on user permissions."""
 
     # Mutables which always exist in Spond API data, but may be empty
     members: list[Member]

@@ -349,7 +349,7 @@ package parses those <code>dict</code>s to <a href="https://docs.pydantic.dev/">
                 <section id="Event">
                             <input id="Event-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr class">
-            
+
     <span class="def">class</span>
     <span class="name">Event</span><wbr>(<span class="base">pydantic.main.BaseModel</span>):
 
@@ -473,10 +473,10 @@ package parses those <code>dict</code>s to <a href="https://docs.pydantic.dev/">
             <span class="name">uid</span><span class="annotation">: str</span>        =
 <span class="default_value">PydanticUndefined</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Event.uid"></a>
-    
+
             <div class="docstring"><p><code>id</code> in Spond API; aliased as that's a Python built-in, and the Spond package
 uses <code><a href="#Event.uid">uid</a></code>.</p>
 </div>
@@ -488,10 +488,10 @@ uses <code><a href="#Event.uid">uid</a></code>.</p>
             <span class="name">heading</span><span class="annotation">: str</span>        =
 <span class="default_value">PydanticUndefined</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Event.heading"></a>
-    
+
             <div class="docstring"><p>Same name in Spond API.</p>
 </div>
 
@@ -502,10 +502,10 @@ uses <code><a href="#Event.uid">uid</a></code>.</p>
             <span class="name">responses</span><span class="annotation">: <a href="#Responses">Responses</a></span>        =
 <span class="default_value">PydanticUndefined</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Event.responses"></a>
-    
+
             <div class="docstring"><p>Same name in Spond API.</p>
 </div>
 
@@ -516,10 +516,10 @@ uses <code><a href="#Event.uid">uid</a></code>.</p>
             <span class="name">type</span><span class="annotation">: Literal[&#39;AVAILABILITY&#39;, &#39;EVENT&#39;, &#39;RECURRING&#39;]</span>        =
 <span class="default_value">PydanticUndefined</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Event.type"></a>
-    
+
             <div class="docstring"><p>Same name in Spond API.</p>
 
 <p>'AVAILABILITY': availability request.
@@ -534,10 +534,10 @@ uses <code><a href="#Event.uid">uid</a></code>.</p>
             <span class="name">created_time</span><span class="annotation">: datetime.datetime</span>        =
 <span class="default_value">PydanticUndefined</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Event.created_time"></a>
-    
+
             <div class="docstring"><p>Derived from <code>createdTime</code> in Spond API.</p>
 </div>
 
@@ -548,10 +548,10 @@ uses <code><a href="#Event.uid">uid</a></code>.</p>
             <span class="name">end_time</span><span class="annotation">: datetime.datetime</span>        =
 <span class="default_value">PydanticUndefined</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Event.end_time"></a>
-    
+
             <div class="docstring"><p>Datetime at which the <code><a href="#Event">Event</a></code> ends.
 Derived from <code>endTimestamp</code> in Spond API.</p>
 </div>
@@ -563,10 +563,10 @@ Derived from <code>endTimestamp</code> in Spond API.</p>
             <span class="name">start_time</span><span class="annotation">: datetime.datetime</span>        =
 <span class="default_value">PydanticUndefined</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Event.start_time"></a>
-    
+
             <div class="docstring"><p>Datetime at which the <code><a href="#Event">Event</a></code> starts.
 Derived from <code>startTimestamp</code> in Spond API.</p>
 </div>
@@ -578,10 +578,10 @@ Derived from <code>startTimestamp</code> in Spond API.</p>
             <span class="name">cancelled</span><span class="annotation">: bool | None</span>        =
 <span class="default_value">None</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Event.cancelled"></a>
-    
+
             <div class="docstring"><p>Same name in Spond API. Not always present. Use <code><a href="#Event.is_cancelled">Event.is_cancelled</a></code> instead to
 always return a <code>bool</code>.</p>
 </div>
@@ -593,10 +593,10 @@ always return a <code>bool</code>.</p>
             <span class="name">hidden</span><span class="annotation">: bool | None</span>        =
 <span class="default_value">None</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Event.hidden"></a>
-    
+
             <div class="docstring"><p>Same name in Spond API. Not always present. Use <code><a href="#Event.is_hidden">Event.is_hidden</a></code> instead to
 always return a <code>bool</code>.</p>
 </div>
@@ -608,10 +608,10 @@ always return a <code>bool</code>.</p>
             <span class="name">invite_time</span><span class="annotation">: datetime.datetime | None</span>        =
 <span class="default_value">None</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Event.invite_time"></a>
-    
+
             <div class="docstring"><p>Derived from <code>inviteTime</code> in Spond API.
 Not always present.</p>
 </div>
@@ -802,7 +802,7 @@ or from the list returned by <code>spond.spond.Spond.get_events()</code>.</li>
                 <section id="Responses">
                             <input id="Responses-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr class">
-            
+
     <span class="def">class</span>
     <span class="name">Responses</span><wbr>(<span class="base">pydantic.main.BaseModel</span>):
 
@@ -841,10 +841,10 @@ or from the list returned by <code>spond.spond.Spond.get_events()</code>.</li>
             <span class="name">accepted_uids</span><span class="annotation">: list[str]</span>        =
 <span class="default_value">PydanticUndefined</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Responses.accepted_uids"></a>
-    
+
             <div class="docstring"><p><code>acceptedIds</code> in Spond API.
 May be empty.</p>
 </div>
@@ -856,10 +856,10 @@ May be empty.</p>
             <span class="name">declined_uids</span><span class="annotation">: list[str]</span>        =
 <span class="default_value">PydanticUndefined</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Responses.declined_uids"></a>
-    
+
             <div class="docstring"><p><code>declinedIds</code> in Spond API.
 May be empty.</p>
 </div>
@@ -871,10 +871,10 @@ May be empty.</p>
             <span class="name">unanswered_uids</span><span class="annotation">: list[str]</span>        =
 <span class="default_value">PydanticUndefined</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Responses.unanswered_uids"></a>
-    
+
             <div class="docstring"><p><code>unansweredIds</code> in Spond API.
 May be empty.</p>
 </div>
@@ -886,10 +886,10 @@ May be empty.</p>
             <span class="name">waiting_list_uids</span><span class="annotation">: list[str]</span>        =
 <span class="default_value">PydanticUndefined</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Responses.waiting_list_uids"></a>
-    
+
             <div class="docstring"><p><code>waitinglistIds</code> in Spond API.
 May be empty.</p>
 </div>
@@ -901,10 +901,10 @@ May be empty.</p>
             <span class="name">unconfirmed_uids</span><span class="annotation">: list[str]</span>        =
 <span class="default_value">PydanticUndefined</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Responses.unconfirmed_uids"></a>
-    
+
             <div class="docstring"><p><code>unconfirmedIds</code> in Spond API.
 May be empty.</p>
 </div>
@@ -915,7 +915,7 @@ May be empty.</p>
                 <section id="FieldDef">
                             <input id="FieldDef-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr class">
-            
+
     <span class="def">class</span>
     <span class="name">FieldDef</span><wbr>(<span class="base">pydantic.main.BaseModel</span>):
 
@@ -942,10 +942,10 @@ May be empty.</p>
             <span class="name">uid</span><span class="annotation">: str</span>        =
 <span class="default_value">PydanticUndefined</span>
 
-        
+
     </div>
     <a class="headerlink" href="#FieldDef.uid"></a>
-    
+
             <div class="docstring"><p><code>id</code> in Spond API; aliased as that's a Python built-in, and the Spond package
 uses <code><a href="#FieldDef.uid">uid</a></code>.</p>
 </div>
@@ -957,18 +957,18 @@ uses <code><a href="#FieldDef.uid">uid</a></code>.</p>
             <span class="name">name</span><span class="annotation">: str</span>        =
 <span class="default_value">PydanticUndefined</span>
 
-        
+
     </div>
     <a class="headerlink" href="#FieldDef.name"></a>
-    
-    
+
+
 
                             </div>
                 </section>
                 <section id="Group">
                             <input id="Group-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr class">
-            
+
     <span class="def">class</span>
     <span class="name">Group</span><wbr>(<span class="base">pydantic.main.BaseModel</span>):
 
@@ -1193,10 +1193,10 @@ uses <code><a href="#FieldDef.uid">uid</a></code>.</p>
             <span class="name">uid</span><span class="annotation">: str</span>        =
 <span class="default_value">PydanticUndefined</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Group.uid"></a>
-    
+
             <div class="docstring"><p><code>id</code> in Spond API; aliased as that's a Python built-in, and the Spond package
 uses <code><a href="#Group.uid">uid</a></code>.</p>
 </div>
@@ -1208,10 +1208,10 @@ uses <code><a href="#Group.uid">uid</a></code>.</p>
             <span class="name">name</span><span class="annotation">: str</span>        =
 <span class="default_value">PydanticUndefined</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Group.name"></a>
-    
+
             <div class="docstring"><p>Same name in Spond API.</p>
 </div>
 
@@ -1222,10 +1222,10 @@ uses <code><a href="#Group.uid">uid</a></code>.</p>
             <span class="name">members</span><span class="annotation">: list[<a href="#Member">Member</a>]</span>        =
 <span class="default_value">PydanticUndefined</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Group.members"></a>
-    
+
             <div class="docstring"><p><code><a href="#Member">Member</a></code>s belonging to the <code><a href="#Group">Group</a></code>.
 Derived from <code><a href="#Group.members">members</a></code> in Spond API.
 May be empty.</p>
@@ -1238,10 +1238,10 @@ May be empty.</p>
             <span class="name">roles</span><span class="annotation">: list[<a href="#Role">Role</a>]</span>        =
 <span class="default_value">PydanticUndefined</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Group.roles"></a>
-    
+
             <div class="docstring"><p><code><a href="#Role">Role</a></code>s belonging to the <code><a href="#Group">Group</a></code>.
 Derived from <code><a href="#Group.roles">roles</a></code> in Spond API.
 May be empty.</p>
@@ -1254,10 +1254,10 @@ May be empty.</p>
             <span class="name">subgroups</span><span class="annotation">: list[<a href="#Subgroup">Subgroup</a>]</span>        =
 <span class="default_value">PydanticUndefined</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Group.subgroups"></a>
-    
+
             <div class="docstring"><p><code><a href="#Subgroup">Subgroup</a></code>s belonging to the <code><a href="#Group">Group</a></code>.
 Derived from <code>subGroups</code> in Spond API.
 May be empty.</p>
@@ -1270,10 +1270,10 @@ May be empty.</p>
             <span class="name">field_defs</span><span class="annotation">: list[<a href="#FieldDef">FieldDef</a>]</span>        =
 <span class="default_value">PydanticUndefined</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Group.field_defs"></a>
-    
+
             <div class="docstring"><p>Custom field definitions.
 Derived from <code>fieldDefs</code> in Spond API.
 May be empty.</p>
@@ -1401,7 +1401,7 @@ or from the list returned by <code>spond.spond.Spond.get_groups()</code>.</li>
                             <div id="Group.member_by_uid" class="classattr">
                                         <input id="Group.member_by_uid-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
-            
+
         <span class="def">def</span>
         <span class="name">member_by_uid</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">uid</span><span class="p">:</span> <span class="nb">str</span></span><span class="return-annotation">) -> <span class="n"><a href="#Member">Member</a></span>:</span></span>
 
@@ -1459,7 +1459,7 @@ or from the list returned by <code>spond.spond.Spond.get_groups()</code>.</li>
                             <div id="Group.role_by_uid" class="classattr">
                                         <input id="Group.role_by_uid-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
-            
+
         <span class="def">def</span>
         <span class="name">role_by_uid</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">uid</span><span class="p">:</span> <span class="nb">str</span></span><span class="return-annotation">) -> <span class="n"><a href="#Role">Role</a></span>:</span></span>
 
@@ -1517,7 +1517,7 @@ or from the list returned by <code>spond.spond.Spond.get_groups()</code>.</li>
                             <div id="Group.subgroup_by_uid" class="classattr">
                                         <input id="Group.subgroup_by_uid-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
-            
+
         <span class="def">def</span>
         <span class="name">subgroup_by_uid</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">uid</span><span class="p">:</span> <span class="nb">str</span></span><span class="return-annotation">) -> <span class="n"><a href="#Subgroup">Subgroup</a></span>:</span></span>
 
@@ -1575,7 +1575,7 @@ or from the list returned by <code>spond.spond.Spond.get_groups()</code>.</li>
                             <div id="Group.members_by_subgroup" class="classattr">
                                         <input id="Group.members_by_subgroup-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
-            
+
         <span class="def">def</span>
         <span class="name">members_by_subgroup</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="bp">self</span>,</span><span class="param">	<span class="n">subgroup</span><span class="p">:</span> <span class="n"><a href="#Subgroup">Subgroup</a></span></span><span class="return-annotation">) -> <span class="nb">list</span><span class="p">[</span><span class="n"><a href="#Member">Member</a></span><span class="p">]</span>:</span></span>
 
@@ -1635,7 +1635,7 @@ or from the list returned by <code>spond.spond.Spond.get_groups()</code>.</li>
                             <div id="Group.members_by_role" class="classattr">
                                         <input id="Group.members_by_role-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
-            
+
         <span class="def">def</span>
         <span class="name">members_by_role</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">role</span><span class="p">:</span> <span class="n"><a href="#Role">Role</a></span></span><span class="return-annotation">) -> <span class="nb">list</span><span class="p">[</span><span class="n"><a href="#Member">Member</a></span><span class="p">]</span>:</span></span>
 
@@ -1698,7 +1698,7 @@ or from the list returned by <code>spond.spond.Spond.get_groups()</code>.</li>
                 <section id="Member">
                             <input id="Member-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr class">
-            
+
     <span class="def">class</span>
     <span class="name">Member</span><wbr>(<span class="base">pydantic.main.BaseModel</span>):
 
@@ -1777,10 +1777,10 @@ or from the list returned by <code>spond.spond.Spond.get_groups()</code>.</li>
             <span class="name">uid</span><span class="annotation">: str</span>        =
 <span class="default_value">PydanticUndefined</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Member.uid"></a>
-    
+
             <div class="docstring"><p><code>id</code> in Spond API; aliased as that's a Python built-in, and the Spond package
 uses <code><a href="#Member.uid">uid</a></code>.</p>
 </div>
@@ -1792,10 +1792,10 @@ uses <code><a href="#Member.uid">uid</a></code>.</p>
             <span class="name">created_time</span><span class="annotation">: datetime.datetime</span>        =
 <span class="default_value">PydanticUndefined</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Member.created_time"></a>
-    
+
             <div class="docstring"><p>Derived from <code>createdTime</code> in Spond API.</p>
 </div>
 
@@ -1806,10 +1806,10 @@ uses <code><a href="#Member.uid">uid</a></code>.</p>
             <span class="name">first_name</span><span class="annotation">: str</span>        =
 <span class="default_value">PydanticUndefined</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Member.first_name"></a>
-    
+
             <div class="docstring"><p><code>firstName</code> in Spond API.</p>
 </div>
 
@@ -1820,10 +1820,10 @@ uses <code><a href="#Member.uid">uid</a></code>.</p>
             <span class="name">last_name</span><span class="annotation">: str</span>        =
 <span class="default_value">PydanticUndefined</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Member.last_name"></a>
-    
+
             <div class="docstring"><p><code>lastName</code> in Spond API.</p>
 </div>
 
@@ -1834,10 +1834,10 @@ uses <code><a href="#Member.uid">uid</a></code>.</p>
             <span class="name">respondent</span><span class="annotation">: bool</span>        =
 <span class="default_value">PydanticUndefined</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Member.respondent"></a>
-    
+
             <div class="docstring"><p>Same name in Spond API.</p>
 </div>
 
@@ -1848,10 +1848,10 @@ uses <code><a href="#Member.uid">uid</a></code>.</p>
             <span class="name">subgroup_uids</span><span class="annotation">: list[str]</span>        =
 <span class="default_value">PydanticUndefined</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Member.subgroup_uids"></a>
-    
+
             <div class="docstring"><p><code>subGroups</code> in Spond API; aliased to avoid confusion with <code><a href="#Subgroup">Subgroup</a></code> instances.
 May be empty.</p>
 </div>
@@ -1863,10 +1863,10 @@ May be empty.</p>
             <span class="name">fields</span><span class="annotation">: dict[str, int | str]</span>        =
 <span class="default_value">PydanticUndefined</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Member.fields"></a>
-    
+
             <div class="docstring"><p>Custom fields. Same name in Spond API.
 May be empty.</p>
 </div>
@@ -1878,10 +1878,10 @@ May be empty.</p>
             <span class="name">email</span><span class="annotation">: pydantic.networks.EmailStr | None</span>        =
 <span class="default_value">None</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Member.email"></a>
-    
+
             <div class="docstring"><p>Same name in Spond API. Not always present.</p>
 </div>
 
@@ -1892,10 +1892,10 @@ May be empty.</p>
             <span class="name">phone_number</span><span class="annotation">: str | None</span>        =
 <span class="default_value">None</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Member.phone_number"></a>
-    
+
             <div class="docstring"><p><code>phoneNumber</code> in Spond API.
 Not always present.</p>
 </div>
@@ -1907,10 +1907,10 @@ Not always present.</p>
             <span class="name">profile</span><span class="annotation">: <a href="#Profile">Profile</a> | None</span>        =
 <span class="default_value">None</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Member.profile"></a>
-    
+
             <div class="docstring"><p>Derived from <code><a href="#Member.profile">profile</a></code> in Spond API.
 Not always present.</p>
 </div>
@@ -1922,10 +1922,10 @@ Not always present.</p>
             <span class="name">role_uids</span><span class="annotation">: list[str] | None</span>        =
 <span class="default_value">None</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Member.role_uids"></a>
-    
+
             <div class="docstring"><p><code>roles</code> in Spond API; aliased to avoid confusion with <code><a href="#Role">Role</a></code> instances.
 Not always present.</p>
 </div>
@@ -1957,7 +1957,7 @@ Not always present.</p>
                 <section id="Profile">
                             <input id="Profile-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr class">
-            
+
     <span class="def">class</span>
     <span class="name">Profile</span><wbr>(<span class="base">pydantic.main.BaseModel</span>):
 
@@ -2039,10 +2039,10 @@ Not always present.</p>
             <span class="name">uid</span><span class="annotation">: str</span>        =
 <span class="default_value">PydanticUndefined</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Profile.uid"></a>
-    
+
             <div class="docstring"><p><code>id</code> in Spond API; aliased as that's a Python built-in, and the Spond package
 uses <code><a href="#Profile.uid">uid</a></code>.</p>
 </div>
@@ -2054,10 +2054,10 @@ uses <code><a href="#Profile.uid">uid</a></code>.</p>
             <span class="name">first_name</span><span class="annotation">: str</span>        =
 <span class="default_value">PydanticUndefined</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Profile.first_name"></a>
-    
+
             <div class="docstring"><p><code>firstName</code> in Spond API.</p>
 </div>
 
@@ -2068,10 +2068,10 @@ uses <code><a href="#Profile.uid">uid</a></code>.</p>
             <span class="name">last_name</span><span class="annotation">: str</span>        =
 <span class="default_value">PydanticUndefined</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Profile.last_name"></a>
-    
+
             <div class="docstring"><p><code>lastName</code> in Spond API.</p>
 </div>
 
@@ -2082,10 +2082,10 @@ uses <code><a href="#Profile.uid">uid</a></code>.</p>
             <span class="name">email</span><span class="annotation">: pydantic.networks.EmailStr | None</span>        =
 <span class="default_value">None</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Profile.email"></a>
-    
+
             <div class="docstring"><p>Same name in Spond API. Not always present.</p>
 </div>
 
@@ -2096,10 +2096,10 @@ uses <code><a href="#Profile.uid">uid</a></code>.</p>
             <span class="name">phone_number</span><span class="annotation">: str | None</span>        =
 <span class="default_value">None</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Profile.phone_number"></a>
-    
+
             <div class="docstring"><p><code>phoneNumber</code> in Spond API.
 Not always present.</p>
 </div>
@@ -2189,7 +2189,7 @@ Not always present.</p>
                 <section id="Role">
                             <input id="Role-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr class">
-            
+
     <span class="def">class</span>
     <span class="name">Role</span><wbr>(<span class="base">pydantic.main.BaseModel</span>):
 
@@ -2230,10 +2230,10 @@ Not always present.</p>
             <span class="name">uid</span><span class="annotation">: str</span>        =
 <span class="default_value">PydanticUndefined</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Role.uid"></a>
-    
+
             <div class="docstring"><p><code>id</code> in Spond API; aliased as that's a Python built-in, and the Spond package
 uses <code><a href="#Role.uid">uid</a></code>.</p>
 </div>
@@ -2245,10 +2245,10 @@ uses <code><a href="#Role.uid">uid</a></code>.</p>
             <span class="name">name</span><span class="annotation">: str</span>        =
 <span class="default_value">PydanticUndefined</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Role.name"></a>
-    
+
             <div class="docstring"><p>Same name in Spond API.</p>
 </div>
 
@@ -2258,7 +2258,7 @@ uses <code><a href="#Role.uid">uid</a></code>.</p>
                 <section id="Subgroup">
                             <input id="Subgroup-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr class">
-            
+
     <span class="def">class</span>
     <span class="name">Subgroup</span><wbr>(<span class="base">pydantic.main.BaseModel</span>):
 
@@ -2299,10 +2299,10 @@ uses <code><a href="#Role.uid">uid</a></code>.</p>
             <span class="name">uid</span><span class="annotation">: str</span>        =
 <span class="default_value">PydanticUndefined</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Subgroup.uid"></a>
-    
+
             <div class="docstring"><p><code>id</code> in Spond API; aliased as that's a Python built-in, and the Spond package
 uses <code><a href="#Subgroup.uid">uid</a></code>.</p>
 </div>
@@ -2314,10 +2314,10 @@ uses <code><a href="#Subgroup.uid">uid</a></code>.</p>
             <span class="name">name</span><span class="annotation">: str</span>        =
 <span class="default_value">PydanticUndefined</span>
 
-        
+
     </div>
     <a class="headerlink" href="#Subgroup.name"></a>
-    
+
             <div class="docstring"><p>Same name in Spond API.</p>
 </div>
 
