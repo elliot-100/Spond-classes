@@ -36,9 +36,9 @@ from spond.spond import Spond
 from spond_classes import Group
 
 # fake credentials and ids
-USERNAME = 'my@mail.invalid'
-PASSWORD = 'Pa55worD'
-SUBGROUP_ID = 'SG1'
+USERNAME = "my@mail.invalid"
+PASSWORD = "Pa55worD"
+SUBGROUP_ID = "SG1"
 
 async def main():
     s = Spond(username=USERNAME, password=PASSWORD)
