@@ -8,6 +8,16 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 Historic and pre-release versions aren't necessarily included.
 
 
+## UNRELEASED - tbc
+
+### Changed
+
+- uv resolution strategy is now 'lowest-direct' i.e. direct dependencies are pinned to
+  the lowest version that satisfies the requirements.
+
+  This means CI should now flag if Pydantic (the only dependency) lower bound needs to be raised to be
+  compatible with a Python version in the CI matrix.  
+
 
 ## [0.20.0] - 2026-08-04
 
@@ -325,6 +335,7 @@ Historic and pre-release versions aren't necessarily included.
 - Update dev/test dependencies: ruff
 
 
+[0.20.0]: https://github.com/elliot-100/Spond-classes/compare/v0.19.0...v0.20.0
 [0.19.0]: https://github.com/elliot-100/Spond-classes/compare/v0.18.0...v0.19.0
 [0.18.0]: https://github.com/elliot-100/Spond-classes/compare/v0.17.1...v0.18.0
 [0.17.1]: https://github.com/elliot-100/Spond-classes/compare/v0.17.0...v0.17.1
