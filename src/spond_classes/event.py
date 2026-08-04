@@ -58,7 +58,7 @@ class Event(BaseModel):
     """Same name in Spond API.
 
     'AVAILABILITY': availability request.
-    'EVENT': regular event.
+    'EVENT': normal (non-recurring) event.
     'RECURRING': instance of recurring event."""
     created_time: datetime = Field(alias="createdTime")
     """Derived from `createdTime` in Spond API."""
