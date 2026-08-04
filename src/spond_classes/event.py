@@ -57,9 +57,11 @@ class Event(BaseModel):
     type: Literal["AVAILABILITY", "EVENT", "RECURRING"]
     """Same name in Spond API.
 
-    'AVAILABILITY': availability request.
-    'EVENT': regular event.
-    'RECURRING': instance of recurring event."""
+    `AVAILABILITY`: availability request.
+    
+    `EVENT`: normal (non-recurring) event.
+    
+    `RECURRING`: instance of recurring event."""
     created_time: datetime = Field(alias="createdTime")
     """Derived from `createdTime` in Spond API."""
     end_time: datetime = Field(alias="endTimestamp")
