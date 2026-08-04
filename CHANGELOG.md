@@ -9,16 +9,23 @@ Historic and pre-release versions aren't necessarily included.
 
 
 
-## [UNRELEASED] - TBC
+## [0.20.0] - 2026-08-04
 
 ### Added
 
 - `Group.contact_person` attribute
 - Extended pre-commit checks
 
+### Fixed
+
+- Require pydantic >=2.12.0 for Python 3.13, 3.14 support
+
+  (uv 'highest' resolution strategy used for migration to uv in v0.18.0 prevented this being flagged by CI.
+  This fix doesn't resolve the CI issue.)
+
 ### Changed
 
-- Bump dev/CI dependencies
+- Update dev/CI dependencies
 - Docs: format code blocks
 
 
@@ -28,6 +35,10 @@ Historic and pre-release versions aren't necessarily included.
 
 - Explicit constructor `Profile.from_dict()`
 - `Member.respondent` attribute
+
+### Changed
+
+- Update dev/CI dependencies
 
 
 ## [0.18.0] - 2026-04-11
@@ -40,7 +51,7 @@ Historic and pre-release versions aren't necessarily included.
 ### Changed
 
 - Migrate management from Poetry to uv
-
+- Update dev/CI dependencies
 
 ## [0.17.1] - 2025-11-16
 
@@ -59,7 +70,7 @@ Historic and pre-release versions aren't necessarily included.
 
 ### Changed
 
-- Update dev/test dependencies
+- Update dev/CI dependencies
 
 
 ## [0.16.1] - 2025-10-08
@@ -70,8 +81,7 @@ Historic and pre-release versions aren't necessarily included.
 - CI/CD:
   - Add Python 3.14 to matrix
   - Only publish documentation site on release
-  - Update dependencies
-- Update dev dependencies
+- Update dev/CI dependencies
 
 
 ## [0.16.0] - 2025-07-05
