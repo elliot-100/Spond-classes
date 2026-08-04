@@ -10,6 +10,10 @@ Historic and pre-release versions aren't necessarily included.
 
 ## UNRELEASED - tbc
 
+### Added
+
+- Support for Python 3.15
+
 ### Changed
 
 - uv resolution strategy is now 'lowest-direct' i.e. direct dependencies are pinned to
@@ -88,9 +92,8 @@ Historic and pre-release versions aren't necessarily included.
 ### Changed
 
 - Tests: minor improvements
-- CI/CD:
-  - Add Python 3.14 to matrix
-  - Only publish documentation site on release
+- Support for Python 3.14
+- CI/CD: only publish documentation site on release
 - Update dev/CI dependencies
 
 
@@ -281,7 +284,7 @@ Historic and pre-release versions aren't necessarily included.
 
 ### Added
 
-- Support for Python 3.12 in GitHub CI
+- Support for Python 3.12
 
 ### Changed
 
