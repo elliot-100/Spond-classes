@@ -1,4 +1,8 @@
-# Spond-classes
+# spond-classes
+
+![PyPI Python Version](https://img.shields.io/pypi/pyversions/spond-classes)
+![PyPI Types](https://img.shields.io/pypi/types/spond-classes)
+![Python Version from PEP 621 TOML](https://img.shields.io/python/required-version-toml?tomlFilePath=https%3A%2F%2Fraw.githubusercontent.com%2Felliot-100%2FSpond-classes%2Frefs%2Fheads%2Fmain%2Fpyproject.toml)
 
 ## About
 
@@ -61,7 +65,6 @@ async def main():
     subgroup = my_group.subgroup_by_uid(SUBGROUP_ID)
     for member in my_group.members_by_subgroup(subgroup):
         print(f"{member.full_name} is in the {subgroup.name} subgroup")
-
 
 asyncio.run(main())
 ```
