@@ -795,7 +795,7 @@ wheels = [
 
 [[package]]
 name = "spond-classes"
-version = "0.21.0"
+version = "0.22.0"
 source = { editable = "." }
 dependencies = [
     { name = "pydantic", extra = ["email"] },
