@@ -2,16 +2,8 @@
 
 from __future__ import annotations
 
-import sys
-
-if sys.version_info < (3, 11):
-    from typing_extensions import Self
-
-else:
-    from typing import Self
-
 from datetime import datetime
-from typing import TYPE_CHECKING, Literal
+from typing import TYPE_CHECKING, Literal, Self
 
 from pydantic import BaseModel, Field
 
