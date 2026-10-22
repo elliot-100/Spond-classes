@@ -2,15 +2,7 @@
 
 from __future__ import annotations
 
-import sys
-
-if sys.version_info < (3, 11):
-    from typing_extensions import Self
-
-else:
-    from typing import Self
-
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Self
 
 from pydantic import BaseModel, EmailStr, Field
 

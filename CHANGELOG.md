@@ -8,6 +8,13 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 Historic and pre-release versions aren't necessarily included.
 
 
+## [UNRELEASED] - TBC
+
+### Removed
+
+- Support for Python 3.10
+
+
 ## [0.21.0] - 2026-10-10
 
 ### Added
@@ -17,7 +24,7 @@ Historic and pre-release versions aren't necessarily included.
 ### Changed
 
 - CI: uv resolution strategy is now 'lowest-direct' i.e. direct dependencies are pinned to
-  the lowest version that satisfies the requirements. 
+  the lowest version that satisfies the requirements.
 
   This means CI will flag if Pydantic (the only dependency) lower bound needs to be raised to be
   compatible with a Python version in the CI matrix. Has no effect when using as a library.

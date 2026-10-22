@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import TYPE_CHECKING
 
 import pytest
@@ -73,9 +73,7 @@ def test_from_dict_simple(simple_member_data: DictFromJSON) -> None:
     my_member = Member(**simple_member_data)
     # assert
     assert my_member.uid == "M1"
-    assert my_member.created_time == datetime(
-        2022, 3, 24, 16, 36, 29, tzinfo=timezone.utc
-    )
+    assert my_member.created_time == datetime(2022, 3, 24, 16, 36, 29, tzinfo=UTC)
     assert my_member.first_name == "Brendan"
     assert my_member.last_name == "Gleason"
     assert my_member.respondent is True
@@ -99,9 +97,7 @@ def test_from_dict_full(complex_member_data: DictFromJSON) -> None:
     my_member = Member(**complex_member_data)
     # assert
     assert my_member.uid == "M2"
-    assert my_member.created_time == datetime(
-        2022, 3, 24, 16, 36, 29, tzinfo=timezone.utc
-    )
+    assert my_member.created_time == datetime(2022, 3, 24, 16, 36, 29, tzinfo=UTC)
     assert my_member.first_name == "Ciarán"
     assert my_member.last_name == "Hinds"
     assert my_member.respondent is False
