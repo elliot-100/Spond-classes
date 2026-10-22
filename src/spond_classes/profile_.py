@@ -69,4 +69,4 @@ class Profile(BaseModel):
             if `dict_` is not a `dict`.
         """
         _ensure_dict(dict_)
-        return cls(**dict_)
+        return cls.model_validate(dict_)

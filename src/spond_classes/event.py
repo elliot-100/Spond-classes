@@ -1,4 +1,4 @@
-"""Module containing `Event` class and related `EventType`,`Responses` classes."""
+"""Module containing `Event` class and related `Responses` classes."""
 
 from __future__ import annotations
 
@@ -141,4 +141,4 @@ class Event(BaseModel):
             if `dict_` is not a `dict`.
         """
         _ensure_dict(dict_)
-        return cls(**dict_)
+        return cls.model_validate(dict_)

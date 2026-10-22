@@ -112,7 +112,7 @@ class Group(BaseModel):
             if `dict_` is not a `dict`.
         """
         _ensure_dict(dict_)
-        return cls(**dict_)
+        return cls.model_validate(dict_)
 
     def member_by_uid(self, uid: str) -> Member:
         """Return the `Member` with matching `uid`.
@@ -177,6 +177,7 @@ class Group(BaseModel):
         for subgroup in self.subgroups:
             if subgroup.uid == uid:
                 return subgroup
+
         err_msg = f"No Subgroup found with id='{uid}'."
         raise LookupError(err_msg)
 
@@ -200,6 +201,7 @@ class Group(BaseModel):
         if not isinstance(subgroup, Subgroup):
             err_msg = "`subgroup` must be a Subgroup."
             raise TypeError(err_msg)
+
         return [
             member for member in self.members if subgroup.uid in member.subgroup_uids
         ]
@@ -224,6 +226,7 @@ class Group(BaseModel):
         if not isinstance(role, Role):
             err_msg = "`role` must be a Role."
             raise TypeError(err_msg)
+
         return [
             member
             for member in self.members
