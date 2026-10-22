@@ -65,10 +65,10 @@ class Event(BaseModel):
 
     # Optional in API data
     cancelled: bool | None = Field(default=None)
-    """Same name in Spond API. Not always present. Use `Event.is_cancelled` instead to
+    """Same name in Spond API. Not always present. Use `is_cancelled` instead to
     always return a `bool`."""
     hidden: bool | None = Field(default=None)
-    """Same name in Spond API. Not always present. Use `Event.is_hidden` instead to
+    """Same name in Spond API. Not always present. Use `is_hidden` instead to
     always return a `bool`."""
     invite_time: datetime | None = Field(alias="inviteTime", default=None)
     """Derived from `inviteTime` in Spond API.
@@ -93,13 +93,17 @@ class Event(BaseModel):
 
     @property
     def is_cancelled(self) -> bool:
-        """Return whether the `Event` is cancelled."""
-        return getattr(self, "cancelled", False)
+        """Return whether the `Event` is cancelled.
+        Always `bool`, unlike `cancelled`.
+        """
+        return bool(self.cancelled)
 
     @property
     def is_hidden(self) -> bool:
-        """Return whether the `Event` is hidden."""
-        return getattr(self, "hidden", False)
+        """Return whether the `Event` is hidden.
+        Always `bool`, unlike `hidden`.
+        """
+        return bool(self.hidden)
 
     @classmethod
     def list_from_data(cls, data: Iterable[DictFromJSON]) -> list[Self]:

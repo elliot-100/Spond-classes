@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 
 @pytest.fixture
 def simple_events_data() -> list[DictFromJSON]:
-    """Simplest possible events data in this implementation.
+    """Simplest possible list of events data in this implementation.
 
     Mocks dict returned by `Spond.get_events()`.
     """
@@ -51,7 +51,7 @@ def test_from_data_simple(simple_events_data: list[DictFromJSON]) -> None:
 
 @pytest.fixture
 def simple_event_data(simple_events_data: Sequence[DictFromJSON]) -> DictFromJSON:
-    """Simplest possible group data in this implementation.
+    """Simplest possible single event data in this implementation.
 
     Mocks dict returned by `Spond.get_event()` or `Spond.get_events()[n].`
     """
@@ -59,7 +59,7 @@ def simple_event_data(simple_events_data: Sequence[DictFromJSON]) -> DictFromJSO
 
 
 def test_from_dict_simple(simple_event_data: DictFromJSON) -> None:
-    """Test that Event is created from the simplest possible data."""
+    """Test that an Event is created from the simplest possible data."""
     # arrange
     # act
     my_event = Event.from_dict(simple_event_data)
@@ -84,6 +84,8 @@ def test_from_dict_simple(simple_event_data: DictFromJSON) -> None:
         "Event(uid='E1', heading='Event One', start_time: 2021-07-06 06:00:00+00:00, …)"
     )
     assert my_event.url == "https://spond.com/client/sponds/E1/"
+    assert my_event.is_cancelled is False
+    assert my_event.is_hidden is False
 
 
 def test_from_dict__not_dict_raises_type_error() -> None:

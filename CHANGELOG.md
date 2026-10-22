@@ -14,6 +14,10 @@ Historic and pre-release versions aren't necessarily included.
 
 - Support for Python 3.10
 
+### Fixed
+
+- `Event.is_cancelled`, `.is_hidden` returned (falsy) `None` instead of `False`
+
 
 ## [0.21.0] - 2026-10-10
 
