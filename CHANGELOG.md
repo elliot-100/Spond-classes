@@ -8,7 +8,18 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 Historic and pre-release versions aren't necessarily included.
 
 
+## [0.22.1] - 2026-11 - 14
+
+### Changed
+
+- Indirect deps: bump dnspython, filelock, virtualenv requirement
+
+
 ## [0.22.0] - 2026-10-22
+
+### Changed
+
+- Indirect deps: bump virtualenv requirement
 
 ### Removed
 
@@ -352,6 +363,7 @@ Historic and pre-release versions aren't necessarily included.
 - Update dev/test dependencies: ruff
 
 
+[0.22.1]: https://github.com/elliot-100/Spond-classes/compare/v0.22.0...v0.22.1
 [0.22.0]: https://github.com/elliot-100/Spond-classes/compare/v0.21.0...v0.22.0
 [0.21.0]: https://github.com/elliot-100/Spond-classes/compare/v0.20.0...v0.21.0
 [0.20.0]: https://github.com/elliot-100/Spond-classes/compare/v0.19.0...v0.20.0
