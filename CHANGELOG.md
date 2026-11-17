@@ -8,7 +8,14 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 Historic and pre-release versions aren't necessarily included.
 
 
-## [0.22.1] - 2026-11 - 14
+## [0.23.0] - 2026-11-17
+
+### Added
+
+- Trusted publishing to PyPI
+
+
+## [0.22.1] - 2026-11-14
 
 ### Changed
 
@@ -363,6 +370,7 @@ Historic and pre-release versions aren't necessarily included.
 - Update dev/test dependencies: ruff
 
 
+[0.23.0]: https://github.com/elliot-100/Spond-classes/compare/v0.22.1...v0.23.0
 [0.22.1]: https://github.com/elliot-100/Spond-classes/compare/v0.22.0...v0.22.1
 [0.22.0]: https://github.com/elliot-100/Spond-classes/compare/v0.21.0...v0.22.0
 [0.21.0]: https://github.com/elliot-100/Spond-classes/compare/v0.20.0...v0.21.0
