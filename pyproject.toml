@@ -88,3 +88,4 @@ convention = "numpy"
 
 [tool.uv]
 resolution = "lowest-direct"
+exclude-newer = "7 days"
